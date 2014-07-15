@@ -1,0 +1,23 @@
+.mz-tabpanel-tabs {
+	border-bottom: 1px solid #999;
+	margin: 0;
+	padding: 0 0 0 15px;
+}
+
+.mz-tabpanel-tab {
+	display: inline-block;
+	bottom: -1px;
+	position: relative;
+	list-style: none;
+	padding: 5px 15px;
+}
+
+.mz-tabpanel-tab-active {
+	background: #fcfcfc;
+	border: 1px solid #999;
+	border-bottom: none;
+	border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	font-weight: bold;
+}
