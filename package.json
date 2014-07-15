@@ -1,0 +1,27 @@
+{
+  "name": "react-tabpanel",
+  "version": "0.0.0",
+  "description": "React TabPanel component",
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mzabriskie/react-tabpanel.git"
+  },
+  "author": "Matt Zabriskie <mzabriskie@gmail.com> (http://www.mattzabriskie.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mzabriskie/react-tabpanel/issues"
+  },
+  "homepage": "https://github.com/mzabriskie/react-tabpanel",
+  "dependencies": {
+    "envify": "^1.2.1",
+    "react": "^0.10.0"
+  },
+  "devDependencies": {
+    "jsx-loader": "^0.10.2",
+    "webpack": "^1.3.1-beta8"
+  }
+}
