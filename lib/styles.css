@@ -10,6 +10,14 @@
 	position: relative;
 	list-style: none;
 	padding: 5px 15px;
+	cursor: pointer;
+}
+
+.mz-tabpanel-tab:not(.mz-tabpanel-tab-active) a {
+	color: #3366ff;
+}
+.mz-tabpanel-tab:not(.mz-tabpanel-tab-active) a:hover {
+	text-decoration: underline;
 }
 
 .mz-tabpanel-tab-active {
@@ -20,4 +28,5 @@
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	font-weight: bold;
+	cursor: default;
 }
