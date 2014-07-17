@@ -2,7 +2,17 @@
 
 React tabs component
 
-## Usage
+## Installing
+
+```bash
+npm install react-tabs
+```
+
+## Demo
+
+http://mzabriskie.github.io/react-tabs/example/
+
+## Example
 
 ```js
 /** @jsx React.DOM */
