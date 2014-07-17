@@ -1,1 +1,3 @@
-# react-tabpanel
+# react-tabs
+
+React tabs component
