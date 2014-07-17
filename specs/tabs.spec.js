@@ -1,6 +1,5 @@
-var React = require('react'),
-	TestUtils = React.addons.TestUtils,
-	ReactTabs = require('../lib/main');
+require('./helper');
+var ReactTabs = require('../lib/main');
 
 describe('react-tabs', function () {
 	it('should do stuff', function () {

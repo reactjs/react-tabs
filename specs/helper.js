@@ -1,2 +1,2 @@
-React = require('react');
+React = require('react/addons');
 TestUtils = React.addons.TestUtils;
