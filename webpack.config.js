@@ -1,7 +1,7 @@
 module.exports = {
 	entry: './example/main.js',
 	output: {
-		filename: './build/react-tabs.js'
+		filename: './build/bundle.js'
 	},
 	module: {
 		loaders: [
