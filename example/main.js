@@ -10,7 +10,7 @@ var App = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<h1>React TabPanel</h1>
+				<h1>React Tabs</h1>
 				<Tabs>
 					<TabList>
 						<Tab>Tab 1</Tab>
