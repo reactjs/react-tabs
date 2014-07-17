@@ -4,7 +4,8 @@
   "description": "React tabs component",
   "main": "lib/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --watch --devtool inline-source-map"
   },
   "repository": {
     "type": "git",
