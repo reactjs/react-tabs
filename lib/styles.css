@@ -1,32 +1,24 @@
-.mz-tabpanel-tabs {
-	border-bottom: 1px solid #999;
+.react-tabs [role=tablist] {
+	border-bottom: 1px solid #aaa;
 	margin: 0;
-	padding: 0 0 0 15px;
+	padding: 0;
 }
 
-.mz-tabpanel-tab {
+.react-tabs [role=tab] {
 	display: inline-block;
+	border: 1px solid transparent;
+	border-bottom: none;
 	bottom: -1px;
 	position: relative;
 	list-style: none;
-	padding: 5px 15px;
+	padding: 6px 12px;
 	cursor: pointer;
 }
 
-.mz-tabpanel-tab:not(.mz-tabpanel-tab-active) a {
-	color: #3366ff;
-}
-.mz-tabpanel-tab:not(.mz-tabpanel-tab-active) a:hover {
-	text-decoration: underline;
-}
-
-.mz-tabpanel-tab-active {
-	background: #fcfcfc;
-	border: 1px solid #999;
-	border-bottom: none;
+.react-tabs [role=tab][aria-selected=true] {
+	background: #fff;
+	border-color: #aaa;
 	border-radius: 5px 5px 0 0;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
-	font-weight: bold;
-	cursor: default;
 }
