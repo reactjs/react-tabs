@@ -33,9 +33,9 @@
 .react-tabs [role=tab]:focus:after {
 	content: '';
 	position: absolute;
-	height: 3px;
-	left: -3px;
-	right: -3px;
-	bottom: -3px;
+	height: 4px;
+	left: -4px;
+	right: -4px;
+	bottom: -4px;
 	background: #fff;
 }
