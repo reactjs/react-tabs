@@ -16,12 +16,12 @@ http://mzabriskie.github.io/react-tabs/example/
 
 ```js
 /** @jsx React.DOM */
-var React = require('react'),
-	ReactTabs = require('react-tabs'),
-	Tabs = ReactTabs.Tabs,
-	Tab = ReactTabs.Tab,
-	TabList = ReactTabs.TabList,
-	TabPanel = ReactTabs.TabPanel;
+var React		= require('react'),
+	ReactTabs	= require('react-tabs'),
+	Tab			= ReactTabs.Tab,
+	Tabs		= ReactTabs.Tabs,
+	TabList		= ReactTabs.TabList,
+	TabPanel	= ReactTabs.TabPanel;
 
 var App = React.createClass({
 	render: function () {
