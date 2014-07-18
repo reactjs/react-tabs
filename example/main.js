@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
-var React = require('react'),
-	ReactTabs = require('../lib/main'),
-	Tabs = ReactTabs.Tabs,
-	Tab = ReactTabs.Tab,
-	TabList = ReactTabs.TabList,
-	TabPanel = ReactTabs.TabPanel;
+var React		= require('react'),
+	ReactTabs	= require('../lib/main'),
+	Tab			= ReactTabs.Tab,
+	Tabs		= ReactTabs.Tabs,
+	TabList		= ReactTabs.TabList,
+	TabPanel	= ReactTabs.TabPanel;
 
 var App = React.createClass({
 	render: function () {
@@ -13,6 +13,13 @@ var App = React.createClass({
 				<h1>React Tabs</h1>
 				<p>
 					<a href="https://github.com/mzabriskie/react-tabs/blob/master/example/main.js">Demo Source</a>
+				</p>
+				<p>
+					<em>Hint:</em>
+					<ul>
+						<li>use keyboard tab to focus tabs</li>
+						<li>use arrow keys to navigate focused tabs</li>
+					</ul>
 				</p>
 				<Tabs>
 					<TabList>
