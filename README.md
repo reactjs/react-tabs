@@ -89,3 +89,7 @@ var App = React.createClass({
 React.renderComponent(<App/>, document.body);
 
 ```
+
+## License
+
+MIT
