@@ -4,8 +4,8 @@
   "description": "React tabs component",
   "main": "lib/main.js",
   "scripts": {
-    "test": "node_modules/.bin/karma start --browsers Firefox --single-run",
-    "build": "webpack --watch --devtool inline-source-map"
+    "test": "script/test --browsers Firefox --single-run",
+    "build": "script/build"
   },
   "repository": {
     "type": "git",
