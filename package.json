@@ -1,11 +1,11 @@
 {
   "name": "react-tabs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React tabs component",
   "main": "lib/main.js",
   "scripts": {
-    "test": "node_modules/.bin/karma start --browsers Chrome --single-run",
-    "build": "webpack --watch --devtool inline-source-map"
+    "test": "script/test --browsers Firefox --single-run",
+    "build": "script/build"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,10 @@
     "react": "^0.11.0",
     "jsx-loader": "^0.10.2",
     "karma": "^0.12.17",
+	"karma-cli": "0.0.4",
     "karma-jasmine": "^0.1.5",
     "karma-chrome-launcher": "^0.1.4",
+    "karma-firefox-launcher": "^0.1.3",
     "karma-webpack": "^1.2.1",
     "webpack": "^1.3.1-beta8",
     "webpack-dev-server": "^1.4.7"

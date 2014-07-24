@@ -8,3 +8,8 @@
 
 - Fixing warning: Invalid access to component property
 - Fixing style weirdness in Firefox
+
+### 0.1.2 (Jul 23, 2014)
+
+- Making Tab and TabPanel to be stateless
+- Throwing Error when Tab count and TabPanel count aren't equal
