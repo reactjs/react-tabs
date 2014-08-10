@@ -5,7 +5,7 @@ React tabs component
 ## Installing
 
 ```bash
-npm install react-tabs
+$ npm install react-tabs
 ```
 
 ## Demo
