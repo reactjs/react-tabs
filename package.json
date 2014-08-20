@@ -8,7 +8,9 @@
     "start": "script/build"
   },
   "browserify": {
-    "transform": ["reactify"]
+    "transform": [
+      "reactify"
+    ]
   },
   "repository": {
     "type": "git",
@@ -20,11 +22,13 @@
     "url": "https://github.com/mzabriskie/react-tabs/issues"
   },
   "homepage": "https://github.com/mzabriskie/react-tabs",
+  "dependencies": {
+    "react": "^0.11.1"
+  },
   "devDependencies": {
-    "react": "^0.11.0",
     "jsx-loader": "^0.10.2",
     "karma": "^0.12.17",
-	"karma-cli": "0.0.4",
+	  "karma-cli": "0.0.4",
     "karma-jasmine": "^0.1.5",
     "karma-chrome-launcher": "^0.1.4",
     "karma-firefox-launcher": "^0.1.3",
