@@ -13,7 +13,7 @@ function createTabs(props) {
 			<TabList>
 				<Tab>Foo</Tab>
 				<Tab>Bar</Tab>
-				<Tab>Baz</Tab>
+				<Tab><a>Baz</a></Tab>
 			</TabList>
 			<TabPanel>Hello Foo</TabPanel>
 			<TabPanel>Hello Bar</TabPanel>
@@ -83,6 +83,12 @@ describe('react-tabs', function () {
 
 			TestUtils.Simulate.click(tabs.getTab(1).getDOMNode());
 			assertTabSelected(tabs, 1);
+		});
+		it('should update selectedIndex when tab child is clicked', function () {
+			var tabs = TestUtils.renderIntoDocument(createTabs());
+
+			TestUtils.Simulate.click(tabs.getTab(2).getDOMNode().firstChild);
+			assertTabSelected(tabs, 2);
 		});
 	});
 
