@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/mzabriskie/react-tabs",
   "dependencies": {
-    "react": "^0.11.1"
+    "react": "^0.12.0"
   },
   "devDependencies": {
     "jsx-loader": "^0.10.2",
