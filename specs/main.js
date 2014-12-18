@@ -1,1 +1,1 @@
-require('./tabs.spec.js');
+require('./Tabs.spec.js');

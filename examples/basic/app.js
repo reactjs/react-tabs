@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React		= require('react'),
-	ReactTabs	= require('../lib/main'),
+	ReactTabs	= require('../../lib/main'),
 	Tab			= ReactTabs.Tab,
 	Tabs		= ReactTabs.Tabs,
 	TabList		= ReactTabs.TabList,
