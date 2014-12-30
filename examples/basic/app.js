@@ -1,19 +1,15 @@
 /** @jsx React.DOM */
-var React		= require('react'),
-	ReactTabs	= require('../../lib/main'),
-	Tab			= ReactTabs.Tab,
-	Tabs		= ReactTabs.Tabs,
-	TabList		= ReactTabs.TabList,
-	TabPanel	= ReactTabs.TabPanel;
+var React = require('react');
+var ReactTabs	= require('../../lib/main');
+var Tab	= ReactTabs.Tab;
+var Tabs = ReactTabs.Tabs;
+var TabList	= ReactTabs.TabList;
+var TabPanel = ReactTabs.TabPanel;
 
 var App = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<h1>React Tabs</h1>
-				<p>
-					<a href="https://github.com/mzabriskie/react-tabs/blob/master/example/main.js">Demo Source</a>
-				</p>
 				<p>
 					<em>Hint:</em>
 					<ul>
@@ -91,4 +87,4 @@ var App = React.createClass({
 	}
 });
 
-React.renderComponent(<App/>, document.body);
+React.renderComponent(<App/>, document.getElementById('example'));
