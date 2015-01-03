@@ -4,8 +4,8 @@
   "description": "React tabs component",
   "main": "lib/main.js",
   "scripts": {
-    "test": "script/test --browsers Firefox --single-run",
-    "start": "script/build"
+    "test": "node_modules/.bin/rackt test --ci",
+    "start": "node_modules/.bin/rackt dev"
   },
   "browserify": {
     "transform": [
@@ -31,6 +31,7 @@
   "devDependencies": {
     "envify": "^3.2.0",
     "jsx-loader": "^0.12.2",
+    "rackt-cli": "^0.1.0",
     "reactify": "^0.17.1"
   },
   "dependencies": {
