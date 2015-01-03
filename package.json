@@ -4,7 +4,7 @@
   "description": "React tabs component",
   "main": "lib/main.js",
   "scripts": {
-    "test": "node_modules/.bin/rackt test --ci",
+    "test": "node_modules/.bin/rackt test --ci --browsers Firefox",
     "start": "node_modules/.bin/rackt dev"
   },
   "browserify": {
