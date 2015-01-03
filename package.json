@@ -31,7 +31,7 @@
   "devDependencies": {
     "envify": "^3.2.0",
     "jsx-loader": "^0.12.2",
-    "rackt-cli": "^0.1.0",
+    "rackt-cli": "^0.1.1",
     "reactify": "^0.17.1"
   },
   "dependencies": {
