@@ -12,7 +12,7 @@ var App = React.createClass({
 			<div>
 				<h1>React Tabs</h1>
 				<p>
-					<a href="https://github.com/mzabriskie/react-tabs/blob/master/example/main.js">Demo Source</a>
+					<a href="https://github.com/mzabriskie/react-tabs/blob/master/examples/basic/app.js">Demo Source</a>
 				</p>
 				<p>
 					<em>Hint:</em>
