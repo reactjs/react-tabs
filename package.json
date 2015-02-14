@@ -35,7 +35,9 @@
     "reactify": "^0.17.1"
   },
   "dependencies": {
-    "js-stylesheet": "0.0.1",
+    "js-stylesheet": "0.0.1"
+  },
+  "peerDependencies": {
     "react": "^0.12.1"
   }
 }
