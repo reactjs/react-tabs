@@ -28,6 +28,9 @@
     "a11y",
     "react-component"
   ],
+  "browserify": {
+    "transform": [ "reactify" ]
+  },
   "devDependencies": {
     "envify": "^3.2.0",
     "jsx-loader": "^0.12.2",
