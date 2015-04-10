@@ -10,20 +10,19 @@ function createTabs(props) {
 
   return (
     <Tabs focus={props.focus} selectedIndex={props.selectedIndex} onSelect={props.onSelect}>
-    <TabList>
-    <Tab>Foo</Tab>
-    <Tab>Bar</Tab>
-    <Tab><a>Baz</a></Tab>
-    </TabList>
-    <TabPanel>Hello Foo</TabPanel>
-    <TabPanel>Hello Bar</TabPanel>
-    <TabPanel>Hello Baz</TabPanel>
+      <TabList>
+        <Tab>Foo</Tab>
+        <Tab>Bar</Tab>
+        <Tab><a>Baz</a></Tab>
+      </TabList>
+      <TabPanel>Hello Foo</TabPanel>
+      <TabPanel>Hello Bar</TabPanel>
+      <TabPanel>Hello Baz</TabPanel>
     </Tabs>
   );
 }
 
 function assertTabSelected(tabs, index) {
-  equal(tabs.state.selectedIndex, index);
   equal(tabs.getTab(index).getDOMNode().getAttribute('tabindex'), '0');
   equal(tabs.getTab(index).getDOMNode().getAttribute('selected'), 'selected');
   equal(tabs.getTab(index).getDOMNode().getAttribute('aria-selected'), 'true');
@@ -84,6 +83,7 @@ describe('react-tabs', function () {
       TestUtils.Simulate.click(tabs.getTab(1).getDOMNode());
       assertTabSelected(tabs, 1);
     });
+
     it('should update selectedIndex when tab child is clicked', function () {
       var tabs = TestUtils.renderIntoDocument(createTabs());
 
@@ -92,13 +92,34 @@ describe('react-tabs', function () {
     });
   });
 
+  describe('performance', function () {
+    it('should only render the active tab panel', function () {
+      var tabs = TestUtils.renderIntoDocument(createTabs());
+
+      equal(tabs.getPanel(0).getDOMNode().innerHTML, 'Hello Foo');
+      equal(tabs.getPanel(1).getDOMNode().innerHTML, '');
+      equal(tabs.getPanel(2).getDOMNode().innerHTML, '');
+
+      TestUtils.Simulate.click(tabs.getTab(1).getDOMNode());
+      equal(tabs.getPanel(0).getDOMNode().innerHTML, '');
+      equal(tabs.getPanel(1).getDOMNode().innerHTML, 'Hello Bar');
+      equal(tabs.getPanel(2).getDOMNode().innerHTML, '');
+
+      TestUtils.Simulate.click(tabs.getTab(2).getDOMNode());
+      equal(tabs.getPanel(0).getDOMNode().innerHTML, '');
+      equal(tabs.getPanel(1).getDOMNode().innerHTML, '');
+      equal(tabs.getPanel(2).getDOMNode().innerHTML, 'Hello Baz');
+
+    });
+  });
+
   describe('validation', function () {
     it('should result with invariant when tabs/panels are imbalanced', function () {
       var tabs = (
         <Tabs>
-        <TabList>
-        <Tab>Foo</Tab>
-        </TabList>
+          <TabList>
+            <Tab>Foo</Tab>
+          </TabList>
         </Tabs>
       );
 
