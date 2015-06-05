@@ -127,6 +127,21 @@ describe('react-tabs', function () {
       ok(result instanceof Error);
     });
 
+    it('should result with a warning when wrong element is found', function () {
+      var tabs = TestUtils.renderIntoDocument(
+        <Tabs>
+          <TabList>
+            <Tab/>
+            <div/>
+          </TabList>
+          <TabPanel/>
+        </Tabs>
+      );
+
+      var result = Tabs.propTypes.children(tabs.props, 'children', 'Tabs');
+      ok(result instanceof Error);
+    });
+
     it('should be okay with rendering without any children', function () {
       var error = false;
       try {
