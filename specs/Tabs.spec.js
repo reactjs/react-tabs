@@ -114,8 +114,8 @@ describe('react-tabs', function () {
   });
 
   describe('validation', function () {
-    it('should result with invariant when tabs/panels are imbalanced', function () {
-      var tabs = (
+    it('should result with warning when tabs/panels are imbalanced', function () {
+      var tabs = TestUtils.renderIntoDocument(
         <Tabs>
           <TabList>
             <Tab>Foo</Tab>
@@ -123,14 +123,36 @@ describe('react-tabs', function () {
         </Tabs>
       );
 
+      var result = Tabs.propTypes.children(tabs.props, 'children', 'Tabs');
+      ok(result instanceof Error);
+    });
+
+    it('should be okay with rendering without any children', function () {
       var error = false;
       try {
-        TestUtils.renderIntoDocument(tabs);
+        TestUtils.renderIntoDocument(
+          <Tabs/>
+        );
       } catch (e) {
         error = true;
       }
 
-      ok(error);
+      ok(!error);
+    });
+
+    it('should be okay with rendering just TabList', function () {
+      var error = false;
+      try {
+        TestUtils.renderIntoDocument(
+          <Tabs>
+            <TabList/>
+          </Tabs>
+        );
+      } catch (e) {
+        error = true;
+      }
+
+      ok(!error);
     });
   });
 });
