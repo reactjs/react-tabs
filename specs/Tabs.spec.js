@@ -90,6 +90,36 @@ describe('react-tabs', function () {
       TestUtils.Simulate.click(tabs.getTab(2).getDOMNode().firstChild);
       assertTabSelected(tabs, 2);
     });
+
+    // TODO: Can't seem to make this fail when removing fix :`(
+    // See https://github.com/mzabriskie/react-tabs/pull/7
+    // it('should preserve selectedIndex when typing', function () {
+    //   var App = React.createClass({
+    //     handleKeyDown: function () { this.forceUpdate(); },
+    //     render: function () {
+    //       return (
+    //         <Tabs ref="tabs" selectedIndex={1}>
+    //           <TabList>
+    //             <Tab>First</Tab>
+    //             <Tab>Second</Tab>
+    //           </TabList>
+    //           <TabPanel>1st</TabPanel>
+    //           <TabPanel><input onKeyDown={this.handleKeyDown}/></TabPanel>
+    //         </Tabs>
+    //       );
+    //     }
+    //   });
+    //
+    //   var tabs = TestUtils.renderIntoDocument(<App/>).refs.tabs;
+    //   var input = tabs.getDOMNode().querySelector('input');
+    //   
+    //   input.focus();
+    //   TestUtils.Simulate.keyDown(input, {
+    //     keyCode: 'a'.charCodeAt()
+    //   });
+    //   
+    //   assertTabSelected(tabs, 1);
+    // });
   });
 
   describe('performance', function () {
