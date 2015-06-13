@@ -1,6 +1,7 @@
-/** @jsx React.DOM */
-
-require('./helper');
+var React = require('react/addons');
+var TestUtils = React.addons.TestUtils;
+var { Tab, Tabs, TabList, TabPanel } = require('../lib/main');
+var { ok, equal, strictEqual, throws} = require('assert');
 
 function createTabs(props) {
   props = props || {};

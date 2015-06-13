@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 var Modal = require('react-modal');
 var ReactTabs	= require('../../lib/main');

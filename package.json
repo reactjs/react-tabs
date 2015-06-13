@@ -7,11 +7,6 @@
     "test": "node_modules/.bin/rackt test --ci --browsers Firefox",
     "start": "node_modules/.bin/rackt dev"
   },
-  "browserify": {
-    "transform": [
-      "reactify"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mzabriskie/react-tabs.git"
@@ -29,12 +24,8 @@
     "react-component"
   ],
   "devDependencies": {
-    "classnames": "^1.2.2",
-    "envify": "^3.4.0",
-    "jsx-loader": "^0.13.2",
-    "rackt-cli": "^0.1.2",
-    "react-modal": "^0.2.0",
-    "reactify": "^1.1.1"
+    "rackt-cli": "^0.2.0",
+    "react-modal": "^0.2.0"
   },
   "dependencies": {
     "js-stylesheet": "0.0.1",

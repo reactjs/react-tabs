@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 var ReactTabs	= require('../../lib/main');
 var Tab	= ReactTabs.Tab;
