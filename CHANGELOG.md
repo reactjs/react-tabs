@@ -1,3 +1,10 @@
+v0.2.1 - Fri, 26 Jun 2015 19:35:50 GMT
+--------------------------------------
+
+- [5132966](../../commit/5132966) [added] Bower support closes #22
+- [3f43e89](../../commit/3f43e89) [fixed] Issue with React being included twice closes #23
+
+
 # Changelog
 
 ### 0.1.0 (Jul 18, 2014)
