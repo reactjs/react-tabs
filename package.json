@@ -23,12 +23,15 @@
     "a11y",
     "react-component"
   ],
+  "peerDependencies": {
+    "react": "^0.13.3"
+  },
   "devDependencies": {
     "rackt-cli": "^0.2.0",
+    "react": "^0.13.3",
     "react-modal": "^0.2.0"
   },
   "dependencies": {
-    "js-stylesheet": "0.0.1",
-    "react": "^0.13.3"
+    "js-stylesheet": "0.0.1"
   }
 }
