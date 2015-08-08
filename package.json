@@ -4,8 +4,8 @@
   "description": "React tabs component",
   "main": "lib/main.js",
   "scripts": {
-    "test": "node_modules/.bin/rackt test --ci --browsers Firefox",
-    "start": "node_modules/.bin/rackt dev"
+    "test": "./node_modules/.bin/rackt test --single-run --browsers Firefox",
+    "start": "./node_modules/.bin/rackt server"
   },
   "repository": {
     "type": "git",
@@ -27,9 +27,9 @@
     "react": "^0.13.3"
   },
   "devDependencies": {
-    "rackt-cli": "^0.2.0",
+    "rackt-cli": "^0.5.1",
     "react": "^0.13.3",
-    "react-modal": "^0.2.0"
+    "react-modal": "^0.3.0"
   },
   "dependencies": {
     "js-stylesheet": "0.0.1"

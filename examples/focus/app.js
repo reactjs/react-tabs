@@ -1,17 +1,13 @@
-var React = require('react');
-var ReactTabs	= require('../../lib/main');
-var Tab	= ReactTabs.Tab;
-var Tabs = ReactTabs.Tabs;
-var TabList	= ReactTabs.TabList;
-var TabPanel = ReactTabs.TabPanel;
+import React from 'react';
+import { Tab, Tabs, TabList, TabPanel } from '../../lib/main';
 
-var App = React.createClass({
-  handleInputChange: function () {
+const App = React.createClass({
+  handleInputChange() {
     this.forceUpdate();
   },
 
-	render: function () {
-		return (
+  render() {
+    return (
 			<div style={{padding: 50}}>
         <Tabs>
 					<TabList>
@@ -31,7 +27,7 @@ var App = React.createClass({
 				</Tabs>
 			</div>
 		);
-	}
+  }
 });
 
 React.render(<App/>, document.getElementById('example'));

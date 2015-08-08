@@ -1,16 +1,12 @@
-var React = require('react');
-var Modal = require('react-modal');
-var ReactTabs	= require('../../lib/main');
-var Tab	= ReactTabs.Tab;
-var Tabs = ReactTabs.Tabs;
-var TabList	= ReactTabs.TabList;
-var TabPanel = ReactTabs.TabPanel;
+import React from 'react';
+import Modal from 'react-modal';
+import { Tab, Tabs, TabList, TabPanel } from '../../lib/main';
 
 Modal.setAppElement(document.getElementById('example'));
 Modal.injectCSS();
 
-var App = React.createClass({
-  getInitialState: function () {
+const App = React.createClass({
+  getInitialState() {
     return {
       isModalOpen: false,
       tabs: [
@@ -19,56 +15,28 @@ var App = React.createClass({
         {label: 'Baz', content: 'This is baz'},
         {label: 'Zap', content: 'This is zap'}
       ]
-    }
+    };
   },
 
-  openModal: function () {
-    this.setState({
-      isModalOpen: true
-    });
-  },
-
-  closeModal: function () {
-    this.setState({
-      isModalOpen: false
-    });
-  },
-
-  addTab: function () {
-    var label = this.refs.label.getDOMNode().value;
-    var content = this.refs.content.getDOMNode().value;
-
-    this.state.tabs.push({
-      label: label,
-      content: content
-    });
-    this.closeModal();
-  },
-
-  removeTab: function (index) {
-    this.state.tabs.splice(index, 1);
-    this.forceUpdate();
-  },
-
-  render: function () {
-		return (
+  render() {
+    return (
 			<div style={{padding: 50}}>
         <p>
           <button onClick={this.openModal}>+ Add</button>
         </p>
         <Tabs>
 					<TabList>
-					  {this.state.tabs.map(function (tab, i) {
+            {this.state.tabs.map((tab, i) => {
               return (
                 <Tab key={i}>
-                  {tab.label} <a href="javascript://" onClick={this.removeTab.bind(this, i)}>✕</a>
+                  {tab.label} <a href="#" onClick={this.removeTab.bind(this, i)}>✕</a>
                 </Tab>
               );
-            }.bind(this))}
+            })}
           </TabList>
-          {this.state.tabs.map(function (tab, i) {
-            return <TabPanel key={i}>{tab.content}</TabPanel>
-          }.bind(this))}
+          {this.state.tabs.map((tab, i) => {
+            return <TabPanel key={i}>{tab.content}</TabPanel>;
+          })}
 				</Tabs>
         <Modal
           isOpen={this.state.isModalOpen}
@@ -85,7 +53,35 @@ var App = React.createClass({
         </Modal>
 			</div>
 		);
-	}
+  },
+
+  openModal() {
+    this.setState({
+      isModalOpen: true
+    });
+  },
+
+  closeModal() {
+    this.setState({
+      isModalOpen: false
+    });
+  },
+
+  addTab() {
+    const label = this.refs.label.getDOMNode().value;
+    const content = this.refs.content.getDOMNode().value;
+
+    this.state.tabs.push({
+      label: label,
+      content: content
+    });
+    this.closeModal();
+  },
+
+  removeTab(index) {
+    this.state.tabs.splice(index, 1);
+    this.forceUpdate();
+  }
 });
 
 React.render(<App/>, document.getElementById('example'));

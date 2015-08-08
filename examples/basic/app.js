@@ -1,13 +1,9 @@
-var React = require('react');
-var ReactTabs	= require('../../lib/main');
-var Tab	= ReactTabs.Tab;
-var Tabs = ReactTabs.Tabs;
-var TabList	= ReactTabs.TabList;
-var TabPanel = ReactTabs.TabPanel;
+import React from 'react';
+import { Tab, Tabs, TabList, TabPanel } from '../../lib/main';
 
-var App = React.createClass({
-	render: function () {
-		return (
+const App = React.createClass({
+  render() {
+    return (
 			<div>
 				<p>
 					<em>Hint:</em>
@@ -83,7 +79,7 @@ var App = React.createClass({
 				</Tabs>
 			</div>
 		);
-	}
+  }
 });
 
 React.render(<App/>, document.getElementById('example'));
