@@ -60,7 +60,8 @@ const App = React.createClass({
 				<Tabs>
 					<TabList>
 						<Tab>Mario</Tab>
-						<Tab>Luigi</Tab>
+						<Tab disabled={true}>Luigi</Tab>
+            <Tab>Peach</Tab>
 						<Tab>Yoshi</Tab>
 					</TabList>
 
@@ -72,6 +73,9 @@ const App = React.createClass({
 						<p>Luigi (Japanese: ルイージ Hepburn: Ruīji?) is a fictional character featured in video games and related media released by Nintendo. Created by prominent game designer Shigeru Miyamoto, Luigi is portrayed as the slightly younger but taller fraternal twin brother of Nintendo's mascot Mario, and appears in many games throughout the Mario franchise, frequently as a sidekick to his brother.</p>
 						<p>Source: <a href="http://en.wikipedia.org/wiki/Luigi" target="_blank">Wikipedia</a></p>
 					</TabPanel>
+          <TabPanel>
+            <p>Princess Peach (Japanese: ピーチ姫 Hepburn: Pīchi-hime?) is a character in Nintendo's Mario franchise. Originally created by Shigeru Miyamoto, Peach is the princess of the fictional Mushroom Kingdom, which is constantly under attack by Bowser. She often plays the damsel in distress role within the series and is the lead female.[1] She is often portrayed as Mario's love interest and has appeared in nearly all the Mario games to date with the notable exception of Super Princess Peach, where she is the main playable character.</p>
+          </TabPanel>
 					<TabPanel>
 						<p>Yoshi (ヨッシー Yosshī?) /ˈjoʊʃi/ or /ˈjɒʃi/, once romanized as Yossy, is a fictional anthropomorphic dinosaur (referred to as a dragon at times) who appears in video games published by Nintendo. He debuted in Super Mario World (1990) on the Super Nintendo Entertainment System as Mario and Luigi's sidekick (a role he has often reprised), and he later established his own series with several platform and puzzle games, including Super Mario World 2: Yoshi's Island. He has also appeared in many of the spin-off Mario games including the Mario Party, the Mario Kart, and the Super Smash Bros. series, as well as in other various Mario sports titles. Yoshi also appears in New Super Mario Bros. Wii (2009) as the characters' companion and steed, similar to his original debut role in Super Mario World. Yoshi belongs to the species of the same name which comes in various colors, with green being the most common.</p>
 						<p>Source: <a href="http://en.wikipedia.org/wiki/Yoshi" target="_blank">Wikipedia</a></p>
