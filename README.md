@@ -27,19 +27,24 @@ var App = React.createClass({
   handleSelect: function (index, last) {
 	console.log('Selected tab: ' + index + ', Last tab: ' + last);
   },
-	
+
   render: function () {
     return (
       {/*
         <Tabs/> is a composite component and acts as the main container.
-	
+
         `onSelect` is called whenever a tab is selected. The handler for
         this function will be passed the current index as well as the last index.
-	
+
         `selectedIndex` is the tab to select when first rendered. By default
         the first (index 0) tab will be selected.
+
+        `forceRenderTabPanel` By default this react-tabs will only render the selected
+        tab's contents. Setting `forceRenderTabPanel` to `true` allows you to override the
+        default behavior, which may be useful in some circumstances (such as animating between tabs).
+
       */}
-	
+
       <Tabs
         onSelect={this.handleSelected}
         selectedIndex={2}
@@ -58,7 +63,7 @@ var App = React.createClass({
             or by using the keyboard tab to give focus then navigating with
             the arrow keys (right/down to select tab to the right of selected,
             left/up to select tab to the left of selected).
-		
+
             The content of the <Tab/> (this.props.children) will be shown as the label.
           */}
 
