@@ -105,18 +105,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	    selectedIndex: _reactAddons.PropTypes.number,
 	    onSelect: _reactAddons.PropTypes.func,
 	    focus: _reactAddons.PropTypes.bool,
-	    children: _helpersChildrenPropType2['default']
+	    children: _helpersChildrenPropType2['default'],
+	    forceRenderTabPanel: _reactAddons.PropTypes.bool
+	  },
+	
+	  childContextTypes: {
+	    forceRenderTabPanel: _reactAddons.PropTypes.bool
 	  },
 	
 	  getDefaultProps: function getDefaultProps() {
 	    return {
 	      selectedIndex: -1,
-	      focus: false
+	      focus: false,
+	      forceRenderTabPanel: false
 	    };
 	  },
 	
 	  getInitialState: function getInitialState() {
 	    return this.copyPropsToState(this.props);
+	  },
+	
+	  getChildContext: function getChildContext() {
+	    return {
+	      forceRenderTabPanel: this.props.forceRenderTabPanel
+	    };
 	  },
 	
 	  componentWillMount: function componentWillMount() {
@@ -23016,7 +23028,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    selected: _react.PropTypes.bool,
 	    disabled: _react.PropTypes.bool,
 	    panelId: _react.PropTypes.string,
-	    children: _react.PropTypes.oneOfType([_react.PropTypes.object, _react.PropTypes.string])
+	    children: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.object, _react.PropTypes.string])
 	  },
 	
 	  getDefaultProps: function getDefaultProps() {
@@ -23155,7 +23167,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    selected: _react.PropTypes.bool,
 	    id: _react.PropTypes.string,
 	    tabId: _react.PropTypes.string,
-	    children: _react.PropTypes.oneOfType([_react.PropTypes.object, _react.PropTypes.string])
+	    children: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.object, _react.PropTypes.string])
+	  },
+	
+	  contextTypes: {
+	    forceRenderTabPanel: _react.PropTypes.bool
 	  },
 	
 	  getDefaultProps: function getDefaultProps() {
@@ -23167,7 +23183,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	
 	  render: function render() {
-	    var children = this.props.selected ? this.props.children : null;
+	    var children = this.context.forceRenderTabPanel || this.props.selected ? this.props.children : null;
 	
 	    return _react2['default'].createElement(
 	      'div',
