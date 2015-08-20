@@ -15,7 +15,6 @@ http://mzabriskie.github.io/react-tabs/example/
 ## Example
 
 ```js
-/** @jsx React.DOM */
 var React = require('react');
 var ReactTabs = require('react-tabs');
 var Tab = ReactTabs.Tab;
