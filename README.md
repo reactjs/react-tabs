@@ -43,6 +43,11 @@ var App = React.createClass({
         tab's contents. Setting `forceRenderTabPanel` to `true` allows you to override the
         default behavior, which may be useful in some circumstances (such as animating between tabs).
 
+        `loadStylesheet` Allows enabling/disabling the included stylesheet that
+        comes with this package. Setting `loadStylesheet` to `true` will use
+        the external package `js-stylesheet` to load the included stylesheet. By
+        default this is set to `true`.
+
       */}
 
       <Tabs
