@@ -1,4 +1,4 @@
-# react-tabs [![Build Status](https://travis-ci.org/mzabriskie/react-tabs.svg?branch=master)](https://travis-ci.org/mzabriskie/react-tabs)
+# react-tabs [![Build Status](https://travis-ci.org/rackt/react-tabs.svg?branch=master)](https://travis-ci.org/rackt/react-tabs)
 
 React tabs component
 
@@ -10,7 +10,7 @@ $ npm install react-tabs
 
 ## Demo
 
-http://mzabriskie.github.io/react-tabs/example/
+http://rackt.github.io/react-tabs/example/
 
 ## Example
 
