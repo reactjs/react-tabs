@@ -24,7 +24,7 @@
     "react-component"
   ],
   "peerDependencies": {
-    "react": "^0.13.3"
+    "react": "^0.13.3 || ^0.14.0-rc1"
   },
   "devDependencies": {
     "rackt-cli": "^0.5.2",
