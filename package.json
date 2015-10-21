@@ -24,12 +24,15 @@
     "react-component"
   ],
   "peerDependencies": {
-    "react": "^0.13.3"
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
   },
   "devDependencies": {
     "rackt-cli": "^0.5.2",
-    "react": "^0.13.3",
-    "react-modal": "^0.3.0"
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-modal": "rackt/react-modal",
+    "react-addons-test-utils": "^0.14.0"
   },
   "dependencies": {
     "js-stylesheet": "0.0.1"
