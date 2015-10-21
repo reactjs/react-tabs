@@ -10,6 +10,7 @@ const App = React.createClass({
   getInitialState() {
     return {
       isModalOpen: false,
+      selectedIndex: -1,
       tabs: [
         {label: 'Foo', content: 'This is foo'},
         {label: 'Bar', content: 'This is bar'},
@@ -25,7 +26,7 @@ const App = React.createClass({
         <p>
           <button onClick={this.openModal}>+ Add</button>
         </p>
-        <Tabs>
+        <Tabs selectedIndex={this.state.selectedIndex}>
           <TabList>
             {this.state.tabs.map((tab, i) => {
               return (
@@ -75,6 +76,9 @@ const App = React.createClass({
     this.state.tabs.push({
       label: label,
       content: content
+    });
+    this.setState({
+      selectedIndex: this.state.tabs.length - 1
     });
     this.closeModal();
   },
