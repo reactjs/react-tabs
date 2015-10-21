@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { Tab, Tabs, TabList, TabPanel } from '../../lib/main';
 
@@ -20,12 +21,12 @@ const App = React.createClass({
 
   render() {
     return (
-			<div style={{padding: 50}}>
+      <div style={{padding: 50}}>
         <p>
           <button onClick={this.openModal}>+ Add</button>
         </p>
         <Tabs>
-					<TabList>
+          <TabList>
             {this.state.tabs.map((tab, i) => {
               return (
                 <Tab key={i}>
@@ -37,7 +38,7 @@ const App = React.createClass({
           {this.state.tabs.map((tab, i) => {
             return <TabPanel key={i}>{tab.content}</TabPanel>;
           })}
-				</Tabs>
+        </Tabs>
         <Modal
           isOpen={this.state.isModalOpen}
           onRequestClose={this.closeModal}
@@ -51,8 +52,8 @@ const App = React.createClass({
           <button onClick={this.addTab}>OK</button>{' '}
           <button onClick={this.closeModal}>Cancel</button>
         </Modal>
-			</div>
-		);
+      </div>
+    );
   },
 
   openModal() {
@@ -68,8 +69,8 @@ const App = React.createClass({
   },
 
   addTab() {
-    const label = this.refs.label.getDOMNode().value;
-    const content = this.refs.content.getDOMNode().value;
+    const label = this.refs.label.value;
+    const content = this.refs.content.value;
 
     this.state.tabs.push({
       label: label,
@@ -84,6 +85,4 @@ const App = React.createClass({
   }
 });
 
-React.render(<App/>, document.getElementById('example'));
-
-
+ReactDOM.render(<App/>, document.getElementById('example'));

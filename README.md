@@ -15,8 +15,8 @@ http://rackt.github.io/react-tabs/example/
 ## Example
 
 ```js
-/** @jsx React.DOM */
 var React = require('react');
+var ReactDOM = require('react-dom');
 var ReactTabs = require('react-tabs');
 var Tab = ReactTabs.Tab;
 var Tabs = ReactTabs.Tabs;
@@ -99,7 +99,7 @@ var App = React.createClass({
   }
 });
 
-React.render(<App/>, document.getElementById('container'));
+ReactDOM.render(<App/>, document.getElementById('container'));
 
 ```
 
