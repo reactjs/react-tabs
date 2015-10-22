@@ -1,3 +1,9 @@
+v0.5.0 - Thu, 22 Oct 2015 05:36:48 GMT
+--------------------------------------
+
+- [e05a9ec](../../commit/e05a9ec) [fixed] Issue when conditionally rendering Tab/TabPanel closes #37
+
+
 v0.4.1 - Wed, 09 Sep 2015 19:18:50 GMT
 --------------------------------------
 
