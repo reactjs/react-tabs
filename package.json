@@ -35,6 +35,7 @@
     "react-addons-test-utils": "^0.14.0"
   },
   "dependencies": {
+    "classnames": "2.2.0",
     "js-stylesheet": "0.0.1"
   }
 }
