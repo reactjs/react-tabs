@@ -60,7 +60,7 @@ const App = React.createClass({
         <Tabs>
           <TabList>
             <Tab>Mario</Tab>
-            <Tab disabled={true}>Luigi</Tab>
+            <Tab disabled>Luigi</Tab>
             <Tab>Peach</Tab>
             <Tab>Yoshi</Tab>
           </TabList>
