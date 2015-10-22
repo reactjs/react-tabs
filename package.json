@@ -28,7 +28,7 @@
     "react-dom": "^0.14.0"
   },
   "devDependencies": {
-    "rackt-cli": "^0.5.2",
+    "rackt-cli": "^0.5.3",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-modal": "rackt/react-modal",
