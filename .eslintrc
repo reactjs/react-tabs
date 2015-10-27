@@ -1,0 +1,9 @@
+{
+  "extends": "rackt",
+  "rules": {
+    "semi": [2, "always"],
+    "no-unused-vars": 0,
+    "object-curly-spacing": 0,
+    "space-before-function-paren": [2, "never"]
+  }
+}
