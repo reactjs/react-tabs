@@ -46,7 +46,7 @@ var App = React.createClass({
       */}
 
       <Tabs
-        onSelect={this.handleSelected}
+        onSelect={this.handleSelect}
         selectedIndex={2}
       >
 
