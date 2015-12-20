@@ -4,8 +4,9 @@
   "description": "React tabs component",
   "main": "lib/main.js",
   "scripts": {
-    "test": "./node_modules/.bin/rackt test --single-run --browsers Firefox",
-    "start": "./node_modules/.bin/rackt server"
+    "test": "npm run lint && ./node_modules/.bin/rackt test --single-run --browsers Firefox",
+    "start": "./node_modules/.bin/rackt server",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -28,11 +29,14 @@
     "react-dom": "^0.14.0"
   },
   "devDependencies": {
+    "babel-eslint": "^4.1.3",
+    "eslint": "^1.7.3",
+    "eslint-config-rackt": "^1.1.1",
     "rackt-cli": "^0.5.3",
     "react": "^0.14.0",
+    "react-addons-test-utils": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-modal": "rackt/react-modal",
-    "react-addons-test-utils": "^0.14.0"
+    "react-modal": "rackt/react-modal"
   },
   "dependencies": {
     "classnames": "2.2.0",
