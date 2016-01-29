@@ -131,7 +131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return {
 	      selectedIndex: -1,
 	      focus: false,
-	      focusRenderTabPanel: false
+	      forceRenderTabPanel: false
 	    };
 	  },
 	
@@ -145,7 +145,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 	
-	  componentWillMount: function componentWillMount() {
+	  componentDidMount: function componentDidMount() {
 	    if (useDefaultStyles) {
 	      (0, _jsStylesheet2['default'])(__webpack_require__(10));
 	    }

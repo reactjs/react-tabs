@@ -1,3 +1,9 @@
+v0.5.2 - Fri, 29 Jan 2016 19:45:48 GMT
+--------------------------------------
+
+- [c432a08](../../commit/c432a08) [fixed] Server Side Rendering won't work with default styles #45
+
+
 v0.5.1 - Thu, 22 Oct 2015 22:38:49 GMT
 --------------------------------------
 
