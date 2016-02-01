@@ -826,7 +826,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }),
 	        role: 'tabpanel',
 	        id: this.props.id,
-	        'aria-labeledby': this.props.tabId,
+	        'aria-labelledby': this.props.tabId,
 	        style: { display: this.props.selected ? null : 'none' }
 	      },
 	      children
