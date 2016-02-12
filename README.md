@@ -24,8 +24,12 @@ var TabList = ReactTabs.TabList;
 var TabPanel = ReactTabs.TabPanel;
 
 var App = React.createClass({
-  handleSelect: function (index, last) {
-	console.log('Selected tab: ' + index + ', Last tab: ' + last);
+  getInitialState: function () {
+    return { selectedTab: 2 };
+  },
+
+  handleSelect: function (index) {
+    this.setState({ selectedTab: index });
   },
 
   render: function () {
@@ -33,11 +37,17 @@ var App = React.createClass({
       {/*
         <Tabs/> is a composite component and acts as the main container.
 
-        `onSelect` is called whenever a tab is selected. The handler for
-        this function will be passed the current index as well as the last index.
+        `selectedIndex` is the currently selected tab.
 
-        `selectedIndex` is the tab to select when first rendered. By default
-        the first (index 0) tab will be selected.
+        `onSelect` is a callback invoked whenever a user clicks on or
+        keyboard-navigates to a tab. It is passed the index of the selected tab.
+
+        If you provide a `selectedIndex`, you should always provide an `onSelect`
+        (and vice versa) so that you can update the `selectedIndex` in response to
+        user interactions. If you pass neither of these props, then the component's
+        default "uncontrolled" behavior is to automatically update its selectedIndex
+        to whatever would be passed to the onSelect handler. I.e., it behaves as
+        you'd expect.
 
         `forceRenderTabPanel` By default this react-tabs will only render the selected
         tab's contents. Setting `forceRenderTabPanel` to `true` allows you to override the
@@ -47,7 +57,7 @@ var App = React.createClass({
 
       <Tabs
         onSelect={this.handleSelect}
-        selectedIndex={2}
+        selectedIndex={this.state.selectedTab}
       >
 
         {/*
