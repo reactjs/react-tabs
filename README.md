@@ -10,7 +10,7 @@ $ npm install react-tabs
 
 ## Demo
 
-http://rackt.github.io/react-tabs/example/
+http://reactjs.github.io/react-tabs/example/
 
 ## Example
 
