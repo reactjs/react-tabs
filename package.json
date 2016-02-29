@@ -28,7 +28,7 @@
     "react-dom": "^0.14.7"
   },
   "devDependencies": {
-    "rackt-cli": "^0.5.4",
+    "rackt-cli": "mzabriskie/rackt-cli",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-modal": "rackt/react-modal",
