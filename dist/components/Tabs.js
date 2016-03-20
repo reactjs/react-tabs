@@ -1,9 +1,28 @@
-import React, {PropTypes, cloneElement} from 'react';
-import { findDOMNode } from 'react-dom';
-import cx from 'classnames';
-import jss from 'js-stylesheet';
-import uuid from '../helpers/uuid';
-import childrenPropType from '../helpers/childrenPropType';
+'use strict';
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _jsStylesheet = require('js-stylesheet');
+
+var _jsStylesheet2 = _interopRequireDefault(_jsStylesheet);
+
+var _uuid = require('../helpers/uuid');
+
+var _uuid2 = _interopRequireDefault(_uuid);
+
+var _childrenPropType = require('../helpers/childrenPropType');
+
+var _childrenPropType2 = _interopRequireDefault(_childrenPropType);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Determine if a node from event.target is a Tab element
 function isTabNode(node) {
@@ -15,78 +34,72 @@ function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
 
-let useDefaultStyles = true;
+var useDefaultStyles = true;
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
   displayName: 'Tabs',
 
   propTypes: {
-    className: PropTypes.string,
-    selectedIndex: PropTypes.number,
-    onSelect: PropTypes.func,
-    focus: PropTypes.bool,
-    children: childrenPropType,
-    forceRenderTabPanel: PropTypes.bool,
-    tabPostfix: PropTypes.string
+    className: _react.PropTypes.string,
+    selectedIndex: _react.PropTypes.number,
+    onSelect: _react.PropTypes.func,
+    focus: _react.PropTypes.bool,
+    children: _childrenPropType2.default,
+    forceRenderTabPanel: _react.PropTypes.bool,
+    tabPostfix: _react.PropTypes.string
   },
 
   childContextTypes: {
-    forceRenderTabPanel: PropTypes.bool
+    forceRenderTabPanel: _react.PropTypes.bool
   },
 
   statics: {
-    setUseDefaultStyles(use) {
+    setUseDefaultStyles: function setUseDefaultStyles(use) {
       useDefaultStyles = use;
     }
   },
 
-  getDefaultProps() {
+  getDefaultProps: function getDefaultProps() {
     return {
       selectedIndex: -1,
       focus: false,
       forceRenderTabPanel: false
     };
   },
-
-  getInitialState() {
+  getInitialState: function getInitialState() {
     return this.copyPropsToState(this.props);
   },
-
-  getChildContext() {
+  getChildContext: function getChildContext() {
     return {
       forceRenderTabPanel: this.props.forceRenderTabPanel
     };
   },
-
-  componentDidMount() {
+  componentDidMount: function componentDidMount() {
     if (useDefaultStyles) {
-      jss(require('../helpers/styles.js'));
+      (0, _jsStylesheet2.default)(require('../helpers/styles.js'));
     }
   },
-
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
     this.setState(this.copyPropsToState(newProps));
   },
-
-  handleClick(e) {
-    let node = e.target;
+  handleClick: function handleClick(e) {
+    var node = e.target;
     do {
       if (isTabNode(node)) {
         if (isTabDisabled(node)) {
           return;
         }
 
-        const index = [].slice.call(node.parentNode.children).indexOf(node);
+        var index = [].slice.call(node.parentNode.children).indexOf(node);
         this.setSelected(index);
         return;
       }
     } while ((node = node.parentNode) !== null);
   },
-
-  handleKeyDown(e) {
+  handleKeyDown: function handleKeyDown(e) {
     if (isTabNode(e.target)) {
-      let index = this.state.selectedIndex;
-      let preventDefault = false;
+      var index = this.state.selectedIndex;
+      var preventDefault = false;
 
       // Select next tab to the left
       if (e.keyCode === 37 || e.keyCode === 38) {
@@ -96,9 +109,9 @@ module.exports = React.createClass({
       // Select next tab to the right
       /* eslint brace-style:0 */
       else if (e.keyCode === 39 || e.keyCode === 40) {
-        index = this.getNextTab(index);
-        preventDefault = true;
-      }
+          index = this.getNextTab(index);
+          preventDefault = true;
+        }
 
       // This prevents scrollbars from moving around
       if (preventDefault) {
@@ -108,15 +121,14 @@ module.exports = React.createClass({
       this.setSelected(index, true);
     }
   },
-
-  setSelected(index, focus) {
+  setSelected: function setSelected(index, focus) {
     // Don't do anything if nothing has changed
     if (index === this.state.selectedIndex) return;
     // Check index boundary
     if (index < 0 || index >= this.getTabsCount()) return;
 
     // Keep reference to last index for event handler
-    const last = this.state.selectedIndex;
+    var last = this.state.selectedIndex;
 
     // Update selected index
     this.setState({ selectedIndex: index, focus: focus === true });
@@ -126,37 +138,35 @@ module.exports = React.createClass({
       this.props.onSelect(index, last);
     }
   },
-
-  getNextTab(index) {
-    const count = this.getTabsCount();
+  getNextTab: function getNextTab(index) {
+    var count = this.getTabsCount();
 
     // Look for non-disabled tab from index to the last tab on the right
-    for (let i = index + 1; i < count; i++) {
-      const tab = this.getTab(i);
-      if (!isTabDisabled(findDOMNode(tab))) {
+    for (var i = index + 1; i < count; i++) {
+      var tab = this.getTab(i);
+      if (!isTabDisabled((0, _reactDom.findDOMNode)(tab))) {
         return i;
       }
     }
 
     // If no tab found, continue searching from first on left to index
-    for (let i = 0; i < index; i++) {
-      const tab = this.getTab(i);
-      if (!isTabDisabled(findDOMNode(tab))) {
-        return i;
+    for (var _i = 0; _i < index; _i++) {
+      var _tab = this.getTab(_i);
+      if (!isTabDisabled((0, _reactDom.findDOMNode)(_tab))) {
+        return _i;
       }
     }
 
     // No tabs are disabled, return index
     return index;
   },
-
-  getPrevTab(index) {
-    let i = index;
+  getPrevTab: function getPrevTab(index) {
+    var i = index;
 
     // Look for non-disabled tab from index to first tab on the left
     while (i--) {
-      const tab = this.getTab(i);
-      if (!isTabDisabled(findDOMNode(tab))) {
+      var tab = this.getTab(i);
+      if (!isTabDisabled((0, _reactDom.findDOMNode)(tab))) {
         return i;
       }
     }
@@ -164,8 +174,8 @@ module.exports = React.createClass({
     // If no tab found, continue searching from last tab on right to index
     i = this.getTabsCount();
     while (i-- > index) {
-      const tab = this.getTab(i);
-      if (!isTabDisabled(findDOMNode(tab))) {
+      var _tab2 = this.getTab(i);
+      if (!isTabDisabled((0, _reactDom.findDOMNode)(_tab2))) {
         return i;
       }
     }
@@ -173,82 +183,74 @@ module.exports = React.createClass({
     // No tabs are disabled, return index
     return index;
   },
-
-  getTabsCount() {
-    return this.props.children && this.props.children[0] ?
-            React.Children.count(this.props.children[0].props.children) :
-            0;
+  getTabsCount: function getTabsCount() {
+    return this.props.children && this.props.children[0] ? _react2.default.Children.count(this.props.children[0].props.children) : 0;
   },
-
-  getPanelsCount() {
-    return React.Children.count(this.props.children.slice(1));
+  getPanelsCount: function getPanelsCount() {
+    return _react2.default.Children.count(this.props.children.slice(1));
   },
-
-  getTabList() {
+  getTabList: function getTabList() {
     return this.refs.tablist;
   },
-
-  getTab(index) {
+  getTab: function getTab(index) {
     return this.refs['tabs-' + index];
   },
-
-  getPanel(index) {
+  getPanel: function getPanel(index) {
     return this.refs['panels-' + index];
   },
-
-  getChildren() {
-    let index = 0;
-    let count = 0;
-    const children = this.props.children;
-    const state = this.state;
-    const tabIds = this.tabIds = this.tabIds || [];
-    const panelIds = this.panelIds = this.panelIds || [];
-    let diff = this.tabIds.length - this.getTabsCount();
+  getChildren: function getChildren() {
+    var index = 0;
+    var count = 0;
+    var children = this.props.children;
+    var state = this.state;
+    var tabIds = this.tabIds = this.tabIds || [];
+    var panelIds = this.panelIds = this.panelIds || [];
+    var diff = this.tabIds.length - this.getTabsCount();
 
     // Add ids if new tabs have been added
     // Don't bother removing ids, just keep them in case they are added again
     // This is more efficient, and keeps the uuid counter under control
     while (diff++ < 0) {
-      tabIds.push(uuid(state.tabPostfix));
-      panelIds.push(uuid(state.tabPostfix));
+      tabIds.push((0, _uuid2.default)(state.tabPostfix));
+      panelIds.push((0, _uuid2.default)(state.tabPostfix));
     }
 
     // Map children to dynamically setup refs
-    return React.Children.map(children, (child) => {
+    return _react2.default.Children.map(children, function (child) {
       // null happens when conditionally rendering TabPanel/Tab
       // see https://github.com/rackt/react-tabs/issues/37
       if (child === null) {
         return null;
       }
 
-      let result = null;
+      var result = null;
 
       // Clone TabList and Tab components to have refs
       if (count++ === 0) {
         // TODO try setting the uuid in the "constructor" for `Tab`/`TabPanel`
-        result = cloneElement(child, {
+        result = (0, _react.cloneElement)(child, {
           ref: 'tablist',
-          children: React.Children.map(child.props.children, (tab) => {
+          children: _react2.default.Children.map(child.props.children, function (tab) {
             // null happens when conditionally rendering TabPanel/Tab
             // see https://github.com/rackt/react-tabs/issues/37
             if (tab === null) {
               return null;
             }
 
-            const ref = 'tabs-' + index;
-            const id = tabIds[index];
-            const panelId = panelIds[index];
-            const selected = state.selectedIndex === index;
-            const focus = selected && state.focus;
+            var ref = 'tabs-' + index;
+            var id = tabIds[index];
+            var panelId = panelIds[index];
+            var selected = state.selectedIndex === index;
+            var focus = selected && state.focus;
 
             index++;
 
-            return cloneElement(tab, {
-              ref,
-              id,
-              panelId,
-              selected,
-              focus
+            return (0, _react.cloneElement)(tab, {
+              ref: ref,
+              id: id,
+              panelId: panelId,
+              selected: selected,
+              focus: focus
             });
           })
         });
@@ -258,26 +260,27 @@ module.exports = React.createClass({
       }
       // Clone TabPanel components to have refs
       else {
-        const ref = 'panels-' + index;
-        const id = panelIds[index];
-        const tabId = tabIds[index];
-        const selected = state.selectedIndex === index;
+          var ref = 'panels-' + index;
+          var id = panelIds[index];
+          var tabId = tabIds[index];
+          var selected = state.selectedIndex === index;
 
-        index++;
+          index++;
 
-        result = cloneElement(child, {
-          ref,
-          id,
-          tabId,
-          selected
-        });
-      }
+          result = (0, _react.cloneElement)(child, {
+            ref: ref,
+            id: id,
+            tabId: tabId,
+            selected: selected
+          });
+        }
 
       return result;
     });
   },
+  render: function render() {
+    var _this = this;
 
-  render() {
     // This fixes an issue with focus management.
     //
     // Ultimately, when focus is true, and an input has focus,
@@ -292,29 +295,26 @@ module.exports = React.createClass({
     //
     // See https://github.com/rackt/react-tabs/pull/7
     if (this.state.focus) {
-      setTimeout(() => {
-        this.state.focus = false;
+      setTimeout(function () {
+        _this.state.focus = false;
       }, 0);
     }
 
-    return (
-      <div
-        className={cx(
-          'ReactTabs',
-          'react-tabs',
-          this.props.className
-        )}
-        onClick={this.handleClick}
-        onKeyDown={this.handleKeyDown}
-      >
-        {this.getChildren()}
-      </div>
+    return _react2.default.createElement(
+      'div',
+      {
+        className: (0, _classnames2.default)('ReactTabs', 'react-tabs', this.props.className),
+        onClick: this.handleClick,
+        onKeyDown: this.handleKeyDown
+      },
+      this.getChildren()
     );
   },
 
+
   // This is an anti-pattern, so sue me
-  copyPropsToState(props) {
-    let selectedIndex = props.selectedIndex;
+  copyPropsToState: function copyPropsToState(props) {
+    var selectedIndex = props.selectedIndex;
 
     // If no selectedIndex prop was supplied, then try
     // preserving the existing selectedIndex from state.
