@@ -270,4 +270,10 @@ describe('react-tabs', () => {
       assertTabSelected(innerTabs, 1);
     });
   });
+
+  it('should pass through custom properties', () => {
+    const wrapper = shallow(<Tabs data-tooltip="Tooltip contents" />);
+
+    expect(wrapper.prop('data-tooltip')).toBe('Tooltip contents');
+  });
 });

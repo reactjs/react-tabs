@@ -346,12 +346,24 @@ module.exports = React.createClass({
       }, 0);
     }
 
+    const { className, ...attributes } = this.props;
+
+    // Delete all known props, so they don't get added to DOM
+    delete attributes.selectedIndex;
+    delete attributes.onSelect;
+    delete attributes.focus;
+    delete attributes.children;
+    delete attributes.forceRenderTabPanel;
+    delete attributes.onClick;
+    delete attributes.onKeyDown;
+
     return (
       <div
+        {...attributes}
         className={cx(
           'ReactTabs',
           'react-tabs',
-          this.props.className
+          className
         )}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}

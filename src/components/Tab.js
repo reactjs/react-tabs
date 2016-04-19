@@ -49,24 +49,27 @@ module.exports = React.createClass({
   },
 
   render() {
+    const { selected, disabled, panelId, className, children, id, ...attributes } = this.props;
+
     return (
       <li
+        {...attributes}
         className={cx(
           'ReactTabs__Tab',
-          this.props.className,
+          className,
           {
-            'ReactTabs__Tab--selected': this.props.selected,
-            'ReactTabs__Tab--disabled': this.props.disabled,
+            'ReactTabs__Tab--selected': selected,
+            'ReactTabs__Tab--disabled': disabled,
           }
         )}
         role="tab"
-        id={this.props.id}
-        aria-selected={this.props.selected ? 'true' : 'false'}
-        aria-expanded={this.props.selected ? 'true' : 'false'}
-        aria-disabled={this.props.disabled ? 'true' : 'false'}
-        aria-controls={this.props.panelId}
+        id={id}
+        aria-selected={selected ? 'true' : 'false'}
+        aria-expanded={selected ? 'true' : 'false'}
+        aria-disabled={disabled ? 'true' : 'false'}
+        aria-controls={panelId}
       >
-        {this.props.children}
+        {children}
       </li>
     );
   },

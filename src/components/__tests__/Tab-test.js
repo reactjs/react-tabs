@@ -44,4 +44,17 @@ describe('<Tab />', () => {
     expect(wrapper.hasClass('ReactTabs__Tab--disabled')).toBe(true);
     expect(wrapper.prop('aria-disabled')).toBe('true');
   });
+
+  it('should pass through custom properties', () => {
+    const wrapper = shallow(<Tab data-tooltip="Tooltip contents" />);
+
+    expect(wrapper.prop('data-tooltip')).toBe('Tooltip contents');
+  });
+
+  it('should not allow overriding all default properties', () => {
+    // eslint-disable-next-line jsx-a11y/aria-role
+    const wrapper = shallow(<Tab role="micro-tab" />);
+
+    expect(wrapper.prop('role')).toBe('tab');
+  });
 });

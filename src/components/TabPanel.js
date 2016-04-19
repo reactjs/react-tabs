@@ -29,25 +29,24 @@ module.exports = React.createClass({
   },
 
   render() {
-    const children = (this.context.forceRenderTabPanel || this.props.selected) ?
-      this.props.children :
-      null;
+    const { className, children, selected, id, tabId, ...attributes } = this.props;
 
     return (
       <div
+        {...attributes}
         className={cx(
           'ReactTabs__TabPanel',
-          this.props.className,
+          className,
           {
-            'ReactTabs__TabPanel--selected': this.props.selected,
+            'ReactTabs__TabPanel--selected': selected,
           }
         )}
         role="tabpanel"
-        id={this.props.id}
-        aria-labelledby={this.props.tabId}
-        style={{ display: this.props.selected ? null : 'none' }}
+        id={id}
+        aria-labelledby={tabId}
+        style={{ display: selected ? null : 'none' }}
       >
-        {children}
+        {(this.context.forceRenderTabPanel || selected) ? children : null}
       </div>
     );
   },

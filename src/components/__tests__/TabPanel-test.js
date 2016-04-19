@@ -35,5 +35,18 @@ describe('Tab', () => {
     expect(wrapper.prop('style')).not.toBe(null);
     expect(wrapper.prop('style').display).toBe(null);
   });
+
+  it('should pass through custom properties', () => {
+    const wrapper = shallow(<TabPanel data-tooltip="Tooltip contents" />);
+
+    expect(wrapper.prop('data-tooltip')).toBe('Tooltip contents');
+  });
+
+  it('should not allow overriding all default properties', () => {
+    // eslint-disable-next-line jsx-a11y/aria-role
+    const wrapper = shallow(<TabPanel role="micro-tab" />);
+
+    expect(wrapper.prop('role')).toBe('tabpanel');
+  });
 });
 

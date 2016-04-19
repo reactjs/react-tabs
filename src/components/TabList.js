@@ -13,15 +13,18 @@ module.exports = React.createClass({
   },
 
   render() {
+    const { className, children, ...attributes } = this.props;
+
     return (
       <ul
+        {...attributes}
         className={cx(
           'ReactTabs__TabList',
-          this.props.className
+          className
         )}
         role="tablist"
       >
-        {this.props.children}
+        {children}
       </ul>
     );
   },
