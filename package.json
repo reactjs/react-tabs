@@ -4,10 +4,16 @@
   "description": "React tabs component",
   "main": "lib/main.js",
   "scripts": {
+    "clean": "rimraf lib",
+    "build:commonjs": "babel src/ --out-dir lib/ --ignore __tests__,__mocks__",
+    "build:umd": "webpack --devtool source-map --config webpack.build.js",
+    "build:umd:min": "MINIFY=1 webpack --devtool source-map --config webpack.build.js",
+    "build": "npm run clean && npm run build:commonjs && npm run bundle",
+    "bundle": "mkdir -p dist && npm run build:umd && npm run build:umd:min",
     "lint": "eslint src",
     "preversion": "npm run lint && npm test",
     "test": "jest",
-    "start": "./node_modules/.bin/rackt server"
+    "start": "webpack-dev-server --inline --content-base examples/"
   },
   "repository": {
     "type": "git",
@@ -34,7 +40,9 @@
     "react-dom": "^0.14.7"
   },
   "devDependencies": {
+    "babel-cli": "^6.9.0",
     "babel-jest": "^12.1.0",
+    "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "enzyme": "^2.3.0",
@@ -47,7 +55,9 @@
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.7",
-    "react-modal": "rackt/react-modal"
+    "react-modal": "reactjs/react-modal",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "classnames": "^2.2",
