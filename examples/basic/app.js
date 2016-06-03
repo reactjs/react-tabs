@@ -83,7 +83,7 @@ const App = React.createClass({
         </Tabs>
       </div>
     );
-  }
+  },
 });
 
-ReactDOM.render(<App/>, document.getElementById('example'));
+ReactDOM.render(<App />, document.getElementById('example'));
