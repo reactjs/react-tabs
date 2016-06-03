@@ -17,8 +17,10 @@
     "build",
     "examples",
     "lib",
+    "src",
     "node_modules",
     "specs",
-    "package.json"
+    "package.json",
+    "webpack.*"
   ]
 }
