@@ -4,8 +4,18 @@
   "description": "React tabs component",
   "main": "lib/main.js",
   "scripts": {
-    "test": "./node_modules/.bin/rackt test --single-run --browsers Firefox",
-    "start": "./node_modules/.bin/rackt server"
+    "clean": "rimraf build",
+    "build:commonjs": "babel -d build/lib ./lib",
+    "build:umd": "webpack --devtool source-map --config webpack.build.js",
+    "build:umd:min": "MINIFY=1 webpack --devtool source-map --config webpack.build.js",
+    "bundle": "mkdir -p dist && npm run build:umd && npm run build:umd:min",
+    "copy:package": "cp README.md build/ && node -p 'p=require(\"./package\");p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)' > build/package.json",
+    "build": "npm run clean && npm run build:commonjs && npm run bundle && npm run copy:package",
+    "prepublish": "npm run clean && npm run build",
+    "lint": "eslint lib examples",
+    "testonly": "NODE_ENV=test karma start",
+    "test": "npm run lint && npm run testonly",
+    "start": "webpack-dev-server --inline --content-base examples/"
   },
   "repository": {
     "type": "git",
@@ -28,11 +38,27 @@
     "react-dom": "^0.14.7"
   },
   "devDependencies": {
-    "rackt-cli": "^0.5.4",
+    "babel": "5.8.23",
+    "babel-core": "5.8.25",
+    "babel-eslint": "4.1.8",
+    "babel-loader": "5.3.2",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "3.5.1",
+    "karma": "0.13.19",
+    "karma-cli": "0.1.1",
+    "karma-firefox-launcher": "0.1.6",
+    "karma-mocha": "0.2.0",
+    "karma-sourcemap-loader": "0.3.6",
+    "karma-webpack": "1.7.0",
+    "mocha": "2.3.3",
     "react": "^0.14.7",
+    "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.7",
-    "react-modal": "rackt/react-modal",
-    "react-addons-test-utils": "^0.14.7"
+    "react-modal": "reactjs/react-modal",
+    "rf-release": "mzabriskie/rf-release",
+    "rimraf": "^2.5.2",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.12.0"
   },
   "dependencies": {
     "classnames": "^2.2",
