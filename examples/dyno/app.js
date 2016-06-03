@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import { Tab, Tabs, TabList, TabPanel } from '../../lib/main';
+import { Tab, Tabs, TabList, TabPanel } from '../../src/main';
 
 Modal.setAppElement(document.getElementById('example'));
 Modal.injectCSS();

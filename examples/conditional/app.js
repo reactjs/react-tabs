@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Tab, Tabs, TabList, TabPanel } from '../../lib/main';
+import { Tab, Tabs, TabList, TabPanel } from '../../src/main';
 
 const App = React.createClass({
   getInitialState() {

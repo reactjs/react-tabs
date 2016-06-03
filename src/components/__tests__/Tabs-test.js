@@ -113,7 +113,8 @@ describe('react-tabs', () => {
 
     it('should update selectedIndex when tab child is clicked', () => {
       const wrapper = mount(createTabs());
-      wrapper.childAt(0).childAt(2).first().simulate('click');
+      const tablist = wrapper.childAt(0);
+      tablist.childAt(2).first().simulate('click');
 
       assertTabSelected(wrapper, 2);
     });

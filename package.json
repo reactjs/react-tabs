@@ -4,7 +4,7 @@
   "description": "React tabs component",
   "main": "lib/main.js",
   "scripts": {
-    "lint": "eslint lib",
+    "lint": "eslint src",
     "preversion": "npm run lint && npm test",
     "test": "jest",
     "start": "./node_modules/.bin/rackt server"
@@ -18,6 +18,10 @@
   "bugs": {
     "url": "https://github.com/rackt/react-tabs/issues"
   },
+  "files": [
+    "dist",
+    "lib"
+  ],
   "homepage": "https://github.com/rackt/react-tabs",
   "keywords": [
     "react",
@@ -52,7 +56,7 @@
   "jest": {
     "automock": false,
     "testPathDirs": [
-      "lib"
+      "src"
     ],
     "unmockedModulePathPatterns": [
       "node_modules",
