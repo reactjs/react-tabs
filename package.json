@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "classnames": "^2.2",
-    "js-stylesheet": "^0.0.1"
+    "js-stylesheet": "^0.0.1",
+    "object-assign": "^4.0.1"
   }
 }
