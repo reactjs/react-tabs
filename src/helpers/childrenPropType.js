@@ -27,7 +27,7 @@ module.exports = function childrenPropTypes(props, propName) {
           tabsCount++;
         } else {
           error = new Error(
-            'Expected `Tab` but found `' + (c.type.displayName || c.type) + '`'
+            `Expected 'Tab' but found '${c.type.displayName || c.type}'`
           );
         }
       });
@@ -35,15 +35,15 @@ module.exports = function childrenPropTypes(props, propName) {
       panelsCount++;
     } else {
       error = new Error(
-        'Expected `TabList` or `TabPanel` but found `' + (child.type.displayName || child.type) + '`'
+        `Expected 'TabList' or 'TabPanel' but found '${child.type.displayName || child.type}'`
       );
     }
   });
 
   if (tabsCount !== panelsCount) {
     error = new Error(
-      'There should be an equal number of `Tabs` and `TabPanels`. ' +
-      'Received ' + tabsCount + ' `Tabs` and ' + panelsCount + ' `TabPanels`.'
+      "There should be an equal number of 'Tabs' and 'TabPanels'." +
+      `Received ${tabsCount} 'Tabs' and ${panelsCount} 'TabPanels'.`
     );
   }
 

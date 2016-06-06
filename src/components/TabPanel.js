@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
 module.exports = React.createClass({
@@ -12,19 +12,19 @@ module.exports = React.createClass({
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
-      PropTypes.string
-    ])
+      PropTypes.string,
+    ]),
   },
 
   contextTypes: {
-    forceRenderTabPanel: PropTypes.bool
+    forceRenderTabPanel: PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       selected: false,
       id: null,
-      tabId: null
+      tabId: null,
     };
   },
 
@@ -39,16 +39,16 @@ module.exports = React.createClass({
           'ReactTabs__TabPanel',
           this.props.className,
           {
-            'ReactTabs__TabPanel--selected': this.props.selected
+            'ReactTabs__TabPanel--selected': this.props.selected,
           }
         )}
         role="tabpanel"
         id={this.props.id}
         aria-labelledby={this.props.tabId}
-        style={{display: this.props.selected ? null : 'none'}}
+        style={{ display: this.props.selected ? null : 'none' }}
       >
         {children}
       </div>
     );
-  }
+  },
 });

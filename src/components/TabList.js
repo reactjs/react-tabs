@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
 module.exports = React.createClass({
@@ -8,8 +8,8 @@ module.exports = React.createClass({
     className: PropTypes.string,
     children: PropTypes.oneOfType([
       PropTypes.object,
-      PropTypes.array
-    ])
+      PropTypes.array,
+    ]),
   },
 
   render() {
@@ -24,5 +24,5 @@ module.exports = React.createClass({
         {this.props.children}
       </ul>
     );
-  }
+  },
 });
