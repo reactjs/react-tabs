@@ -37,8 +37,8 @@
     "react-component"
   ],
   "peerDependencies": {
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react": "^0.14.7 || ^15.0.0",
+    "react-dom": "^0.14.7 || ^15.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -55,9 +55,9 @@
     "eslint-plugin-jsx-a11y": "^1.2.2",
     "eslint-plugin-react": "^5.1.1",
     "jest-cli": "^12.1.1",
-    "react": "^0.14.7",
-    "react-addons-test-utils": "^0.14.7",
-    "react-dom": "^0.14.7",
+    "react": "^15.0.0",
+    "react-addons-test-utils": "^15.0.0",
+    "react-dom": "^15.0.0",
     "react-modal": "reactjs/react-modal",
     "rimraf": "^2.5.2",
     "webpack": "^1.13.1",
