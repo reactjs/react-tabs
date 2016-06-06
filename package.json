@@ -11,7 +11,7 @@
     "build": "npm run clean && npm run build:commonjs && npm run bundle",
     "bundle": "mkdir -p dist && npm run build:umd && npm run build:umd:min",
     "lint": "eslint src",
-    "preversion": "npm run lint && npm test",
+    "preversion": "npm run lint && npm test && npm run bundle && git add dist/ && git commit -m 'Publish: build bower distribution'",
     "prepublish": "npm run build",
     "test": "jest",
     "start": "webpack-dev-server --inline --content-base examples/"
@@ -59,8 +59,6 @@
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-modal": "reactjs/react-modal",
-    "rf-changelog": "^0.4.0",
-    "rf-release": "mzabriskie/rf-release",
     "rimraf": "^2.5.2",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
