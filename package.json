@@ -8,7 +8,7 @@
     "build:commonjs": "babel src/ --out-dir lib/ --ignore __tests__,__mocks__",
     "build:umd": "webpack --devtool source-map --config webpack.build.js",
     "build:umd:min": "cross-env MINIFY=1 webpack --devtool source-map --config webpack.build.js",
-    "build": "npm run clean && npm run build:commonjs && npm run bundle",
+    "build": "npm run clean && npm run build:commonjs",
     "bundle": "mkdir -p dist && npm run build:umd && npm run build:umd:min",
     "lint": "eslint src",
     "preversion": "npm run lint && npm test && npm run bundle && git add dist/ && git commit -m 'Publish: build bower distribution'",
