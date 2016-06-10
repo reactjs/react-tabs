@@ -4,9 +4,6 @@ node_js:
   - "4"
   - "5"
   - stable
-branches:
-  only:
-    - master
 script:
   - npm run lint
   - npm test
