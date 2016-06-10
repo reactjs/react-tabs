@@ -56,20 +56,55 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	module.exports = {
-	  Tabs: __webpack_require__(1),
-	  TabList: __webpack_require__(9),
-	  Tab: __webpack_require__(8),
-	  TabPanel: __webpack_require__(11)
-	};
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _Tabs = __webpack_require__(1);
+	
+	Object.defineProperty(exports, 'Tabs', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_Tabs).default;
+	  }
+	});
+	
+	var _TabList = __webpack_require__(9);
+	
+	Object.defineProperty(exports, 'TabList', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_TabList).default;
+	  }
+	});
+	
+	var _Tab = __webpack_require__(8);
+	
+	Object.defineProperty(exports, 'Tab', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_Tab).default;
+	  }
+	});
+	
+	var _TabPanel = __webpack_require__(11);
+	
+	Object.defineProperty(exports, 'TabPanel', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_TabPanel).default;
+	  }
+	});
+	
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	var _react = __webpack_require__(2);
 	
@@ -85,13 +120,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _jsStylesheet2 = _interopRequireDefault(_jsStylesheet);
 	
-	var _helpersUuid = __webpack_require__(6);
+	var _uuid = __webpack_require__(6);
 	
-	var _helpersUuid2 = _interopRequireDefault(_helpersUuid);
+	var _uuid2 = _interopRequireDefault(_uuid);
 	
-	var _helpersChildrenPropType = __webpack_require__(7);
+	var _childrenPropType = __webpack_require__(7);
 	
-	var _helpersChildrenPropType2 = _interopRequireDefault(_helpersChildrenPropType);
+	var _childrenPropType2 = _interopRequireDefault(_childrenPropType);
+	
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
 	
 	// Determine if a node from event.target is a Tab element
 	function isTabNode(node) {
@@ -105,7 +144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var useDefaultStyles = true;
 	
-	module.exports = _react2['default'].createClass({
+	module.exports = _react2.default.createClass({
 	  displayName: 'Tabs',
 	
 	  propTypes: {
@@ -113,7 +152,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    selectedIndex: _react.PropTypes.number,
 	    onSelect: _react.PropTypes.func,
 	    focus: _react.PropTypes.bool,
-	    children: _helpersChildrenPropType2['default'],
+	    children: _childrenPropType2.default,
 	    forceRenderTabPanel: _react.PropTypes.bool
 	  },
 	
@@ -134,68 +173,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	      forceRenderTabPanel: false
 	    };
 	  },
-	
 	  getInitialState: function getInitialState() {
 	    return this.copyPropsToState(this.props);
 	  },
-	
 	  getChildContext: function getChildContext() {
 	    return {
 	      forceRenderTabPanel: this.props.forceRenderTabPanel
 	    };
 	  },
-	
 	  componentDidMount: function componentDidMount() {
 	    if (useDefaultStyles) {
-	      (0, _jsStylesheet2['default'])(__webpack_require__(10));
+	      (0, _jsStylesheet2.default)(__webpack_require__(10)); // eslint-disable-line global-require
 	    }
 	  },
-	
 	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
 	    this.setState(this.copyPropsToState(newProps));
 	  },
-	
-	  handleClick: function handleClick(e) {
-	    var node = e.target;
-	    do {
-	      if (isTabNode(node)) {
-	        if (isTabDisabled(node)) {
-	          return;
-	        }
-	
-	        var index = [].slice.call(node.parentNode.children).indexOf(node);
-	        this.setSelected(index);
-	        return;
-	      }
-	    } while ((node = node.parentNode) !== null);
-	  },
-	
-	  handleKeyDown: function handleKeyDown(e) {
-	    if (isTabNode(e.target)) {
-	      var index = this.state.selectedIndex;
-	      var preventDefault = false;
-	
-	      // Select next tab to the left
-	      if (e.keyCode === 37 || e.keyCode === 38) {
-	        index = this.getPrevTab(index);
-	        preventDefault = true;
-	      }
-	      // Select next tab to the right
-	      /* eslint brace-style:0 */
-	      else if (e.keyCode === 39 || e.keyCode === 40) {
-	          index = this.getNextTab(index);
-	          preventDefault = true;
-	        }
-	
-	      // This prevents scrollbars from moving around
-	      if (preventDefault) {
-	        e.preventDefault();
-	      }
-	
-	      this.setSelected(index, true);
-	    }
-	  },
-	
 	  setSelected: function setSelected(index, focus) {
 	    // Don't do anything if nothing has changed
 	    if (index === this.state.selectedIndex) return;
@@ -213,7 +206,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.props.onSelect(index, last);
 	    }
 	  },
-	
 	  getNextTab: function getNextTab(index) {
 	    var count = this.getTabsCount();
 	
@@ -226,17 +218,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    // If no tab found, continue searching from first on left to index
-	    for (var i = 0; i < index; i++) {
-	      var tab = this.getTab(i);
-	      if (!isTabDisabled((0, _reactDom.findDOMNode)(tab))) {
-	        return i;
+	    for (var _i = 0; _i < index; _i++) {
+	      var _tab = this.getTab(_i);
+	      if (!isTabDisabled((0, _reactDom.findDOMNode)(_tab))) {
+	        return _i;
 	      }
 	    }
 	
 	    // No tabs are disabled, return index
 	    return index;
 	  },
-	
 	  getPrevTab: function getPrevTab(index) {
 	    var i = index;
 	
@@ -251,8 +242,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // If no tab found, continue searching from last tab on right to index
 	    i = this.getTabsCount();
 	    while (i-- > index) {
-	      var tab = this.getTab(i);
-	      if (!isTabDisabled((0, _reactDom.findDOMNode)(tab))) {
+	      var _tab2 = this.getTab(i);
+	      if (!isTabDisabled((0, _reactDom.findDOMNode)(_tab2))) {
 	        return i;
 	      }
 	    }
@@ -260,27 +251,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // No tabs are disabled, return index
 	    return index;
 	  },
-	
 	  getTabsCount: function getTabsCount() {
-	    return this.props.children && this.props.children[0] ? _react2['default'].Children.count(this.props.children[0].props.children) : 0;
+	    return this.props.children && this.props.children[0] ? _react2.default.Children.count(this.props.children[0].props.children) : 0;
 	  },
-	
 	  getPanelsCount: function getPanelsCount() {
-	    return _react2['default'].Children.count(this.props.children.slice(1));
+	    return _react2.default.Children.count(this.props.children.slice(1));
 	  },
-	
 	  getTabList: function getTabList() {
 	    return this.refs.tablist;
 	  },
-	
 	  getTab: function getTab(index) {
 	    return this.refs['tabs-' + index];
 	  },
-	
 	  getPanel: function getPanel(index) {
 	    return this.refs['panels-' + index];
 	  },
-	
 	  getChildren: function getChildren() {
 	    var index = 0;
 	    var count = 0;
@@ -294,12 +279,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Don't bother removing ids, just keep them in case they are added again
 	    // This is more efficient, and keeps the uuid counter under control
 	    while (diff++ < 0) {
-	      tabIds.push((0, _helpersUuid2['default'])());
-	      panelIds.push((0, _helpersUuid2['default'])());
+	      tabIds.push((0, _uuid2.default)());
+	      panelIds.push((0, _uuid2.default)());
 	    }
 	
 	    // Map children to dynamically setup refs
-	    return _react2['default'].Children.map(children, function (child) {
+	    return _react2.default.Children.map(children, function (child) {
 	      // null happens when conditionally rendering TabPanel/Tab
 	      // see https://github.com/rackt/react-tabs/issues/37
 	      if (child === null) {
@@ -313,7 +298,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // TODO try setting the uuid in the "constructor" for `Tab`/`TabPanel`
 	        result = (0, _react.cloneElement)(child, {
 	          ref: 'tablist',
-	          children: _react2['default'].Children.map(child.props.children, function (tab) {
+	          children: _react2.default.Children.map(child.props.children, function (tab) {
 	            // null happens when conditionally rendering TabPanel/Tab
 	            // see https://github.com/rackt/react-tabs/issues/37
 	            if (tab === null) {
@@ -361,38 +346,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return result;
 	    });
 	  },
+	  handleKeyDown: function handleKeyDown(e) {
+	    if (isTabNode(e.target)) {
+	      var index = this.state.selectedIndex;
+	      var preventDefault = false;
 	
-	  render: function render() {
-	    var _this = this;
+	      // Select next tab to the left
+	      if (e.keyCode === 37 || e.keyCode === 38) {
+	        index = this.getPrevTab(index);
+	        preventDefault = true;
+	      }
+	      // Select next tab to the right
+	      /* eslint brace-style:0 */
+	      else if (e.keyCode === 39 || e.keyCode === 40) {
+	          index = this.getNextTab(index);
+	          preventDefault = true;
+	        }
 	
-	    // This fixes an issue with focus management.
-	    //
-	    // Ultimately, when focus is true, and an input has focus,
-	    // and any change on that input causes a state change/re-render,
-	    // focus gets sent back to the active tab, and input loses focus.
-	    //
-	    // Since the focus state only needs to be remembered
-	    // for the current render, we can reset it once the
-	    // render has happened.
-	    //
-	    // Don't use setState, because we don't want to re-render.
-	    //
-	    // See https://github.com/rackt/react-tabs/pull/7
-	    if (this.state.focus) {
-	      setTimeout(function () {
-	        _this.state.focus = false;
-	      }, 0);
+	      // This prevents scrollbars from moving around
+	      if (preventDefault) {
+	        e.preventDefault();
+	      }
+	
+	      this.setSelected(index, true);
 	    }
+	  },
+	  handleClick: function handleClick(e) {
+	    var node = e.target;
+	    do {
+	      // eslint-disable-line no-cond-assign
+	      if (isTabNode(node)) {
+	        if (isTabDisabled(node)) {
+	          return;
+	        }
 	
-	    return _react2['default'].createElement(
-	      'div',
-	      {
-	        className: (0, _classnames2['default'])('ReactTabs', 'react-tabs', this.props.className),
-	        onClick: this.handleClick,
-	        onKeyDown: this.handleKeyDown
-	      },
-	      this.getChildren()
-	    );
+	        var index = [].slice.call(node.parentNode.children).indexOf(node);
+	        this.setSelected(index);
+	        return;
+	      }
+	    } while ((node = node.parentNode) !== null);
 	  },
 	
 	  // This is an anti-pattern, so sue me
@@ -419,6 +411,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	      selectedIndex: selectedIndex,
 	      focus: props.focus
 	    };
+	  },
+	  render: function render() {
+	    var _this = this;
+	
+	    // This fixes an issue with focus management.
+	    //
+	    // Ultimately, when focus is true, and an input has focus,
+	    // and any change on that input causes a state change/re-render,
+	    // focus gets sent back to the active tab, and input loses focus.
+	    //
+	    // Since the focus state only needs to be remembered
+	    // for the current render, we can reset it once the
+	    // render has happened.
+	    //
+	    // Don't use setState, because we don't want to re-render.
+	    //
+	    // See https://github.com/rackt/react-tabs/pull/7
+	    if (this.state.focus) {
+	      setTimeout(function () {
+	        _this.state.focus = false;
+	      }, 0);
+	    }
+	
+	    return _react2.default.createElement('div', {
+	      className: (0, _classnames2.default)('ReactTabs', 'react-tabs', this.props.className),
+	      onClick: this.handleClick,
+	      onKeyDown: this.handleKeyDown
+	    }, this.getChildren());
 	  }
 	});
 
@@ -438,8 +458,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	  Copyright (c) 2015 Jed Watson.
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
 	  Licensed under the MIT License (MIT), see
 	  http://jedwatson.github.io/classnames
 	*/
@@ -451,7 +471,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		var hasOwn = {}.hasOwnProperty;
 	
 		function classNames () {
-			var classes = '';
+			var classes = [];
 	
 			for (var i = 0; i < arguments.length; i++) {
 				var arg = arguments[i];
@@ -460,28 +480,28 @@ return /******/ (function(modules) { // webpackBootstrap
 				var argType = typeof arg;
 	
 				if (argType === 'string' || argType === 'number') {
-					classes += ' ' + arg;
+					classes.push(arg);
 				} else if (Array.isArray(arg)) {
-					classes += ' ' + classNames.apply(null, arg);
+					classes.push(classNames.apply(null, arg));
 				} else if (argType === 'object') {
 					for (var key in arg) {
 						if (hasOwn.call(arg, key) && arg[key]) {
-							classes += ' ' + key;
+							classes.push(key);
 						}
 					}
 				}
 			}
 	
-			return classes.substr(1);
+			return classes.join(' ');
 		}
 	
 		if (typeof module !== 'undefined' && module.exports) {
 			module.exports = classNames;
 		} else if (true) {
 			// register as 'classnames', consistent with npm package name
-			!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
 				return classNames;
-			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 		} else {
 			window.classNames = classNames;
 		}
@@ -536,12 +556,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 6 */
 /***/ function(module, exports) {
 
+	"use strict";
+	
 	// Get a universally unique identifier
-	'use strict';
 	
 	var count = 0;
 	module.exports = function uuid() {
-	  return 'react-tabs-' + count++;
+	  return "react-tabs-" + count++;
 	};
 
 /***/ },
@@ -550,56 +571,58 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _componentsTab = __webpack_require__(8);
+	var _Tab = __webpack_require__(8);
 	
-	var _componentsTab2 = _interopRequireDefault(_componentsTab);
+	var _Tab2 = _interopRequireDefault(_Tab);
 	
-	var _componentsTabList = __webpack_require__(9);
+	var _TabList = __webpack_require__(9);
 	
-	var _componentsTabList2 = _interopRequireDefault(_componentsTabList);
+	var _TabList2 = _interopRequireDefault(_TabList);
+	
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
 	
 	module.exports = function childrenPropTypes(props, propName) {
-	  var error = undefined;
+	  var error = void 0;
 	  var tabsCount = 0;
 	  var panelsCount = 0;
 	  var children = props[propName];
 	
-	  _react2['default'].Children.forEach(children, function (child) {
+	  _react2.default.Children.forEach(children, function (child) {
 	    // null happens when conditionally rendering TabPanel/Tab
 	    // see https://github.com/rackt/react-tabs/issues/37
 	    if (child === null) {
 	      return;
 	    }
 	
-	    if (child.type === _componentsTabList2['default']) {
-	      _react2['default'].Children.forEach(child.props.children, function (c) {
+	    if (child.type === _TabList2.default) {
+	      _react2.default.Children.forEach(child.props.children, function (c) {
 	        // null happens when conditionally rendering TabPanel/Tab
 	        // see https://github.com/rackt/react-tabs/issues/37
 	        if (c === null) {
 	          return;
 	        }
 	
-	        if (c.type === _componentsTab2['default']) {
+	        if (c.type === _Tab2.default) {
 	          tabsCount++;
 	        } else {
-	          error = new Error('Expected `Tab` but found `' + (c.type.displayName || c.type) + '`');
+	          error = new Error('Expected \'Tab\' but found \'' + (c.type.displayName || c.type) + '\'');
 	        }
 	      });
 	    } else if (child.type.displayName === 'TabPanel') {
 	      panelsCount++;
 	    } else {
-	      error = new Error('Expected `TabList` or `TabPanel` but found `' + (child.type.displayName || child.type) + '`');
+	      error = new Error('Expected \'TabList\' or \'TabPanel\' but found \'' + (child.type.displayName || child.type) + '\'');
 	    }
 	  });
 	
 	  if (tabsCount !== panelsCount) {
-	    error = new Error('There should be an equal number of `Tabs` and `TabPanels`. ' + 'Received ' + tabsCount + ' `Tabs` and ' + panelsCount + ' `TabPanels`.');
+	    error = new Error("There should be an equal number of 'Tabs' and 'TabPanels'." + ('Received ' + tabsCount + ' \'Tabs\' and ' + panelsCount + ' \'TabPanels\'.'));
 	  }
 	
 	  return error;
@@ -611,8 +634,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -622,6 +643,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _classnames = __webpack_require__(4);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
 	
 	function syncNodeAttributes(node, props) {
 	  if (props.selected) {
@@ -636,7 +661,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	}
 	
-	module.exports = _react2['default'].createClass({
+	module.exports = _react2.default.createClass({
 	  displayName: 'Tab',
 	
 	  propTypes: {
@@ -656,32 +681,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	      panelId: null
 	    };
 	  },
-	
 	  componentDidMount: function componentDidMount() {
 	    syncNodeAttributes((0, _reactDom.findDOMNode)(this), this.props);
 	  },
-	
 	  componentDidUpdate: function componentDidUpdate() {
 	    syncNodeAttributes((0, _reactDom.findDOMNode)(this), this.props);
 	  },
-	
 	  render: function render() {
-	    return _react2['default'].createElement(
-	      'li',
-	      {
-	        className: (0, _classnames2['default'])('ReactTabs__Tab', this.props.className, {
-	          'ReactTabs__Tab--selected': this.props.selected,
-	          'ReactTabs__Tab--disabled': this.props.disabled
-	        }),
-	        role: 'tab',
-	        id: this.props.id,
-	        'aria-selected': this.props.selected ? 'true' : 'false',
-	        'aria-expanded': this.props.selected ? 'true' : 'false',
-	        'aria-disabled': this.props.disabled ? 'true' : 'false',
-	        'aria-controls': this.props.panelId
-	      },
-	      this.props.children
-	    );
+	    return _react2.default.createElement('li', {
+	      className: (0, _classnames2.default)('ReactTabs__Tab', this.props.className, {
+	        'ReactTabs__Tab--selected': this.props.selected,
+	        'ReactTabs__Tab--disabled': this.props.disabled
+	      }),
+	      role: 'tab',
+	      id: this.props.id,
+	      'aria-selected': this.props.selected ? 'true' : 'false',
+	      'aria-expanded': this.props.selected ? 'true' : 'false',
+	      'aria-disabled': this.props.disabled ? 'true' : 'false',
+	      'aria-controls': this.props.panelId
+	    }, this.props.children);
 	  }
 	});
 
@@ -691,8 +709,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -701,7 +717,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	module.exports = _react2['default'].createClass({
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	module.exports = _react2.default.createClass({
 	  displayName: 'TabList',
 	
 	  propTypes: {
@@ -710,14 +730,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	
 	  render: function render() {
-	    return _react2['default'].createElement(
-	      'ul',
-	      {
-	        className: (0, _classnames2['default'])('ReactTabs__TabList', this.props.className),
-	        role: 'tablist'
-	      },
-	      this.props.children
-	    );
+	    return _react2.default.createElement('ul', {
+	      className: (0, _classnames2.default)('ReactTabs__TabList', this.props.className),
+	      role: 'tablist'
+	    }, this.props.children);
 	  }
 	});
 
@@ -730,49 +746,49 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = {
 	  '.react-tabs [role=tablist]': {
 	    'border-bottom': '1px solid #aaa',
-	    'margin': '0 0 10px',
-	    'padding': '0'
+	    margin: '0 0 10px',
+	    padding: '0'
 	  },
 	
 	  '.react-tabs [role=tab]': {
-	    'display': 'inline-block',
-	    'border': '1px solid transparent',
+	    display: 'inline-block',
+	    border: '1px solid transparent',
 	    'border-bottom': 'none',
-	    'bottom': '-1px',
-	    'position': 'relative',
+	    bottom: '-1px',
+	    position: 'relative',
 	    'list-style': 'none',
-	    'padding': '6px 12px',
-	    'cursor': 'pointer'
+	    padding: '6px 12px',
+	    cursor: 'pointer'
 	  },
 	
 	  '.react-tabs [role=tab][aria-selected=true]': {
-	    'background': '#fff',
+	    background: '#fff',
 	    'border-color': '#aaa',
-	    'color': 'black',
+	    color: 'black',
 	    'border-radius': '5px 5px 0 0',
 	    '-moz-border-radius': '5px 5px 0 0',
 	    '-webkit-border-radius': '5px 5px 0 0'
 	  },
 	
 	  '.react-tabs [role=tab][aria-disabled=true]': {
-	    'color': 'GrayText',
-	    'cursor': 'default'
+	    color: 'GrayText',
+	    cursor: 'default'
 	  },
 	
 	  '.react-tabs [role=tab]:focus': {
 	    'box-shadow': '0 0 5px hsl(208, 99%, 50%)',
 	    'border-color': 'hsl(208, 99%, 50%)',
-	    'outline': 'none'
+	    outline: 'none'
 	  },
 	
 	  '.react-tabs [role=tab]:focus:after': {
-	    'content': '""',
-	    'position': 'absolute',
-	    'height': '5px',
-	    'left': '-4px',
-	    'right': '-4px',
-	    'bottom': '-5px',
-	    'background': '#fff'
+	    content: '""',
+	    position: 'absolute',
+	    height: '5px',
+	    left: '-4px',
+	    right: '-4px',
+	    bottom: '-5px',
+	    background: '#fff'
 	  }
 	};
 
@@ -782,8 +798,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -792,7 +806,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	module.exports = _react2['default'].createClass({
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	module.exports = _react2.default.createClass({
 	  displayName: 'TabPanel',
 	
 	  propTypes: {
@@ -814,23 +832,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      tabId: null
 	    };
 	  },
-	
 	  render: function render() {
 	    var children = this.context.forceRenderTabPanel || this.props.selected ? this.props.children : null;
 	
-	    return _react2['default'].createElement(
-	      'div',
-	      {
-	        className: (0, _classnames2['default'])('ReactTabs__TabPanel', this.props.className, {
-	          'ReactTabs__TabPanel--selected': this.props.selected
-	        }),
-	        role: 'tabpanel',
-	        id: this.props.id,
-	        'aria-labelledby': this.props.tabId,
-	        style: { display: this.props.selected ? null : 'none' }
-	      },
-	      children
-	    );
+	    return _react2.default.createElement('div', {
+	      className: (0, _classnames2.default)('ReactTabs__TabPanel', this.props.className, {
+	        'ReactTabs__TabPanel--selected': this.props.selected
+	      }),
+	      role: 'tabpanel',
+	      id: this.props.id,
+	      'aria-labelledby': this.props.tabId,
+	      style: { display: this.props.selected ? null : 'none' }
+	    }, children);
 	  }
 	});
 
