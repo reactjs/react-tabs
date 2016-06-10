@@ -1,7 +1,13 @@
+v0.5.4 - Fri, 10 Jun 2016 08:48:45 GMT
+--------------------------------------
+
+- [5101f96](../../commit/5101f96) [fixed] Update to support react 15 #94
+
+
 v0.5.3 - Mon, 01 Feb 2016 16:09:12 GMT
 --------------------------------------
 
-- 
+- [baaa587](../../commit/baaa587) [fixed] use correct spelling of aria-labelledby #67
 
 
 v0.5.2 - Fri, 29 Jan 2016 19:45:48 GMT
