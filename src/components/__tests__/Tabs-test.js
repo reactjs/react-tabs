@@ -276,4 +276,10 @@ describe('react-tabs', () => {
 
     expect(wrapper.prop('data-tooltip')).toBe('Tooltip contents');
   });
+
+  it('should not add known props to dom', () => {
+    const wrapper = shallow(<Tabs selectedIndex={3} />);
+
+    expect(wrapper.prop('selectedIndex')).toBe(undefined);
+  });
 });
