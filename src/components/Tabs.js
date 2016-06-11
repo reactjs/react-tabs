@@ -236,7 +236,7 @@ module.exports = React.createClass({
   },
 
   handleKeyDown(e) {
-    if (isTabNode(e.target)) {
+    if (this.isTabFromContainer(e.target)) {
       let index = this.state.selectedIndex;
       let preventDefault = false;
 
@@ -264,7 +264,7 @@ module.exports = React.createClass({
   handleClick(e) {
     let node = e.target;
     do { // eslint-disable-line no-cond-assign
-      if (isTabNode(node)) {
+      if (this.isTabFromContainer(node)) {
         if (isTabDisabled(node)) {
           return;
         }
@@ -302,6 +302,30 @@ module.exports = React.createClass({
     };
   },
 
+  /**
+   * Determine if a node from event.target is a Tab element for the current Tabs container.
+   * If the clicked element is not a Tab, it returns false.
+   * If it finds another Tabs container between the Tab and `this`, it returns false.
+   */
+  isTabFromContainer(node) {
+    // return immediately if the clicked element is not a Tab.
+    if (!isTabNode(node)) {
+      return false;
+    }
+
+    // Check if the first occurrence of a Tabs container is `this` one.
+    let nodeAncestor = node.parentElement;
+    const tabsNode = findDOMNode(this);
+    do {
+      if (nodeAncestor === tabsNode) return true;
+      else if (nodeAncestor.getAttribute('data-tabs')) break;
+
+      nodeAncestor = nodeAncestor.parentElement;
+    } while (nodeAncestor);
+
+    return false;
+  },
+
   render() {
     // This fixes an issue with focus management.
     //
@@ -331,6 +355,7 @@ module.exports = React.createClass({
         )}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
+        data-tabs
       >
         {this.getChildren()}
       </div>

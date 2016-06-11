@@ -171,7 +171,6 @@ describe('react-tabs', () => {
       expect(wrapper.childAt(2).text()).toBe('Hello Bar');
       expect(wrapper.childAt(3).text()).toBe('');
 
-
       wrapper.childAt(0).childAt(2).simulate('click');
 
       expect(wrapper.childAt(1).text()).toBe('');
@@ -240,6 +239,35 @@ describe('react-tabs', () => {
           {false && <TabPanel>Content B</TabPanel>}
         </Tabs>
       )).not.toThrow();
+    });
+
+    it('should support nested tabs', () => {
+      const wrapper = mount(
+        <Tabs className="first">
+          <TabList>
+            <Tab />
+            <Tab />
+          </TabList>
+          <TabPanel>
+            <Tabs className="second">
+              <TabList>
+                <Tab />
+                <Tab />
+              </TabList>
+              <TabPanel />
+              <TabPanel />
+            </Tabs>
+          </TabPanel>
+          <TabPanel />
+        </Tabs>
+      );
+
+      const innerTabs = wrapper.childAt(1).childAt(0);
+
+      innerTabs.childAt(0).childAt(1).simulate('click');
+
+      assertTabSelected(wrapper, 0);
+      assertTabSelected(innerTabs, 1);
     });
   });
 });
