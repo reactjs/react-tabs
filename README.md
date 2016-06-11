@@ -2,10 +2,12 @@
 
 React tabs component
 
+> Supports React ^0.14.0 or ^15.0.0
+
 ## Installing
 
 ```bash
-$ npm install react-tabs
+$ npm install react-tabs --save
 ```
 
 ## Demo
@@ -100,7 +102,6 @@ var App = React.createClass({
 });
 
 ReactDOM.render(<App/>, document.getElementById('container'));
-
 ```
 
 ## License
