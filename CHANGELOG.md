@@ -1,3 +1,8 @@
+v0.5.5 - Mon, 13 Jun 2016 20:40:00 GMT
+--------------------------------------
+
+- Fix main exports of react tabs which were broken in 0.5.4
+
 v0.5.4 - Fri, 10 Jun 2016 08:48:45 GMT
 --------------------------------------
 
