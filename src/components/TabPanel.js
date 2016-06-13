@@ -31,6 +31,10 @@ module.exports = React.createClass({
   render() {
     const { className, children, selected, id, tabId, ...attributes } = this.props;
 
+    // Merge style
+    let style = { ...attributes.style, display: selected ? null : 'none' };
+    delete attributes.style;
+
     return (
       <div
         {...attributes}
@@ -44,7 +48,7 @@ module.exports = React.createClass({
         role="tabpanel"
         id={id}
         aria-labelledby={tabId}
-        style={{ display: selected ? null : 'none' }}
+        style={style}
       >
         {(this.context.forceRenderTabPanel || selected) ? children : null}
       </div>

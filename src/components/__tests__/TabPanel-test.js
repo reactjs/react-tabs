@@ -48,5 +48,12 @@ describe('Tab', () => {
 
     expect(wrapper.prop('role')).toBe('tabpanel');
   });
+
+
+  it('should merge style attribute', () => {
+    const wrapper = shallow(<TabPanel style={{ borderWidth: '1px' }} />);
+
+    expect(wrapper.prop('style')).toEqual({ borderWidth: '1px', display: 'none' });
+  });
 });
 
