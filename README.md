@@ -17,20 +17,16 @@ https://reactcommunity.org/react-tabs/example/
 ## Example
 
 ```js
-var React = require('react');
-var ReactDOM = require('react-dom');
-var ReactTabs = require('react-tabs');
-var Tab = ReactTabs.Tab;
-var Tabs = ReactTabs.Tabs;
-var TabList = ReactTabs.TabList;
-var TabPanel = ReactTabs.TabPanel;
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-var App = React.createClass({
-  handleSelect: function (index, last) {
-	console.log('Selected tab: ' + index + ', Last tab: ' + last);
-  },
+class App extends Component {
+  handleSelect(index, last) {
+    console.log('Selected tab: ' + index + ', Last tab: ' + last);
+  }
 
-  render: function () {
+  render() {
     return (
       {/*
         <Tabs/> is a composite component and acts as the main container.
@@ -99,9 +95,9 @@ var App = React.createClass({
       </Tabs>
     );
   }
-});
+}
 
-ReactDOM.render(<App/>, document.getElementById('container'));
+render(<App/>, document.getElementById('container'));
 ```
 
 ## License
