@@ -23,6 +23,8 @@ module.exports = React.createClass({
     id: PropTypes.string,
     selected: PropTypes.bool,
     disabled: PropTypes.bool,
+    activeTabClassName: PropTypes.string,
+    disabledTabClassName: PropTypes.string,
     panelId: PropTypes.string,
     children: PropTypes.oneOfType([
       PropTypes.array,
@@ -37,6 +39,8 @@ module.exports = React.createClass({
       selected: false,
       id: null,
       panelId: null,
+      activeTabClassName: 'ReactTabs__Tab--selected',
+      disabledTabClassName: 'ReactTabs__Tab--disabled',
     };
   },
 
@@ -49,7 +53,16 @@ module.exports = React.createClass({
   },
 
   render() {
-    const { selected, disabled, panelId, className, children, id, ...attributes } = this.props;
+    const {
+      selected,
+      disabled,
+      panelId,
+      activeTabClassName,
+      disabledTabClassName,
+      className,
+      children,
+      id,
+      ...attributes } = this.props;
 
     return (
       <li
@@ -58,8 +71,8 @@ module.exports = React.createClass({
           'ReactTabs__Tab',
           className,
           {
-            'ReactTabs__Tab--selected': selected,
-            'ReactTabs__Tab--disabled': disabled,
+            [`${activeTabClassName}`]: selected,
+            [`${disabledTabClassName}`]: disabled,
           }
         )}
         role="tab"

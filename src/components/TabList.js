@@ -1,6 +1,15 @@
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
+function renderChildren(props) {
+  return React.Children.map(props.children, (child) =>
+    React.cloneElement(child, {
+      activeTabClassName: props.activeTabClassName,
+      disabledTabClassName: props.disabledTabClassName,
+    })
+  );
+}
+
 module.exports = React.createClass({
   displayName: 'TabList',
 
@@ -13,7 +22,7 @@ module.exports = React.createClass({
   },
 
   render() {
-    const { className, children, ...attributes } = this.props;
+    const { className, ...attributes } = this.props;
 
     return (
       <ul
@@ -24,7 +33,7 @@ module.exports = React.createClass({
         )}
         role="tablist"
       >
-        {children}
+        {renderChildren(this.props)}
       </ul>
     );
   },
