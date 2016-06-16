@@ -15,6 +15,8 @@ module.exports = React.createClass({
 
   propTypes: {
     className: PropTypes.string,
+    activeTabClassName: PropTypes.string,
+    disabledTabClassName: PropTypes.string,
     children: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.array,
@@ -22,7 +24,12 @@ module.exports = React.createClass({
   },
 
   render() {
-    const { className, ...attributes } = this.props;
+    const {
+      className,
+      activeTabClassName,
+      disabledTabClassName,
+      children,
+      ...attributes } = this.props;
 
     return (
       <ul
@@ -33,7 +40,7 @@ module.exports = React.createClass({
         )}
         role="tablist"
       >
-        {renderChildren(this.props)}
+        {renderChildren({ activeTabClassName, disabledTabClassName, children })}
       </ul>
     );
   },

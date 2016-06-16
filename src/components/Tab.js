@@ -71,8 +71,8 @@ module.exports = React.createClass({
           'ReactTabs__Tab',
           className,
           {
-            [`${activeTabClassName}`]: selected,
-            [`${disabledTabClassName}`]: disabled,
+            [activeTabClassName]: selected,
+            [disabledTabClassName]: disabled,
           }
         )}
         role="tab"
