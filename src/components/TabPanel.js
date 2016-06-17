@@ -5,15 +5,16 @@ module.exports = React.createClass({
   displayName: 'TabPanel',
 
   propTypes: {
-    className: PropTypes.string,
-    selected: PropTypes.bool,
-    id: PropTypes.string,
-    tabId: PropTypes.string,
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
       PropTypes.string,
     ]),
+    className: PropTypes.string,
+    id: PropTypes.string,
+    selected: PropTypes.bool,
+    style: PropTypes.object,
+    tabId: PropTypes.string,
   },
 
   contextTypes: {
@@ -29,11 +30,7 @@ module.exports = React.createClass({
   },
 
   render() {
-    const { className, children, selected, id, tabId, ...attributes } = this.props;
-
-    // Merge style
-    let style = { ...attributes.style, display: selected ? null : 'none' };
-    delete attributes.style;
+    const { className, children, selected, id, tabId, style, ...attributes } = this.props;
 
     return (
       <div
@@ -48,7 +45,7 @@ module.exports = React.createClass({
         role="tabpanel"
         id={id}
         aria-labelledby={tabId}
-        style={style}
+        style={{ ...style, display: selected ? null : 'none' }}
       >
         {(this.context.forceRenderTabPanel || selected) ? children : null}
       </div>
