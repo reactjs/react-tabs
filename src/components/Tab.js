@@ -2,25 +2,13 @@ import React, { PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cx from 'classnames';
 
-function syncNodeAttributes(node, props) {
-  if (props.selected) {
-    node.setAttribute('tabindex', '0');
-    node.setAttribute('selected', 'selected');
-    if (props.focus) {
-      node.focus();
-    }
-  } else {
-    node.removeAttribute('tabindex');
-    node.removeAttribute('selected');
-  }
-}
-
 module.exports = React.createClass({
   displayName: 'Tab',
 
   propTypes: {
     className: PropTypes.string,
     id: PropTypes.string,
+    focus: PropTypes.bool,
     selected: PropTypes.bool,
     disabled: PropTypes.bool,
     panelId: PropTypes.string,
@@ -41,11 +29,17 @@ module.exports = React.createClass({
   },
 
   componentDidMount() {
-    syncNodeAttributes(findDOMNode(this), this.props);
+    this.checkFocus();
   },
 
   componentDidUpdate() {
-    syncNodeAttributes(findDOMNode(this), this.props);
+    this.checkFocus();
+  },
+
+  checkFocus() {
+    if (this.props.selected && this.props.focus) {
+      findDOMNode(this).focus();
+    }
   },
 
   render() {
@@ -68,6 +62,7 @@ module.exports = React.createClass({
         aria-expanded={selected ? 'true' : 'false'}
         aria-disabled={disabled ? 'true' : 'false'}
         aria-controls={panelId}
+        tabIndex={selected ? '0' : null}
       >
         {children}
       </li>
