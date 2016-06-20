@@ -282,4 +282,17 @@ describe('react-tabs', () => {
 
     expect(wrapper.prop('selectedIndex')).toBe(undefined);
   });
+
+  it('should cancel if event handler returns false', () => {
+    const wrapper = mount(createTabs({ onSelect: () => false }));
+
+    assertTabSelected(wrapper, 0);
+
+    wrapper.childAt(0).childAt(1).simulate('click');
+    assertTabSelected(wrapper, 0);
+
+    wrapper.childAt(0).childAt(2).simulate('click');
+    assertTabSelected(wrapper, 0);
+
+  });
 });

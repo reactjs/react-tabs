@@ -76,12 +76,17 @@ module.exports = React.createClass({
     // Keep reference to last index for event handler
     const last = this.state.selectedIndex;
 
-    // Update selected index
-    this.setState({ selectedIndex: index, focus: focus === true });
+    // Check if the change event handler cancels the tab change
+    let cancel = false;
 
     // Call change event handler
     if (typeof this.props.onSelect === 'function') {
-      this.props.onSelect(index, last);
+      cancel = this.props.onSelect(index, last) === false;
+    }
+
+    if (!cancel) {
+      // Update selected index
+      this.setState({ selectedIndex: index, focus: focus === true });
     }
   },
 
