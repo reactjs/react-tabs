@@ -293,6 +293,5 @@ describe('react-tabs', () => {
 
     wrapper.childAt(0).childAt(2).simulate('click');
     assertTabSelected(wrapper, 0);
-
   });
 });
