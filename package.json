@@ -66,7 +66,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "classnames": "^2.2",
+    "classnames": "^2.2.0",
     "js-stylesheet": "^0.0.1"
   },
   "jest": {
