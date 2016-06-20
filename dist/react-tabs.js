@@ -714,25 +714,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }return target;
 	}
 	
-	function syncNodeAttributes(node, props) {
-	  if (props.selected) {
-	    node.setAttribute('tabindex', '0');
-	    node.setAttribute('selected', 'selected');
-	    if (props.focus) {
-	      node.focus();
-	    }
-	  } else {
-	    node.removeAttribute('tabindex');
-	    node.removeAttribute('selected');
-	  }
-	}
-	
 	module.exports = _react2.default.createClass({
 	  displayName: 'Tab',
 	
 	  propTypes: {
 	    className: _react.PropTypes.string,
 	    id: _react.PropTypes.string,
+	    focus: _react.PropTypes.bool,
 	    selected: _react.PropTypes.bool,
 	    disabled: _react.PropTypes.bool,
 	    panelId: _react.PropTypes.string,
@@ -748,10 +736,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    syncNodeAttributes((0, _reactDom.findDOMNode)(this), this.props);
+	    this.checkFocus();
 	  },
 	  componentDidUpdate: function componentDidUpdate() {
-	    syncNodeAttributes((0, _reactDom.findDOMNode)(this), this.props);
+	    this.checkFocus();
+	  },
+	  checkFocus: function checkFocus() {
+	    if (this.props.selected && this.props.focus) {
+	      (0, _reactDom.findDOMNode)(this).focus();
+	    }
 	  },
 	  render: function render() {
 	    var _props = this.props;
@@ -774,7 +767,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      'aria-selected': selected ? 'true' : 'false',
 	      'aria-expanded': selected ? 'true' : 'false',
 	      'aria-disabled': disabled ? 'true' : 'false',
-	      'aria-controls': panelId
+	      'aria-controls': panelId,
+	      tabIndex: selected ? '0' : null
 	    }), children);
 	  }
 	});
@@ -928,11 +922,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  displayName: 'TabPanel',
 	
 	  propTypes: {
+	    children: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.object, _react.PropTypes.string]),
 	    className: _react.PropTypes.string,
-	    selected: _react.PropTypes.bool,
 	    id: _react.PropTypes.string,
-	    tabId: _react.PropTypes.string,
-	    children: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.object, _react.PropTypes.string])
+	    selected: _react.PropTypes.bool,
+	    style: _react.PropTypes.object,
+	    tabId: _react.PropTypes.string
 	  },
 	
 	  contextTypes: {
@@ -953,13 +948,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var selected = _props.selected;
 	    var id = _props.id;
 	    var tabId = _props.tabId;
+	    var style = _props.style;
 	
-	    var attributes = _objectWithoutProperties(_props, ['className', 'children', 'selected', 'id', 'tabId']);
-	
-	    // Merge style
-	
-	    var style = _extends({}, attributes.style, { display: selected ? null : 'none' });
-	    delete attributes.style;
+	    var attributes = _objectWithoutProperties(_props, ['className', 'children', 'selected', 'id', 'tabId', 'style']);
 	
 	    return _react2.default.createElement('div', _extends({}, attributes, {
 	      className: (0, _classnames2.default)('ReactTabs__TabPanel', className, {
@@ -968,7 +959,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      role: 'tabpanel',
 	      id: id,
 	      'aria-labelledby': tabId,
-	      style: style
+	      style: _extends({}, style, { display: selected ? null : 'none' })
 	    }), this.context.forceRenderTabPanel || selected ? children : null);
 	  }
 	});
