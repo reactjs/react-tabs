@@ -48,7 +48,7 @@ module.exports = React.createClass({
   },
 
   getInitialState() {
-    return this.copyPropsToState(this.props);
+    return this.copyPropsToState(this.props, this.state);
   },
 
   getChildContext() {
@@ -64,7 +64,10 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps(newProps) {
-    this.setState(this.copyPropsToState(newProps));
+    // Use a transactional update to prevent race conditions
+    // when reading the state in copyPropsToState
+    // See https://github.com/reactjs/react-tabs/issues/51
+    this.setState(state => this.copyPropsToState(newProps, state));
   },
 
   setSelected(index, focus) {
@@ -282,7 +285,7 @@ module.exports = React.createClass({
   },
 
   // This is an anti-pattern, so sue me
-  copyPropsToState(props) {
+  copyPropsToState(props, state) {
     let selectedIndex = props.selectedIndex;
 
     // If no selectedIndex prop was supplied, then try
@@ -294,8 +297,8 @@ module.exports = React.createClass({
     // Manual testing can be done using examples/focus
     // See 'should preserve selectedIndex when typing' in specs/Tabs.spec.js
     if (selectedIndex === -1) {
-      if (this.state && this.state.selectedIndex) {
-        selectedIndex = this.state.selectedIndex;
+      if (state && state.selectedIndex) {
+        selectedIndex = state.selectedIndex;
       } else {
         selectedIndex = 0;
       }
