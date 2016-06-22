@@ -294,4 +294,34 @@ describe('react-tabs', () => {
     wrapper.childAt(0).childAt(2).simulate('click');
     assertTabSelected(wrapper, 0);
   });
+
+  it('should switch tabs if setState is called within onSelect', () => {
+    class Wrap extends React.Component {
+      constructor(props, state) {
+        super(props, state);
+
+        this.state = {
+          foo: 'foo',
+        };
+
+        this.handleSelect = this.handleSelect.bind(this);
+      }
+
+      handleSelect() {
+        this.setState({ foo: 'bar' });
+      }
+
+      render() {
+        return createTabs({ onSelect: this.handleSelect });
+      }
+    }
+
+    const wrapper = mount(<Wrap />);
+
+    wrapper.childAt(0).childAt(1).simulate('click');
+    assertTabSelected(wrapper, 1);
+
+    wrapper.childAt(0).childAt(2).simulate('click');
+    assertTabSelected(wrapper, 2);
+  });
 });
