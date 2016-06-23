@@ -3,8 +3,13 @@ import ReactDOM from 'react-dom';
 import { Tab, Tabs, TabList, TabPanel } from '../../src/main';
 
 const App = React.createClass({
-  handleInputChange() {
+  getInitialState() {
+    return { inputValue: '' };
+  },
+
+  handleInputChange(e) {
     this.forceUpdate();
+    this.setState({ inputValue: e.target.value });
   },
 
   render() {
@@ -23,6 +28,7 @@ const App = React.createClass({
             <input
               type="text"
               onChange={this.handleInputChange}
+              value={this.state.inputValue}
             />
           </TabPanel>
         </Tabs>
