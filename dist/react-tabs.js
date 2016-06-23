@@ -59,41 +59,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.TabPanel = exports.Tab = exports.TabList = exports.Tabs = undefined;
 	
 	var _Tabs = __webpack_require__(1);
 	
-	var _Tabs2 = _interopRequireDefault(_Tabs);
+	Object.defineProperty(exports, 'Tabs', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_Tabs).default;
+	  }
+	});
 	
 	var _TabList = __webpack_require__(9);
 	
-	var _TabList2 = _interopRequireDefault(_TabList);
+	Object.defineProperty(exports, 'TabList', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_TabList).default;
+	  }
+	});
 	
 	var _Tab = __webpack_require__(8);
 	
-	var _Tab2 = _interopRequireDefault(_Tab);
+	Object.defineProperty(exports, 'Tab', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_Tab).default;
+	  }
+	});
 	
 	var _TabPanel = __webpack_require__(11);
 	
-	var _TabPanel2 = _interopRequireDefault(_TabPanel);
+	Object.defineProperty(exports, 'TabPanel', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_TabPanel).default;
+	  }
+	});
 	
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
-	
-	exports.Tabs =
-	
-	// For bc we also export a default object, remove in 1.0
-	_Tabs2.default;
-	exports.TabList = _TabList2.default;
-	exports.Tab = _Tab2.default;
-	exports.TabPanel = _TabPanel2.default;
-	exports.default = {
-	  Tabs: _Tabs2.default,
-	  TabList: _TabList2.default,
-	  Tab: _Tab2.default,
-	  TabPanel: _TabPanel2.default
-	};
 
 /***/ },
 /* 1 */
@@ -714,13 +719,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }return target;
 	}
 	
+	function syncNodeAttributes(node, props) {
+	  if (props.selected) {
+	    node.setAttribute('tabindex', '0');
+	    node.setAttribute('selected', 'selected');
+	    if (props.focus) {
+	      node.focus();
+	    }
+	  } else {
+	    node.removeAttribute('tabindex');
+	    node.removeAttribute('selected');
+	  }
+	}
+	
 	module.exports = _react2.default.createClass({
 	  displayName: 'Tab',
 	
 	  propTypes: {
 	    className: _react.PropTypes.string,
 	    id: _react.PropTypes.string,
-	    focus: _react.PropTypes.bool,
 	    selected: _react.PropTypes.bool,
 	    disabled: _react.PropTypes.bool,
 	    panelId: _react.PropTypes.string,
@@ -736,15 +753,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    this.checkFocus();
+	    syncNodeAttributes((0, _reactDom.findDOMNode)(this), this.props);
 	  },
 	  componentDidUpdate: function componentDidUpdate() {
-	    this.checkFocus();
-	  },
-	  checkFocus: function checkFocus() {
-	    if (this.props.selected && this.props.focus) {
-	      (0, _reactDom.findDOMNode)(this).focus();
-	    }
+	    syncNodeAttributes((0, _reactDom.findDOMNode)(this), this.props);
 	  },
 	  render: function render() {
 	    var _props = this.props;
@@ -767,8 +779,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      'aria-selected': selected ? 'true' : 'false',
 	      'aria-expanded': selected ? 'true' : 'false',
 	      'aria-disabled': disabled ? 'true' : 'false',
-	      'aria-controls': panelId,
-	      tabIndex: selected ? '0' : null
+	      'aria-controls': panelId
 	    }), children);
 	  }
 	});
