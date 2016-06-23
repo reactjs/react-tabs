@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.6.1 (Jun 23, 2016)
+
+- Allow setState in onSelect (#51, #110)
+
 ### 0.6.0 (Jun 20, 2016)
 
 - Add a cancel option to tab change event handler (#73)
