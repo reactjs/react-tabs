@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.6.2 (Jun 24, 2016)
+
+- Fix bower bundling (#111, #112)
+
 ### 0.6.1 (Jun 23, 2016)
 
 - Allow setState in onSelect (#51, #110)
