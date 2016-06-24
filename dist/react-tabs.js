@@ -59,46 +59,41 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.TabPanel = exports.Tab = exports.TabList = exports.Tabs = undefined;
 	
 	var _Tabs = __webpack_require__(1);
 	
-	Object.defineProperty(exports, 'Tabs', {
-	  enumerable: true,
-	  get: function get() {
-	    return _interopRequireDefault(_Tabs).default;
-	  }
-	});
+	var _Tabs2 = _interopRequireDefault(_Tabs);
 	
 	var _TabList = __webpack_require__(9);
 	
-	Object.defineProperty(exports, 'TabList', {
-	  enumerable: true,
-	  get: function get() {
-	    return _interopRequireDefault(_TabList).default;
-	  }
-	});
+	var _TabList2 = _interopRequireDefault(_TabList);
 	
 	var _Tab = __webpack_require__(8);
 	
-	Object.defineProperty(exports, 'Tab', {
-	  enumerable: true,
-	  get: function get() {
-	    return _interopRequireDefault(_Tab).default;
-	  }
-	});
+	var _Tab2 = _interopRequireDefault(_Tab);
 	
 	var _TabPanel = __webpack_require__(11);
 	
-	Object.defineProperty(exports, 'TabPanel', {
-	  enumerable: true,
-	  get: function get() {
-	    return _interopRequireDefault(_TabPanel).default;
-	  }
-	});
+	var _TabPanel2 = _interopRequireDefault(_TabPanel);
 	
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
+	
+	exports.Tabs =
+	
+	// For bc we also export a default object, remove in 1.0
+	_Tabs2.default;
+	exports.TabList = _TabList2.default;
+	exports.Tab = _Tab2.default;
+	exports.TabPanel = _TabPanel2.default;
+	exports.default = {
+	  Tabs: _Tabs2.default,
+	  TabList: _TabList2.default,
+	  Tab: _Tab2.default,
+	  TabPanel: _TabPanel2.default
+	};
 
 /***/ },
 /* 1 */
@@ -190,7 +185,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 	  getInitialState: function getInitialState() {
-	    return this.copyPropsToState(this.props);
+	    return this.copyPropsToState(this.props, this.state);
 	  },
 	  getChildContext: function getChildContext() {
 	    return {
@@ -203,7 +198,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
-	    this.setState(this.copyPropsToState(newProps));
+	    var _this = this;
+	
+	    // Use a transactional update to prevent race conditions
+	    // when reading the state in copyPropsToState
+	    // See https://github.com/reactjs/react-tabs/issues/51
+	    this.setState(function (state) {
+	      return _this.copyPropsToState(newProps, state);
+	    });
 	  },
 	  setSelected: function setSelected(index, focus) {
 	    // Don't do anything if nothing has changed
@@ -214,12 +216,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Keep reference to last index for event handler
 	    var last = this.state.selectedIndex;
 	
-	    // Update selected index
-	    this.setState({ selectedIndex: index, focus: focus === true });
+	    // Check if the change event handler cancels the tab change
+	    var cancel = false;
 	
 	    // Call change event handler
 	    if (typeof this.props.onSelect === 'function') {
-	      this.props.onSelect(index, last);
+	      cancel = this.props.onSelect(index, last) === false;
+	    }
+	
+	    if (!cancel) {
+	      // Update selected index
+	      this.setState({ selectedIndex: index, focus: focus === true });
 	    }
 	  },
 	  getNextTab: function getNextTab(index) {
@@ -404,7 +411,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	
 	  // This is an anti-pattern, so sue me
-	  copyPropsToState: function copyPropsToState(props) {
+	  copyPropsToState: function copyPropsToState(props, state) {
 	    var selectedIndex = props.selectedIndex;
 	
 	    // If no selectedIndex prop was supplied, then try
@@ -416,8 +423,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Manual testing can be done using examples/focus
 	    // See 'should preserve selectedIndex when typing' in specs/Tabs.spec.js
 	    if (selectedIndex === -1) {
-	      if (this.state && this.state.selectedIndex) {
-	        selectedIndex = this.state.selectedIndex;
+	      if (state && state.selectedIndex) {
+	        selectedIndex = state.selectedIndex;
 	      } else {
 	        selectedIndex = 0;
 	      }
@@ -452,7 +459,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return false;
 	  },
 	  render: function render() {
-	    var _this = this;
+	    var _this2 = this;
 	
 	    // This fixes an issue with focus management.
 	    //
@@ -469,7 +476,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // See https://github.com/rackt/react-tabs/pull/7
 	    if (this.state.focus) {
 	      setTimeout(function () {
-	        _this.state.focus = false;
+	        _this2.state.focus = false;
 	      }, 0);
 	    }
 	
@@ -719,25 +726,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }return target;
 	}
 	
-	function syncNodeAttributes(node, props) {
-	  if (props.selected) {
-	    node.setAttribute('tabindex', '0');
-	    node.setAttribute('selected', 'selected');
-	    if (props.focus) {
-	      node.focus();
-	    }
-	  } else {
-	    node.removeAttribute('tabindex');
-	    node.removeAttribute('selected');
-	  }
-	}
-	
 	module.exports = _react2.default.createClass({
 	  displayName: 'Tab',
 	
 	  propTypes: {
 	    className: _react.PropTypes.string,
 	    id: _react.PropTypes.string,
+	    focus: _react.PropTypes.bool,
 	    selected: _react.PropTypes.bool,
 	    disabled: _react.PropTypes.bool,
 	    panelId: _react.PropTypes.string,
@@ -753,10 +748,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    syncNodeAttributes((0, _reactDom.findDOMNode)(this), this.props);
+	    this.checkFocus();
 	  },
 	  componentDidUpdate: function componentDidUpdate() {
-	    syncNodeAttributes((0, _reactDom.findDOMNode)(this), this.props);
+	    this.checkFocus();
+	  },
+	  checkFocus: function checkFocus() {
+	    if (this.props.selected && this.props.focus) {
+	      (0, _reactDom.findDOMNode)(this).focus();
+	    }
 	  },
 	  render: function render() {
 	    var _props = this.props;
@@ -779,7 +779,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      'aria-selected': selected ? 'true' : 'false',
 	      'aria-expanded': selected ? 'true' : 'false',
 	      'aria-disabled': disabled ? 'true' : 'false',
-	      'aria-controls': panelId
+	      'aria-controls': panelId,
+	      tabIndex: selected ? '0' : null
 	    }), children);
 	  }
 	});
