@@ -11,7 +11,7 @@
     "build": "npm run clean && npm run build:commonjs",
     "bundle": "mkdir -p dist && npm run build:umd && npm run build:umd:min",
     "lint": "eslint src",
-    "preversion": "npm run lint && npm test && npm run bundle && git add dist/ && git commit -m 'Publish: build bower distribution'",
+    "preversion": "npm run lint && npm test && npm run build && npm run bundle && git add dist/ && git commit -m 'Publish: build bower distribution'",
     "prepublish": "npm run build",
     "test": "jest",
     "start": "webpack-dev-server --inline --content-base examples/"
