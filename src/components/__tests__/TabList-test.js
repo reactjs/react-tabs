@@ -1,7 +1,13 @@
 /* global jest, describe, it, expect */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import Tab from '../Tab';
 import TabList from '../TabList';
+import Tabs from '../Tabs';
+
+function hasClassAt(wrapper, index, className) {
+  return wrapper.childAt(index).find('li').hasClass(className);
+}
 
 describe('<TabList />', () => {
   it('should have sane defaults', () => {
@@ -29,5 +35,38 @@ describe('<TabList />', () => {
     const wrapper = shallow(<TabList role="micro-tab" />);
 
     expect(wrapper.prop('role')).toBe('tablist');
+  });
+
+  it('should retain the default classnames for active and disabled tab', () => {
+    const wrapper = mount(
+      <Tabs selectedIndex={0}>
+        <TabList>
+          <Tab>Foo</Tab>
+          <Tab disabled>Bar</Tab>
+        </TabList>
+      </Tabs>
+    );
+
+    const tabsList = wrapper.childAt(0);
+    expect(hasClassAt(tabsList, 0, 'ReactTabs__Tab--selected')).toBe(true);
+    expect(hasClassAt(tabsList, 1, 'ReactTabs__Tab--disabled')).toBe(true);
+  });
+
+  it('should display the custom classnames for active and disabled tab', () => {
+    const wrapper = mount(
+      <Tabs selectedIndex={0}>
+        <TabList activeTabClassName="active" disabledTabClassName="disabled">
+          <Tab>Foo</Tab>
+          <Tab disabled>Bar</Tab>
+        </TabList>
+      </Tabs>
+    );
+
+    const tabsList = wrapper.childAt(0);
+    expect(hasClassAt(tabsList, 0, 'ReactTabs__Tab--selected')).toBe(false);
+    expect(hasClassAt(tabsList, 1, 'ReactTabs__Tab--disabled')).toBe(false);
+
+    expect(hasClassAt(tabsList, 0, 'active')).toBe(true);
+    expect(hasClassAt(tabsList, 1, 'disabled')).toBe(true);
   });
 });
