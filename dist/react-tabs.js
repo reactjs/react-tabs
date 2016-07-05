@@ -81,13 +81,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
-	exports.Tabs =
-	
-	// For bc we also export a default object, remove in 1.0
-	_Tabs2.default;
+	exports.Tabs = _Tabs2.default;
 	exports.TabList = _TabList2.default;
 	exports.Tab = _Tab2.default;
 	exports.TabPanel = _TabPanel2.default;
+	
+	// For bc we also export a default object, remove in 1.0
+	
 	exports.default = {
 	  Tabs: _Tabs2.default,
 	  TabList: _TabList2.default,
@@ -720,6 +720,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
 	
+	function _defineProperty(obj, key, value) {
+	  if (key in obj) {
+	    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
+	  } else {
+	    obj[key] = value;
+	  }return obj;
+	}
+	
 	function _objectWithoutProperties(obj, keys) {
 	  var target = {};for (var i in obj) {
 	    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
@@ -735,6 +743,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    focus: _react.PropTypes.bool,
 	    selected: _react.PropTypes.bool,
 	    disabled: _react.PropTypes.bool,
+	    activeTabClassName: _react.PropTypes.string,
+	    disabledTabClassName: _react.PropTypes.string,
 	    panelId: _react.PropTypes.string,
 	    children: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.object, _react.PropTypes.string])
 	  },
@@ -744,7 +754,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      focus: false,
 	      selected: false,
 	      id: null,
-	      panelId: null
+	      panelId: null,
+	      activeTabClassName: 'ReactTabs__Tab--selected',
+	      disabledTabClassName: 'ReactTabs__Tab--disabled'
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
@@ -759,25 +771,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  render: function render() {
+	    var _cx;
+	
 	    var _props = this.props;
 	    var selected = _props.selected;
 	    var disabled = _props.disabled;
 	    var panelId = _props.panelId;
+	    var activeTabClassName = _props.activeTabClassName;
+	    var disabledTabClassName = _props.disabledTabClassName;
 	    var className = _props.className;
 	    var children = _props.children;
 	    var id = _props.id;
 	
-	    var attributes = _objectWithoutProperties(_props, ['selected', 'disabled', 'panelId', 'className', 'children', 'id']);
+	    var attributes = _objectWithoutProperties(_props, ['selected', 'disabled', 'panelId', 'activeTabClassName', 'disabledTabClassName', 'className', 'children', 'id']);
+	
+	    delete attributes.focus;
 	
 	    return _react2.default.createElement('li', _extends({}, attributes, {
-	      className: (0, _classnames2.default)('ReactTabs__Tab', className, {
-	        'ReactTabs__Tab--selected': selected,
-	        'ReactTabs__Tab--disabled': disabled
-	      }),
+	      className: (0, _classnames2.default)('ReactTabs__Tab', className, (_cx = {}, _defineProperty(_cx, activeTabClassName, selected), _defineProperty(_cx, disabledTabClassName, disabled), _cx)),
 	      role: 'tab',
 	      id: id,
 	      'aria-selected': selected ? 'true' : 'false',
-	      'aria-expanded': selected ? 'true' : 'false',
 	      'aria-disabled': disabled ? 'true' : 'false',
 	      'aria-controls': panelId,
 	      tabIndex: selected ? '0' : null
@@ -819,25 +833,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }return target;
 	}
 	
+	function renderChildren(props) {
+	  return _react2.default.Children.map(props.children, function (child) {
+	    return _react2.default.cloneElement(child, {
+	      activeTabClassName: props.activeTabClassName,
+	      disabledTabClassName: props.disabledTabClassName
+	    });
+	  });
+	}
+	
 	module.exports = _react2.default.createClass({
 	  displayName: 'TabList',
 	
 	  propTypes: {
 	    className: _react.PropTypes.string,
+	    activeTabClassName: _react.PropTypes.string,
+	    disabledTabClassName: _react.PropTypes.string,
 	    children: _react.PropTypes.oneOfType([_react.PropTypes.object, _react.PropTypes.array])
 	  },
 	
 	  render: function render() {
 	    var _props = this.props;
 	    var className = _props.className;
+	    var activeTabClassName = _props.activeTabClassName;
+	    var disabledTabClassName = _props.disabledTabClassName;
 	    var children = _props.children;
 	
-	    var attributes = _objectWithoutProperties(_props, ['className', 'children']);
+	    var attributes = _objectWithoutProperties(_props, ['className', 'activeTabClassName', 'disabledTabClassName', 'children']);
 	
 	    return _react2.default.createElement('ul', _extends({}, attributes, {
 	      className: (0, _classnames2.default)('ReactTabs__TabList', className),
 	      role: 'tablist'
-	    }), children);
+	    }), renderChildren({ activeTabClassName: activeTabClassName, disabledTabClassName: disabledTabClassName, children: children }));
 	  }
 	});
 
