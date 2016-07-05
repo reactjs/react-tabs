@@ -1,5 +1,11 @@
 # Changelog
 
+### 0.7.0 (Jul 05, 2016)
+
+- Feature/add custom active and disabled class (#108)
+- Remove aria-expanded attribute (#71)
+- Fix warning with react 15.2
+
 ### 0.6.2 (Jun 24, 2016)
 
 - Fix bower bundling (#111, #112)
