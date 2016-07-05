@@ -58,6 +58,8 @@ module.exports = React.createClass({
       id,
       ...attributes } = this.props;
 
+    delete attributes.focus;
+
     return (
       <li
         {...attributes}
