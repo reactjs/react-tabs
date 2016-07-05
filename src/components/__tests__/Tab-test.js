@@ -10,7 +10,6 @@ describe('<Tab />', () => {
     expect(wrapper.hasClass('ReactTabs__Tab')).toBe(true);
     expect(wrapper.prop('role')).toBe('tab');
     expect(wrapper.prop('aria-selected')).toBe('false');
-    expect(wrapper.prop('aria-expanded')).toBe('false');
     expect(wrapper.prop('aria-disabled')).toBe('false');
     expect(wrapper.prop('aria-controls')).toBe(null);
     expect(wrapper.prop('id')).toBe(null);
@@ -30,7 +29,6 @@ describe('<Tab />', () => {
     expect(wrapper.hasClass('ReactTabs__Tab')).toBe(true);
     expect(wrapper.hasClass('ReactTabs__Tab--selected')).toBe(true);
     expect(wrapper.prop('aria-selected')).toBe('true');
-    expect(wrapper.prop('aria-expanded')).toBe('true');
     expect(wrapper.prop('aria-disabled')).toBe('false');
     expect(wrapper.prop('aria-controls')).toBe('1234');
     expect(wrapper.prop('id')).toBe('abcd');

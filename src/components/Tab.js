@@ -72,7 +72,6 @@ module.exports = React.createClass({
         role="tab"
         id={id}
         aria-selected={selected ? 'true' : 'false'}
-        aria-expanded={selected ? 'true' : 'false'}
         aria-disabled={disabled ? 'true' : 'false'}
         aria-controls={panelId}
         tabIndex={selected ? '0' : null}
