@@ -175,8 +175,8 @@ module.exports = React.createClass({
     // Don't bother removing ids, just keep them in case they are added again
     // This is more efficient, and keeps the uuid counter under control
     while (diff++ < 0) {
-      tabIds.push(uuid());
-      panelIds.push(uuid());
+      tabIds.push(uuid(this));
+      panelIds.push(uuid(this));
     }
 
     // Map children to dynamically setup refs
