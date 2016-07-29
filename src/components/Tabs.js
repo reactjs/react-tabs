@@ -207,21 +207,19 @@ module.exports = React.createClass({
             const selected = state.selectedIndex === index;
             const focus = selected && state.focus;
 
-            let props = {
-              ref,
-              id,
-              panelId,
-              selected,
-              focus,
-            };
-
-            if (tab.type.displayName !== 'Tab') {
-              props = {};
-            }
-
             index++;
 
-            return cloneElement(tab, props);
+            if (tab.type.displayName === 'Tab') {
+              return cloneElement(tab, {
+                ref,
+                id,
+                panelId,
+                selected,
+                focus,
+              });
+            }
+
+            return tab;
           }),
         });
 

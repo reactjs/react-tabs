@@ -3,14 +3,17 @@ import cx from 'classnames';
 
 function renderChildren(props) {
   return React.Children.map(props.children, (child) => {
-    let clonedProps = {};
+    // if child is not a tab we don't need to clone it
+    // since we don't need to add custom props
 
-    if (child.type.displayName === 'Tab') {
-      clonedProps = {
-        activeTabClassName: props.activeTabClassName,
-        disabledTabClassName: props.disabledTabClassName,
-      };
+    if (child.type.displayName !== 'Tab') {
+      return child;
     }
+
+    const clonedProps = {
+      activeTabClassName: props.activeTabClassName,
+      disabledTabClassName: props.disabledTabClassName,
+    };
 
     return React.cloneElement(child, clonedProps);
   });
