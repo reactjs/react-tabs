@@ -102,7 +102,7 @@ render(<App/>, document.getElementById('container'));
 
 ## Styling
 
-You can disable default stlying call this method once:
+You can disable the default styling by calling this method once:
 
 ```
 Tabs.setUseDefaultStyles(false);
