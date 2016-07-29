@@ -201,7 +201,8 @@ describe('react-tabs', () => {
       expect(result instanceof Error).toBe(true);
     });
 
-    it('should result with warning when tabs/panels are imbalanced ignoring non tab children', () => {
+    it(`should result with warning when tabs/panels are imbalanced and
+        it should ignore non tab children`, () => {
       const wrapper = shallow(
         <Tabs>
           <TabList>
