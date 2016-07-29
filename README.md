@@ -100,6 +100,14 @@ class App extends Component {
 render(<App/>, document.getElementById('container'));
 ```
 
+## Styling
+
+You can disable default stlying call this method once:
+
+```
+Tabs.setUseDefaultStyles(false);
+```
+
 ## License
 
 MIT
