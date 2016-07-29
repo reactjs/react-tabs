@@ -201,7 +201,24 @@ describe('react-tabs', () => {
       expect(result instanceof Error).toBe(true);
     });
 
-    it('should result with a warning when wrong element is found', () => {
+    it('should result with warning when tabs/panels are imbalanced ignoring non tab children', () => {
+      const wrapper = shallow(
+        <Tabs>
+          <TabList>
+            <Tab>Foo</Tab>
+            <div>+</div>
+          </TabList>
+
+          <TabPanel>Hello Foo</TabPanel>
+          <TabPanel>Hello Bar</TabPanel>
+        </Tabs>
+      );
+
+      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      expect(result instanceof Error).toBe(true);
+    });
+
+    it('should not throw a warning when wrong element is found', () => {
       const wrapper = shallow(
         <Tabs>
           <TabList>
@@ -213,7 +230,7 @@ describe('react-tabs', () => {
       );
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
-      expect(result instanceof Error).toBe(true);
+      expect(result instanceof Error).toBe(false);
     });
 
     it('should be okay with rendering without any children', () => {
