@@ -185,6 +185,27 @@ describe('react-tabs', () => {
       expect(wrapper.childAt(2).text()).toBe('Hello Bar');
       expect(wrapper.childAt(3).text()).toBe('Hello Baz');
     });
+
+    it('should not clone non tabs element', () => {
+      class Demo extends React.Component {
+        render() {
+          const plus = <div ref="yolo">+</div>;
+
+          return (<Tabs>
+            <TabList>
+              <Tab>Foo</Tab>
+              {plus}
+            </TabList>
+
+            <TabPanel>Hello Baz</TabPanel>
+          </Tabs>);
+        }
+      }
+
+      const wrapper = mount(<Demo />);
+
+      expect(wrapper.ref('yolo').text()).toBe('+');
+    });
   });
 
   describe('validation', () => {
