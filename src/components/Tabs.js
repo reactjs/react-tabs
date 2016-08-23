@@ -27,6 +27,7 @@ module.exports = React.createClass({
     focus: PropTypes.bool,
     children: childrenPropType,
     forceRenderTabPanel: PropTypes.bool,
+    generateIdsFn: PropTypes.func,
   },
 
   childContextTypes: {
@@ -169,14 +170,15 @@ module.exports = React.createClass({
     const state = this.state;
     const tabIds = this.tabIds = this.tabIds || [];
     const panelIds = this.panelIds = this.panelIds || [];
+    const generateIdsFn = this.props.generateIdsFn ? this.props.generateIdsFn : uuid;
     let diff = this.tabIds.length - this.getTabsCount();
 
     // Add ids if new tabs have been added
     // Don't bother removing ids, just keep them in case they are added again
     // This is more efficient, and keeps the uuid counter under control
     while (diff++ < 0) {
-      tabIds.push(uuid());
-      panelIds.push(uuid());
+      tabIds.push(generateIdsFn());
+      panelIds.push(generateIdsFn());
     }
 
     // Map children to dynamically setup refs
