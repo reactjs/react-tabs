@@ -1,4 +1,5 @@
-/* global describe, it, expect */
+/* eslint-env jest */
+/* eslint-disable import/no-named-as-default-member */
 import ReactTabs, { Tab, Tabs, TabList, TabPanel } from '../main';
 import TabComponent from '../components/Tab';
 import TabListComponent from '../components/TabList';

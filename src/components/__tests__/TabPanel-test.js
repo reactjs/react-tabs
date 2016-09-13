@@ -1,4 +1,4 @@
-/* global jest, describe, it, expect */
+/* eslint-env jest */
 import React from 'react';
 import { shallow } from 'enzyme';
 import TabPanel from '../TabPanel';

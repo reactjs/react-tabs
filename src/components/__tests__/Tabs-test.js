@@ -1,4 +1,4 @@
-/* global jest, describe, it, expect */
+/* eslint-env jest */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Tab from '../Tab';
@@ -297,7 +297,10 @@ describe('react-tabs', () => {
 
   it('should switch tabs if setState is called within onSelect', () => {
     class Wrap extends React.Component {
-      handleSelect = () => this.setState({ foo: 'bar' });
+      constructor(props) { 
+        super(props);
+        this.handleSelect = () => this.setState({ foo: 'bar' }); 
+      }
       render() { return createTabs({ onSelect: this.handleSelect }); }
     }
 

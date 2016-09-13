@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
 function renderChildren(props) {
-  return React.Children.map(props.children, (child) =>
+  return React.Children.map(props.children, child =>
     React.cloneElement(child, {
       activeTabClassName: props.activeTabClassName,
       disabledTabClassName: props.disabledTabClassName,
