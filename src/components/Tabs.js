@@ -188,7 +188,7 @@ module.exports = React.createClass({
               return null;
             }
 
-            const refName = `tabs-${index}`;
+            const tabRef = (node) => { this.tabNodes[`tabs-${index}`] = node; };
             const id = tabIds[index];
             const panelId = panelIds[index];
             const selected = state.selectedIndex === index;
@@ -197,7 +197,7 @@ module.exports = React.createClass({
             index++;
 
             return cloneElement(tab, {
-              tabRef: (node) => { this.tabNodes[refName] = node; },
+              tabRef,
               id,
               panelId,
               selected,
