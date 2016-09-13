@@ -226,7 +226,7 @@ module.exports = React.createClass({
       return result;
     });
   },
-  
+
   tabNodes: [],
 
   handleKeyDown(e) {
