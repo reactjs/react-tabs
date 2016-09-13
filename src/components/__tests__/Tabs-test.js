@@ -297,9 +297,9 @@ describe('react-tabs', () => {
 
   it('should switch tabs if setState is called within onSelect', () => {
     class Wrap extends React.Component {
-      constructor(props) { 
+      constructor(props) {
         super(props);
-        this.handleSelect = () => this.setState({ foo: 'bar' }); 
+        this.handleSelect = () => this.setState({ foo: 'bar' });
       }
       render() { return createTabs({ onSelect: this.handleSelect }); }
     }

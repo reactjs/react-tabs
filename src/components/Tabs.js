@@ -18,7 +18,6 @@ let useDefaultStyles = true;
 
 module.exports = React.createClass({
   displayName: 'Tabs',
-  tabNodes: [], 
 
   propTypes: {
     className: PropTypes.string,
@@ -227,6 +226,8 @@ module.exports = React.createClass({
       return result;
     });
   },
+  
+  tabNodes: [],
 
   handleKeyDown(e) {
     if (this.isTabFromContainer(e.target)) {
