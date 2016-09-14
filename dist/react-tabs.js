@@ -133,6 +133,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _childrenPropType2 = _interopRequireDefault(_childrenPropType);
 	
+	var _Tab = __webpack_require__(8);
+	
+	var _Tab2 = _interopRequireDefault(_Tab);
+	
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
@@ -336,13 +340,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            index++;
 	
-	            return (0, _react.cloneElement)(tab, {
-	              ref: ref,
-	              id: id,
-	              panelId: panelId,
-	              selected: selected,
-	              focus: focus
-	            });
+	            if (tab.type === _Tab2.default) {
+	              return (0, _react.cloneElement)(tab, {
+	                ref: ref,
+	                id: id,
+	                panelId: panelId,
+	                selected: selected,
+	                focus: focus
+	              });
+	            }
+	
+	            return tab;
 	          })
 	        });
 	
@@ -486,6 +494,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var attributes = _objectWithoutProperties(_props, ['className']);
 	
 	    // Delete all known props, so they don't get added to DOM
+	
 	
 	    delete attributes.selectedIndex;
 	    delete attributes.onSelect;
@@ -672,8 +681,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        if (c.type === _Tab2.default) {
 	          tabsCount++;
-	        } else {
-	          error = new Error('Expected \'Tab\' but found \'' + (c.type.displayName || c.type) + '\'');
 	        }
 	      });
 	    } else if (child.type.displayName === 'TabPanel') {
@@ -823,6 +830,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
+	var _Tab = __webpack_require__(8);
+	
+	var _Tab2 = _interopRequireDefault(_Tab);
+	
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
@@ -835,10 +846,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function renderChildren(props) {
 	  return _react2.default.Children.map(props.children, function (child) {
-	    return _react2.default.cloneElement(child, {
+	    // if child is not a tab we don't need to clone it
+	    // since we don't need to add custom props
+	
+	    if (child.type !== _Tab2.default) {
+	      return child;
+	    }
+	
+	    var clonedProps = {
 	      activeTabClassName: props.activeTabClassName,
 	      disabledTabClassName: props.disabledTabClassName
-	    });
+	    };
+	
+	    return _react2.default.cloneElement(child, clonedProps);
 	  });
 	}
 	
