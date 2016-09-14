@@ -1,5 +1,4 @@
 import React, { PropTypes, cloneElement } from 'react';
-import { findDOMNode } from 'react-dom';
 import cx from 'classnames';
 import jss from 'js-stylesheet';
 import uuid from '../helpers/uuid';
@@ -23,9 +22,9 @@ module.exports = React.createClass({
 
   propTypes: {
     className: PropTypes.string,
-    selectedIndex: PropTypes.number,
+    selectedIndex: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
     onSelect: PropTypes.func,
-    focus: PropTypes.bool,
+    focus: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     children: childrenPropType,
     forceRenderTabPanel: PropTypes.bool,
   },
@@ -60,7 +59,7 @@ module.exports = React.createClass({
 
   componentDidMount() {
     if (useDefaultStyles) {
-      jss(require('../helpers/styles.js')); // eslint-disable-line global-require
+      jss(require('../helpers/styles')); // eslint-disable-line global-require
     }
   },
 
@@ -99,16 +98,14 @@ module.exports = React.createClass({
 
     // Look for non-disabled tab from index to the last tab on the right
     for (let i = index + 1; i < count; i++) {
-      const tab = this.getTab(i);
-      if (!isTabDisabled(findDOMNode(tab))) {
+      if (!isTabDisabled(this.getTab(i))) {
         return i;
       }
     }
 
     // If no tab found, continue searching from first on left to index
     for (let i = 0; i < index; i++) {
-      const tab = this.getTab(i);
-      if (!isTabDisabled(findDOMNode(tab))) {
+      if (!isTabDisabled(this.getTab(i))) {
         return i;
       }
     }
@@ -122,8 +119,7 @@ module.exports = React.createClass({
 
     // Look for non-disabled tab from index to first tab on the left
     while (i--) {
-      const tab = this.getTab(i);
-      if (!isTabDisabled(findDOMNode(tab))) {
+      if (!isTabDisabled(this.getTab(i))) {
         return i;
       }
     }
@@ -131,8 +127,7 @@ module.exports = React.createClass({
     // If no tab found, continue searching from last tab on right to index
     i = this.getTabsCount();
     while (i-- > index) {
-      const tab = this.getTab(i);
-      if (!isTabDisabled(findDOMNode(tab))) {
+      if (!isTabDisabled(this.getTab(i))) {
         return i;
       }
     }
@@ -151,16 +146,8 @@ module.exports = React.createClass({
     return React.Children.count(this.props.children.slice(1));
   },
 
-  getTabList() {
-    return this.refs.tablist;
-  },
-
   getTab(index) {
-    return this.refs[`tabs-${index}`];
-  },
-
-  getPanel(index) {
-    return this.refs[`panels-${index}`];
+    return this.tabNodes[`tabs-${index}`];
   },
 
   getChildren() {
@@ -194,7 +181,6 @@ module.exports = React.createClass({
       if (count++ === 0) {
         // TODO try setting the uuid in the "constructor" for `Tab`/`TabPanel`
         result = cloneElement(child, {
-          ref: 'tablist',
           children: React.Children.map(child.props.children, (tab) => {
             // null happens when conditionally rendering TabPanel/Tab
             // see https://github.com/rackt/react-tabs/issues/37
@@ -202,7 +188,7 @@ module.exports = React.createClass({
               return null;
             }
 
-            const ref = `tabs-${index}`;
+            const tabRef = (node) => { this.tabNodes[`tabs-${index}`] = node; };
             const id = tabIds[index];
             const panelId = panelIds[index];
             const selected = state.selectedIndex === index;
@@ -212,7 +198,7 @@ module.exports = React.createClass({
 
             if (tab.type === Tab) {
               return cloneElement(tab, {
-                ref,
+                tabRef,
                 id,
                 panelId,
                 selected,
@@ -229,7 +215,6 @@ module.exports = React.createClass({
       }
       // Clone TabPanel components to have refs
       else {
-        const ref = `panels-${index}`;
         const id = panelIds[index];
         const tabId = tabIds[index];
         const selected = state.selectedIndex === index;
@@ -237,7 +222,6 @@ module.exports = React.createClass({
         index++;
 
         result = cloneElement(child, {
-          ref,
           id,
           tabId,
           selected,
@@ -247,6 +231,8 @@ module.exports = React.createClass({
       return result;
     });
   },
+
+  tabNodes: [],
 
   handleKeyDown(e) {
     if (this.isTabFromContainer(e.target)) {
@@ -328,9 +314,8 @@ module.exports = React.createClass({
 
     // Check if the first occurrence of a Tabs container is `this` one.
     let nodeAncestor = node.parentElement;
-    const tabsNode = findDOMNode(this);
     do {
-      if (nodeAncestor === tabsNode) return true;
+      if (nodeAncestor === this.node) return true;
       else if (nodeAncestor.getAttribute('data-tabs')) break;
 
       nodeAncestor = nodeAncestor.parentElement;
@@ -380,6 +365,7 @@ module.exports = React.createClass({
         )}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
+        ref={(node) => { this.node = node; }}
         data-tabs
       >
         {this.getChildren()}

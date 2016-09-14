@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
 import cx from 'classnames';
 
 module.exports = React.createClass({
@@ -8,6 +7,7 @@ module.exports = React.createClass({
   propTypes: {
     className: PropTypes.string,
     id: PropTypes.string,
+    tabRef: PropTypes.func,
     focus: PropTypes.bool,
     selected: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -42,7 +42,7 @@ module.exports = React.createClass({
 
   checkFocus() {
     if (this.props.selected && this.props.focus) {
-      findDOMNode(this).focus();
+      this.node.focus();
     }
   },
 
@@ -71,6 +71,7 @@ module.exports = React.createClass({
             [disabledTabClassName]: disabled,
           }
         )}
+        ref={(node) => { this.node = node; this.props.tabRef(node); }}
         role="tab"
         id={id}
         aria-selected={selected ? 'true' : 'false'}

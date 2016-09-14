@@ -1,4 +1,4 @@
-/* global jest, describe, it, expect */
+/* eslint-env jest */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Tab from '../Tab';
