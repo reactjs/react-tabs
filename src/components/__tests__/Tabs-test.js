@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 /* global jest, describe, it, expect */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
@@ -185,6 +186,27 @@ describe('react-tabs', () => {
       expect(wrapper.childAt(2).text()).toBe('Hello Bar');
       expect(wrapper.childAt(3).text()).toBe('Hello Baz');
     });
+
+    it('should not clone non tabs element', () => {
+      class Demo extends React.Component {
+        render() {
+          const plus = <div ref="yolo">+</div>;
+
+          return (<Tabs>
+            <TabList>
+              <Tab>Foo</Tab>
+              {plus}
+            </TabList>
+
+            <TabPanel>Hello Baz</TabPanel>
+          </Tabs>);
+        }
+      }
+
+      const wrapper = mount(<Demo />);
+
+      expect(wrapper.ref('yolo').text()).toBe('+');
+    });
   });
 
   describe('validation', () => {
@@ -201,7 +223,25 @@ describe('react-tabs', () => {
       expect(result instanceof Error).toBe(true);
     });
 
-    it('should result with a warning when wrong element is found', () => {
+    it(`should result with warning when tabs/panels are imbalanced and
+        it should ignore non tab children`, () => {
+      const wrapper = shallow(
+        <Tabs>
+          <TabList>
+            <Tab>Foo</Tab>
+            <div>+</div>
+          </TabList>
+
+          <TabPanel>Hello Foo</TabPanel>
+          <TabPanel>Hello Bar</TabPanel>
+        </Tabs>
+      );
+
+      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      expect(result instanceof Error).toBe(true);
+    });
+
+    it('should not throw a warning when wrong element is found', () => {
       const wrapper = shallow(
         <Tabs>
           <TabList>
@@ -213,7 +253,7 @@ describe('react-tabs', () => {
       );
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
-      expect(result instanceof Error).toBe(true);
+      expect(result instanceof Error).toBe(false);
     });
 
     it('should be okay with rendering without any children', () => {

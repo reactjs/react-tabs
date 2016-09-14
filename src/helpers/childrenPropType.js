@@ -25,10 +25,6 @@ module.exports = function childrenPropTypes(props, propName) {
 
         if (c.type === Tab) {
           tabsCount++;
-        } else {
-          error = new Error(
-            `Expected 'Tab' but found '${c.type.displayName || c.type}'`
-          );
         }
       });
     } else if (child.type.displayName === 'TabPanel') {

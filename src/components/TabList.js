@@ -1,13 +1,23 @@
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
+import Tab from './Tab';
 
 function renderChildren(props) {
-  return React.Children.map(props.children, (child) =>
-    React.cloneElement(child, {
+  return React.Children.map(props.children, (child) => {
+    // if child is not a tab we don't need to clone it
+    // since we don't need to add custom props
+
+    if (child.type !== Tab) {
+      return child;
+    }
+
+    const clonedProps = {
       activeTabClassName: props.activeTabClassName,
       disabledTabClassName: props.disabledTabClassName,
-    })
-  );
+    };
+
+    return React.cloneElement(child, clonedProps);
+  });
 }
 
 module.exports = React.createClass({
