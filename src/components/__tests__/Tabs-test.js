@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 /* global jest, describe, it, expect */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
