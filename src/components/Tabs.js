@@ -366,6 +366,7 @@ module.exports = React.createClass({
     delete attributes.forceRenderTabPanel;
     delete attributes.onClick;
     delete attributes.onKeyDown;
+    delete attributes.generateIdsFn;
 
     return (
       <div

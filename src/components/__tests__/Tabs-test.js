@@ -89,7 +89,7 @@ describe('react-tabs', () => {
       expect(tablist.childAt(3).prop('disabled')).toBe(true);
     });
 
-    it('should set ids correctly', () => {
+    it('should set ids correctly using default uuid function', () => {
       const wrapper = mount(createTabs());
       const tablist = wrapper.childAt(0);
 
@@ -101,6 +101,22 @@ describe('react-tabs', () => {
         expect(panel.prop('id')).toBe(tab.prop('panelId'));
       }
     });
+
+		it('should set ids correctly using a id function passed as prop', () => {
+			let idCounter = 1;
+			const customGenerateIdFn = () => `custom-id-${idCounter++}`;
+			const wrapper = mount(createTabs({generateIdsFn : customGenerateIdFn}));
+			const tablist = wrapper.childAt(0);
+
+			for (let i = 0, l = wrapper.instance().getTabsCount(); i < l; i++) {
+				const tab = tablist.childAt(i);
+				const panel = wrapper.childAt(i + 1);
+
+				expect(tab.prop('id')).toBe(panel.prop('tabId'));
+				expect(panel.prop('id')).toBe(tab.prop('panelId'));
+				expect(tab.prop('id')).toMatch(/^custom-id-[0-9]+$/);
+			}
+		});
   });
 
   describe('interaction', () => {
