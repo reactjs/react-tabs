@@ -1,19 +1,4 @@
-import Tabs from './components/Tabs';
-import TabList from './components/TabList';
-import Tab from './components/Tab';
-import TabPanel from './components/TabPanel';
-
-export {
-  Tabs,
-  TabList,
-  Tab,
-  TabPanel,
-};
-
-// For bc we also export a default object, remove in 1.0
-export default {
-  Tabs,
-  TabList,
-  Tab,
-  TabPanel,
-};
+export { Tabs } from './components/Tabs';
+export { TabList } from './components/TabList';
+export { Tab } from './components/Tab';
+export { TabPanel } from './components/TabPanel';
