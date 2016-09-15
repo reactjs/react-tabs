@@ -12,9 +12,9 @@ const App = React.createClass({
   },
 
   handleCheckClicked(e) {
-    const state = {};
-    state[e.target.name] = e.target.checked;
-    this.setState(state);
+    this.setState({
+      [e.target.name]: e.target.checked,
+    });
   },
 
   render() {
