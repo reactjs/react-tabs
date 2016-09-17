@@ -1,11 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import cx from 'classnames';
 
-module.exports = React.createClass({
-  displayName: 'Tab',
+class Tab extends Component {
 
-  propTypes: {
+  static propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
     focus: PropTypes.bool,
@@ -19,32 +18,30 @@ module.exports = React.createClass({
       PropTypes.object,
       PropTypes.string,
     ]),
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      focus: false,
-      selected: false,
-      id: null,
-      panelId: null,
-      activeTabClassName: 'ReactTabs__Tab--selected',
-      disabledTabClassName: 'ReactTabs__Tab--disabled',
-    };
-  },
+  static defaultProps = {
+    focus: false,
+    selected: false,
+    id: null,
+    panelId: null,
+    activeTabClassName: 'ReactTabs__Tab--selected',
+    disabledTabClassName: 'ReactTabs__Tab--disabled',
+  };
 
   componentDidMount() {
     this.checkFocus();
-  },
+  }
 
   componentDidUpdate() {
     this.checkFocus();
-  },
+  }
 
   checkFocus() {
     if (this.props.selected && this.props.focus) {
       findDOMNode(this).focus();
     }
-  },
+  }
 
   render() {
     const {
@@ -81,5 +78,7 @@ module.exports = React.createClass({
         {children}
       </li>
     );
-  },
-});
+  }
+}
+
+export default Tab;
