@@ -1,10 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import cx from 'classnames';
 
-module.exports = React.createClass({
-  displayName: 'TabPanel',
+class TabPanel extends Component {
 
-  propTypes: {
+  static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
@@ -15,23 +14,20 @@ module.exports = React.createClass({
     selected: PropTypes.bool,
     style: PropTypes.object,
     tabId: PropTypes.string,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     forceRenderTabPanel: PropTypes.bool,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      selected: false,
-      id: null,
-      tabId: null,
-    };
-  },
+  static defaultProps = {
+    selected: false,
+    id: null,
+    tabId: null,
+  };
 
   render() {
     const { className, children, selected, id, tabId, style, ...attributes } = this.props;
-
     return (
       <div
         {...attributes}
@@ -50,5 +46,7 @@ module.exports = React.createClass({
         {(this.context.forceRenderTabPanel || selected) ? children : null}
       </div>
     );
-  },
-});
+  }
+}
+
+export default TabPanel;

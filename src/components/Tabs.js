@@ -1,4 +1,4 @@
-import React, { PropTypes, cloneElement } from 'react';
+import React, { PropTypes, cloneElement, Component } from 'react';
 import cx from 'classnames';
 import jss from 'js-stylesheet';
 import uuid from '../helpers/uuid';
@@ -17,58 +17,56 @@ function isTabDisabled(node) {
 
 let useDefaultStyles = true;
 
-module.exports = React.createClass({
-  displayName: 'Tabs',
+class Tabs extends Component {
 
-  propTypes: {
+  static propTypes = {
     className: PropTypes.string,
     selectedIndex: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
     onSelect: PropTypes.func,
     focus: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     children: childrenPropType,
     forceRenderTabPanel: PropTypes.bool,
-  },
+  };
 
-  childContextTypes: {
+  static childContextTypes = {
     forceRenderTabPanel: PropTypes.bool,
-  },
+  };
 
-  statics: {
-    setUseDefaultStyles(use) {
-      useDefaultStyles = use;
-    },
-  },
+  static defaultProps = {
+    selectedIndex: -1,
+    focus: false,
+    forceRenderTabPanel: false,
+  };
 
-  getDefaultProps() {
-    return {
-      selectedIndex: -1,
-      focus: false,
-      forceRenderTabPanel: false,
-    };
-  },
+  static setUseDefaultStyles = (use) => {
+    useDefaultStyles = use;
+  };
 
-  getInitialState() {
-    return this.copyPropsToState(this.props, this.state);
-  },
+  constructor(props) {
+    super(props);
+    this.state = this.copyPropsToState(this.props, this.state);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
 
   getChildContext() {
     return {
       forceRenderTabPanel: this.props.forceRenderTabPanel,
     };
-  },
+  }
 
   componentDidMount() {
     if (useDefaultStyles) {
       jss(require('../helpers/styles')); // eslint-disable-line global-require
     }
-  },
+  }
 
   componentWillReceiveProps(newProps) {
     // Use a transactional update to prevent race conditions
     // when reading the state in copyPropsToState
     // See https://github.com/reactjs/react-tabs/issues/51
     this.setState(state => this.copyPropsToState(newProps, state));
-  },
+  }
 
   setSelected(index, focus) {
     // Don't do anything if nothing has changed
@@ -91,7 +89,7 @@ module.exports = React.createClass({
       // Update selected index
       this.setState({ selectedIndex: index, focus: focus === true });
     }
-  },
+  }
 
   getNextTab(index) {
     const count = this.getTabsCount();
@@ -112,7 +110,7 @@ module.exports = React.createClass({
 
     // No tabs are disabled, return index
     return index;
-  },
+  }
 
   getPrevTab(index) {
     let i = index;
@@ -134,21 +132,21 @@ module.exports = React.createClass({
 
     // No tabs are disabled, return index
     return index;
-  },
+  }
 
   getTabsCount() {
     return this.props.children && this.props.children[0] ?
             React.Children.count(this.props.children[0].props.children) :
             0;
-  },
+  }
 
   getPanelsCount() {
     return React.Children.count(this.props.children.slice(1));
-  },
+  }
 
   getTab(index) {
     return this.tabNodes[`tabs-${index}`];
-  },
+  }
 
   getChildren() {
     let index = 0;
@@ -230,9 +228,9 @@ module.exports = React.createClass({
 
       return result;
     });
-  },
+  }
 
-  tabNodes: [],
+  tabNodes: [];
 
   handleKeyDown(e) {
     if (this.isTabFromContainer(e.target)) {
@@ -258,7 +256,7 @@ module.exports = React.createClass({
 
       this.setSelected(index, true);
     }
-  },
+  }
 
   handleClick(e) {
     let node = e.target;
@@ -273,7 +271,7 @@ module.exports = React.createClass({
         return;
       }
     } while ((node = node.parentNode) !== null);
-  },
+  }
 
   // This is an anti-pattern, so sue me
   copyPropsToState(props, state) {
@@ -299,7 +297,7 @@ module.exports = React.createClass({
       selectedIndex,
       focus: props.focus,
     };
-  },
+  }
 
   /**
    * Determine if a node from event.target is a Tab element for the current Tabs container.
@@ -322,7 +320,7 @@ module.exports = React.createClass({
     } while (nodeAncestor);
 
     return false;
-  },
+  }
 
   render() {
     // This fixes an issue with focus management.
@@ -371,5 +369,7 @@ module.exports = React.createClass({
         {this.getChildren()}
       </div>
     );
-  },
-});
+  }
+}
+
+export default Tabs;
