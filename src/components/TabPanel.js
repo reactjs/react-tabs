@@ -1,7 +1,17 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
 
-class TabPanel extends Component {
+export default class TabPanel extends Component {
+
+  static contextTypes = {
+    forceRenderTabPanel: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    id: null,
+    selected: false,
+    tabId: null,
+  };
 
   static propTypes = {
     children: PropTypes.oneOfType([
@@ -16,18 +26,16 @@ class TabPanel extends Component {
     tabId: PropTypes.string,
   };
 
-  static contextTypes = {
-    forceRenderTabPanel: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    selected: false,
-    id: null,
-    tabId: null,
-  };
-
   render() {
-    const { className, children, selected, id, tabId, style, ...attributes } = this.props;
+    const {
+      children,
+      className,
+      id,
+      selected,
+      style,
+      tabId,
+      ...attributes } = this.props;
+
     return (
       <div
         {...attributes}
@@ -48,5 +56,3 @@ class TabPanel extends Component {
     );
   }
 }
-
-export default TabPanel;

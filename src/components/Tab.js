@@ -1,32 +1,32 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
 
-class Tab extends Component {
+export default class Tab extends Component {
+
+  static defaultProps = {
+    activeTabClassName: 'ReactTabs__Tab--selected',
+    disabledTabClassName: 'ReactTabs__Tab--disabled',
+    focus: false,
+    id: null,
+    panelId: null,
+    selected: false,
+  };
 
   static propTypes = {
-    className: PropTypes.string,
-    id: PropTypes.string,
-    tabRef: PropTypes.func,
-    focus: PropTypes.bool,
-    selected: PropTypes.bool,
-    disabled: PropTypes.bool,
     activeTabClassName: PropTypes.string,
     disabledTabClassName: PropTypes.string,
-    panelId: PropTypes.string,
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
       PropTypes.string,
     ]),
-  };
-
-  static defaultProps = {
-    focus: false,
-    selected: false,
-    id: null,
-    panelId: null,
-    activeTabClassName: 'ReactTabs__Tab--selected',
-    disabledTabClassName: 'ReactTabs__Tab--disabled',
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    focus: PropTypes.bool,
+    id: PropTypes.string,
+    panelId: PropTypes.string,
+    selected: PropTypes.bool,
+    tabRef: PropTypes.func,
   };
 
   componentDidMount() {
@@ -45,17 +45,16 @@ class Tab extends Component {
 
   render() {
     const {
-      selected,
-      disabled,
-      panelId,
       activeTabClassName,
-      disabledTabClassName,
-      className,
       children,
+      className,
+      disabled,
+      disabledTabClassName,
+      focus, // eslint-disable-line no-unused-vars
       id,
+      panelId,
+      selected,
       ...attributes } = this.props;
-
-    delete attributes.focus;
 
     return (
       <li
@@ -81,5 +80,3 @@ class Tab extends Component {
     );
   }
 }
-
-export default Tab;

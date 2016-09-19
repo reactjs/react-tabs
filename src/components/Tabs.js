@@ -1,6 +1,5 @@
 import React, { PropTypes, cloneElement, Component } from 'react';
 import cx from 'classnames';
-import jss from 'js-stylesheet';
 import uuid from '../helpers/uuid';
 import childrenPropType from '../helpers/childrenPropType';
 import Tab from './Tab';
@@ -15,50 +14,36 @@ function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
 
-let useDefaultStyles = true;
-
-class Tabs extends Component {
-
-  static propTypes = {
-    className: PropTypes.string,
-    selectedIndex: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
-    onSelect: PropTypes.func,
-    focus: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
-    children: childrenPropType,
-    forceRenderTabPanel: PropTypes.bool,
-  };
+export default class Tabs extends Component {
 
   static childContextTypes = {
     forceRenderTabPanel: PropTypes.bool,
   };
 
   static defaultProps = {
-    selectedIndex: -1,
     focus: false,
     forceRenderTabPanel: false,
+    selectedIndex: -1,
   };
 
-  static setUseDefaultStyles = (use) => {
-    useDefaultStyles = use;
+  static propTypes = {
+    children: childrenPropType,
+    className: PropTypes.string,
+    focus: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+    forceRenderTabPanel: PropTypes.bool,
+    onSelect: PropTypes.func,
+    selectedIndex: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
   };
 
   constructor(props) {
     super(props);
     this.state = this.copyPropsToState(this.props, this.state);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   getChildContext() {
     return {
       forceRenderTabPanel: this.props.forceRenderTabPanel,
     };
-  }
-
-  componentDidMount() {
-    if (useDefaultStyles) {
-      jss(require('../helpers/styles')); // eslint-disable-line global-require
-    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -210,9 +195,7 @@ class Tabs extends Component {
 
         // Reset index for panels
         index = 0;
-      }
-      // Clone TabPanel components to have refs
-      else {
+      } else {
         const id = panelIds[index];
         const tabId = tabIds[index];
         const selected = state.selectedIndex === index;
@@ -232,7 +215,7 @@ class Tabs extends Component {
 
   tabNodes: [];
 
-  handleKeyDown(e) {
+  handleKeyDown = (e) => {
     if (this.isTabFromContainer(e.target)) {
       let index = this.state.selectedIndex;
       let preventDefault = false;
@@ -256,9 +239,9 @@ class Tabs extends Component {
 
       this.setSelected(index, true);
     }
-  }
+  };
 
-  handleClick(e) {
+  handleClick = (e) => {
     let node = e.target;
     do { // eslint-disable-line no-cond-assign
       if (this.isTabFromContainer(node)) {
@@ -271,7 +254,7 @@ class Tabs extends Component {
         return;
       }
     } while ((node = node.parentNode) !== null);
-  }
+  };
 
   // This is an anti-pattern, so sue me
   copyPropsToState(props, state) {
@@ -371,5 +354,3 @@ class Tabs extends Component {
     );
   }
 }
-
-export default Tabs;

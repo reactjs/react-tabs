@@ -1,43 +1,47 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
 import Tab from './Tab';
 
-function renderChildren(props) {
-  return React.Children.map(props.children, (child) => {
-    // if child is not a tab we don't need to clone it
-    // since we don't need to add custom props
-
-    if (child.type !== Tab) {
-      return child;
-    }
-
-    const clonedProps = {
-      activeTabClassName: props.activeTabClassName,
-      disabledTabClassName: props.disabledTabClassName,
-    };
-
-    return React.cloneElement(child, clonedProps);
-  });
-}
-
-class TabList extends Component {
+export default class TabList extends Component {
 
   static propTypes = {
-    className: PropTypes.string,
     activeTabClassName: PropTypes.string,
-    disabledTabClassName: PropTypes.string,
     children: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.array,
     ]),
+    className: PropTypes.string,
+    disabledTabClassName: PropTypes.string,
   };
+
+  renderChildren() {
+    const {
+      activeTabClassName,
+      children,
+      disabledTabClassName,
+    } = this.props;
+
+    return React.Children.map(children, (child) => {
+      // if child is not a tab we don't need to clone it
+      // since we don't need to add custom props
+
+      if (child.type === Tab) {
+        return React.cloneElement(child, {
+          activeTabClassName,
+          disabledTabClassName,
+        });
+      }
+
+      return child;
+    });
+  }
 
   render() {
     const {
+      activeTabClassName, // eslint-disable-line no-unused-vars
+      children, // eslint-disable-line no-unused-vars
       className,
-      activeTabClassName,
-      disabledTabClassName,
-      children,
+      disabledTabClassName, // eslint-disable-line no-unused-vars
       ...attributes } = this.props;
 
     return (
@@ -49,10 +53,8 @@ class TabList extends Component {
         )}
         role="tablist"
       >
-        {renderChildren({ activeTabClassName, disabledTabClassName, children })}
+        {this.renderChildren()}
       </ul>
     );
   }
 }
-
-export default TabList;
