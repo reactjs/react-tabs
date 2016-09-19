@@ -1,4 +1,11 @@
-export { Tabs } from './components/Tabs';
-export { TabList } from './components/TabList';
-export { Tab } from './components/Tab';
-export { TabPanel } from './components/TabPanel';
+import Tabs from './components/Tabs';
+import TabList from './components/TabList';
+import Tab from './components/Tab';
+import TabPanel from './components/TabPanel';
+
+export {
+  Tab,
+  TabList,
+  TabPanel,
+  Tabs,
+};

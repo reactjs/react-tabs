@@ -35,6 +35,8 @@ export default class Tabs extends Component {
     selectedIndex: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
   };
 
+  tabNodes = [];
+
   constructor(props) {
     super(props);
     this.state = this.copyPropsToState(this.props, this.state);
@@ -212,8 +214,6 @@ export default class Tabs extends Component {
       return result;
     });
   }
-
-  tabNodes: [];
 
   handleKeyDown = (e) => {
     if (this.isTabFromContainer(e.target)) {
