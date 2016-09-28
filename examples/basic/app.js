@@ -83,6 +83,30 @@ const App = React.createClass({
             <p>Source: <a href="http://en.wikipedia.org/wiki/Yoshi" target="_blank">Wikipedia</a></p>
           </TabPanel>
         </Tabs>
+
+        <Tabs>
+          <TabList>
+            <small style={{ padding: '0 10px' }}>Tabs:</small>
+            <Tab>Tab A</Tab>
+            <Tab>Tab B</Tab>
+            <code style={{ padding: '0 10px' }}>(separator)</code>
+            <Tab>Tab C</Tab>
+            <span style={{ padding: '0 10px' }}><small>End of tabs</small></span>
+          </TabList>
+
+          <TabPanel>
+            <h2>This is Tab A</h2>
+            <p>You can put arbitrary elements inside <code>{'<TabList>'}</code>.</p>
+          </TabPanel>
+          <TabPanel>
+            <h2>This is Tab B</h2>
+            <p>Navigating through the tabs with the keyboard will skip these arbitrary elements.</p>
+          </TabPanel>
+          <TabPanel>
+            <h2>This is Tab C</h2>
+            <p>Just mind that the output might be invalid HTML (<code>{'<div>'}</code> inside a <code>{'<ul>'}</code> for instance).</p>
+          </TabPanel>
+        </Tabs>
       </div>
     );
   },
