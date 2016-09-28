@@ -142,9 +142,12 @@ module.exports = React.createClass({
   },
 
   getTabsCount() {
-    return this.props.children && this.props.children[0] ?
-            React.Children.count(this.props.children[0].props.children) :
-            0;
+    if (this.props.children && this.props.children[0]) {
+      const tabs = this.props.children[0].props.children.filter(x => x.type === Tab);
+      return React.Children.count(tabs);
+    }
+
+    return 0;
   },
 
   getPanelsCount() {
@@ -202,6 +205,12 @@ module.exports = React.createClass({
               return null;
             }
 
+            // Exit early if this is not a tab. That way we can have arbitrary
+            // elements anywhere inside <TabList>
+            if (tab.type !== Tab) {
+              return tab;
+            }
+
             const ref = `tabs-${index}`;
             const id = tabIds[index];
             const panelId = panelIds[index];
@@ -210,17 +219,13 @@ module.exports = React.createClass({
 
             index++;
 
-            if (tab.type === Tab) {
-              return cloneElement(tab, {
-                ref,
-                id,
-                panelId,
-                selected,
-                focus,
-              });
-            }
-
-            return tab;
+            return cloneElement(tab, {
+              ref,
+              id,
+              panelId,
+              selected,
+              focus,
+            });
           }),
         });
 
@@ -282,7 +287,7 @@ module.exports = React.createClass({
           return;
         }
 
-        const index = [].slice.call(node.parentNode.children).indexOf(node);
+        const index = [].slice.call(node.parentNode.children).filter(isTabNode).indexOf(node);
         this.setSelected(index);
         return;
       }
