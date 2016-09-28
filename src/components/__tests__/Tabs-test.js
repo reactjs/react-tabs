@@ -190,22 +190,30 @@ describe('react-tabs', () => {
     it('should not clone non tabs element', () => {
       class Demo extends React.Component {
         render() {
-          const plus = <div ref="yolo">+</div>;
+          const arbitrary1 = <div ref="arbitrary1">One</div>;
+          const arbitrary2 = <span ref="arbitrary2">Two</span>;
+          const arbitrary3 = <small ref="arbitrary3">Three</small>;
 
           return (<Tabs>
             <TabList>
+              {arbitrary1}
               <Tab>Foo</Tab>
-              {plus}
+              {arbitrary2}
+              <Tab>Bar</Tab>
+              {arbitrary3}
             </TabList>
 
             <TabPanel>Hello Baz</TabPanel>
+            <TabPanel>Hello Faz</TabPanel>
           </Tabs>);
         }
       }
 
       const wrapper = mount(<Demo />);
 
-      expect(wrapper.ref('yolo').text()).toBe('+');
+      expect(wrapper.ref('arbitrary1').text()).toBe('One');
+      expect(wrapper.ref('arbitrary2').text()).toBe('Two');
+      expect(wrapper.ref('arbitrary3').text()).toBe('Three');
     });
   });
 
