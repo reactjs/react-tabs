@@ -1,6 +1,6 @@
 {
   "name": "@neeharv/react-tabs",
-  "version": "0.7.1",
+  "version": "0.8.1",
   "description": "A fork of react tabs, supporting Server side rendering",
   "main": "lib/main.js",
   "scripts": {
