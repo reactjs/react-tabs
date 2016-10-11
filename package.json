@@ -1,7 +1,7 @@
 {
-  "name": "react-tabs",
-  "version": "0.8.0",
-  "description": "React tabs component",
+  "name": "@neeharv/react-tabs",
+  "version": "0.7.1",
+  "description": "A fork of react tabs, supporting Server side rendering",
   "main": "lib/main.js",
   "scripts": {
     "clean": "rimraf lib",
@@ -18,18 +18,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/reactjs/react-tabs.git"
+    "url": "https://github.com/neeharv/react-tabs.git"
   },
-  "author": "Matt Zabriskie",
+  "author": "Neehar Venugopal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/reactjs/react-tabs/issues"
+    "url": "https://github.com/neeharv/react-tabs/issues"
   },
   "files": [
     "dist",
     "lib"
   ],
-  "homepage": "https://github.com/reactjs/react-tabs",
+  "homepage": "https://github.com/neeharv/react-tabs",
   "keywords": [
     "react",
     "tabs",
