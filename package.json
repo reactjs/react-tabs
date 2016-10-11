@@ -1,5 +1,5 @@
 {
-  "name": "@neeharv/react-tabs",
+  "name": "react-tabs-isomorphic",
   "version": "0.8.1",
   "description": "A fork of react tabs, supporting Server side rendering",
   "main": "lib/main.js",
@@ -34,7 +34,8 @@
     "react",
     "tabs",
     "a11y",
-    "react-component"
+    "react-component",
+	"isomorphic"
   ],
   "peerDependencies": {
     "react": "^0.14.7 || ^15.0.0",
