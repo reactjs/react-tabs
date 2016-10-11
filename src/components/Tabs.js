@@ -4,6 +4,7 @@ import cx from 'classnames';
 import jss from 'js-stylesheet';
 import uuid from '../helpers/uuid';
 import childrenPropType from '../helpers/childrenPropType';
+import Tab from './Tab';
 
 // Determine if a node from event.target is a Tab element
 function isTabNode(node) {
@@ -211,13 +212,17 @@ module.exports = React.createClass({
 
             index++;
 
-            return cloneElement(tab, {
-              ref,
-              id,
-              panelId,
-              selected,
-              focus,
-            });
+            if (tab.type === Tab) {
+              return cloneElement(tab, {
+                ref,
+                id,
+                panelId,
+                selected,
+                focus,
+              });
+            }
+
+            return tab;
           }),
         });
 

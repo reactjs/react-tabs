@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.8.0 (Sep 14, 2016)
+
+- Allow other components inside TabList (#123)
+
 ### 0.7.0 (Jul 05, 2016)
 
 - Feature/add custom active and disabled class (#108)

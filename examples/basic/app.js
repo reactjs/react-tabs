@@ -17,6 +17,8 @@ const App = React.createClass({
             <Tab>React</Tab>
             <Tab>Ember</Tab>
             <Tab>Angular</Tab>
+
+            <span>+</span>
           </TabList>
 
           <TabPanel>
