@@ -11,7 +11,7 @@ It isn't the ideal solution, but till the original authors have a better idea, t
 ## Installing
 
 ```bash
-$ npm install @neeharv/react-tabs --save
+$ npm install react-tabs-isomorphic --save
 ```
 
 ## Example
