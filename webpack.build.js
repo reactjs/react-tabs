@@ -1,13 +1,10 @@
-var path = require('path');
-var webpack = require('webpack');
-var BASE_DIR = process.cwd();
-var COMPONENT_FILE = 'react-tabs';
-var COMPONENT_NAME = 'ReactTabs';
-var plugins = [];
+'use strict';
 
-function getPackageMain() {
-  return require(path.resolve(BASE_DIR, 'package.json')).main;
-}
+const path = require('path');
+const webpack = require('webpack');
+
+let COMPONENT_FILE = 'react-tabs';
+const plugins = [];
 
 if (process.env.MINIFY) {
   plugins.push(
@@ -17,34 +14,34 @@ if (process.env.MINIFY) {
 }
 
 module.exports = {
-  entry: path.resolve(BASE_DIR, getPackageMain()),
+  entry: path.join(__dirname, require(path.join(__dirname, 'package.json')).main),
   output: {
-    filename: path.resolve(BASE_DIR, 'dist/' + COMPONENT_FILE + '.js'),
-    library: COMPONENT_NAME,
-    libraryTarget: 'umd'
+    filename: path.join(__dirname, 'dist/' + COMPONENT_FILE + '.js'),
+    library: 'ReactTabs',
+    libraryTarget: 'umd',
   },
   externals: {
     'react': {
       root: 'React',
       commonjs2: 'react',
       commonjs: 'react',
-      amd: 'react'
+      amd: 'react',
     },
     'react-dom': {
       root: 'ReactDOM',
       commonjs2: 'react-dom',
       commonjs: 'react-dom',
-      amd: 'react-dom'
-    }
+      amd: 'react-dom',
+    },
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
-      }
-    ]
+        loader: 'babel-loader',
+      },
+    ],
   },
-  plugins: plugins
+  plugins: plugins,
 };
