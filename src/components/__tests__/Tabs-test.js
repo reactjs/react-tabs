@@ -190,7 +190,7 @@ describe('react-tabs', () => {
     it('should not clone non tabs element', () => {
       class Demo extends React.Component {
         render() {
-          const plus = <div ref="yolo">+</div>;
+          const plus = <div ref="yolo">+</div>; // eslint-disable-line react/no-string-refs
 
           return (<Tabs>
             <TabList>

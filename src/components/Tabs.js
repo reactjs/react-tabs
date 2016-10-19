@@ -39,7 +39,7 @@ export default class Tabs extends Component {
 
   constructor(props) {
     super(props);
-    this.state = this.copyPropsToState(this.props, this.state);
+    this.state = Tabs.copyPropsToState(this.props, this.state);
   }
 
   getChildContext() {
@@ -52,7 +52,7 @@ export default class Tabs extends Component {
     // Use a transactional update to prevent race conditions
     // when reading the state in copyPropsToState
     // See https://github.com/reactjs/react-tabs/issues/51
-    this.setState(state => this.copyPropsToState(newProps, state));
+    this.setState(state => Tabs.copyPropsToState(newProps, state));
   }
 
   setSelected(index, focus) {
@@ -257,7 +257,7 @@ export default class Tabs extends Component {
   };
 
   // This is an anti-pattern, so sue me
-  copyPropsToState(props, state) {
+  static copyPropsToState(props, state) {
     let selectedIndex = props.selectedIndex;
 
     // If no selectedIndex prop was supplied, then try
