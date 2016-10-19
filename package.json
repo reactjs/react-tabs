@@ -70,13 +70,8 @@
     "js-stylesheet": "^0.0.1"
   },
   "jest": {
-    "automock": false,
     "testPathDirs": [
       "src"
-    ],
-    "unmockedModulePathPatterns": [
-      "node_modules",
-      "babel"
     ]
   }
 }
