@@ -26,6 +26,7 @@ module.exports = React.createClass({
     return {
       selected: false,
       selectedClassName: null,
+      style: {},
       id: null,
       tabId: null,
     };
@@ -35,7 +36,7 @@ module.exports = React.createClass({
     const { className, children, selected, selectedClassName, id, tabId, style, ...attributes } = this.props;
 
     // Only hide using inline styles if `selectedClassName` isn't provided
-    const hiddenStyle = selectedClassName ? style : { ...style, display: selected ? null : 'none' };
+    const hiddenStyle = selectedClassName ? style : { ...style, display: 'none' };
 
     return (
       <div
