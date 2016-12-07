@@ -13,6 +13,7 @@ module.exports = React.createClass({
     className: PropTypes.string,
     id: PropTypes.string,
     selected: PropTypes.bool,
+    selectedClassName: PropTypes.string,
     style: PropTypes.object,
     tabId: PropTypes.string,
   },
@@ -24,13 +25,17 @@ module.exports = React.createClass({
   getDefaultProps() {
     return {
       selected: false,
+      selectedClassName: 'ReactTabs__TabPanel--selected',
       id: null,
       tabId: null,
     };
   },
 
   render() {
-    const { className, children, selected, id, tabId, style, ...attributes } = this.props;
+    const { className, children, selected, selectedClassName, id, tabId, style, ...attributes } = this.props;
+
+    // Only hide using inline styles if `selectedClassName` isn't provided
+    const hiddenStyle = selectedClassName ? style : { ...style, display: selected ? null : 'none' };
 
     return (
       <div
@@ -39,13 +44,13 @@ module.exports = React.createClass({
           'ReactTabs__TabPanel',
           className,
           {
-            'ReactTabs__TabPanel--selected': selected,
+            [selectedClassName]: selected,
           }
         )}
         role="tabpanel"
         id={id}
         aria-labelledby={tabId}
-        style={{ ...style, display: selected ? null : 'none' }}
+        style={selected ? style : hiddenStyle}
       >
         {(this.context.forceRenderTabPanel || selected) ? children : null}
       </div>
