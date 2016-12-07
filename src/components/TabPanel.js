@@ -25,7 +25,7 @@ module.exports = React.createClass({
   getDefaultProps() {
     return {
       selected: false,
-      selectedClassName: 'ReactTabs__TabPanel--selected',
+      selectedClassName: null,
       id: null,
       tabId: null,
     };
@@ -44,7 +44,7 @@ module.exports = React.createClass({
           'ReactTabs__TabPanel',
           className,
           {
-            [selectedClassName]: selected,
+            [selectedClassName || 'ReactTabs__TabPanel--selected']: selected,
           }
         )}
         role="tabpanel"
