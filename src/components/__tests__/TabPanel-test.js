@@ -33,7 +33,21 @@ describe('Tab', () => {
     expect(wrapper.prop('id')).toBe('abcd');
     expect(wrapper.text()).toBe('Hola');
     expect(wrapper.prop('style')).not.toBe(null);
-    expect(wrapper.prop('style').display).toBe(null);
+    expect(wrapper.prop('style').display).not.toBe('none');
+  });
+
+  it('should support a custom selected class name', () => {
+    const wrapper = shallow(<TabPanel selected selectedClassName="iAmSelected">Hola</TabPanel>);
+
+    expect(wrapper.hasClass('iAmSelected')).toBe(true);
+  });
+
+  it('should not hide using styles when a custom select class name is provided', () => {
+    const wrapper = shallow(<TabPanel selectedClassName="iAmSelected">Hola</TabPanel>);
+    const style = wrapper.prop('style');
+
+    expect(wrapper.hasClass('iAmSelected')).toBe(false);
+    expect(style && style.display).toBeFalsy();
   });
 
   it('should pass through custom properties', () => {
