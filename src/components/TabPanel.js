@@ -33,14 +33,18 @@ module.exports = React.createClass({
   },
 
   render() {
-    const { className, children, selected, selectedClassName, id, tabId, style, ...attributes } = this.props;
+    const {
+      id, tabId, selected,
+      className, selectedClassName, style, children,
+      ...attrs,
+    } = this.props;
 
     // Only hide using inline styles if `selectedClassName` isn't provided
     const hiddenStyle = selectedClassName ? style : { ...style, display: 'none' };
 
     return (
       <div
-        {...attributes}
+        {...attrs}
         className={cx(
           'ReactTabs__TabPanel',
           className,
