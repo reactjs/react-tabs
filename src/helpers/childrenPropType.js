@@ -10,7 +10,7 @@ module.exports = function childrenPropTypes(props, propName) {
 
   React.Children.forEach(children, (child) => {
     // null happens when conditionally rendering TabPanel/Tab
-    // see https://github.com/rackt/react-tabs/issues/37
+    // see https://github.com/reactjs/react-tabs/issues/37
     if (child === null) {
       return;
     }
@@ -18,7 +18,7 @@ module.exports = function childrenPropTypes(props, propName) {
     if (child.type === TabList) {
       React.Children.forEach(child.props.children, (c) => {
         // null happens when conditionally rendering TabPanel/Tab
-        // see https://github.com/rackt/react-tabs/issues/37
+        // see https://github.com/reactjs/react-tabs/issues/37
         if (c === null) {
           return;
         }
