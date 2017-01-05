@@ -128,7 +128,7 @@ describe('react-tabs', () => {
     });
 
     // TODO: Can't seem to make this fail when removing fix :`(
-    // See https://github.com/rackt/react-tabs/pull/7
+    // See https://github.com/reactjs/react-tabs/pull/7
     // it('should preserve selectedIndex when typing', function () {
     //   let App = React.createClass({
     //     handleKeyDown: function () { this.forceUpdate(); },

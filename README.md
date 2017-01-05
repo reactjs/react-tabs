@@ -49,7 +49,7 @@ class App extends Component {
       >
 
         {/*
-          <TabList/> is a composit component and is the container for the <Tab/>s.
+          <TabList/> is a composite component and is the container for the <Tab/>s.
         */}
 
         <TabList>
@@ -76,8 +76,8 @@ class App extends Component {
           There should be an equal number of <Tab/> and <TabPanel/> components.
           <Tab/> and <TabPanel/> components are tied together by the order in
           which they appear. The first (index 0) <Tab/> will be associated with
-          the <TabPanel/> of the same index. Running this example when
-          `selectedIndex` is 0 the tab with the label "Foo" will be selected
+          the <TabPanel/> of the same index. When you run this example with
+          `selectedIndex` equal to 0, the tab with the label "Foo" will be selected
           and the content shown will be "Hello from Foo".
 
           As with <Tab/> the content of <TabPanel/> will be shown as the content.

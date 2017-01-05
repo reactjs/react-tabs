@@ -155,7 +155,7 @@ export default class Tabs extends Component {
     // Map children to dynamically setup refs
     return React.Children.map(children, (child) => {
       // null happens when conditionally rendering TabPanel/Tab
-      // see https://github.com/rackt/react-tabs/issues/37
+      // see https://github.com/reactjs/react-tabs/issues/37
       if (child === null) {
         return null;
       }
@@ -168,7 +168,7 @@ export default class Tabs extends Component {
         result = cloneElement(child, {
           children: React.Children.map(child.props.children, (tab) => {
             // null happens when conditionally rendering TabPanel/Tab
-            // see https://github.com/rackt/react-tabs/issues/37
+            // see https://github.com/reactjs/react-tabs/issues/37
             if (tab === null) {
               return null;
             }
@@ -318,7 +318,7 @@ export default class Tabs extends Component {
     //
     // Don't use setState, because we don't want to re-render.
     //
-    // See https://github.com/rackt/react-tabs/pull/7
+    // See https://github.com/reactjs/react-tabs/pull/7
     if (this.state.focus) {
       setTimeout(() => {
         this.state.focus = false;
