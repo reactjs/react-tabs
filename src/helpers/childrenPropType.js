@@ -1,6 +1,7 @@
 import React from 'react';
 import Tab from '../components/Tab';
 import TabList from '../components/TabList';
+import TabPanel from '../components/TabPanel';
 
 module.exports = function childrenPropTypes(props, propName) {
   let error;
@@ -27,7 +28,7 @@ module.exports = function childrenPropTypes(props, propName) {
           tabsCount++;
         }
       });
-    } else if (child.type.displayName === 'TabPanel') {
+    } else if (child.type === TabPanel) {
       panelsCount++;
     } else {
       error = new Error(
