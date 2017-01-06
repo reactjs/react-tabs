@@ -1,7 +1,7 @@
 {
-  "name": "react-tabs",
+  "name": "react-tabs-isomorphic",
   "version": "0.8.2",
-  "description": "React tabs component",
+  "description": "A fork of react tabs, supporting Server side rendering",
   "main": "lib/main.js",
   "scripts": {
     "clean": "rimraf lib",
@@ -18,23 +18,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/reactjs/react-tabs.git"
+    "url": "https://github.com/neeharv/react-tabs.git"
   },
-  "author": "Matt Zabriskie",
+  "author": "Neehar Venugopal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/reactjs/react-tabs/issues"
+    "url": "https://github.com/neeharv/react-tabs/issues"
   },
   "files": [
     "dist",
     "lib"
   ],
-  "homepage": "https://github.com/reactjs/react-tabs",
+  "homepage": "https://github.com/neeharv/react-tabs",
   "keywords": [
     "react",
     "tabs",
     "a11y",
-    "react-component"
+    "react-component",
+	"isomorphic"
   ],
   "peerDependencies": {
     "react": "^0.14.7 || ^15.0.0",

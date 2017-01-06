@@ -1,18 +1,18 @@
-# react-tabs [![Build Status](https://travis-ci.org/reactjs/react-tabs.svg?branch=master)](https://travis-ci.org/reactjs/react-tabs)
+#  A fork of [react-tabs](https://github.com/reactjs/react-tabs) which supports server side rendering
 
-React tabs component
+The current version of react tabs cannot be used for server side rendering. Check the issue here - [#56](https://github.com/reactjs/react-tabs/issues/56)
+
+This is a hacky fix to get it working by passing a custom id generation function to the `<Tabs>` component, which does not use a stateful counter to assign ids to the children of `<Tabs>`
+
+It isn't the ideal solution, but till the original authors have a better idea, this seems like the only way to get it working.
 
 > Supports React ^0.14.0 or ^15.0.0
 
 ## Installing
 
 ```bash
-$ npm install react-tabs --save
+$ npm install react-tabs-isomorphic --save
 ```
-
-## Demo
-
-https://reactcommunity.org/react-tabs/example/
 
 ## Example
 
@@ -20,6 +20,9 @@ https://reactcommunity.org/react-tabs/example/
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+let idCounter = 0;
+const generateIds = () => `custom-id-${idCounter++}`
 
 class App extends Component {
   handleSelect(index, last) {
@@ -46,6 +49,7 @@ class App extends Component {
       <Tabs
         onSelect={this.handleSelect}
         selectedIndex={2}
+        generateIdsFn={generateIds}
       >
 
         {/*
@@ -98,14 +102,6 @@ class App extends Component {
 }
 
 render(<App/>, document.getElementById('container'));
-```
-
-## Styling
-
-You can disable the default styling by calling this method once:
-
-```
-Tabs.setUseDefaultStyles(false);
 ```
 
 ## License

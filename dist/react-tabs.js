@@ -168,7 +168,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onSelect: _react.PropTypes.func,
 	    focus: _react.PropTypes.bool,
 	    children: _childrenPropType2.default,
-	    forceRenderTabPanel: _react.PropTypes.bool
+	    forceRenderTabPanel: _react.PropTypes.bool,
+	    generateIdsFn: _react.PropTypes.func
 	  },
 	
 	  childContextTypes: {
@@ -300,14 +301,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var state = this.state;
 	    var tabIds = this.tabIds = this.tabIds || [];
 	    var panelIds = this.panelIds = this.panelIds || [];
+	    var generateIdsFn = this.props.generateIdsFn ? this.props.generateIdsFn : _uuid2.default;
 	    var diff = this.tabIds.length - this.getTabsCount();
 	
 	    // Add ids if new tabs have been added
 	    // Don't bother removing ids, just keep them in case they are added again
 	    // This is more efficient, and keeps the uuid counter under control
 	    while (diff++ < 0) {
-	      tabIds.push((0, _uuid2.default)());
-	      panelIds.push((0, _uuid2.default)());
+	      tabIds.push(generateIdsFn());
+	      panelIds.push(generateIdsFn());
 	    }
 	
 	    // Map children to dynamically setup refs
@@ -503,6 +505,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    delete attributes.forceRenderTabPanel;
 	    delete attributes.onClick;
 	    delete attributes.onKeyDown;
+	    delete attributes.generateIdsFn;
 	
 	    return _react2.default.createElement('div', _extends({}, attributes, {
 	      className: (0, _classnames2.default)('ReactTabs', 'react-tabs', className),
