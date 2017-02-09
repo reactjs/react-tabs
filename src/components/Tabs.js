@@ -16,8 +16,6 @@ function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
 
-let useDefaultStyles = true;
-
 module.exports = React.createClass({
   displayName: 'Tabs',
 
@@ -34,17 +32,12 @@ module.exports = React.createClass({
     forceRenderTabPanel: PropTypes.bool,
   },
 
-  statics: {
-    setUseDefaultStyles(use) {
-      useDefaultStyles = use;
-    },
-  },
-
   getDefaultProps() {
     return {
       selectedIndex: -1,
       focus: false,
       forceRenderTabPanel: false,
+      useDefaultStyles: true
     };
   },
 
@@ -59,7 +52,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount() {
-    if (useDefaultStyles) {
+    if (this.props.useDefaultStyles) {
       jss(require('../helpers/styles.js')); // eslint-disable-line global-require
     }
   },
