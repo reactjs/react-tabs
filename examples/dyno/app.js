@@ -51,7 +51,7 @@ class App extends React.Component {
   removeTab = (index) => {
     this.setState({
       tabs: this.state.tabs.filter((tab, i) => i !== index),
-      selectedIndex: this.state.selectedIndex - 1,
+      selectedIndex: Math.max(this.state.selectedIndex - 1, 0),
     });
   }
 

@@ -6,6 +6,7 @@ import { childrenPropType } from '../helpers/propTypes';
 import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
+import { getPanelsCount, getTabsCount } from '../helpers/count';
 
 // Determine if a node from event.target is a Tab element
 function isTabNode(node) {
@@ -90,21 +91,11 @@ export default class UncontrolledTabs extends Component {
   }
 
   getTabsCount() {
-    const tabLists = React.Children.toArray(this.props.children).filter(x => x.type === TabList);
-
-    if (tabLists[0] && tabLists[0].props.children) {
-      return React.Children.count(
-        React.Children.toArray(tabLists[0].props.children).filter(x => x.type === Tab),
-      );
-    }
-
-    return 0;
+    return getTabsCount(this.props.children);
   }
 
   getPanelsCount() {
-    return React.Children.count(
-      React.Children.toArray(this.props.children).filter(x => x.type === TabPanel),
-    );
+    return getPanelsCount(this.props.children);
   }
 
   getTab(index) {

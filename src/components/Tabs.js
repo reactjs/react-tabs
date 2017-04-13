@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { childrenPropType, onSelectPropType, selectedIndexPropType } from '../helpers/propTypes';
 import UncontrolledTabs from './UncontrolledTabs';
+import { getTabsCount } from '../helpers/count';
 
 export default class Tabs extends Component {
 
@@ -59,12 +60,20 @@ export default class Tabs extends Component {
     }
   }
 
-  // This is an anti-pattern, so sue me
+  // preserve the existing selectedIndex from state.
+  // If the state has not selectedIndex, default to the defaultIndex or 0
   static copyPropsToState(props, state) {
-    // preserve the existing selectedIndex from state.
-    // If the state has not selectedIndex, default to the defaultIndex or 0
+    const maxTabIndex = getTabsCount(props.children) - 1;
+    let selectedIndex = null;
+
+    if (state.selectedIndex != null) {
+      selectedIndex = Math.min(state.selectedIndex, maxTabIndex);
+    } else {
+      selectedIndex = props.defaultIndex || 0;
+    }
+
     return {
-      selectedIndex: state.selectedIndex || props.defaultIndex || 0,
+      selectedIndex,
       focus: state.focus || props.defaultFocus,
     };
   }
