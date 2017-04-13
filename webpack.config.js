@@ -28,7 +28,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     chunkFilename: '[id].chunk.js',
-    path: 'examples/__build__',
+    path: path.join(__dirname, 'examples/__build__'),
     publicPath: '/__build__/',
   },
   module: {
@@ -38,9 +38,13 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ],
+      },
     ],
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({ name: 'shared.js' }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'shared' }),
   ]
 };

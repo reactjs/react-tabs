@@ -1,21 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tab, Tabs, TabList, TabPanel } from '../../src/main';
+import '../../style/react-tabs.css';
 
-const App = React.createClass({
-  getInitialState() {
-    return {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       showA: true,
       showB: true,
       showC: true,
     };
-  },
+  }
 
-  handleCheckClicked(e) {
+  handleCheckClicked = (e) => {
     this.setState({
       [e.target.name]: e.target.checked,
     });
-  },
+  }
 
   render() {
     return (
@@ -46,8 +49,8 @@ const App = React.createClass({
         </Tabs>
       </div>
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(<App />, document.getElementById('example'));
 
