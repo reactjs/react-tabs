@@ -4,6 +4,12 @@ import { shallow } from 'enzyme';
 import Tab from '../Tab';
 
 describe('<Tab />', () => {
+  beforeAll(() => {
+    console.error = (error) => {
+      throw new Error(error);
+    };
+  });
+
   it('should have sane defaults', () => {
     const wrapper = shallow(<Tab />);
 

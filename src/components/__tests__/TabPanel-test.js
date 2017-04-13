@@ -3,7 +3,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import TabPanel from '../TabPanel';
 
-describe('Tab', () => {
+describe('<TabPanel />', () => {
+  beforeAll(() => {
+    console.error = (error) => {
+      throw new Error(error);
+    };
+  });
+
   it('should have sane defaults', () => {
     const wrapper = shallow(<TabPanel>Hola</TabPanel>);
 

@@ -55,6 +55,7 @@ export default class Tab extends Component {
       id,
       panelId,
       selected,
+      tabRef,
       ...attributes } = this.props;
 
     return (
@@ -68,7 +69,7 @@ export default class Tab extends Component {
             [disabledTabClassName]: disabled,
           }
         )}
-        ref={(node) => { this.node = node; this.props.tabRef(node); }}
+        ref={(node) => { this.node = node; if (tabRef) tabRef(node); }}
         role="tab"
         id={id}
         aria-selected={selected ? 'true' : 'false'}

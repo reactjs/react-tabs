@@ -38,7 +38,13 @@ function assertTabSelected(wrapper, index) {
   expect(panel.prop('selected')).toBe(true);
 }
 
-describe('react-tabs', () => {
+describe('<Tabs />', () => {
+  beforeAll(() => {
+    console.error = (error) => {
+      throw new Error(error);
+    };
+  });
+
   describe('props', () => {
     it('should default to selectedIndex being 0', () => {
       const wrapper = shallow(createTabs());
@@ -211,6 +217,8 @@ describe('react-tabs', () => {
 
   describe('validation', () => {
     it('should result with warning when tabs/panels are imbalanced', () => {
+      const oldConsoleError = console.error; // eslint-disable-line no-console
+      console.error = () => {}; // eslint-disable-line no-console
       const wrapper = shallow(
         <Tabs>
           <TabList>
@@ -218,6 +226,7 @@ describe('react-tabs', () => {
           </TabList>
         </Tabs>
       );
+      console.error = oldConsoleError; // eslint-disable-line no-console
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
       expect(result instanceof Error).toBe(true);
@@ -225,6 +234,8 @@ describe('react-tabs', () => {
 
     it(`should result with warning when tabs/panels are imbalanced and
         it should ignore non tab children`, () => {
+      const oldConsoleError = console.error; // eslint-disable-line no-console
+      console.error = () => {}; // eslint-disable-line no-console
       const wrapper = shallow(
         <Tabs>
           <TabList>
@@ -236,6 +247,7 @@ describe('react-tabs', () => {
           <TabPanel>Hello Bar</TabPanel>
         </Tabs>
       );
+      console.error = oldConsoleError; // eslint-disable-line no-console
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
       expect(result instanceof Error).toBe(true);

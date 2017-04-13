@@ -3,6 +3,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Tab from '../Tab';
 import TabList from '../TabList';
+import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 
 function hasClassAt(wrapper, index, className) {
@@ -10,6 +11,12 @@ function hasClassAt(wrapper, index, className) {
 }
 
 describe('<TabList />', () => {
+  beforeAll(() => {
+    console.error = (error) => {
+      throw new Error(error);
+    };
+  });
+
   it('should have sane defaults', () => {
     const wrapper = shallow(<TabList />);
 
@@ -44,6 +51,8 @@ describe('<TabList />', () => {
           <Tab>Foo</Tab>
           <Tab disabled>Bar</Tab>
         </TabList>
+        <TabPanel>Foo</TabPanel>
+        <TabPanel>Bar</TabPanel>
       </Tabs>
     );
 
@@ -59,6 +68,8 @@ describe('<TabList />', () => {
           <Tab>Foo</Tab>
           <Tab disabled>Bar</Tab>
         </TabList>
+        <TabPanel>Foo</TabPanel>
+        <TabPanel>Bar</TabPanel>
       </Tabs>
     );
 
