@@ -141,16 +141,16 @@ export default class Tabs extends Component {
     let count = 0;
     const children = this.props.children;
     const state = this.state;
-    const tabIds = this.tabIds = this.tabIds || [];
-    const panelIds = this.panelIds = this.panelIds || [];
+    this.tabIds = this.tabIds || [];
+    this.panelIds = this.panelIds || [];
     let diff = this.tabIds.length - this.getTabsCount();
 
     // Add ids if new tabs have been added
     // Don't bother removing ids, just keep them in case they are added again
     // This is more efficient, and keeps the uuid counter under control
     while (diff++ < 0) {
-      tabIds.push(uuid());
-      panelIds.push(uuid());
+      this.tabIds.push(uuid());
+      this.panelIds.push(uuid());
     }
 
     // Map children to dynamically setup refs
@@ -175,8 +175,8 @@ export default class Tabs extends Component {
             }
 
             const tabRef = (node) => { this.tabNodes[`tabs-${index}`] = node; };
-            const id = tabIds[index];
-            const panelId = panelIds[index];
+            const id = this.tabIds[index];
+            const panelId = this.panelIds[index];
             const selected = state.selectedIndex === index;
             const focus = selected && state.focus;
 
@@ -199,8 +199,8 @@ export default class Tabs extends Component {
         // Reset index for panels
         index = 0;
       } else {
-        const id = panelIds[index];
-        const tabId = tabIds[index];
+        const id = this.panelIds[index];
+        const tabId = this.tabIds[index];
         const selected = state.selectedIndex === index;
 
         index++;
@@ -343,7 +343,7 @@ export default class Tabs extends Component {
         className={cx(
           'ReactTabs',
           'react-tabs',
-          className
+          className,
         )}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}

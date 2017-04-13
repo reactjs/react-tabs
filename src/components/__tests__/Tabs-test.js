@@ -40,6 +40,7 @@ function assertTabSelected(wrapper, index) {
 
 describe('<Tabs />', () => {
   beforeAll(() => {
+    // eslint-disable-next-line no-console
     console.error = (error) => {
       throw new Error(error);
     };
@@ -224,7 +225,7 @@ describe('<Tabs />', () => {
           <TabList>
             <Tab>Foo</Tab>
           </TabList>
-        </Tabs>
+        </Tabs>,
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
@@ -245,7 +246,7 @@ describe('<Tabs />', () => {
 
           <TabPanel>Hello Foo</TabPanel>
           <TabPanel>Hello Bar</TabPanel>
-        </Tabs>
+        </Tabs>,
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
@@ -261,7 +262,7 @@ describe('<Tabs />', () => {
             <div />
           </TabList>
           <TabPanel />
-        </Tabs>
+        </Tabs>,
       );
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
@@ -276,7 +277,7 @@ describe('<Tabs />', () => {
       expect(() => shallow(
         <Tabs>
           <TabList />
-        </Tabs>
+        </Tabs>,
       )).not.toThrow();
     });
 
@@ -289,7 +290,7 @@ describe('<Tabs />', () => {
           </TabList>
           <TabPanel>Content A</TabPanel>
           {false && <TabPanel>Content B</TabPanel>}
-        </Tabs>
+        </Tabs>,
       )).not.toThrow();
     });
 
@@ -311,7 +312,7 @@ describe('<Tabs />', () => {
             </Tabs>
           </TabPanel>
           <TabPanel />
-        </Tabs>
+        </Tabs>,
       );
 
       const innerTabs = wrapper.childAt(1).childAt(0);

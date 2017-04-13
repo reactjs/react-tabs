@@ -5,6 +5,7 @@ import TabPanel from '../TabPanel';
 
 describe('<TabPanel />', () => {
   beforeAll(() => {
+    // eslint-disable-next-line no-console
     console.error = (error) => {
       throw new Error(error);
     };

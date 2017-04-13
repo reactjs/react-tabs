@@ -50,7 +50,7 @@ export default class TabList extends Component {
         {...attributes}
         className={cx(
           'ReactTabs__TabList',
-          className
+          className,
         )}
         role="tablist"
       >

@@ -32,7 +32,7 @@ module.exports = function childrenPropTypes(props, propName) {
       panelsCount++;
     } else {
       error = new Error(
-        `Expected 'TabList' or 'TabPanel' but found '${child.type.displayName || child.type}'`
+        `Expected 'TabList' or 'TabPanel' but found '${child.type.displayName || child.type}'`,
       );
     }
   });
@@ -40,7 +40,7 @@ module.exports = function childrenPropTypes(props, propName) {
   if (tabsCount !== panelsCount) {
     error = new Error(
       "There should be an equal number of 'Tabs' and 'TabPanels'." +
-      `Received ${tabsCount} 'Tabs' and ${panelsCount} 'TabPanels'.`
+      `Received ${tabsCount} 'Tabs' and ${panelsCount} 'TabPanels'.`,
     );
   }
 

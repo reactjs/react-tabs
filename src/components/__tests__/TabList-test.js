@@ -12,6 +12,7 @@ function hasClassAt(wrapper, index, className) {
 
 describe('<TabList />', () => {
   beforeAll(() => {
+    // eslint-disable-next-line no-console
     console.error = (error) => {
       throw new Error(error);
     };
@@ -53,7 +54,7 @@ describe('<TabList />', () => {
         </TabList>
         <TabPanel>Foo</TabPanel>
         <TabPanel>Bar</TabPanel>
-      </Tabs>
+      </Tabs>,
     );
 
     const tabsList = wrapper.childAt(0);
@@ -70,7 +71,7 @@ describe('<TabList />', () => {
         </TabList>
         <TabPanel>Foo</TabPanel>
         <TabPanel>Bar</TabPanel>
-      </Tabs>
+      </Tabs>,
     );
 
     const tabsList = wrapper.childAt(0);

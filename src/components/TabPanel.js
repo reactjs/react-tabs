@@ -15,11 +15,7 @@ export default class TabPanel extends Component {
   };
 
   static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.object,
-      PropTypes.string,
-    ]),
+    children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
     selected: PropTypes.bool,
@@ -45,7 +41,7 @@ export default class TabPanel extends Component {
           className,
           {
             'ReactTabs__TabPanel--selected': selected,
-          }
+          },
         )}
         role="tabpanel"
         id={id}
