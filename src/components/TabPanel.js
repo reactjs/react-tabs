@@ -4,29 +4,25 @@ import cx from 'classnames';
 
 export default class TabPanel extends Component {
 
-  static contextTypes = {
-    forceRenderTabPanel: PropTypes.bool,
-  };
-
   static defaultProps = {
-    id: null,
-    selected: false,
-    tabId: null,
+    style: {},
   };
 
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    id: PropTypes.string,
-    selected: PropTypes.bool,
+    forceRenderTabPanel: PropTypes.bool, // private
+    id: PropTypes.string, // private
+    selected: PropTypes.bool, // private
     style: PropTypes.object,
-    tabId: PropTypes.string,
+    tabId: PropTypes.string, // private
   };
 
   render() {
     const {
       children,
       className,
+      forceRenderTabPanel,
       id,
       selected,
       style,
@@ -48,7 +44,7 @@ export default class TabPanel extends Component {
         aria-labelledby={tabId}
         style={{ ...style, display: selected ? null : 'none' }}
       >
-        {(this.context.forceRenderTabPanel || selected) ? children : null}
+        {(forceRenderTabPanel || selected) ? children : null}
       </div>
     );
   }

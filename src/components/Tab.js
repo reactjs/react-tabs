@@ -23,11 +23,11 @@ export default class Tab extends Component {
     ]),
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    focus: PropTypes.bool,
-    id: PropTypes.string,
-    panelId: PropTypes.string,
-    selected: PropTypes.bool,
-    tabRef: PropTypes.func,
+    focus: PropTypes.bool, // private
+    id: PropTypes.string, // private
+    panelId: PropTypes.string, // private
+    selected: PropTypes.bool, // private
+    tabRef: PropTypes.func, // private
   };
 
   componentDidMount() {
