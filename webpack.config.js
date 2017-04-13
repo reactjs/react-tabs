@@ -24,18 +24,15 @@ function buildEntries() {
 }
 
 module.exports = {
-
   entry: buildEntries(),
-
   output: {
     filename: '[name].js',
     chunkFilename: '[id].chunk.js',
     path: 'examples/__build__',
     publicPath: '/__build__/',
   },
-
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -43,9 +40,7 @@ module.exports = {
       },
     ],
   },
-
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('shared.js'),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'shared.js' }),
   ]
-
 };

@@ -2,21 +2,21 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 let COMPONENT_FILE = 'react-tabs';
 const plugins = [];
 
 if (process.env.MINIFY) {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin()
-  );
+  plugins.push(new UglifyJsPlugin({ sourceMap: true }));
   COMPONENT_FILE += '.min';
 }
 
 module.exports = {
   entry: path.join(__dirname, require(path.join(__dirname, 'package.json')).main),
   output: {
-    filename: path.join(__dirname, 'dist/' + COMPONENT_FILE + '.js'),
+    filename: COMPONENT_FILE + '.js',
+    path: path.join(__dirname, 'dist'),
     library: 'ReactTabs',
     libraryTarget: 'umd',
   },
@@ -27,15 +27,21 @@ module.exports = {
       commonjs: 'react',
       amd: 'react',
     },
-    'react-dom': {
-      root: 'ReactDOM',
-      commonjs2: 'react-dom',
-      commonjs: 'react-dom',
-      amd: 'react-dom',
+    'prop-types': {
+      root: 'PropTypes',
+      commonjs2: 'prop-types',
+      commonjs: 'prop-types',
+      amd: 'prop-types',
+    },
+    'classnames': {
+      root: 'classNames',
+      commonjs2: 'classnames',
+      commonjs: 'classnames',
+      amd: 'classnames',
     },
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -44,4 +50,5 @@ module.exports = {
     ],
   },
   plugins: plugins,
+  devtool: 'source-map',
 };
