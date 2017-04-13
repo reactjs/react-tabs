@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state = { inputValue: '' };
   }
 
-  handleInputChange(e) {
+  handleInputChange = (e) => {
     this.forceUpdate();
     this.setState({ inputValue: e.target.value });
   }
