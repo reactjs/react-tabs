@@ -1,5 +1,9 @@
 // Get a universally unique identifier
 let count = 0;
-module.exports = function uuid() {
+export default function uuid() {
   return `react-tabs-${count++}`;
-};
+}
+
+export function reset() {
+  count = 0;
+}

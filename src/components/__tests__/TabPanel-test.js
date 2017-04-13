@@ -1,9 +1,16 @@
-/* global jest, describe, it, expect */
+/* eslint-env jest */
 import React from 'react';
 import { shallow } from 'enzyme';
 import TabPanel from '../TabPanel';
 
-describe('Tab', () => {
+describe('<TabPanel />', () => {
+  beforeAll(() => {
+    // eslint-disable-next-line no-console
+    console.error = (error) => {
+      throw new Error(error);
+    };
+  });
+
   it('should have sane defaults', () => {
     const wrapper = shallow(<TabPanel>Hola</TabPanel>);
 

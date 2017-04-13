@@ -1,11 +1,12 @@
+/* eslint-env jest */
 /* eslint-disable react/no-multi-comp */
-/* global jest, describe, it, expect */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
+import { reset as resetIdCounter } from '../../helpers/uuid';
 
 function createTabs(props = {
   selectedIndex: 0,
@@ -38,7 +39,14 @@ function assertTabSelected(wrapper, index) {
   expect(panel.prop('selected')).toBe(true);
 }
 
-describe('react-tabs', () => {
+describe('<Tabs />', () => {
+  beforeAll(() => {
+    // eslint-disable-next-line no-console
+    console.error = (error) => {
+      throw new Error(error);
+    };
+  });
+
   describe('props', () => {
     it('should default to selectedIndex being 0', () => {
       const wrapper = shallow(createTabs());
@@ -100,6 +108,23 @@ describe('react-tabs', () => {
 
         expect(tab.prop('id')).toBe(panel.prop('tabId'));
         expect(panel.prop('id')).toBe(tab.prop('panelId'));
+      }
+    });
+
+    it('should reset ids correctly', () => {
+      mount(createTabs());
+
+      resetIdCounter();
+
+      const wrapper = mount(createTabs());
+      const tablist = wrapper.childAt(0);
+
+      for (let i = 0, j = 0, l = wrapper.instance().getTabsCount(); i < l; i++, j += 2) {
+        const tab = tablist.childAt(i);
+        const panel = wrapper.childAt(i + 1);
+
+        expect(tab.prop('id')).toBe(`react-tabs-${j}`);
+        expect(panel.prop('id')).toBe(`react-tabs-${j + 1}`);
       }
     });
   });
@@ -190,34 +215,45 @@ describe('react-tabs', () => {
     it('should not clone non tabs element', () => {
       class Demo extends React.Component {
         render() {
-          const plus = <div ref="yolo">+</div>;
+          const arbitrary1 = <div ref="arbitrary1">One</div>;  // eslint-disable-line react/no-string-refs
+          const arbitrary2 = <span ref="arbitrary2">Two</span>;  // eslint-disable-line react/no-string-refs
+          const arbitrary3 = <small ref="arbitrary3">Three</small>;  // eslint-disable-line react/no-string-refs
 
           return (<Tabs>
             <TabList>
+              {arbitrary1}
               <Tab>Foo</Tab>
-              {plus}
+              {arbitrary2}
+              <Tab>Bar</Tab>
+              {arbitrary3}
             </TabList>
 
             <TabPanel>Hello Baz</TabPanel>
+            <TabPanel>Hello Faz</TabPanel>
           </Tabs>);
         }
       }
 
       const wrapper = mount(<Demo />);
 
-      expect(wrapper.ref('yolo').text()).toBe('+');
+      expect(wrapper.ref('arbitrary1').text()).toBe('One');
+      expect(wrapper.ref('arbitrary2').text()).toBe('Two');
+      expect(wrapper.ref('arbitrary3').text()).toBe('Three');
     });
   });
 
   describe('validation', () => {
     it('should result with warning when tabs/panels are imbalanced', () => {
+      const oldConsoleError = console.error; // eslint-disable-line no-console
+      console.error = () => {}; // eslint-disable-line no-console
       const wrapper = shallow(
         <Tabs>
           <TabList>
             <Tab>Foo</Tab>
           </TabList>
-        </Tabs>
+        </Tabs>,
       );
+      console.error = oldConsoleError; // eslint-disable-line no-console
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
       expect(result instanceof Error).toBe(true);
@@ -225,6 +261,8 @@ describe('react-tabs', () => {
 
     it(`should result with warning when tabs/panels are imbalanced and
         it should ignore non tab children`, () => {
+      const oldConsoleError = console.error; // eslint-disable-line no-console
+      console.error = () => {}; // eslint-disable-line no-console
       const wrapper = shallow(
         <Tabs>
           <TabList>
@@ -234,11 +272,29 @@ describe('react-tabs', () => {
 
           <TabPanel>Hello Foo</TabPanel>
           <TabPanel>Hello Bar</TabPanel>
-        </Tabs>
+        </Tabs>,
       );
+      console.error = oldConsoleError; // eslint-disable-line no-console
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
       expect(result instanceof Error).toBe(true);
+    });
+
+    it('should allow random order for elements', () => {
+      const wrapper = mount(
+        <Tabs>
+          <TabPanel>Hello Foo</TabPanel>
+          <TabList>
+            <Tab>Foo</Tab>
+            <Tab>Bar</Tab>
+          </TabList>
+          <TabPanel>Hello Bar</TabPanel>
+        </Tabs>,
+      );
+
+
+      expect(wrapper.childAt(0).text()).toBe('Hello Foo');
+      expect(wrapper.childAt(2).text()).toBe('Hello Bar');
     });
 
     it('should not throw a warning when wrong element is found', () => {
@@ -249,7 +305,7 @@ describe('react-tabs', () => {
             <div />
           </TabList>
           <TabPanel />
-        </Tabs>
+        </Tabs>,
       );
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
@@ -264,7 +320,7 @@ describe('react-tabs', () => {
       expect(() => shallow(
         <Tabs>
           <TabList />
-        </Tabs>
+        </Tabs>,
       )).not.toThrow();
     });
 
@@ -277,7 +333,7 @@ describe('react-tabs', () => {
           </TabList>
           <TabPanel>Content A</TabPanel>
           {false && <TabPanel>Content B</TabPanel>}
-        </Tabs>
+        </Tabs>,
       )).not.toThrow();
     });
 
@@ -299,7 +355,7 @@ describe('react-tabs', () => {
             </Tabs>
           </TabPanel>
           <TabPanel />
-        </Tabs>
+        </Tabs>,
       );
 
       const innerTabs = wrapper.childAt(1).childAt(0);

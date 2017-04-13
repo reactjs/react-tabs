@@ -1,44 +1,48 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import cx from 'classnames';
 import Tab from './Tab';
 
-function renderChildren(props) {
-  return React.Children.map(props.children, (child) => {
-    // if child is not a tab we don't need to clone it
-    // since we don't need to add custom props
+export default class TabList extends Component {
 
-    if (child.type !== Tab) {
-      return child;
-    }
-
-    const clonedProps = {
-      activeTabClassName: props.activeTabClassName,
-      disabledTabClassName: props.disabledTabClassName,
-    };
-
-    return React.cloneElement(child, clonedProps);
-  });
-}
-
-module.exports = React.createClass({
-  displayName: 'TabList',
-
-  propTypes: {
-    className: PropTypes.string,
+  static propTypes = {
     activeTabClassName: PropTypes.string,
-    disabledTabClassName: PropTypes.string,
     children: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.array,
     ]),
-  },
+    className: PropTypes.string,
+    disabledTabClassName: PropTypes.string,
+  };
+
+  renderChildren() {
+    const {
+      activeTabClassName,
+      children,
+      disabledTabClassName,
+    } = this.props;
+
+    return React.Children.map(children, (child) => {
+      // if child is not a tab we don't need to clone it
+      // since we don't need to add custom props
+
+      if (child.type === Tab) {
+        return React.cloneElement(child, {
+          activeTabClassName,
+          disabledTabClassName,
+        });
+      }
+
+      return child;
+    });
+  }
 
   render() {
     const {
+      activeTabClassName, // eslint-disable-line no-unused-vars
+      children, // eslint-disable-line no-unused-vars
       className,
-      activeTabClassName,
-      disabledTabClassName,
-      children,
+      disabledTabClassName, // eslint-disable-line no-unused-vars
       ...attributes } = this.props;
 
     return (
@@ -46,12 +50,12 @@ module.exports = React.createClass({
         {...attributes}
         className={cx(
           'ReactTabs__TabList',
-          className
+          className,
         )}
         role="tablist"
       >
-        {renderChildren({ activeTabClassName, disabledTabClassName, children })}
+        {this.renderChildren()}
       </ul>
     );
-  },
-});
+  }
+}

@@ -1,7 +1,4 @@
-.idea
-*.iml
 build/
 node_modules/
 npm-debug.log
 lib/
-yarn.lock

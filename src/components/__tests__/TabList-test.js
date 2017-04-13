@@ -1,8 +1,9 @@
-/* global jest, describe, it, expect */
+/* eslint-env jest */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Tab from '../Tab';
 import TabList from '../TabList';
+import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 
 function hasClassAt(wrapper, index, className) {
@@ -10,6 +11,13 @@ function hasClassAt(wrapper, index, className) {
 }
 
 describe('<TabList />', () => {
+  beforeAll(() => {
+    // eslint-disable-next-line no-console
+    console.error = (error) => {
+      throw new Error(error);
+    };
+  });
+
   it('should have sane defaults', () => {
     const wrapper = shallow(<TabList />);
 
@@ -44,7 +52,9 @@ describe('<TabList />', () => {
           <Tab>Foo</Tab>
           <Tab disabled>Bar</Tab>
         </TabList>
-      </Tabs>
+        <TabPanel>Foo</TabPanel>
+        <TabPanel>Bar</TabPanel>
+      </Tabs>,
     );
 
     const tabsList = wrapper.childAt(0);
@@ -59,7 +69,9 @@ describe('<TabList />', () => {
           <Tab>Foo</Tab>
           <Tab disabled>Bar</Tab>
         </TabList>
-      </Tabs>
+        <TabPanel>Foo</TabPanel>
+        <TabPanel>Bar</TabPanel>
+      </Tabs>,
     );
 
     const tabsList = wrapper.childAt(0);

@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tab, Tabs, TabList, TabPanel } from '../../src/main';
+import '../../style/react-tabs.css';
 
-const App = React.createClass({
-  getInitialState() {
-    return { inputValue: '' };
-  },
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { inputValue: '' };
+  }
 
   handleInputChange(e) {
     this.forceUpdate();
     this.setState({ inputValue: e.target.value });
-  },
+  }
 
   render() {
     return (
@@ -33,8 +36,8 @@ const App = React.createClass({
           </TabPanel>
         </Tabs>
       </div>
-	);
-  },
-});
+	  );
+  }
+}
 
 ReactDOM.render(<App />, document.getElementById('example'));

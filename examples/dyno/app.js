@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { Tab, Tabs, TabList, TabPanel } from '../../src/main';
+import '../../style/react-tabs.css';
 
 Modal.setAppElement(document.getElementById('example'));
 
-const App = React.createClass({
-  getInitialState() {
-    return {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       isModalOpen: false,
       selectedIndex: -1,
       tabs: [
@@ -17,21 +20,21 @@ const App = React.createClass({
         { label: 'Zap', content: 'This is zap' },
       ],
     };
-  },
+  }
 
-  openModal() {
+  openModal = () => {
     this.setState({
       isModalOpen: true,
     });
-  },
+  }
 
-  closeModal() {
+  closeModal = () => {
     this.setState({
       isModalOpen: false,
     });
-  },
+  }
 
-  addTab() {
+  addTab = () => {
     const label = this.refs.label.value;
     const content = this.refs.content.value;
 
@@ -43,14 +46,14 @@ const App = React.createClass({
       selectedIndex: this.state.tabs.length,
     });
     this.closeModal();
-  },
+  }
 
-  removeTab(index) {
+  removeTab = (index) => {
     this.setState({
       tabs: this.state.tabs.filter((tab, i) => i !== index),
       selectedIndex: this.state.selectedIndex - 1,
     });
-  },
+  }
 
   render() {
     return (
@@ -75,6 +78,7 @@ const App = React.createClass({
           isOpen={this.state.isModalOpen}
           onRequestClose={this.closeModal}
           style={{ width: 400, height: 350, margin: '0 auto' }}
+          contentLabel="tabs"
         >
           <h2>Add a Tab</h2>
           <label htmlFor="label">Label:</label><br />
@@ -86,7 +90,7 @@ const App = React.createClass({
         </Modal>
       </div>
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(<App />, document.getElementById('example'));
