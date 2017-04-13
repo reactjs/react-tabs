@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { cloneElement, Component } from 'react';
 import cx from 'classnames';
-import uuid from '../helpers/uuid';
+import uuid, { reset } from '../helpers/uuid';
 import childrenPropType from '../helpers/childrenPropType';
 import Tab from './Tab';
 
@@ -41,6 +41,10 @@ export default class Tabs extends Component {
   constructor(props) {
     super(props);
     this.state = Tabs.copyPropsToState(this.props, this.state);
+  }
+
+  static resetIDCounter() {
+    reset();
   }
 
   getChildContext() {

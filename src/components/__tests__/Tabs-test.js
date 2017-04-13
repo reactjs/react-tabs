@@ -109,6 +109,23 @@ describe('<Tabs />', () => {
         expect(panel.prop('id')).toBe(tab.prop('panelId'));
       }
     });
+
+    it('should reset ids correctly', () => {
+      mount(createTabs());
+
+      Tabs.resetIDCounter();
+
+      const wrapper = mount(createTabs());
+      const tablist = wrapper.childAt(0);
+
+      for (let i = 0, j = 0, l = wrapper.instance().getTabsCount(); i < l; i++, j += 2) {
+        const tab = tablist.childAt(i);
+        const panel = wrapper.childAt(i + 1);
+
+        expect(tab.prop('id')).toBe(`react-tabs-${j}`);
+        expect(panel.prop('id')).toBe(`react-tabs-${j + 1}`);
+      }
+    });
   });
 
   describe('interaction', () => {
