@@ -13,7 +13,7 @@ if (process.env.MINIFY) {
 }
 
 module.exports = {
-  entry: path.join(__dirname, require(path.join(__dirname, 'package.json')).main),
+  entry: path.join(__dirname, 'src/index.js'),
   output: {
     filename: COMPONENT_FILE + '.js',
     path: path.join(__dirname, 'dist'),

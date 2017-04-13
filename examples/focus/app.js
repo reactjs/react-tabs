@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Tab, Tabs, TabList, TabPanel } from '../../src/main';
+import { Tab, Tabs, TabList, TabPanel } from '../../src/index';
 import '../../style/react-tabs.css';
 
 class App extends React.Component {
