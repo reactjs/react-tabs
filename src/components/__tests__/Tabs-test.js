@@ -280,6 +280,23 @@ describe('<Tabs />', () => {
       expect(result instanceof Error).toBe(true);
     });
 
+    it('should allow random order for elements', () => {
+      const wrapper = mount(
+        <Tabs>
+          <TabPanel>Hello Foo</TabPanel>
+          <TabList>
+            <Tab>Foo</Tab>
+            <Tab>Bar</Tab>
+          </TabList>
+          <TabPanel>Hello Bar</TabPanel>
+        </Tabs>,
+      );
+
+
+      expect(wrapper.childAt(0).text()).toBe('Hello Foo');
+      expect(wrapper.childAt(2).text()).toBe('Hello Bar');
+    });
+
     it('should not throw a warning when wrong element is found', () => {
       const wrapper = shallow(
         <Tabs>
