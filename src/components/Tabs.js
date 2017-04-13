@@ -26,56 +26,69 @@ export default class Tabs extends Component {
   constructor(props) {
     super(props);
 
-    if (this.props.selectedIndex === null) {
-      this.state = Tabs.copyPropsToState(this.props, {});
-    } else {
-      this.state = {};
-    }
+    this.state = Tabs.copyPropsToState(this.props, {});
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.selectedIndex === null) {
-      // Use a transactional update to prevent race conditions
-      // when reading the state in copyPropsToState
-      // See https://github.com/reactjs/react-tabs/issues/51
-      this.setState(state => Tabs.copyPropsToState(newProps, state));
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      Tabs.inUncontrolledMode(newProps) !== Tabs.inUncontrolledMode(this.props)
+    ) {
+      throw new Error(
+`Switching between controlled mode (by using \`selectedIndex\`) and uncontrolled mode is not supported in \`Tabs\`.
+For more information about controlled and uncontrolled mode of react-tabs see the README.`,
+        );
     }
+    // Use a transactional update to prevent race conditions
+    // when reading the state in copyPropsToState
+    // See https://github.com/reactjs/react-tabs/issues/51
+    this.setState(state => Tabs.copyPropsToState(newProps, state));
+  }
+
+  static inUncontrolledMode(props) {
+    return props.selectedIndex === null;
   }
 
   handleSelected = (index, last, event) => {
-    if (this.state.selectedIndex != null) {
+    const state = {
+      // Set focus if the change was triggered from the keyboard
+      focus: event.type === 'keydown',
+    };
+
+    // Call change event handler
+    if (typeof this.props.onSelect === 'function') {
       // Check if the change event handler cancels the tab change
-      let cancel = false;
-
-      // Call change event handler
-      if (typeof this.props.onSelect === 'function') {
-        cancel = this.props.onSelect(index, last, event) === false;
-      }
-
-      if (!cancel) {
-        // Update selected index
-        // Set focus if the change was triggered from the keyboard
-        this.setState({ selectedIndex: index, focus: event instanceof KeyboardEvent });
-      }
+      if (this.props.onSelect(index, last, event) === false) return;
     }
+
+    if (Tabs.inUncontrolledMode(this.props)) {
+      // Update selected index
+      state.selectedIndex = index;
+    }
+
+    this.setState(state);
   }
 
   // preserve the existing selectedIndex from state.
   // If the state has not selectedIndex, default to the defaultIndex or 0
   static copyPropsToState(props, state) {
-    const maxTabIndex = getTabsCount(props.children) - 1;
-    let selectedIndex = null;
-
-    if (state.selectedIndex != null) {
-      selectedIndex = Math.min(state.selectedIndex, maxTabIndex);
-    } else {
-      selectedIndex = props.defaultIndex || 0;
-    }
-
-    return {
-      selectedIndex,
+    const newState = {
       focus: state.focus || props.defaultFocus,
     };
+
+    if (Tabs.inUncontrolledMode(props)) {
+      const maxTabIndex = getTabsCount(props.children) - 1;
+      let selectedIndex = null;
+
+      if (state.selectedIndex != null) {
+        selectedIndex = Math.min(state.selectedIndex, maxTabIndex);
+      } else {
+        selectedIndex = props.defaultIndex || 0;
+      }
+      newState.selectedIndex = selectedIndex;
+    }
+
+    return newState;
   }
 
   render() {
@@ -100,9 +113,10 @@ export default class Tabs extends Component {
 
     const { children, defaultIndex, defaultFocus, ...props } = this.props;
 
+    props.focus = this.state.focus;
+    props.onSelect = this.handleSelected;
+
     if (this.state.selectedIndex != null) {
-      props.focus = this.state.focus;
-      props.onSelect = this.handleSelected;
       props.selectedIndex = this.state.selectedIndex;
     }
 

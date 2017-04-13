@@ -186,14 +186,12 @@ export default class UncontrolledTabs extends Component {
       let index = this.props.selectedIndex;
       let preventDefault = false;
 
-      // Select next tab to the left
       if (e.keyCode === 37 || e.keyCode === 38) {
+        // Select next tab to the left
         index = this.getPrevTab(index);
         preventDefault = true;
-      }
-      // Select next tab to the right
-      /* eslint brace-style:0 */
-      else if (e.keyCode === 39 || e.keyCode === 40) {
+      } else if (e.keyCode === 39 || e.keyCode === 40) {
+        // Select next tab to the right
         index = this.getNextTab(index);
         preventDefault = true;
       }
