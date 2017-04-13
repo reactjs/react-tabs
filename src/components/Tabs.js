@@ -127,9 +127,15 @@ export default class Tabs extends Component {
   }
 
   getTabsCount() {
-    return this.props.children && this.props.children[0] ?
-            React.Children.count(this.props.children[0].props.children) :
-            0;
+    if (
+      Array.isArray(this.props.children) &&
+      Array.isArray(this.props.children[0].props.children)
+    ) {
+      const tabs = this.props.children[0].props.children.filter(x => x.type === Tab);
+      return React.Children.count(tabs);
+    }
+
+    return 0;
   }
 
   getPanelsCount() {
@@ -178,7 +184,14 @@ export default class Tabs extends Component {
               return null;
             }
 
-            const tabRef = (node) => { this.tabNodes[`tabs-${index}`] = node; };
+            // Exit early if this is not a tab. That way we can have arbitrary
+            // elements anywhere inside <TabList>
+            if (tab.type !== Tab) {
+              return tab;
+            }
+
+            const key = `tabs-${index}`;
+            const tabRef = (node) => { this.tabNodes[key] = node; };
             const id = this.tabIds[index];
             const panelId = this.panelIds[index];
             const selected = state.selectedIndex === index;
@@ -186,17 +199,13 @@ export default class Tabs extends Component {
 
             index++;
 
-            if (tab.type === Tab) {
-              return cloneElement(tab, {
-                tabRef,
-                id,
-                panelId,
-                selected,
-                focus,
-              });
-            }
-
-            return tab;
+            return cloneElement(tab, {
+              tabRef,
+              id,
+              panelId,
+              selected,
+              focus,
+            });
           }),
         });
 
@@ -254,7 +263,7 @@ export default class Tabs extends Component {
           return;
         }
 
-        const index = [].slice.call(node.parentNode.children).indexOf(node);
+        const index = [].slice.call(node.parentNode.children).filter(isTabNode).indexOf(node);
         this.setSelected(index);
         return;
       }
