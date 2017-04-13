@@ -6,6 +6,7 @@ import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
+import { reset as resetIdCounter } from '../../helpers/uuid';
 
 function createTabs(props = {
   selectedIndex: 0,
@@ -113,7 +114,7 @@ describe('<Tabs />', () => {
     it('should reset ids correctly', () => {
       mount(createTabs());
 
-      Tabs.resetIDCounter();
+      resetIdCounter();
 
       const wrapper = mount(createTabs());
       const tablist = wrapper.childAt(0);

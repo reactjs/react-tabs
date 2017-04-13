@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { cloneElement, Component } from 'react';
 import cx from 'classnames';
-import uuid, { reset } from '../helpers/uuid';
+import uuid from '../helpers/uuid';
 import childrenPropType from '../helpers/childrenPropType';
 import Tab from './Tab';
+import TabList from './TabList';
+import TabPanel from './TabPanel';
 
 // Determine if a node from event.target is a Tab element
 function isTabNode(node) {
@@ -41,10 +43,6 @@ export default class Tabs extends Component {
   constructor(props) {
     super(props);
     this.state = Tabs.copyPropsToState(this.props, this.state);
-  }
-
-  static resetIDCounter() {
-    reset();
   }
 
   getChildContext() {
@@ -148,7 +146,6 @@ export default class Tabs extends Component {
 
   getChildren() {
     let index = 0;
-    let count = 0;
     const children = this.props.children;
     const state = this.state;
     this.tabIds = this.tabIds || [];
@@ -171,10 +168,10 @@ export default class Tabs extends Component {
         return null;
       }
 
-      let result = null;
+      let result = child;
 
       // Clone TabList and Tab components to have refs
-      if (count++ === 0) {
+      if (child.type === TabList) {
         // TODO try setting the uuid in the "constructor" for `Tab`/`TabPanel`
         result = cloneElement(child, {
           children: React.Children.map(child.props.children, (tab) => {
@@ -211,7 +208,7 @@ export default class Tabs extends Component {
 
         // Reset index for panels
         index = 0;
-      } else {
+      } else if (child.type === TabPanel) {
         const id = this.panelIds[index];
         const tabId = this.tabIds[index];
         const selected = state.selectedIndex === index;
