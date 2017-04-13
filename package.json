@@ -2,7 +2,7 @@
   "name": "react-tabs",
   "version": "0.8.2",
   "description": "React tabs component",
-  "main": "lib/main.js",
+  "main": "src/main.js",
   "scripts": {
     "clean": "rimraf lib",
     "build:commonjs": "babel src/ --out-dir lib/ --ignore __tests__,__mocks__",
@@ -27,7 +27,7 @@
   },
   "files": [
     "dist",
-    "lib"
+    "src"
   ],
   "homepage": "https://github.com/reactjs/react-tabs",
   "keywords": [
