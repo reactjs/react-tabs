@@ -67,7 +67,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "classnames": "^2.2.0"
+    "classnames": "^2.2.0",
+    "prop-types": "^15.5.8"
   },
   "jest": {
     "testPathDirs": [

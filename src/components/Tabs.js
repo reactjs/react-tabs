@@ -1,4 +1,5 @@
-import React, { PropTypes, cloneElement, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { cloneElement, Component } from 'react';
 import cx from 'classnames';
 import uuid from '../helpers/uuid';
 import childrenPropType from '../helpers/childrenPropType';
