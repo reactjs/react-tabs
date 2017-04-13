@@ -6,10 +6,36 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 let COMPONENT_FILE = 'react-tabs';
 const plugins = [];
+const babelOptions = {};
 
 if (process.env.MINIFY) {
   plugins.push(new UglifyJsPlugin({ sourceMap: true }));
+  plugins.push(new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify('production')
+  }));
   COMPONENT_FILE += '.min';
+
+  babelOptions.plugins = [
+    function(babel) {
+      return {
+        visitor: {
+          ImportDeclaration(path) {
+            // Remove all propType imports in min bundle
+            if (
+              path.node.source.value.indexOf('helpers/propTypes') > -1 ||
+              path.node.source.value === 'prop-types'
+            ) {
+              path.remove();
+            }
+          }
+        }
+      };
+    }
+  ];
+} else {
+  plugins.push(new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify('development')
+  }));
 }
 
 module.exports = {
@@ -46,6 +72,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+        options: babelOptions,
       },
     ],
   },
