@@ -27,7 +27,8 @@
   },
   "files": [
     "dist",
-    "lib"
+    "lib",
+    "style"
   ],
   "homepage": "https://github.com/reactjs/react-tabs",
   "keywords": [
