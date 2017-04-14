@@ -16,8 +16,6 @@ describe('<TabPanel />', () => {
 
     expect(wrapper.hasClass('ReactTabs__TabPanel')).toBe(true);
     expect(wrapper.prop('role')).toBe('tabpanel');
-    expect(wrapper.prop('aria-labelledby')).toBe(null);
-    expect(wrapper.prop('id')).toBe(null);
     expect(wrapper.children().length).toBe(0);
     expect(wrapper.children().length).toBe(0);
     expect(wrapper.prop('style')).not.toBe(null);
