@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import Modal from 'react-modal';
 import { Tab, Tabs, TabList, TabPanel } from '../../src/index';
 import '../../style/react-tabs.css';
@@ -93,4 +93,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('example'));
+render(<App />, document.getElementById('example'));

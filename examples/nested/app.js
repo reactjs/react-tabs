@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Tab, Tabs, TabList, TabPanel } from '../../src/index';
 import '../../style/react-tabs.css';
 
@@ -83,5 +83,5 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('example'));
+render(<App />, document.getElementById('example'));
 
