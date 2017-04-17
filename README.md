@@ -1,4 +1,4 @@
-# react-tabs [![Build Status](https://travis-ci.org/reactjs/react-tabs.svg?branch=master)](https://travis-ci.org/reactjs/react-tabs)
+# react-tabs [![Build Status](https://travis-ci.org/reactjs/react-tabs.svg?branch=master)](https://travis-ci.org/reactjs/react-tabs) [![npm version](https://badge.fury.io/js/react-tabs.svg)](https://badge.fury.io/js/react-tabs)
 
 React tabs component
 
