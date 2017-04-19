@@ -1,4 +1,6 @@
-import React, { PropTypes, cloneElement } from 'react';
+import React, { cloneElement } from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 import { findDOMNode } from 'react-dom';
 import cx from 'classnames';
 import jss from 'js-stylesheet';
@@ -18,7 +20,7 @@ function isTabDisabled(node) {
 
 let useDefaultStyles = true;
 
-module.exports = React.createClass({
+module.exports = createReactClass({
   displayName: 'Tabs',
 
   propTypes: {
