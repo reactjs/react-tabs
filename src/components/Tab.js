@@ -5,8 +5,6 @@ import cx from 'classnames';
 export default class Tab extends Component {
 
   static defaultProps = {
-    activeTabClassName: 'ReactTabs__Tab--selected',
-    disabledTabClassName: 'ReactTabs__Tab--disabled',
     focus: false,
     id: null,
     panelId: null,
@@ -14,8 +12,8 @@ export default class Tab extends Component {
   };
 
   static propTypes = {
-    activeTabClassName: PropTypes.string,
-    disabledTabClassName: PropTypes.string,
+    activeClassName: PropTypes.string, // private
+    disabledClassName: PropTypes.string, // private
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
@@ -46,11 +44,11 @@ export default class Tab extends Component {
 
   render() {
     const {
-      activeTabClassName,
+      activeClassName,
       children,
       className,
       disabled,
-      disabledTabClassName,
+      disabledClassName,
       focus, // eslint-disable-line no-unused-vars
       id,
       panelId,
@@ -65,8 +63,8 @@ export default class Tab extends Component {
           'ReactTabs__Tab',
           className,
           {
-            [activeTabClassName]: selected,
-            [disabledTabClassName]: disabled,
+            [activeClassName]: selected,
+            [disabledClassName]: disabled,
           },
         )}
         ref={(node) => { this.node = node; if (tabRef) tabRef(node); }}

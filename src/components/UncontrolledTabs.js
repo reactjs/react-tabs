@@ -21,14 +21,20 @@ function isTabDisabled(node) {
 export default class UncontrolledTabs extends Component {
 
   static defaultProps = {
+    activeTabClassName: 'ReactTabs__Tab--selected',
+    activeTabPanelClassName: 'ReactTabs__TabPanel--selected',
     className: '',
+    disabledTabClassName: 'ReactTabs__Tab--disabled',
     focus: false,
     forceRenderTabPanel: false,
   };
 
   static propTypes = {
+    activeTabClassName: PropTypes.string,
+    activeTabPanelClassName: PropTypes.string,
     children: childrenPropType,
     className: PropTypes.string,
+    disabledTabClassName: PropTypes.string,
     focus: PropTypes.bool,
     forceRenderTabPanel: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
@@ -149,6 +155,8 @@ export default class UncontrolledTabs extends Component {
             const panelId = this.panelIds[listIndex];
             const selected = this.props.selectedIndex === listIndex;
             const focus = selected && this.props.focus;
+            const activeClassName = this.props.activeTabClassName;
+            const disabledClassName = this.props.disabledTabClassName;
 
             listIndex++;
 
@@ -158,6 +166,8 @@ export default class UncontrolledTabs extends Component {
               panelId,
               selected,
               focus,
+              activeClassName,
+              disabledClassName,
             });
           }),
         });
@@ -166,6 +176,7 @@ export default class UncontrolledTabs extends Component {
         const tabId = this.tabIds[index];
         const selected = this.props.selectedIndex === index;
         const forceRenderTabPanel = this.props.forceRenderTabPanel;
+        const activeClassName = this.props.activeTabPanelClassName;
 
         index++;
 
@@ -174,6 +185,7 @@ export default class UncontrolledTabs extends Component {
           tabId,
           selected,
           forceRenderTabPanel,
+          activeClassName,
         });
       }
 
@@ -260,7 +272,6 @@ export default class UncontrolledTabs extends Component {
         {...attributes}
         className={cx(
           'ReactTabs',
-          'react-tabs',
           className,
         )}
         onClick={this.handleClick}

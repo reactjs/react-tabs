@@ -9,6 +9,7 @@ export default class TabPanel extends Component {
   };
 
   static propTypes = {
+    activeClassName: PropTypes.string, // private
     children: PropTypes.node,
     className: PropTypes.string,
     forceRenderTabPanel: PropTypes.bool, // private
@@ -20,6 +21,7 @@ export default class TabPanel extends Component {
 
   render() {
     const {
+      activeClassName,
       children,
       className,
       forceRenderTabPanel,
@@ -36,7 +38,7 @@ export default class TabPanel extends Component {
           'ReactTabs__TabPanel',
           className,
           {
-            'ReactTabs__TabPanel--selected': selected,
+            [activeClassName]: selected,
           },
         )}
         role="tabpanel"

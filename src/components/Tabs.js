@@ -14,10 +14,13 @@ export default class Tabs extends Component {
   };
 
   static propTypes = {
+    activeTabClassName: PropTypes.string,
+    activeTabPanelClassName: PropTypes.string,
     children: childrenPropType,
     className: PropTypes.string,
     defaultFocus: PropTypes.bool,
     defaultIndex: PropTypes.number,
+    disabledTabClassName: PropTypes.string,
     forceRenderTabPanel: PropTypes.bool,
     onSelect: onSelectPropType,
     selectedIndex: selectedIndexPropType,
@@ -50,16 +53,16 @@ For more information about controlled and uncontrolled mode of react-tabs see th
   }
 
   handleSelected = (index, last, event) => {
-    const state = {
-      // Set focus if the change was triggered from the keyboard
-      focus: event.type === 'keydown',
-    };
-
     // Call change event handler
     if (typeof this.props.onSelect === 'function') {
       // Check if the change event handler cancels the tab change
       if (this.props.onSelect(index, last, event) === false) return;
     }
+
+    const state = {
+      // Set focus if the change was triggered from the keyboard
+      focus: event.type === 'keydown',
+    };
 
     if (Tabs.inUncontrolledMode(this.props)) {
       // Update selected index
