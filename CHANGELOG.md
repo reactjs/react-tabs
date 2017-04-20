@@ -1,5 +1,13 @@
 # Changelog
 
+### 0.8.3 (Apr 19, 2017)
+
+- Fix deprecation warnings with react 15.5
+
+### 0.8.2 (Oct 19, 2016)
+
+- Fix UMD build (#143)
+
 ### 0.8.0 (Sep 14, 2016)
 
 - Allow other components inside TabList (#123)
