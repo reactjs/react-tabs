@@ -4,12 +4,16 @@ import cx from 'classnames';
 
 export default class TabList extends Component {
 
+  static defaultProps = {
+    className: 'ReactTabs__TabList',
+  };
+
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.array,
     ]),
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   };
 
   render() {
@@ -21,10 +25,7 @@ export default class TabList extends Component {
     return (
       <ul
         {...attributes}
-        className={cx(
-          'ReactTabs__TabList',
-          className,
-        )}
+        className={cx(className)}
         role="tablist"
       >
         {children}

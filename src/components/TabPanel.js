@@ -5,13 +5,14 @@ import cx from 'classnames';
 export default class TabPanel extends Component {
 
   static defaultProps = {
+    className: 'ReactTabs__TabPanel',
     style: {},
   };
 
   static propTypes = {
     activeClassName: PropTypes.string, // private
     children: PropTypes.node,
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     forceRenderTabPanel: PropTypes.bool, // private
     id: PropTypes.string, // private
     selected: PropTypes.bool, // private
@@ -35,7 +36,6 @@ export default class TabPanel extends Component {
       <div
         {...attributes}
         className={cx(
-          'ReactTabs__TabPanel',
           className,
           {
             [activeClassName]: selected,
@@ -44,7 +44,6 @@ export default class TabPanel extends Component {
         role="tabpanel"
         id={id}
         aria-labelledby={tabId}
-        style={{ ...style, display: selected ? null : 'none' }}
       >
         {(forceRenderTabPanel || selected) ? children : null}
       </div>

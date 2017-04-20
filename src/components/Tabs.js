@@ -17,7 +17,7 @@ export default class Tabs extends Component {
     activeTabClassName: PropTypes.string,
     activeTabPanelClassName: PropTypes.string,
     children: childrenPropType,
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     defaultFocus: PropTypes.bool,
     defaultIndex: PropTypes.number,
     disabledTabClassName: PropTypes.string,

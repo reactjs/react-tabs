@@ -23,7 +23,7 @@ export default class UncontrolledTabs extends Component {
   static defaultProps = {
     activeTabClassName: 'ReactTabs__Tab--selected',
     activeTabPanelClassName: 'ReactTabs__TabPanel--selected',
-    className: '',
+    className: 'ReactTabs',
     disabledTabClassName: 'ReactTabs__Tab--disabled',
     focus: false,
     forceRenderTabPanel: false,
@@ -33,7 +33,7 @@ export default class UncontrolledTabs extends Component {
     activeTabClassName: PropTypes.string,
     activeTabPanelClassName: PropTypes.string,
     children: childrenPropType,
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     disabledTabClassName: PropTypes.string,
     focus: PropTypes.bool,
     forceRenderTabPanel: PropTypes.bool,
@@ -270,10 +270,7 @@ export default class UncontrolledTabs extends Component {
     return (
       <div
         {...attributes}
-        className={cx(
-          'ReactTabs',
-          className,
-        )}
+        className={cx(className)}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
         ref={(node) => { this.node = node; }}
