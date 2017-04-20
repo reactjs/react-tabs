@@ -5,6 +5,7 @@ import cx from 'classnames';
 export default class TabPanel extends Component {
 
   static defaultProps = {
+    activeClassName: 'ReactTabs__TabPanel--selected',
     className: 'ReactTabs__TabPanel',
     style: {},
   };

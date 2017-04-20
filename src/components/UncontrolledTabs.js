@@ -21,10 +21,7 @@ function isTabDisabled(node) {
 export default class UncontrolledTabs extends Component {
 
   static defaultProps = {
-    activeTabClassName: 'ReactTabs__Tab--selected',
-    activeTabPanelClassName: 'ReactTabs__TabPanel--selected',
     className: 'ReactTabs',
-    disabledTabClassName: 'ReactTabs__Tab--disabled',
     focus: false,
     forceRenderTabPanel: false,
   };
