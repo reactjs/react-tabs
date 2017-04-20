@@ -7,6 +7,7 @@ export default class TabPanel extends Component {
   static defaultProps = {
     activeClassName: 'ReactTabs__TabPanel--selected',
     className: 'ReactTabs__TabPanel',
+    forceRender: false,
     style: {},
   };
 
@@ -14,7 +15,7 @@ export default class TabPanel extends Component {
     activeClassName: PropTypes.string, // private
     children: PropTypes.node,
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
-    forceRenderTabPanel: PropTypes.bool, // private
+    forceRender: PropTypes.bool,
     id: PropTypes.string, // private
     selected: PropTypes.bool, // private
     style: PropTypes.object,
@@ -26,7 +27,7 @@ export default class TabPanel extends Component {
       activeClassName,
       children,
       className,
-      forceRenderTabPanel,
+      forceRender,
       id,
       selected,
       style,
@@ -46,7 +47,7 @@ export default class TabPanel extends Component {
         id={id}
         aria-labelledby={tabId}
       >
-        {(forceRenderTabPanel || selected) ? children : null}
+        {(forceRender || selected) ? children : null}
       </div>
     );
   }

@@ -23,7 +23,6 @@ export default class UncontrolledTabs extends Component {
   static defaultProps = {
     className: 'ReactTabs',
     focus: false,
-    forceRenderTabPanel: false,
   };
 
   static propTypes = {
@@ -172,7 +171,7 @@ export default class UncontrolledTabs extends Component {
         const id = this.panelIds[index];
         const tabId = this.tabIds[index];
         const selected = this.props.selectedIndex === index;
-        const forceRenderTabPanel = this.props.forceRenderTabPanel;
+        const forceRender = this.props.forceRenderTabPanel;
         const activeClassName = this.props.activeTabPanelClassName;
 
         index++;
@@ -181,7 +180,7 @@ export default class UncontrolledTabs extends Component {
           id,
           tabId,
           selected,
-          forceRenderTabPanel,
+          forceRender,
           activeClassName,
         });
       }
