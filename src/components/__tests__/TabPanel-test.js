@@ -11,14 +11,25 @@ describe('<TabPanel />', () => {
     };
   });
 
-  //it('should have sane defaults', () => {
-    // const wrapper = shallow(<TabPanel>Hola</TabPanel>);
+  it('should have sane defaults', () => {
+    const wrapper = shallow(<TabPanel>Hola</TabPanel>);
 
-  //  expect(wrapper.hasClass('ReactTabs__TabPanel')).toBe(true);
-  //  expect(wrapper.prop('role')).toBe('tabpanel');
-  //  expect(wrapper.children().length).toBe(1);
-  //  expect(wrapper.children().length).toBe(0);
-  //});
+    expect(wrapper.hasClass('ReactTabs__TabPanel')).toBe(true);
+    expect(wrapper.prop('role')).toBe('tabpanel');
+    expect(wrapper.children().length).toBe(0);
+  });
+
+  it('should render when selected', () => {
+    const wrapper = shallow(<TabPanel selected>Hola</TabPanel>);
+
+    expect(wrapper.children().length).toBe(1);
+  });
+
+  it('should render when forced', () => {
+    const wrapper = shallow(<TabPanel forceRender>Hola</TabPanel>);
+
+    expect(wrapper.children().length).toBe(1);
+  });
 
   it('should accept className', () => {
     const wrapper = shallow(<TabPanel className="foobar" />);
