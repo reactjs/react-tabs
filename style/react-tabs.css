@@ -20,8 +20,6 @@
   border-color: #aaa;
   color: black;
   border-radius: 5px 5px 0 0;
-  -moz-border-radius: 5px 5px 0 0;
-  -webkit-border-radius: 5px 5px 0 0;
 }
 
 .ReactTabs__TabPanel {
