@@ -1,112 +1,285 @@
-# react-tabs [![Build Status](https://travis-ci.org/reactjs/react-tabs.svg?branch=master)](https://travis-ci.org/reactjs/react-tabs) [![npm version](https://badge.fury.io/js/react-tabs.svg)](https://badge.fury.io/js/react-tabs)
+# react-tabs [![Build Status](https://travis-ci.org/reactjs/react-tabs.svg?branch=master)](https://travis-ci.org/reactjs/react-tabs) [![npm version](https://img.shields.io/npm/v/react-tabs.svg)](https://www.npmjs.com/package/react-tabs)
 
-React tabs component
+Accessible react tab component
 
-> Supports React ^0.14.0 or ^15.0.0
+> Supports React 0.14 and 15
 
 ## Installing
 
 ```bash
-$ npm install react-tabs --save
+$ yarn add react-tabs
+```
+
+You can also still use npm
+
+```bash
+npm install react-tabs --save
+```
+
+Or use directly in your html as UMD component
+
+```html
+<script src="https://unpkg.com/react-tabs@1.0.0/dist/react-tabs.min.js" />
 ```
 
 ## Demo
 
 https://reactcommunity.org/react-tabs/example/
 
-## Example
+(TODO: This demos are outdated and use super old versions of react and react-tabs)
+
+## Usage
+
+### Basic Example
 
 ```js
-import React, { Component } from 'react';
-import { render } from 'react-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-class App extends Component {
-  handleSelect(index, last) {
-    console.log('Selected tab: ' + index + ', Last tab: ' + last);
-  }
+export default () => (
+  <Tabs>
+    <TabList>
+      <Tab>Title 1</Tab>
+      <Tab>Title 2</Tab>
+    </TabList>
 
+    <TabPanel>
+      <h2>Any content 1</h2>
+    </TabPanel>
+    <TabPanel>
+      <h2>Any content 2</h2>
+    </TabPanel>
+  </Tabs>
+);
+```
+
+### Components
+
+react-tabs consists of 4 components which all need to be used together.
+
+### &lt;Tabs /&gt;
+
+If you specify additional props on the `<Tabs />` component they will be forwarded to the rendered `<div />`.
+
+#### className: `string | Array<string> | { [string]: boolean }`
+
+> default: `"PropTypes"`
+
+Provide a custom class name for the outer `<div />` of the tabs.
+
+> You can also supply an array of class names or an object where the class names are the key and the value is a boolean indicating if the name should be added. See the docs of [classnames](https://github.com/JedWatson/classnames#usage) on how to supply different class names.
+
+#### defaultFocus: `boolean`
+
+> default: `false`
+
+If set to `true` the tabs will be focused on initial render. This allows immediate use of keyboard keys to switch tabs after the first render.
+
+#### defaultIndex: `number`
+
+> default: `0`
+
+This allows changing the tab that should be open on initial render. This is a zero-based index, so first tab is `0`, second tab is `1`, ...
+
+> This can only be used in uncontrolled mode when react-tabs handles the current selected tab internally and for this reason cannot be used together with `selectedIndex`. See [here](#controlled-vs-uncontrolled-mode) for more info on modes.
+
+#### disabledTabClassName: `string`
+
+> default: `"ReactTabs__Tab--disabled"`
+
+Provide a custom class name for disabled tabs.
+
+> This option can also be set directly at the `<Tab />` component.
+
+#### forceRenderTabPanel: `boolean`
+
+> default: `false`
+
+By default only the current active tab will be rendered to DOM. If set to `true` all tabs will be rendered to the DOM always.
+
+> This can also be enabled for each individual `<TabPanel />` component with its prop `forceRender`.
+
+#### onSelect: `(index: number, lastIndex: number, event: Event) => ?boolean`
+
+> default: `undefined`
+
+This event handler is called every time a tab is changed. It will be called with the `index` that will be changed to, the `lastIndex` which was selected before and the underlying `event` which is usually either a `keydown` or `click` event.
+
+The callback can optionally return `true` to cancel the change to the new tab.
+
+> Returning `true` when the change to the new tab should be canceled is also important in controlled mode, as react-tabs still internally handles the focus of the tabs. (Really? maybe find a better way)
+
+> In controlled mode ths `onSelect` handler is required prop.
+
+#### selectedIndex: `number`
+
+> default: `null`
+
+Set the currently selected tab. This is a zero-based index, so first tab is `0`, second tab is `1`, ...
+
+This enables controlled mode, which also requires `onSelect` to be set. See [here](#controlled-vs-uncontrolled-mode) for more info on modes.
+
+#### selectedTabClassName: `string`
+
+> default: `"ReactTabs__Tab--selected"`
+
+Provide a custom class name for the active tab.
+
+> This option can also be set directly at the `<Tab />` component.
+
+#### selectedTabPanelClassName: `string`
+
+> default: `"ReactTabs__TabPanel--selected"`
+
+Provide a custom class name for the active tab panel.
+
+> This option can also be set directly at the `<TabPanel />` component.
+
+### &lt;TabList /&gt;
+
+If you specify additional props on the `<TabList />` component they will be forwarded to the rendered `<ul />`.
+
+#### className: `string | Array<string> | { [string]: boolean }`
+
+> default: `"PropTypes__TabList"`
+
+Provide a custom class name for the `<ul />`.
+
+> You can also supply an array of class names or an object where the class names are the key and the value is a boolean indicating if the name should be added. See the docs of [classnames](https://github.com/JedWatson/classnames#usage) on how to supply different class names.
+
+### &lt;Tab /&gt;
+
+If you specify additional props on the `<Tab />` component they will be forwarded to the rendered `<li />`.
+
+#### disabledClassName: `string`
+
+> default: `"ReactTabs__Tab--disabled"`
+
+Provide a custom class name for disabled tabs.
+
+#### className: `string | Array<string> | { [string]: boolean }`
+
+> default: `"PropTypes__Tab"`
+
+Provide a custom class name for the `<li />`.
+
+> You can also supply an array of class names or an object where the class names are the key and the value is a boolean indicating if the name should be added. See the docs of [classnames](https://github.com/JedWatson/classnames#usage) on how to supply different class names.
+
+#### selectedClassName: `string`
+
+> default: `"ReactTabs__Tab--selected"`
+
+Provide a custom class name for the active tab.
+
+### &lt;TabPanel /&gt;
+
+If you specify additional props on the `<TabPanel />` component they will be forwarded to the rendered `<dev />`.
+
+#### className: `string | Array<string> | { [string]: boolean }`
+
+> default: `"PropTypes__TabPanel"`
+
+Provide a custom class name for the `<div />` containing the tab content.
+
+> You can also supply an array of class names or an object where the class names are the key and the value is a boolean indicating if the name should be added. See the docs of [classnames](https://github.com/JedWatson/classnames#usage) on how to supply different class names.
+
+#### forceRender: `boolean`
+
+> default: `false`
+
+By default the tab content will only be rendered when the tab is active. If set to `true` the tab will also be rendered if inactive.
+
+> This can also be enabled for all `<TabPanel />` components with the prop `forceRenderTabPanel` on `<Tabs />`.
+
+#### selectedClassName: `string`
+
+> default: `"ReactTabs__TabPanel--selected"`
+
+Provide a custom class name for the active tab panel.
+
+## Controlled vs Uncontrolled mode
+
+React tabs has two different modes it can operate in, which change the way how much you need to take care about the state yourself.
+
+### Uncontrolled mode
+
+This is the default mode of react-tabs and makes the react-tabs components handle its state internally. You can change the starting tab with `defaultIndex` and you can listen for changes with `onSelect`.
+
+In this mode you cannot force a tab change during runtime.
+
+```js
+<Tabs defaultIndex={1} onSelect={index => console.log(index)}>
+  <TabList>
+    <Tab>Title 1</Tab>
+    <Tab>Title 2</Tab>
+  </TabList>
+  <TabPanel></TabPanel>
+  <TabPanel></TabPanel>
+</Tabs>
+```
+
+### Controlled mode
+
+This mode has to be enabled by supplying `selectedIndex` to the `<Tabs />` component.
+
+In this mode react-tabs does not handle any tab selection state internally and leaves all the state management up to the outer application.
+
+This mode als enforces you to set a handler for `onSelect`. `defaultIndex` does not have any effect.
+
+```js
+class App extends Component {
+  constructor() {
+    this.state = { tabIndex: 0 };
+  }
   render() {
     return (
-      {/*
-        <Tabs/> is a composite component and acts as the main container.
-
-        `onSelect` is called whenever a tab is selected. The handler for
-        this function will be passed the current index as well as the last index.
-
-        `selectedIndex` is the tab to select when first rendered. By default
-        the first (index 0) tab will be selected.
-
-        `forceRenderTabPanel` By default this react-tabs will only render the selected
-        tab's contents. Setting `forceRenderTabPanel` to `true` allows you to override the
-        default behavior, which may be useful in some circumstances (such as animating between tabs).
-
-      */}
-
-      <Tabs
-        onSelect={this.handleSelect}
-        selectedIndex={2}
-      >
-
-        {/*
-          <TabList/> is a composite component and is the container for the <Tab/>s.
-        */}
-
+      <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
         <TabList>
-
-          {/*
-            <Tab/> is the actual tab component that users will interact with.
-
-            Selecting a tab can be done by either clicking with the mouse,
-            or by using the keyboard tab to give focus then navigating with
-            the arrow keys (right/down to select tab to the right of selected,
-            left/up to select tab to the left of selected).
-
-            The content of the <Tab/> (this.props.children) will be shown as the label.
-          */}
-
-          <Tab>Foo</Tab>
-          <Tab>Bar</Tab>
-          <Tab>Baz</Tab>
+          <Tab>Title 1</Tab>
+          <Tab>Title 2</Tab>
         </TabList>
-
-        {/*
-          <TabPanel/> is the content for the tab.
-
-          There should be an equal number of <Tab/> and <TabPanel/> components.
-          <Tab/> and <TabPanel/> components are tied together by the order in
-          which they appear. The first (index 0) <Tab/> will be associated with
-          the <TabPanel/> of the same index. When you run this example with
-          `selectedIndex` equal to 0, the tab with the label "Foo" will be selected
-          and the content shown will be "Hello from Foo".
-
-          As with <Tab/> the content of <TabPanel/> will be shown as the content.
-        */}
-
-        <TabPanel>
-          <h2>Hello from Foo</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Hello from Bar</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Hello from Baz</h2>
-        </TabPanel>
+        <TabPanel></TabPanel>
+        <TabPanel></TabPanel>
       </Tabs>
     );
   }
 }
-
-render(<App/>, document.getElementById('container'));
 ```
 
 ## Styling
 
-You can disable the default styling by calling this method once:
+react-tabs does not include any style loading by default. Default stylesheets are provided and can be included in your application if desired.
 
+### Webpack
+
+When using webpack and a appropriate loader (`css-loader`, `sass-loader`, `less-loader` or `style-loader`) you can simply import the default stylesheet.
+
+```js
+import 'react-tabs/style/react-tabs.css';
+// or
+import 'react-tabs/style/react-tabs.scss';
+// or
+import 'react-tabs/style/react-tabs.less';
 ```
-Tabs.setUseDefaultStyles(false);
+
+### SASS
+
+When using SASS you can easily import the default styles
+
+```scss
+@import '../../path/to/node_modules/react-tabs/style/react-tabs.scss';
 ```
+
+### LESS
+
+When using LESS you can easily import the default styles
+
+```scss
+@import '../../path/to/node_modules/react-tabs/style/react-tabs.less';
+```
+
+### Custom
+
+You can also always just simply copy the default style to your own css/scss/less and modify it to your own needs. The changelog will always tell you when classes change and we also consider changes that break the styling as semver major.
 
 ## License
 
