@@ -5,14 +5,14 @@ import cx from 'classnames';
 export default class TabPanel extends Component {
 
   static defaultProps = {
-    activeClassName: 'ReactTabs__TabPanel--selected',
     className: 'ReactTabs__TabPanel',
     forceRender: false,
+    selectedClassName: 'ReactTabs__TabPanel--selected',
     style: {},
   };
 
   static propTypes = {
-    activeClassName: PropTypes.string, // private
+    selectedClassName: PropTypes.string, // private
     children: PropTypes.node,
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     forceRender: PropTypes.bool,
@@ -24,12 +24,12 @@ export default class TabPanel extends Component {
 
   render() {
     const {
-      activeClassName,
       children,
       className,
       forceRender,
       id,
       selected,
+      selectedClassName,
       style,
       tabId,
       ...attributes } = this.props;
@@ -40,7 +40,7 @@ export default class TabPanel extends Component {
         className={cx(
           className,
           {
-            [activeClassName]: selected,
+            [selectedClassName]: selected,
           },
         )}
         role="tabpanel"

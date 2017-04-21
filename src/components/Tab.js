@@ -5,17 +5,16 @@ import cx from 'classnames';
 export default class Tab extends Component {
 
   static defaultProps = {
-    activeClassName: 'ReactTabs__Tab--selected',
     className: 'ReactTabs__Tab',
     disabledClassName: 'ReactTabs__Tab--disabled',
     focus: false,
     id: null,
     panelId: null,
     selected: false,
+    selectedClassName: 'ReactTabs__Tab--selected',
   };
 
   static propTypes = {
-    activeClassName: PropTypes.string, // private
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
@@ -28,6 +27,7 @@ export default class Tab extends Component {
     id: PropTypes.string, // private
     panelId: PropTypes.string, // private
     selected: PropTypes.bool, // private
+    selectedClassName: PropTypes.string, // private
     tabRef: PropTypes.func, // private
   };
 
@@ -47,7 +47,6 @@ export default class Tab extends Component {
 
   render() {
     const {
-      activeClassName,
       children,
       className,
       disabled,
@@ -56,6 +55,7 @@ export default class Tab extends Component {
       id,
       panelId,
       selected,
+      selectedClassName,
       tabRef,
       ...attributes } = this.props;
 
@@ -65,7 +65,7 @@ export default class Tab extends Component {
         className={cx(
           className,
           {
-            [activeClassName]: selected,
+            [selectedClassName]: selected,
             [disabledClassName]: disabled,
           },
         )}

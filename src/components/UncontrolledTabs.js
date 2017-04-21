@@ -26,15 +26,15 @@ export default class UncontrolledTabs extends Component {
   };
 
   static propTypes = {
-    activeTabClassName: PropTypes.string,
-    activeTabPanelClassName: PropTypes.string,
     children: childrenPropType,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     disabledTabClassName: PropTypes.string,
     focus: PropTypes.bool,
     forceRenderTabPanel: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
     selectedIndex: PropTypes.number.isRequired,
+    selectedTabClassName: PropTypes.string,
+    selectedTabPanelClassName: PropTypes.string,
   };
 
   tabNodes = [];
@@ -106,7 +106,16 @@ export default class UncontrolledTabs extends Component {
 
   getChildren() {
     let index = 0;
-    const children = this.props.children;
+    const {
+      children,
+      disabledTabClassName,
+      focus,
+      forceRenderTabPanel,
+      selectedIndex,
+      selectedTabClassName,
+      selectedTabPanelClassName,
+    } = this.props;
+
     this.tabIds = this.tabIds || [];
     this.panelIds = this.panelIds || [];
     let diff = this.tabIds.length - this.getTabsCount();
@@ -132,7 +141,13 @@ export default class UncontrolledTabs extends Component {
       // Clone TabList and Tab components to have refs
       if (child.type === TabList) {
         let listIndex = 0;
-        // TODO try setting the uuid in the "constructor" for `Tab`/`TabPanel`
+
+        // Figure out if the current focus in the DOM is set on a Tab
+        // If it is we should keep the focus on the next selected tab
+        const wasTabFocused = React.Children.toArray(child.props.children)
+          .filter(tab => tab.type === Tab)
+          .some((tab, i) => document.activeElement === this.getTab(i));
+
         result = cloneElement(child, {
           children: React.Children.map(child.props.children, (tab) => {
             // null happens when conditionally rendering TabPanel/Tab
@@ -146,43 +161,37 @@ export default class UncontrolledTabs extends Component {
             if (tab.type !== Tab) return tab;
 
             const key = `tabs-${listIndex}`;
-            const tabRef = (node) => { this.tabNodes[key] = node; };
-            const id = this.tabIds[listIndex];
-            const panelId = this.panelIds[listIndex];
-            const selected = this.props.selectedIndex === listIndex;
-            const focus = selected && this.props.focus;
-            const activeClassName = this.props.activeTabClassName;
-            const disabledClassName = this.props.disabledTabClassName;
+            const selected = selectedIndex === listIndex;
+
+            const props = {
+              tabRef: (node) => { this.tabNodes[key] = node; },
+              id: this.tabIds[listIndex],
+              panelId: this.panelIds[listIndex],
+              selected,
+              focus: selected && (focus || wasTabFocused),
+            };
+
+            if (selectedTabClassName) props.selectedClassName = selectedTabClassName;
+            if (disabledTabClassName) props.disabledClassName = disabledTabClassName;
 
             listIndex++;
 
-            return cloneElement(tab, {
-              tabRef,
-              id,
-              panelId,
-              selected,
-              focus,
-              activeClassName,
-              disabledClassName,
-            });
+            return cloneElement(tab, props);
           }),
         });
       } else if (child.type === TabPanel) {
-        const id = this.panelIds[index];
-        const tabId = this.tabIds[index];
-        const selected = this.props.selectedIndex === index;
-        const forceRender = this.props.forceRenderTabPanel;
-        const activeClassName = this.props.activeTabPanelClassName;
+        const props = {
+          id: this.panelIds[index],
+          tabId: this.tabIds[index],
+          selected: selectedIndex === index,
+        };
+
+        if (forceRenderTabPanel) props.forceRender = forceRenderTabPanel;
+        if (selectedTabPanelClassName) props.selectedClassName = selectedTabPanelClassName;
 
         index++;
 
-        result = cloneElement(child, {
-          id,
-          tabId,
-          selected,
-          forceRender,
-          activeClassName,
-        });
+        result = cloneElement(child, props);
       }
 
       return result;
@@ -254,12 +263,15 @@ export default class UncontrolledTabs extends Component {
   render() {
     // Delete all known props, so they don't get added to DOM
     const {
-        className,
-        selectedIndex,
-        onSelect,
-        focus,
         children,
+        className,
+        disabledTabClassName,
+        focus,
         forceRenderTabPanel,
+        onSelect,
+        selectedIndex,
+        selectedTabClassName,
+        selectedTabPanelClassName,
         ...attributes
     } = this.props;
 

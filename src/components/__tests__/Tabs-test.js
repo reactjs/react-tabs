@@ -86,14 +86,12 @@ describe('<Tabs />', () => {
       const wrapper = mount(createTabs());
 
       expect(wrapper.hasClass('ReactTabs')).toBe(true);
-      expect(wrapper.hasClass('react-tabs')).toBe(true);
     });
 
     test('should accept className', () => {
       const wrapper = mount(createTabs({ className: 'foobar' }));
 
-      expect(wrapper.hasClass('ReactTabs')).toBe(true);
-      expect(wrapper.hasClass('react-tabs')).toBe(true);
+      expect(wrapper.hasClass('ReactTabs')).toBe(false);
       expect(wrapper.hasClass('foobar')).toBe(true);
     });
   });
@@ -192,7 +190,7 @@ describe('<Tabs />', () => {
   });
 
   describe('performance', () => {
-    test('should only render the active tab panel', () => {
+    test('should only render the selected tab panel', () => {
       const wrapper = mount(createTabs());
 
       expect(wrapper.childAt(1).text()).toBe('Hello Foo');
