@@ -1,6 +1,6 @@
 # Changelog
 
-### 1.0.0 (Apr X, 2017)
+### Next Major
 
 #### Breaking Changes
 
@@ -36,7 +36,7 @@
 
 #### Bug Fixes
 
-- 
+-
 
 #### Internal
 
