@@ -1,5 +1,48 @@
 # Changelog
 
+### 1.0.0 (Apr X, 2017)
+
+#### Breaking Changes
+
+- `activeTabClassName` was renamed to `selectedTabClassName`
+- `selectedTabClassName` and `disabledTabClassName` moved from `<TabList />` to `<Tabs />`
+- `className` property on all components now overwrites the default classes instead of adding a second class name
+
+```js
+// 0.8
+<Tabs className="tabs">
+    <TabList className="list">
+        <Tab className="tab" />
+    </TabList>
+    <TabPanel className="panel" />
+</Tabs>
+
+// Same effect in 1.0
+<Tabs className={['tabs', 'ReactTabs']}>
+    <TabList className={['list', 'ReactTabs__TabList']}>
+        <Tab className={['tab', 'ReactTabs__Tab']} />
+    </TabList>
+    <TabPanel className={['panel', 'ReactTabs__TabPanel']} />
+</Tabs>
+```
+
+- `selectedIndex` now enables controlled mode, which disables internal management of the active tab. If you were using `selectedIndex` to set the initial displayed tab use `defaultIndex`
+- No styles do get added by default anymore. If you want to use the default styles you need to add them yourself. See README.
+
+#### New Features
+
+- `selectedTabPanelClassName` was added to add `<Tabs />` to change the class name of the current selected TabPanel
+- `defaultIndex` was added to set the initial displayed tab
+
+#### Bug Fixes
+
+- 
+
+#### Internal
+
+- Refactor components to use native classes
+- Refactor to not use react-dom
+
 ### 0.8.3 (Apr 19, 2017)
 
 - Fix deprecation warnings with react 15.5
