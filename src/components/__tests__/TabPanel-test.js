@@ -39,9 +39,7 @@ describe('<TabPanel />', () => {
   });
 
   it('should support being selected', () => {
-    const wrapper = shallow(
-      <TabPanel selected id="abcd" tabId="1234">Hola</TabPanel>,
-    );
+    const wrapper = shallow(<TabPanel selected id="abcd" tabId="1234">Hola</TabPanel>);
 
     expect(wrapper.hasClass('ReactTabs__TabPanel')).toBe(true);
     expect(wrapper.hasClass('ReactTabs__TabPanel--selected')).toBe(true);

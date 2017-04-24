@@ -47,13 +47,7 @@ export function childrenPropType(props, propName, componentName) {
   return error;
 }
 
-export function onSelectPropType(
-  props,
-  propName,
-  componentName,
-  location,
-  propFullName,
-) {
+export function onSelectPropType(props, propName, componentName, location, propFullName) {
   const prop = props[propName];
   const name = propFullName || propName;
   let error = null;
@@ -73,13 +67,7 @@ If you only want to set the inital tab replace \`selectedIndex\` with \`defaultI
   return error;
 }
 
-export function selectedIndexPropType(
-  props,
-  propName,
-  componentName,
-  location,
-  propFullName,
-) {
+export function selectedIndexPropType(props, propName, componentName, location, propFullName) {
   const prop = props[propName];
   const name = propFullName || propName;
   let error = null;

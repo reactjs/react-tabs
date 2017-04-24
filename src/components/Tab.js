@@ -14,16 +14,8 @@ export default class Tab extends Component {
   };
 
   static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.object,
-      PropTypes.string,
-    ]),
-    className: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.array,
-      PropTypes.object,
-    ]),
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     disabled: PropTypes.bool,
     disabledClassName: PropTypes.string, // private
     focus: PropTypes.bool, // private

@@ -127,11 +127,7 @@ describe('<Tabs />', () => {
       const wrapper = mount(createTabs());
       const tablist = wrapper.childAt(0);
 
-      for (
-        let i = 0, j = 0, l = tablist.children.length;
-        i < l;
-        i++, (j += 2)
-      ) {
+      for (let i = 0, j = 0, l = tablist.children.length; i < l; i++, (j += 2)) {
         const tab = tablist.childAt(i);
         const panel = wrapper.childAt(i + 1);
 
@@ -239,11 +235,7 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
-      const result = Tabs.propTypes.children(
-        wrapper.props(),
-        'children',
-        'Tabs',
-      );
+      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
       expect(result instanceof Error).toBe(true);
     });
 
@@ -266,9 +258,7 @@ describe('<Tabs />', () => {
 
       const expectedMessage =
         'The prop `onSelect` is marked as required in `Tabs`, but its value is `undefined` or `null`.';
-      expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(
-        true,
-      );
+      expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(true);
     });
 
     test('should result with warning when defaultIndex and selectedIndex set', () => {
@@ -290,9 +280,7 @@ describe('<Tabs />', () => {
 
       const expectedMessage =
         'The prop `selectedIndex` cannot be used together with `defaultIndex` in `Tabs`.';
-      expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(
-        true,
-      );
+      expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(true);
     });
 
     test(`should result with warning when tabs/panels are imbalanced and
@@ -312,11 +300,7 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
-      const result = Tabs.propTypes.children(
-        wrapper.props(),
-        'children',
-        'Tabs',
-      );
+      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
       expect(result instanceof Error).toBe(true);
     });
 
@@ -347,11 +331,7 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      const result = Tabs.propTypes.children(
-        wrapper.props(),
-        'children',
-        'Tabs',
-      );
+      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
       expect(result instanceof Error).toBe(false);
     });
 

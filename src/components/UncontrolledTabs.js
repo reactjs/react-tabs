@@ -26,11 +26,7 @@ export default class UncontrolledTabs extends Component {
 
   static propTypes = {
     children: childrenPropType,
-    className: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.array,
-      PropTypes.object,
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     disabledTabClassName: PropTypes.string,
     focus: PropTypes.bool,
     forceRenderTabPanel: PropTypes.bool,
@@ -177,10 +173,8 @@ export default class UncontrolledTabs extends Component {
               focus: selected && (focus || wasTabFocused),
             };
 
-            if (selectedTabClassName)
-              props.selectedClassName = selectedTabClassName;
-            if (disabledTabClassName)
-              props.disabledClassName = disabledTabClassName;
+            if (selectedTabClassName) props.selectedClassName = selectedTabClassName;
+            if (disabledTabClassName) props.disabledClassName = disabledTabClassName;
 
             listIndex++;
 
@@ -195,8 +189,7 @@ export default class UncontrolledTabs extends Component {
         };
 
         if (forceRenderTabPanel) props.forceRender = forceRenderTabPanel;
-        if (selectedTabPanelClassName)
-          props.selectedClassName = selectedTabPanelClassName;
+        if (selectedTabPanelClassName) props.selectedClassName = selectedTabPanelClassName;
 
         index++;
 
@@ -240,10 +233,7 @@ export default class UncontrolledTabs extends Component {
           return;
         }
 
-        const index = [].slice
-          .call(node.parentNode.children)
-          .filter(isTabNode)
-          .indexOf(node);
+        const index = [].slice.call(node.parentNode.children).filter(isTabNode).indexOf(node);
         this.setSelected(index, e);
         return;
       }

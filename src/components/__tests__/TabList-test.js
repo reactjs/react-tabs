@@ -64,11 +64,7 @@ describe('<TabList />', () => {
 
   it('should display the custom classnames for selected and disabled tab specified on tabs', () => {
     const wrapper = mount(
-      <Tabs
-        defaultIndex={0}
-        selectedTabClassName="active"
-        disabledTabClassName="disabled"
-      >
+      <Tabs defaultIndex={0} selectedTabClassName="active" disabledTabClassName="disabled">
         <TabList>
           <Tab>Foo</Tab>
           <Tab disabled>Bar</Tab>
