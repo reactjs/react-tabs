@@ -7,7 +7,7 @@
 		exports["ReactTabs"] = factory(require("react"), require("prop-types"), require("classnames"));
 	else
 		root["ReactTabs"] = factory(root["React"], root["PropTypes"], root["classNames"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -16,9 +16,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -84,6 +84,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93,7 +99,7 @@ exports.__esModule = true;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _propTypes = __webpack_require__(2);
+var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -143,22 +149,22 @@ var Tab = function (_Component) {
         _this2 = this;
 
     var _props = this.props,
-        activeTabClassName = _props.activeTabClassName,
         children = _props.children,
         className = _props.className,
         disabled = _props.disabled,
-        disabledTabClassName = _props.disabledTabClassName,
+        disabledClassName = _props.disabledClassName,
         focus = _props.focus,
         id = _props.id,
         panelId = _props.panelId,
         selected = _props.selected,
+        selectedClassName = _props.selectedClassName,
         tabRef = _props.tabRef,
-        attributes = _objectWithoutProperties(_props, ['activeTabClassName', 'children', 'className', 'disabled', 'disabledTabClassName', 'focus', 'id', 'panelId', 'selected', 'tabRef']);
+        attributes = _objectWithoutProperties(_props, ['children', 'className', 'disabled', 'disabledClassName', 'focus', 'id', 'panelId', 'selected', 'selectedClassName', 'tabRef']);
 
     return _react2.default.createElement(
       'li',
       _extends({}, attributes, {
-        className: (0, _classnames2.default)('ReactTabs__Tab', className, (_cx = {}, _cx[activeTabClassName] = selected, _cx[disabledTabClassName] = disabled, _cx)),
+        className: (0, _classnames2.default)(className, (_cx = {}, _cx[selectedClassName] = selected, _cx[disabledClassName] = disabled, _cx)),
         ref: function ref(node) {
           _this2.node = node;if (tabRef) tabRef(node);
         },
@@ -177,31 +183,26 @@ var Tab = function (_Component) {
 }(_react.Component);
 
 Tab.defaultProps = {
-  activeTabClassName: 'ReactTabs__Tab--selected',
-  disabledTabClassName: 'ReactTabs__Tab--disabled',
+  className: 'ReactTabs__Tab',
+  disabledClassName: 'ReactTabs__Tab--disabled',
   focus: false,
   id: null,
   panelId: null,
-  selected: false
+  selected: false,
+  selectedClassName: 'ReactTabs__Tab--selected'
 };
 exports.default = Tab;
  true ? Tab.propTypes = {
-  activeTabClassName: _propTypes2.default.string,
-  disabledTabClassName: _propTypes2.default.string,
   children: _propTypes2.default.oneOfType([_propTypes2.default.array, _propTypes2.default.object, _propTypes2.default.string]),
-  className: _propTypes2.default.string,
+  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object]),
   disabled: _propTypes2.default.bool,
+  disabledClassName: _propTypes2.default.string, // private
   focus: _propTypes2.default.bool, // private
   id: _propTypes2.default.string, // private
   panelId: _propTypes2.default.string, // private
   selected: _propTypes2.default.bool, // private
+  selectedClassName: _propTypes2.default.string, // private
   tabRef: _propTypes2.default.func } : void 0;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ }),
 /* 3 */
@@ -214,7 +215,7 @@ exports.__esModule = true;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _propTypes = __webpack_require__(2);
+var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -225,10 +226,6 @@ var _react2 = _interopRequireDefault(_react);
 var _classnames = __webpack_require__(5);
 
 var _classnames2 = _interopRequireDefault(_classnames);
-
-var _Tab = __webpack_require__(1);
-
-var _Tab2 = _interopRequireDefault(_Tab);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -249,55 +246,32 @@ var TabList = function (_Component) {
     return _possibleConstructorReturn(this, _Component.apply(this, arguments));
   }
 
-  TabList.prototype.renderChildren = function renderChildren() {
-    var _props = this.props,
-        activeTabClassName = _props.activeTabClassName,
-        children = _props.children,
-        disabledTabClassName = _props.disabledTabClassName;
-
-
-    return _react2.default.Children.map(children, function (child) {
-      // if child is not a tab we don't need to clone it
-      // since we don't need to add custom props
-
-      if (child.type === _Tab2.default) {
-        return _react2.default.cloneElement(child, {
-          activeTabClassName: activeTabClassName,
-          disabledTabClassName: disabledTabClassName
-        });
-      }
-
-      return child;
-    });
-  };
-
   TabList.prototype.render = function render() {
-    var _props2 = this.props,
-        activeTabClassName = _props2.activeTabClassName,
-        children = _props2.children,
-        className = _props2.className,
-        disabledTabClassName = _props2.disabledTabClassName,
-        attributes = _objectWithoutProperties(_props2, ['activeTabClassName', 'children', 'className', 'disabledTabClassName']);
+    var _props = this.props,
+        children = _props.children,
+        className = _props.className,
+        attributes = _objectWithoutProperties(_props, ['children', 'className']);
 
     return _react2.default.createElement(
       'ul',
       _extends({}, attributes, {
-        className: (0, _classnames2.default)('ReactTabs__TabList', className),
+        className: (0, _classnames2.default)(className),
         role: 'tablist'
       }),
-      this.renderChildren()
+      children
     );
   };
 
   return TabList;
 }(_react.Component);
 
+TabList.defaultProps = {
+  className: 'ReactTabs__TabList'
+};
 exports.default = TabList;
  true ? TabList.propTypes = {
-  activeTabClassName: _propTypes2.default.string,
   children: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array]),
-  className: _propTypes2.default.string,
-  disabledTabClassName: _propTypes2.default.string
+  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object])
 } : void 0;
 
 /***/ }),
@@ -311,7 +285,7 @@ exports.__esModule = true;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _propTypes = __webpack_require__(2);
+var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -343,28 +317,28 @@ var TabPanel = function (_Component) {
   }
 
   TabPanel.prototype.render = function render() {
+    var _cx;
+
     var _props = this.props,
         children = _props.children,
         className = _props.className,
-        forceRenderTabPanel = _props.forceRenderTabPanel,
+        forceRender = _props.forceRender,
         id = _props.id,
         selected = _props.selected,
+        selectedClassName = _props.selectedClassName,
         style = _props.style,
         tabId = _props.tabId,
-        attributes = _objectWithoutProperties(_props, ['children', 'className', 'forceRenderTabPanel', 'id', 'selected', 'style', 'tabId']);
+        attributes = _objectWithoutProperties(_props, ['children', 'className', 'forceRender', 'id', 'selected', 'selectedClassName', 'style', 'tabId']);
 
     return _react2.default.createElement(
       'div',
       _extends({}, attributes, {
-        className: (0, _classnames2.default)('ReactTabs__TabPanel', className, {
-          'ReactTabs__TabPanel--selected': selected
-        }),
+        className: (0, _classnames2.default)(className, (_cx = {}, _cx[selectedClassName] = selected, _cx)),
         role: 'tabpanel',
         id: id,
-        'aria-labelledby': tabId,
-        style: _extends({}, style, { display: selected ? null : 'none' })
+        'aria-labelledby': tabId
       }),
-      forceRenderTabPanel || selected ? children : null
+      forceRender || selected ? children : null
     );
   };
 
@@ -372,13 +346,17 @@ var TabPanel = function (_Component) {
 }(_react.Component);
 
 TabPanel.defaultProps = {
+  className: 'ReactTabs__TabPanel',
+  forceRender: false,
+  selectedClassName: 'ReactTabs__TabPanel--selected',
   style: {}
 };
 exports.default = TabPanel;
  true ? TabPanel.propTypes = {
+  selectedClassName: _propTypes2.default.string, // private
   children: _propTypes2.default.node,
-  className: _propTypes2.default.string,
-  forceRenderTabPanel: _propTypes2.default.bool, // private
+  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object]),
+  forceRender: _propTypes2.default.bool,
   id: _propTypes2.default.string, // private
   selected: _propTypes2.default.bool, // private
   style: _propTypes2.default.object,
@@ -429,7 +407,7 @@ var _TabList = __webpack_require__(3);
 
 var _TabList2 = _interopRequireDefault(_TabList);
 
-var _Tab = __webpack_require__(1);
+var _Tab = __webpack_require__(2);
 
 var _Tab2 = _interopRequireDefault(_Tab);
 
@@ -478,7 +456,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Tab = __webpack_require__(1);
+var _Tab = __webpack_require__(2);
 
 var _Tab2 = _interopRequireDefault(_Tab);
 
@@ -568,7 +546,7 @@ function selectedIndexPropType(props, propName, componentName, location, propFul
 
 exports.__esModule = true;
 
-var _propTypes = __webpack_require__(2);
+var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -603,16 +581,16 @@ var Tabs = function (_Component) {
     var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
     _this.handleSelected = function (index, last, event) {
-      var state = {
-        // Set focus if the change was triggered from the keyboard
-        focus: event.type === 'keydown'
-      };
-
       // Call change event handler
       if (typeof _this.props.onSelect === 'function') {
         // Check if the change event handler cancels the tab change
         if (_this.props.onSelect(index, last, event) === false) return;
       }
+
+      var state = {
+        // Set focus if the change was triggered from the keyboard
+        focus: event.type === 'keydown'
+      };
 
       if (Tabs.inUncontrolledMode(_this.props)) {
         // Update selected index
@@ -622,7 +600,7 @@ var Tabs = function (_Component) {
       _this.setState(state);
     };
 
-    _this.state = Tabs.copyPropsToState(_this.props, {});
+    _this.state = Tabs.copyPropsToState(_this.props, {}, _this.props.defaultFocus);
     return _this;
   }
 
@@ -645,8 +623,10 @@ var Tabs = function (_Component) {
   // preserve the existing selectedIndex from state.
   // If the state has not selectedIndex, default to the defaultIndex or 0
   Tabs.copyPropsToState = function copyPropsToState(props, state) {
+    var focus = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
     var newState = {
-      focus: state.focus || props.defaultFocus
+      focus: focus
     };
 
     if (Tabs.inUncontrolledMode(props)) {
@@ -665,27 +645,6 @@ var Tabs = function (_Component) {
   };
 
   Tabs.prototype.render = function render() {
-    var _this2 = this;
-
-    // This fixes an issue with focus management.
-    //
-    // Ultimately, when focus is true, and an input has focus,
-    // and any change on that input causes a state change/re-render,
-    // focus gets sent back to the active tab, and input loses focus.
-    //
-    // Since the focus state only needs to be remembered
-    // for the current render, we can reset it once the
-    // render has happened.
-    //
-    // Don't use setState, because we don't want to re-render.
-    //
-    // See https://github.com/reactjs/react-tabs/pull/7
-    if (this.state.focus) {
-      setTimeout(function () {
-        _this2.state.focus = false;
-      }, 0);
-    }
-
     var _props = this.props,
         children = _props.children,
         defaultIndex = _props.defaultIndex,
@@ -718,12 +677,15 @@ Tabs.defaultProps = {
 exports.default = Tabs;
  true ? Tabs.propTypes = {
   children: _propTypes3.childrenPropType,
-  className: _propTypes2.default.string,
+  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object]),
   defaultFocus: _propTypes2.default.bool,
   defaultIndex: _propTypes2.default.number,
+  disabledTabClassName: _propTypes2.default.string,
   forceRenderTabPanel: _propTypes2.default.bool,
   onSelect: _propTypes3.onSelectPropType,
-  selectedIndex: _propTypes3.selectedIndexPropType
+  selectedIndex: _propTypes3.selectedIndexPropType,
+  selectedTabClassName: _propTypes2.default.string,
+  selectedTabPanelClassName: _propTypes2.default.string
 } : void 0;
 
 /***/ }),
@@ -737,7 +699,7 @@ exports.__esModule = true;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _propTypes = __webpack_require__(2);
+var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -755,7 +717,7 @@ var _uuid2 = _interopRequireDefault(_uuid);
 
 var _propTypes3 = __webpack_require__(8);
 
-var _Tab = __webpack_require__(1);
+var _Tab = __webpack_require__(2);
 
 var _Tab2 = _interopRequireDefault(_Tab);
 
@@ -909,7 +871,16 @@ var UncontrolledTabs = function (_Component) {
     var _this2 = this;
 
     var index = 0;
-    var children = this.props.children;
+    var _props = this.props,
+        children = _props.children,
+        disabledTabClassName = _props.disabledTabClassName,
+        focus = _props.focus,
+        forceRenderTabPanel = _props.forceRenderTabPanel,
+        selectedIndex = _props.selectedIndex,
+        selectedTabClassName = _props.selectedTabClassName,
+        selectedTabPanelClassName = _props.selectedTabPanelClassName;
+
+
     this.tabIds = this.tabIds || [];
     this.panelIds = this.panelIds || [];
     var diff = this.tabIds.length - this.getTabsCount();
@@ -935,7 +906,15 @@ var UncontrolledTabs = function (_Component) {
       // Clone TabList and Tab components to have refs
       if (child.type === _TabList2.default) {
         var listIndex = 0;
-        // TODO try setting the uuid in the "constructor" for `Tab`/`TabPanel`
+
+        // Figure out if the current focus in the DOM is set on a Tab
+        // If it is we should keep the focus on the next selected tab
+        var wasTabFocused = _react2.default.Children.toArray(child.props.children).filter(function (tab) {
+          return tab.type === _Tab2.default;
+        }).some(function (tab, i) {
+          return document.activeElement === _this2.getTab(i);
+        });
+
         result = (0, _react.cloneElement)(child, {
           children: _react2.default.Children.map(child.props.children, function (tab) {
             // null happens when conditionally rendering TabPanel/Tab
@@ -949,39 +928,39 @@ var UncontrolledTabs = function (_Component) {
             if (tab.type !== _Tab2.default) return tab;
 
             var key = 'tabs-' + listIndex;
-            var tabRef = function tabRef(node) {
-              _this2.tabNodes[key] = node;
+            var selected = selectedIndex === listIndex;
+
+            var props = {
+              tabRef: function tabRef(node) {
+                _this2.tabNodes[key] = node;
+              },
+              id: _this2.tabIds[listIndex],
+              panelId: _this2.panelIds[listIndex],
+              selected: selected,
+              focus: selected && (focus || wasTabFocused)
             };
-            var id = _this2.tabIds[listIndex];
-            var panelId = _this2.panelIds[listIndex];
-            var selected = _this2.props.selectedIndex === listIndex;
-            var focus = selected && _this2.props.focus;
+
+            if (selectedTabClassName) props.selectedClassName = selectedTabClassName;
+            if (disabledTabClassName) props.disabledClassName = disabledTabClassName;
 
             listIndex++;
 
-            return (0, _react.cloneElement)(tab, {
-              tabRef: tabRef,
-              id: id,
-              panelId: panelId,
-              selected: selected,
-              focus: focus
-            });
+            return (0, _react.cloneElement)(tab, props);
           })
         });
       } else if (child.type === _TabPanel2.default) {
-        var id = _this2.panelIds[index];
-        var tabId = _this2.tabIds[index];
-        var selected = _this2.props.selectedIndex === index;
-        var forceRenderTabPanel = _this2.props.forceRenderTabPanel;
+        var props = {
+          id: _this2.panelIds[index],
+          tabId: _this2.tabIds[index],
+          selected: selectedIndex === index
+        };
+
+        if (forceRenderTabPanel) props.forceRender = forceRenderTabPanel;
+        if (selectedTabPanelClassName) props.selectedClassName = selectedTabPanelClassName;
 
         index++;
 
-        result = (0, _react.cloneElement)(child, {
-          id: id,
-          tabId: tabId,
-          selected: selected,
-          forceRenderTabPanel: forceRenderTabPanel
-        });
+        result = (0, _react.cloneElement)(child, props);
       }
 
       return result;
@@ -1014,19 +993,22 @@ var UncontrolledTabs = function (_Component) {
     var _this3 = this;
 
     // Delete all known props, so they don't get added to DOM
-    var _props = this.props,
-        className = _props.className,
-        selectedIndex = _props.selectedIndex,
-        onSelect = _props.onSelect,
-        focus = _props.focus,
-        children = _props.children,
-        forceRenderTabPanel = _props.forceRenderTabPanel,
-        attributes = _objectWithoutProperties(_props, ['className', 'selectedIndex', 'onSelect', 'focus', 'children', 'forceRenderTabPanel']);
+    var _props2 = this.props,
+        children = _props2.children,
+        className = _props2.className,
+        disabledTabClassName = _props2.disabledTabClassName,
+        focus = _props2.focus,
+        forceRenderTabPanel = _props2.forceRenderTabPanel,
+        onSelect = _props2.onSelect,
+        selectedIndex = _props2.selectedIndex,
+        selectedTabClassName = _props2.selectedTabClassName,
+        selectedTabPanelClassName = _props2.selectedTabPanelClassName,
+        attributes = _objectWithoutProperties(_props2, ['children', 'className', 'disabledTabClassName', 'focus', 'forceRenderTabPanel', 'onSelect', 'selectedIndex', 'selectedTabClassName', 'selectedTabPanelClassName']);
 
     return _react2.default.createElement(
       'div',
       _extends({}, attributes, {
-        className: (0, _classnames2.default)('ReactTabs', 'react-tabs', className),
+        className: (0, _classnames2.default)(className),
         onClick: this.handleClick,
         onKeyDown: this.handleKeyDown,
         ref: function ref(node) {
@@ -1042,18 +1024,20 @@ var UncontrolledTabs = function (_Component) {
 }(_react.Component);
 
 UncontrolledTabs.defaultProps = {
-  className: '',
-  focus: false,
-  forceRenderTabPanel: false
+  className: 'ReactTabs',
+  focus: false
 };
 exports.default = UncontrolledTabs;
  true ? UncontrolledTabs.propTypes = {
   children: _propTypes3.childrenPropType,
-  className: _propTypes2.default.string,
+  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object]),
+  disabledTabClassName: _propTypes2.default.string,
   focus: _propTypes2.default.bool,
   forceRenderTabPanel: _propTypes2.default.bool,
   onSelect: _propTypes2.default.func.isRequired,
-  selectedIndex: _propTypes2.default.number.isRequired
+  selectedIndex: _propTypes2.default.number.isRequired,
+  selectedTabClassName: _propTypes2.default.string,
+  selectedTabPanelClassName: _propTypes2.default.string
 } : void 0;
 
 /***/ }),
@@ -1074,7 +1058,7 @@ var _TabList = __webpack_require__(3);
 
 var _TabList2 = _interopRequireDefault(_TabList);
 
-var _Tab = __webpack_require__(1);
+var _Tab = __webpack_require__(2);
 
 var _Tab2 = _interopRequireDefault(_Tab);
 
