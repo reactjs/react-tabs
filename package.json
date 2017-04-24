@@ -10,7 +10,9 @@
     "build:umd:min": "cross-env MINIFY=1 webpack --config webpack.build.js",
     "build": "npm run clean && npm run build:commonjs",
     "bundle": "mkdir -p dist && npm run build:umd && npm run build:umd:min",
+    "format": "prettier --write --single-quote --print-width 100 --trailing-comma all \"src/**/*.js\"",
     "lint": "eslint src",
+    "precommit": "lint-staged",
     "preversion": "npm run lint && npm test && npm run build && npm run bundle && git add dist/ && git commit -m 'publish: Distribution'",
     "prepublish": "npm run build",
     "test": "jest",
@@ -59,7 +61,10 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.2.1",
+    "husky": "^0.13.3",
     "jest-cli": "^19.0.2",
+    "lint-staged": "^3.4.0",
+    "prettier": "^1.2.2",
     "react": "^15.0.0",
     "react-addons-test-utils": "^15.0.0",
     "react-dom": "^15.0.0",
@@ -78,6 +83,12 @@
   "jest": {
     "roots": [
       "src"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --single-quote --trailing-comma all --write",
+      "git add"
     ]
   }
 }

@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { childrenPropType, onSelectPropType, selectedIndexPropType } from '../helpers/propTypes';
+import {
+  childrenPropType,
+  onSelectPropType,
+  selectedIndexPropType,
+} from '../helpers/propTypes';
 import UncontrolledTabs from './UncontrolledTabs';
 import { getTabsCount } from '../helpers/count';
 
 export default class Tabs extends Component {
-
   static defaultProps = {
     defaultFocus: false,
     forceRenderTabPanel: false,
@@ -15,7 +18,11 @@ export default class Tabs extends Component {
 
   static propTypes = {
     children: childrenPropType,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+    className: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object,
+    ]),
     defaultFocus: PropTypes.bool,
     defaultIndex: PropTypes.number,
     disabledTabClassName: PropTypes.string,
@@ -38,9 +45,9 @@ export default class Tabs extends Component {
       Tabs.inUncontrolledMode(newProps) !== Tabs.inUncontrolledMode(this.props)
     ) {
       throw new Error(
-`Switching between controlled mode (by using \`selectedIndex\`) and uncontrolled mode is not supported in \`Tabs\`.
+        `Switching between controlled mode (by using \`selectedIndex\`) and uncontrolled mode is not supported in \`Tabs\`.
 For more information about controlled and uncontrolled mode of react-tabs see the README.`,
-        );
+      );
     }
     // Use a transactional update to prevent race conditions
     // when reading the state in copyPropsToState
@@ -70,7 +77,7 @@ For more information about controlled and uncontrolled mode of react-tabs see th
     }
 
     this.setState(state);
-  }
+  };
 
   // preserve the existing selectedIndex from state.
   // If the state has not selectedIndex, default to the defaultIndex or 0

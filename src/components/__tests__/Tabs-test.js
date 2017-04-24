@@ -36,7 +36,7 @@ function assertTabSelected(wrapper, index) {
 describe('<Tabs />', () => {
   beforeAll(() => {
     // eslint-disable-next-line no-console
-    console.error = (error) => {
+    console.error = error => {
       throw new Error(error);
     };
   });
@@ -69,12 +69,14 @@ describe('<Tabs />', () => {
 
     test('should call onSelect when selection changes', () => {
       const called = { index: -1, last: -1 };
-      const wrapper = mount(createTabs({
-        onSelect(index, last) {
-          called.index = index;
-          called.last = last;
-        },
-      }));
+      const wrapper = mount(
+        createTabs({
+          onSelect(index, last) {
+            called.index = index;
+            called.last = last;
+          },
+        }),
+      );
 
       wrapper.childAt(0).childAt(1).simulate('click');
 
@@ -125,7 +127,11 @@ describe('<Tabs />', () => {
       const wrapper = mount(createTabs());
       const tablist = wrapper.childAt(0);
 
-      for (let i = 0, j = 0, l = tablist.children.length; i < l; i++, j += 2) {
+      for (
+        let i = 0, j = 0, l = tablist.children.length;
+        i < l;
+        i++, (j += 2)
+      ) {
         const tab = tablist.childAt(i);
         const panel = wrapper.childAt(i + 1);
 
@@ -191,22 +197,24 @@ describe('<Tabs />', () => {
     test('should not clone non tabs element', () => {
       class Demo extends React.Component {
         render() {
-          const arbitrary1 = <div ref="arbitrary1">One</div>;  // eslint-disable-line react/no-string-refs
-          const arbitrary2 = <span ref="arbitrary2">Two</span>;  // eslint-disable-line react/no-string-refs
-          const arbitrary3 = <small ref="arbitrary3">Three</small>;  // eslint-disable-line react/no-string-refs
+          const arbitrary1 = <div ref="arbitrary1">One</div>; // eslint-disable-line react/no-string-refs
+          const arbitrary2 = <span ref="arbitrary2">Two</span>; // eslint-disable-line react/no-string-refs
+          const arbitrary3 = <small ref="arbitrary3">Three</small>; // eslint-disable-line react/no-string-refs
 
-          return (<Tabs>
-            <TabList>
-              {arbitrary1}
-              <Tab>Foo</Tab>
-              {arbitrary2}
-              <Tab>Bar</Tab>
-              {arbitrary3}
-            </TabList>
+          return (
+            <Tabs>
+              <TabList>
+                {arbitrary1}
+                <Tab>Foo</Tab>
+                {arbitrary2}
+                <Tab>Bar</Tab>
+                {arbitrary3}
+              </TabList>
 
-            <TabPanel>Hello Baz</TabPanel>
-            <TabPanel>Hello Faz</TabPanel>
-          </Tabs>);
+              <TabPanel>Hello Baz</TabPanel>
+              <TabPanel>Hello Faz</TabPanel>
+            </Tabs>
+          );
         }
       }
 
@@ -231,14 +239,21 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
-      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      const result = Tabs.propTypes.children(
+        wrapper.props(),
+        'children',
+        'Tabs',
+      );
       expect(result instanceof Error).toBe(true);
     });
 
     test('should result with warning when onSelect missing when selectedIndex set', () => {
       const oldConsoleError = console.error; // eslint-disable-line no-console
       const catchedErrors = [];
-      console.error = (error) => { catchedErrors.push(error); }; // eslint-disable-line no-console
+      // eslint-disable-next-line no-console
+      console.error = error => {
+        catchedErrors.push(error);
+      };
       shallow(
         <Tabs selectedIndex={1}>
           <TabList>
@@ -249,14 +264,20 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
-      const expectedMessage = 'The prop `onSelect` is marked as required in `Tabs`, but its value is `undefined` or `null`.';
-      expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(true);
+      const expectedMessage =
+        'The prop `onSelect` is marked as required in `Tabs`, but its value is `undefined` or `null`.';
+      expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(
+        true,
+      );
     });
 
     test('should result with warning when defaultIndex and selectedIndex set', () => {
       const oldConsoleError = console.error; // eslint-disable-line no-console
       const catchedErrors = [];
-      console.error = (error) => { catchedErrors.push(error); }; // eslint-disable-line no-console
+      // eslint-disable-next-line no-console
+      console.error = error => {
+        catchedErrors.push(error);
+      };
       shallow(
         <Tabs selectedIndex={1} defaultIndex={1}>
           <TabList>
@@ -267,8 +288,11 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
-      const expectedMessage = 'The prop `selectedIndex` cannot be used together with `defaultIndex` in `Tabs`.';
-      expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(true);
+      const expectedMessage =
+        'The prop `selectedIndex` cannot be used together with `defaultIndex` in `Tabs`.';
+      expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(
+        true,
+      );
     });
 
     test(`should result with warning when tabs/panels are imbalanced and
@@ -288,7 +312,11 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
-      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      const result = Tabs.propTypes.children(
+        wrapper.props(),
+        'children',
+        'Tabs',
+      );
       expect(result instanceof Error).toBe(true);
     });
 
@@ -319,7 +347,11 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      const result = Tabs.propTypes.children(
+        wrapper.props(),
+        'children',
+        'Tabs',
+      );
       expect(result instanceof Error).toBe(false);
     });
 
@@ -328,24 +360,28 @@ describe('<Tabs />', () => {
     });
 
     test('should be okay with rendering just TabList', () => {
-      expect(() => shallow(
-        <Tabs>
-          <TabList />
-        </Tabs>,
-      )).not.toThrow();
+      expect(() =>
+        shallow(
+          <Tabs>
+            <TabList />
+          </Tabs>,
+        ),
+      ).not.toThrow();
     });
 
     test('should gracefully render null', () => {
-      expect(() => shallow(
-        <Tabs>
-          <TabList>
-            <Tab>Tab A</Tab>
-            {false && <Tab>Tab B</Tab>}
-          </TabList>
-          <TabPanel>Content A</TabPanel>
-          {false && <TabPanel>Content B</TabPanel>}
-        </Tabs>,
-      )).not.toThrow();
+      expect(() =>
+        shallow(
+          <Tabs>
+            <TabList>
+              <Tab>Tab A</Tab>
+              {false && <Tab>Tab B</Tab>}
+            </TabList>
+            <TabPanel>Content A</TabPanel>
+            {false && <TabPanel>Content B</TabPanel>}
+          </Tabs>,
+        ),
+      ).not.toThrow();
     });
 
     test('should support nested tabs', () => {
@@ -405,7 +441,9 @@ describe('<Tabs />', () => {
   test('should switch tabs if setState is called within onSelect', () => {
     class Wrap extends React.Component {
       handleSelect = () => this.setState({ foo: 'bar' });
-      render() { return createTabs({ onSelect: this.handleSelect }); }
+      render() {
+        return createTabs({ onSelect: this.handleSelect });
+      }
     }
 
     const wrapper = mount(<Wrap />);

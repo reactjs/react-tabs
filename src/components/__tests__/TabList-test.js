@@ -13,7 +13,7 @@ function hasClassAt(wrapper, index, className) {
 describe('<TabList />', () => {
   beforeAll(() => {
     // eslint-disable-next-line no-console
-    console.error = (error) => {
+    console.error = error => {
       throw new Error(error);
     };
   });
@@ -64,7 +64,11 @@ describe('<TabList />', () => {
 
   it('should display the custom classnames for selected and disabled tab specified on tabs', () => {
     const wrapper = mount(
-      <Tabs defaultIndex={0} selectedTabClassName="active" disabledTabClassName="disabled">
+      <Tabs
+        defaultIndex={0}
+        selectedTabClassName="active"
+        disabledTabClassName="disabled"
+      >
         <TabList>
           <Tab>Foo</Tab>
           <Tab disabled>Bar</Tab>
@@ -87,7 +91,9 @@ describe('<TabList />', () => {
       <Tabs defaultIndex={0}>
         <TabList>
           <Tab selectedClassName="active" disabledClassName="disabled">Foo</Tab>
-          <Tab disabled selectedClassName="active" disabledClassName="disabled">Bar</Tab>
+          <Tab disabled selectedClassName="active" disabledClassName="disabled">
+            Bar
+          </Tab>
         </TabList>
         <TabPanel>Foo</TabPanel>
         <TabPanel>Bar</TabPanel>

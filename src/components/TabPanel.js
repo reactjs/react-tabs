@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 
 export default class TabPanel extends Component {
-
   static defaultProps = {
     className: 'ReactTabs__TabPanel',
     forceRender: false,
@@ -14,7 +13,11 @@ export default class TabPanel extends Component {
   static propTypes = {
     selectedClassName: PropTypes.string, // private
     children: PropTypes.node,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+    className: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object,
+    ]),
     forceRender: PropTypes.bool,
     id: PropTypes.string, // private
     selected: PropTypes.bool, // private
@@ -32,22 +35,20 @@ export default class TabPanel extends Component {
       selectedClassName,
       style,
       tabId,
-      ...attributes } = this.props;
+      ...attributes
+    } = this.props;
 
     return (
       <div
         {...attributes}
-        className={cx(
-          className,
-          {
-            [selectedClassName]: selected,
-          },
-        )}
+        className={cx(className, {
+          [selectedClassName]: selected,
+        })}
         role="tabpanel"
         id={id}
         aria-labelledby={tabId}
       >
-        {(forceRender || selected) ? children : null}
+        {forceRender || selected ? children : null}
       </div>
     );
   }

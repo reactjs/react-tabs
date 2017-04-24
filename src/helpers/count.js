@@ -4,11 +4,15 @@ import Tab from '../components/Tab';
 import TabPanel from '../components/TabPanel';
 
 export function getTabsCount(children) {
-  const tabLists = React.Children.toArray(children).filter(x => x.type === TabList);
+  const tabLists = React.Children
+    .toArray(children)
+    .filter(x => x.type === TabList);
 
   if (tabLists[0] && tabLists[0].props.children) {
     return React.Children.count(
-      React.Children.toArray(tabLists[0].props.children).filter(x => x.type === Tab),
+      React.Children
+        .toArray(tabLists[0].props.children)
+        .filter(x => x.type === Tab),
     );
   }
 

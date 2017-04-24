@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 
 export default class Tab extends Component {
-
   static defaultProps = {
     className: 'ReactTabs__Tab',
     disabledClassName: 'ReactTabs__Tab--disabled',
@@ -20,7 +19,11 @@ export default class Tab extends Component {
       PropTypes.object,
       PropTypes.string,
     ]),
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+    className: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object,
+    ]),
     disabled: PropTypes.bool,
     disabledClassName: PropTypes.string, // private
     focus: PropTypes.bool, // private
@@ -57,19 +60,20 @@ export default class Tab extends Component {
       selected,
       selectedClassName,
       tabRef,
-      ...attributes } = this.props;
+      ...attributes
+    } = this.props;
 
     return (
       <li
         {...attributes}
-        className={cx(
-          className,
-          {
-            [selectedClassName]: selected,
-            [disabledClassName]: disabled,
-          },
-        )}
-        ref={(node) => { this.node = node; if (tabRef) tabRef(node); }}
+        className={cx(className, {
+          [selectedClassName]: selected,
+          [disabledClassName]: disabled,
+        })}
+        ref={node => {
+          this.node = node;
+          if (tabRef) tabRef(node);
+        }}
         role="tab"
         id={id}
         aria-selected={selected ? 'true' : 'false'}

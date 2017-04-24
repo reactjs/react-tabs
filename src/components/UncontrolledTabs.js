@@ -19,7 +19,6 @@ function isTabDisabled(node) {
 }
 
 export default class UncontrolledTabs extends Component {
-
   static defaultProps = {
     className: 'ReactTabs',
     focus: false,
@@ -27,7 +26,11 @@ export default class UncontrolledTabs extends Component {
 
   static propTypes = {
     children: childrenPropType,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+    className: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object,
+    ]),
     disabledTabClassName: PropTypes.string,
     focus: PropTypes.bool,
     forceRenderTabPanel: PropTypes.bool,
@@ -129,7 +132,7 @@ export default class UncontrolledTabs extends Component {
     }
 
     // Map children to dynamically setup refs
-    return React.Children.map(children, (child) => {
+    return React.Children.map(children, child => {
       // null happens when conditionally rendering TabPanel/Tab
       // see https://github.com/reactjs/react-tabs/issues/37
       if (child === null) {
@@ -144,12 +147,13 @@ export default class UncontrolledTabs extends Component {
 
         // Figure out if the current focus in the DOM is set on a Tab
         // If it is we should keep the focus on the next selected tab
-        const wasTabFocused = React.Children.toArray(child.props.children)
+        const wasTabFocused = React.Children
+          .toArray(child.props.children)
           .filter(tab => tab.type === Tab)
           .some((tab, i) => document.activeElement === this.getTab(i));
 
         result = cloneElement(child, {
-          children: React.Children.map(child.props.children, (tab) => {
+          children: React.Children.map(child.props.children, tab => {
             // null happens when conditionally rendering TabPanel/Tab
             // see https://github.com/reactjs/react-tabs/issues/37
             if (tab === null) {
@@ -164,15 +168,19 @@ export default class UncontrolledTabs extends Component {
             const selected = selectedIndex === listIndex;
 
             const props = {
-              tabRef: (node) => { this.tabNodes[key] = node; },
+              tabRef: node => {
+                this.tabNodes[key] = node;
+              },
               id: this.tabIds[listIndex],
               panelId: this.panelIds[listIndex],
               selected,
               focus: selected && (focus || wasTabFocused),
             };
 
-            if (selectedTabClassName) props.selectedClassName = selectedTabClassName;
-            if (disabledTabClassName) props.disabledClassName = disabledTabClassName;
+            if (selectedTabClassName)
+              props.selectedClassName = selectedTabClassName;
+            if (disabledTabClassName)
+              props.disabledClassName = disabledTabClassName;
 
             listIndex++;
 
@@ -187,7 +195,8 @@ export default class UncontrolledTabs extends Component {
         };
 
         if (forceRenderTabPanel) props.forceRender = forceRenderTabPanel;
-        if (selectedTabPanelClassName) props.selectedClassName = selectedTabPanelClassName;
+        if (selectedTabPanelClassName)
+          props.selectedClassName = selectedTabPanelClassName;
 
         index++;
 
@@ -198,7 +207,7 @@ export default class UncontrolledTabs extends Component {
     });
   }
 
-  handleKeyDown = (e) => {
+  handleKeyDown = e => {
     if (this.isTabFromContainer(e.target)) {
       let index = this.props.selectedIndex;
       let preventDefault = false;
@@ -222,15 +231,19 @@ export default class UncontrolledTabs extends Component {
     }
   };
 
-  handleClick = (e) => {
+  handleClick = e => {
     let node = e.target;
-    do { // eslint-disable-line no-cond-assign
+    // eslint-disable-next-line no-cond-assign
+    do {
       if (this.isTabFromContainer(node)) {
         if (isTabDisabled(node)) {
           return;
         }
 
-        const index = [].slice.call(node.parentNode.children).filter(isTabNode).indexOf(node);
+        const index = [].slice
+          .call(node.parentNode.children)
+          .filter(isTabNode)
+          .indexOf(node);
         this.setSelected(index, e);
         return;
       }
@@ -263,16 +276,16 @@ export default class UncontrolledTabs extends Component {
   render() {
     // Delete all known props, so they don't get added to DOM
     const {
-        children,
-        className,
-        disabledTabClassName,
-        focus,
-        forceRenderTabPanel,
-        onSelect,
-        selectedIndex,
-        selectedTabClassName,
-        selectedTabPanelClassName,
-        ...attributes
+      children,
+      className,
+      disabledTabClassName,
+      focus,
+      forceRenderTabPanel,
+      onSelect,
+      selectedIndex,
+      selectedTabClassName,
+      selectedTabPanelClassName,
+      ...attributes
     } = this.props;
 
     return (
@@ -281,7 +294,9 @@ export default class UncontrolledTabs extends Component {
         className={cx(className)}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
-        ref={(node) => { this.node = node; }}
+        ref={node => {
+          this.node = node;
+        }}
         data-tabs
       >
         {this.getChildren()}

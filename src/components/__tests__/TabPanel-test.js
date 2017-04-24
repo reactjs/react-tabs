@@ -6,7 +6,7 @@ import TabPanel from '../TabPanel';
 describe('<TabPanel />', () => {
   beforeAll(() => {
     // eslint-disable-next-line no-console
-    console.error = (error) => {
+    console.error = error => {
       throw new Error(error);
     };
   });
@@ -39,7 +39,9 @@ describe('<TabPanel />', () => {
   });
 
   it('should support being selected', () => {
-    const wrapper = shallow(<TabPanel selected id="abcd" tabId="1234">Hola</TabPanel>);
+    const wrapper = shallow(
+      <TabPanel selected id="abcd" tabId="1234">Hola</TabPanel>,
+    );
 
     expect(wrapper.hasClass('ReactTabs__TabPanel')).toBe(true);
     expect(wrapper.hasClass('ReactTabs__TabPanel--selected')).toBe(true);
@@ -49,7 +51,11 @@ describe('<TabPanel />', () => {
   });
 
   it('should support being selected with custom class name', () => {
-    const wrapper = shallow(<TabPanel selected id="abcd" tabId="1234" selectedClassName="selected">Hola</TabPanel>);
+    const wrapper = shallow(
+      <TabPanel selected id="abcd" tabId="1234" selectedClassName="selected">
+        Hola
+      </TabPanel>,
+    );
 
     expect(wrapper.hasClass('ReactTabs__TabPanel')).toBe(true);
     expect(wrapper.hasClass('ReactTabs__TabPanel--selected')).toBe(false);
@@ -72,4 +78,3 @@ describe('<TabPanel />', () => {
     expect(wrapper.prop('role')).toBe('tabpanel');
   });
 });
-
