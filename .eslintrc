@@ -6,6 +6,7 @@
     "node": true
   },
   "rules": {
+    "arrow-parens": "off",
     "no-plusplus": "off",
     "react/require-default-props": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],

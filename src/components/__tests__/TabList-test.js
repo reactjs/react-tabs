@@ -13,7 +13,7 @@ function hasClassAt(wrapper, index, className) {
 describe('<TabList />', () => {
   beforeAll(() => {
     // eslint-disable-next-line no-console
-    console.error = (error) => {
+    console.error = error => {
       throw new Error(error);
     };
   });
@@ -87,7 +87,9 @@ describe('<TabList />', () => {
       <Tabs defaultIndex={0}>
         <TabList>
           <Tab selectedClassName="active" disabledClassName="disabled">Foo</Tab>
-          <Tab disabled selectedClassName="active" disabledClassName="disabled">Bar</Tab>
+          <Tab disabled selectedClassName="active" disabledClassName="disabled">
+            Bar
+          </Tab>
         </TabList>
         <TabPanel>Foo</TabPanel>
         <TabPanel>Bar</TabPanel>

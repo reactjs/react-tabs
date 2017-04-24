@@ -16,7 +16,5 @@ export function getTabsCount(children) {
 }
 
 export function getPanelsCount(children) {
-  return React.Children.count(
-    React.Children.toArray(children).filter(x => x.type === TabPanel),
-  );
+  return React.Children.count(React.Children.toArray(children).filter(x => x.type === TabPanel));
 }
