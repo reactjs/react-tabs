@@ -86,14 +86,12 @@ describe('<Tabs />', () => {
       const wrapper = mount(createTabs());
 
       expect(wrapper.hasClass('ReactTabs')).toBe(true);
-      expect(wrapper.hasClass('react-tabs')).toBe(true);
     });
 
     test('should accept className', () => {
       const wrapper = mount(createTabs({ className: 'foobar' }));
 
-      expect(wrapper.hasClass('ReactTabs')).toBe(true);
-      expect(wrapper.hasClass('react-tabs')).toBe(true);
+      expect(wrapper.hasClass('ReactTabs')).toBe(false);
       expect(wrapper.hasClass('foobar')).toBe(true);
     });
   });
@@ -159,40 +157,10 @@ describe('<Tabs />', () => {
       wrapper.childAt(0).childAt(3).simulate('click');
       assertTabSelected(wrapper, 0);
     });
-
-    // TODO: Can't seem to make this fail when removing fix :`(
-    // See https://github.com/reactjs/react-tabs/pull/7
-    // test('should preserve selectedIndex when typing', function () {
-    //   let App = React.createClass({
-    //     handleKeyDown: function () { this.forceUpdate(); },
-    //     render: function () {
-    //       return (
-    //         <Tabs ref="tabs" selectedIndex={1}>
-    //           <TabList>
-    //             <Tab>First</Tab>
-    //             <Tab>Second</Tab>
-    //           </TabList>
-    //           <TabPanel>1st</TabPanel>
-    //           <TabPanel><input onKeyDown={this.handleKeyDown}/></TabPanel>
-    //         </Tabs>
-    //       );
-    //     }
-    //   });
-    //
-    //   let tabs = TestUtils.renderIntoDocument(<App/>).refs.tabs;
-    //   let input = tabs.getDOMNode().querySelector('input');
-    //
-    //   input.focus();
-    //   TestUtils.Simulate.keyDown(input, {
-    //     keyCode: 'a'.charCodeAt()
-    //   });
-    //
-    //   assertTabSelected(tabs, 1);
-    // });
   });
 
   describe('performance', () => {
-    test('should only render the active tab panel', () => {
+    test('should only render the selected tab panel', () => {
       const wrapper = mount(createTabs());
 
       expect(wrapper.childAt(1).text()).toBe('Hello Foo');

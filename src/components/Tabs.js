@@ -15,18 +15,21 @@ export default class Tabs extends Component {
 
   static propTypes = {
     children: childrenPropType,
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     defaultFocus: PropTypes.bool,
     defaultIndex: PropTypes.number,
+    disabledTabClassName: PropTypes.string,
     forceRenderTabPanel: PropTypes.bool,
     onSelect: onSelectPropType,
     selectedIndex: selectedIndexPropType,
+    selectedTabClassName: PropTypes.string,
+    selectedTabPanelClassName: PropTypes.string,
   };
 
   constructor(props) {
     super(props);
 
-    this.state = Tabs.copyPropsToState(this.props, {});
+    this.state = Tabs.copyPropsToState(this.props, {}, this.props.defaultFocus);
   }
 
   componentWillReceiveProps(newProps) {
@@ -50,16 +53,16 @@ For more information about controlled and uncontrolled mode of react-tabs see th
   }
 
   handleSelected = (index, last, event) => {
-    const state = {
-      // Set focus if the change was triggered from the keyboard
-      focus: event.type === 'keydown',
-    };
-
     // Call change event handler
     if (typeof this.props.onSelect === 'function') {
       // Check if the change event handler cancels the tab change
       if (this.props.onSelect(index, last, event) === false) return;
     }
+
+    const state = {
+      // Set focus if the change was triggered from the keyboard
+      focus: event.type === 'keydown',
+    };
 
     if (Tabs.inUncontrolledMode(this.props)) {
       // Update selected index
@@ -71,9 +74,9 @@ For more information about controlled and uncontrolled mode of react-tabs see th
 
   // preserve the existing selectedIndex from state.
   // If the state has not selectedIndex, default to the defaultIndex or 0
-  static copyPropsToState(props, state) {
+  static copyPropsToState(props, state, focus = false) {
     const newState = {
-      focus: state.focus || props.defaultFocus,
+      focus,
     };
 
     if (Tabs.inUncontrolledMode(props)) {
@@ -92,25 +95,6 @@ For more information about controlled and uncontrolled mode of react-tabs see th
   }
 
   render() {
-    // This fixes an issue with focus management.
-    //
-    // Ultimately, when focus is true, and an input has focus,
-    // and any change on that input causes a state change/re-render,
-    // focus gets sent back to the active tab, and input loses focus.
-    //
-    // Since the focus state only needs to be remembered
-    // for the current render, we can reset it once the
-    // render has happened.
-    //
-    // Don't use setState, because we don't want to re-render.
-    //
-    // See https://github.com/reactjs/react-tabs/pull/7
-    if (this.state.focus) {
-      setTimeout(() => {
-        this.state.focus = false;
-      }, 0);
-    }
-
     const { children, defaultIndex, defaultFocus, ...props } = this.props;
 
     props.focus = this.state.focus;

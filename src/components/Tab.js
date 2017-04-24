@@ -5,28 +5,29 @@ import cx from 'classnames';
 export default class Tab extends Component {
 
   static defaultProps = {
-    activeTabClassName: 'ReactTabs__Tab--selected',
-    disabledTabClassName: 'ReactTabs__Tab--disabled',
+    className: 'ReactTabs__Tab',
+    disabledClassName: 'ReactTabs__Tab--disabled',
     focus: false,
     id: null,
     panelId: null,
     selected: false,
+    selectedClassName: 'ReactTabs__Tab--selected',
   };
 
   static propTypes = {
-    activeTabClassName: PropTypes.string,
-    disabledTabClassName: PropTypes.string,
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
       PropTypes.string,
     ]),
-    className: PropTypes.string,
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     disabled: PropTypes.bool,
+    disabledClassName: PropTypes.string, // private
     focus: PropTypes.bool, // private
     id: PropTypes.string, // private
     panelId: PropTypes.string, // private
     selected: PropTypes.bool, // private
+    selectedClassName: PropTypes.string, // private
     tabRef: PropTypes.func, // private
   };
 
@@ -46,15 +47,15 @@ export default class Tab extends Component {
 
   render() {
     const {
-      activeTabClassName,
       children,
       className,
       disabled,
-      disabledTabClassName,
+      disabledClassName,
       focus, // eslint-disable-line no-unused-vars
       id,
       panelId,
       selected,
+      selectedClassName,
       tabRef,
       ...attributes } = this.props;
 
@@ -62,11 +63,10 @@ export default class Tab extends Component {
       <li
         {...attributes}
         className={cx(
-          'ReactTabs__Tab',
           className,
           {
-            [activeTabClassName]: selected,
-            [disabledTabClassName]: disabled,
+            [selectedClassName]: selected,
+            [disabledClassName]: disabled,
           },
         )}
         ref={(node) => { this.node = node; if (tabRef) tabRef(node); }}

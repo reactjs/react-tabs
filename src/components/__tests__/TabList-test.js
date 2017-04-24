@@ -28,7 +28,7 @@ describe('<TabList />', () => {
   it('should accept className', () => {
     const wrapper = shallow(<TabList className="foobar" />);
 
-    expect(wrapper.hasClass('ReactTabs__TabList')).toBe(true);
+    expect(wrapper.hasClass('ReactTabs__TabList')).toBe(false);
     expect(wrapper.hasClass('foobar')).toBe(true);
   });
 
@@ -62,12 +62,32 @@ describe('<TabList />', () => {
     expect(hasClassAt(tabsList, 1, 'ReactTabs__Tab--disabled')).toBe(true);
   });
 
-  it('should display the custom classnames for active and disabled tab', () => {
+  it('should display the custom classnames for selected and disabled tab specified on tabs', () => {
     const wrapper = mount(
-      <Tabs defaultIndex={0}>
-        <TabList activeTabClassName="active" disabledTabClassName="disabled">
+      <Tabs defaultIndex={0} selectedTabClassName="active" disabledTabClassName="disabled">
+        <TabList>
           <Tab>Foo</Tab>
           <Tab disabled>Bar</Tab>
+        </TabList>
+        <TabPanel>Foo</TabPanel>
+        <TabPanel>Bar</TabPanel>
+      </Tabs>,
+    );
+
+    const tabsList = wrapper.childAt(0);
+    expect(hasClassAt(tabsList, 0, 'ReactTabs__Tab--selected')).toBe(false);
+    expect(hasClassAt(tabsList, 1, 'ReactTabs__Tab--disabled')).toBe(false);
+
+    expect(hasClassAt(tabsList, 0, 'active')).toBe(true);
+    expect(hasClassAt(tabsList, 1, 'disabled')).toBe(true);
+  });
+
+  it('should display the custom classnames for selected and disabled tab', () => {
+    const wrapper = mount(
+      <Tabs defaultIndex={0}>
+        <TabList>
+          <Tab selectedClassName="active" disabledClassName="disabled">Foo</Tab>
+          <Tab disabled selectedClassName="active" disabledClassName="disabled">Bar</Tab>
         </TabList>
         <TabPanel>Foo</TabPanel>
         <TabPanel>Bar</TabPanel>

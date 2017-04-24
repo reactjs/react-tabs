@@ -17,15 +17,24 @@ describe('<TabPanel />', () => {
     expect(wrapper.hasClass('ReactTabs__TabPanel')).toBe(true);
     expect(wrapper.prop('role')).toBe('tabpanel');
     expect(wrapper.children().length).toBe(0);
-    expect(wrapper.children().length).toBe(0);
-    expect(wrapper.prop('style')).not.toBe(null);
-    expect(wrapper.prop('style').display).toBe('none');
+  });
+
+  it('should render when selected', () => {
+    const wrapper = shallow(<TabPanel selected>Hola</TabPanel>);
+
+    expect(wrapper.children().length).toBe(1);
+  });
+
+  it('should render when forced', () => {
+    const wrapper = shallow(<TabPanel forceRender>Hola</TabPanel>);
+
+    expect(wrapper.children().length).toBe(1);
   });
 
   it('should accept className', () => {
     const wrapper = shallow(<TabPanel className="foobar" />);
 
-    expect(wrapper.hasClass('ReactTabs__TabPanel')).toBe(true);
+    expect(wrapper.hasClass('ReactTabs__TabPanel')).toBe(false);
     expect(wrapper.hasClass('foobar')).toBe(true);
   });
 
@@ -37,8 +46,17 @@ describe('<TabPanel />', () => {
     expect(wrapper.prop('aria-labelledby')).toBe('1234');
     expect(wrapper.prop('id')).toBe('abcd');
     expect(wrapper.text()).toBe('Hola');
-    expect(wrapper.prop('style')).not.toBe(null);
-    expect(wrapper.prop('style').display).toBe(null);
+  });
+
+  it('should support being selected with custom class name', () => {
+    const wrapper = shallow(<TabPanel selected id="abcd" tabId="1234" selectedClassName="selected">Hola</TabPanel>);
+
+    expect(wrapper.hasClass('ReactTabs__TabPanel')).toBe(true);
+    expect(wrapper.hasClass('ReactTabs__TabPanel--selected')).toBe(false);
+    expect(wrapper.hasClass('selected')).toBe(true);
+    expect(wrapper.prop('aria-labelledby')).toBe('1234');
+    expect(wrapper.prop('id')).toBe('abcd');
+    expect(wrapper.text()).toBe('Hola');
   });
 
   it('should pass through custom properties', () => {
@@ -52,18 +70,6 @@ describe('<TabPanel />', () => {
     const wrapper = shallow(<TabPanel role="micro-tab" />);
 
     expect(wrapper.prop('role')).toBe('tabpanel');
-  });
-
-  it('should have default style attribute', () => {
-    const wrapper = shallow(<TabPanel />);
-
-    expect(wrapper.prop('style')).toEqual({ display: 'none' });
-  });
-
-  it('should merge style attribute', () => {
-    const wrapper = shallow(<TabPanel style={{ borderWidth: '1px' }} />);
-
-    expect(wrapper.prop('style')).toEqual({ borderWidth: '1px', display: 'none' });
   });
 });
 
