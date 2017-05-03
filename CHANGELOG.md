@@ -4,8 +4,8 @@
 
 #### Breaking Changes
 
-- `activeTabClassName` was renamed to `selectedTabClassName`
-- `selectedTabClassName` and `disabledTabClassName` moved from `<TabList />` to `<Tabs />`
+- `activeTabClassName` and `disabledTabClassName` moved from `<TabList />` to `<Tabs />`
+- `activeTabClassName` was renamed to `selectedTabClassName` on `<Tabs />`
 - `className` property on all components now overwrites the default classes instead of adding a second class name
 
 ```js
@@ -28,11 +28,19 @@
 
 - `selectedIndex` now enables controlled mode, which disables internal management of the active tab. If you were using `selectedIndex` to set the initial displayed tab use `defaultIndex`
 - No styles do get added by default anymore. If you want to use the default styles you need to add them yourself. See README.
+- Support for bower package manager was removed.
 
 #### New Features
 
 - `selectedTabPanelClassName` was added to add `<Tabs />` to change the class name of the current selected TabPanel
 - `defaultIndex` was added to set the initial displayed tab
+- New static method to reset the id counter for isomorphic apps. Call this before rendering your application on the server.
+
+```js
+import { resetIdCounter } from 'react-tabs';
+
+resetIdCounter();
+```
 
 #### Bug Fixes
 
