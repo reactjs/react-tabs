@@ -65,7 +65,7 @@ resetIdCounter();
 #### Internal
 
 - Refactor components to use native classes
-- Refactor to not use react-dom
+- Refactor to not use react-dom and remove dependency on it
 
 ### 0.8.3 (Apr 19, 2017)
 
