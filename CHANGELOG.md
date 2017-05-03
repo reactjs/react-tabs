@@ -42,6 +42,22 @@ import { resetIdCounter } from 'react-tabs';
 resetIdCounter();
 ```
 
+- Allows arbitrary components anywhere inside `<TabList>`
+- Allow random order of `<TabList />`, `<TabPanel />` and other arbitrary components. The `<TabPanel />` components are matched to the `<Tab />` components in order from top to bottom.
+
+```js
+<Tabs>
+  <TabPanel />
+  <div />
+  <TabList>
+    <Tab />
+    <Tab />
+  </TabList>
+  <span />
+  <TabPanel />
+</Tabs>
+```
+
 #### Bug Fixes
 
 -
