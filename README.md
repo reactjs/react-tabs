@@ -64,7 +64,7 @@ If you specify additional props on the `<Tabs />` component they will be forward
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
-> default: `"PropTypes"`
+> default: `"ReactTabs"`
 
 Provide a custom class name for the outer `<div />` of the tabs.
 
