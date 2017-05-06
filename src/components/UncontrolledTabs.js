@@ -18,6 +18,10 @@ function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
 
+const canUseActiveElement = !!(typeof window !== 'undefined' &&
+  window.document &&
+  window.document.activeElement);
+
 export default class UncontrolledTabs extends Component {
   static defaultProps = {
     className: 'ReactTabs',
@@ -143,10 +147,14 @@ export default class UncontrolledTabs extends Component {
 
         // Figure out if the current focus in the DOM is set on a Tab
         // If it is we should keep the focus on the next selected tab
-        const wasTabFocused = React.Children
-          .toArray(child.props.children)
-          .filter(tab => tab.type === Tab)
-          .some((tab, i) => document.activeElement === this.getTab(i));
+        let wasTabFocused = false;
+
+        if (canUseActiveElement) {
+          wasTabFocused = React.Children
+            .toArray(child.props.children)
+            .filter(tab => tab.type === Tab)
+            .some((tab, i) => document.activeElement === this.getTab(i));
+        }
 
         result = cloneElement(child, {
           children: React.Children.map(child.props.children, tab => {
