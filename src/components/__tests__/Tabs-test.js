@@ -87,13 +87,13 @@ describe('<Tabs />', () => {
     test('should have a default className', () => {
       const wrapper = mount(createTabs());
 
-      expect(wrapper.hasClass('ReactTabs')).toBe(true);
+      expect(wrapper.hasClass('react-tabs')).toBe(true);
     });
 
     test('should accept className', () => {
       const wrapper = mount(createTabs({ className: 'foobar' }));
 
-      expect(wrapper.hasClass('ReactTabs')).toBe(false);
+      expect(wrapper.hasClass('react-tabs')).toBe(false);
       expect(wrapper.hasClass('foobar')).toBe(true);
     });
   });

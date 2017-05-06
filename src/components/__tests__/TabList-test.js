@@ -21,14 +21,14 @@ describe('<TabList />', () => {
   it('should have sane defaults', () => {
     const wrapper = shallow(<TabList />);
 
-    expect(wrapper.hasClass('ReactTabs__TabList')).toBe(true);
+    expect(wrapper.hasClass('react-tabs__tab-list')).toBe(true);
     expect(wrapper.prop('role')).toBe('tablist');
   });
 
   it('should accept className', () => {
     const wrapper = shallow(<TabList className="foobar" />);
 
-    expect(wrapper.hasClass('ReactTabs__TabList')).toBe(false);
+    expect(wrapper.hasClass('react-tabs__tab-list')).toBe(false);
     expect(wrapper.hasClass('foobar')).toBe(true);
   });
 
@@ -58,8 +58,8 @@ describe('<TabList />', () => {
     );
 
     const tabsList = wrapper.childAt(0);
-    expect(hasClassAt(tabsList, 0, 'ReactTabs__Tab--selected')).toBe(true);
-    expect(hasClassAt(tabsList, 1, 'ReactTabs__Tab--disabled')).toBe(true);
+    expect(hasClassAt(tabsList, 0, 'react-tabs__tab--selected')).toBe(true);
+    expect(hasClassAt(tabsList, 1, 'react-tabs__tab--disabled')).toBe(true);
   });
 
   it('should display the custom classnames for selected and disabled tab specified on tabs', () => {
@@ -75,8 +75,8 @@ describe('<TabList />', () => {
     );
 
     const tabsList = wrapper.childAt(0);
-    expect(hasClassAt(tabsList, 0, 'ReactTabs__Tab--selected')).toBe(false);
-    expect(hasClassAt(tabsList, 1, 'ReactTabs__Tab--disabled')).toBe(false);
+    expect(hasClassAt(tabsList, 0, 'react-tabs__tab--selected')).toBe(false);
+    expect(hasClassAt(tabsList, 1, 'react-tabs__tab--disabled')).toBe(false);
 
     expect(hasClassAt(tabsList, 0, 'active')).toBe(true);
     expect(hasClassAt(tabsList, 1, 'disabled')).toBe(true);
@@ -97,8 +97,8 @@ describe('<TabList />', () => {
     );
 
     const tabsList = wrapper.childAt(0);
-    expect(hasClassAt(tabsList, 0, 'ReactTabs__Tab--selected')).toBe(false);
-    expect(hasClassAt(tabsList, 1, 'ReactTabs__Tab--disabled')).toBe(false);
+    expect(hasClassAt(tabsList, 0, 'react-tabs__tab--selected')).toBe(false);
+    expect(hasClassAt(tabsList, 1, 'react-tabs__tab--disabled')).toBe(false);
 
     expect(hasClassAt(tabsList, 0, 'active')).toBe(true);
     expect(hasClassAt(tabsList, 1, 'disabled')).toBe(true);
