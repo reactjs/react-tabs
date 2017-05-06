@@ -1,11 +1,11 @@
-.ReactTabs {
-  &__TabList {
+.react-tabs {
+  &__tab-list {
     border-bottom: 1px solid #aaa;
     margin: 0 0 10px;
     padding: 0;
   }
 
-  &__Tab {
+  &__tab {
     display: inline-block;
     border: 1px solid transparent;
     border-bottom: none;
@@ -38,7 +38,7 @@
     }
   }
 
-  &__TabPanel {
+  &__tab-panel {
     display: none;
 
     &--selected {

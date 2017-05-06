@@ -24,7 +24,7 @@ const canUseActiveElement = !!(typeof window !== 'undefined' &&
 
 export default class UncontrolledTabs extends Component {
   static defaultProps = {
-    className: 'ReactTabs',
+    className: 'react-tabs',
     focus: false,
   };
 
@@ -274,15 +274,15 @@ export default class UncontrolledTabs extends Component {
   render() {
     // Delete all known props, so they don't get added to DOM
     const {
-      children,
+      children, // unused
       className,
-      disabledTabClassName,
-      focus,
-      forceRenderTabPanel,
-      onSelect,
-      selectedIndex,
-      selectedTabClassName,
-      selectedTabPanelClassName,
+      disabledTabClassName, // unused
+      focus, // unused
+      forceRenderTabPanel, // unused
+      onSelect, // unused
+      selectedIndex, // unused
+      selectedTabClassName, // unused
+      selectedTabPanelClassName, // unused
       ...attributes
     } = this.props;
 

@@ -2,15 +2,17 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import cx from 'classnames';
 
+const DEFAULT_CLASS = 'react-tabs__tab';
+
 export default class Tab extends Component {
   static defaultProps = {
-    className: 'ReactTabs__Tab',
-    disabledClassName: 'ReactTabs__Tab--disabled',
+    className: DEFAULT_CLASS,
+    disabledClassName: `${DEFAULT_CLASS}--disabled`,
     focus: false,
     id: null,
     panelId: null,
     selected: false,
-    selectedClassName: 'ReactTabs__Tab--selected',
+    selectedClassName: `${DEFAULT_CLASS}--selected`,
   };
 
   static propTypes = {
@@ -46,7 +48,7 @@ export default class Tab extends Component {
       className,
       disabled,
       disabledClassName,
-      focus, // eslint-disable-line no-unused-vars
+      focus, // unused
       id,
       panelId,
       selected,

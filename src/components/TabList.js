@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 export default class TabList extends Component {
   static defaultProps = {
-    className: 'ReactTabs__TabList',
+    className: 'react-tabs__tab-list',
   };
 
   static propTypes = {

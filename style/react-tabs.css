@@ -1,10 +1,10 @@
-.ReactTabs__TabList {
+.react-tabs__tab-list {
   border-bottom: 1px solid #aaa;
   margin: 0 0 10px;
   padding: 0;
 }
 
-.ReactTabs__Tab {
+.react-tabs__tab {
   display: inline-block;
   border: 1px solid transparent;
   border-bottom: none;
@@ -15,33 +15,33 @@
   cursor: pointer;
 }
 
-.ReactTabs__Tab--selected {
+.react-tabs__tab--selected {
   background: #fff;
   border-color: #aaa;
   color: black;
   border-radius: 5px 5px 0 0;
 }
 
-.ReactTabs__TabPanel {
+.react-tabs__tab-panel {
   display: none;
 }
 
-.ReactTabs__TabPanel--selected {
+.react-tabs__tab-panel--selected {
   display: block;
 }
 
-.ReactTabs__Tab--disabled {
+.react-tabs__tab--disabled {
   color: GrayText;
   cursor: default;
 }
 
-.ReactTabs__Tab:focus {
+.react-tabs__tab:focus {
   box-shadow: 0 0 5px hsl(208, 99%, 50%);
   border-color: hsl(208, 99%, 50%);
   outline: none;
 }
 
-.ReactTabs__Tab:focus:after {
+.react-tabs__tab:focus:after {
   content: "";
   position: absolute;
   height: 5px;

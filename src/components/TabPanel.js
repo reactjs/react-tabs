@@ -2,11 +2,13 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import cx from 'classnames';
 
+const DEFAULT_CLASS = 'react-tabs__tab-panel';
+
 export default class TabPanel extends Component {
   static defaultProps = {
-    className: 'ReactTabs__TabPanel',
+    className: DEFAULT_CLASS,
     forceRender: false,
-    selectedClassName: 'ReactTabs__TabPanel--selected',
+    selectedClassName: `${DEFAULT_CLASS}--selected`,
     style: {},
   };
 
@@ -17,7 +19,6 @@ export default class TabPanel extends Component {
     forceRender: PropTypes.bool,
     id: PropTypes.string, // private
     selected: PropTypes.bool, // private
-    style: PropTypes.object,
     tabId: PropTypes.string, // private
   };
 
@@ -29,7 +30,6 @@ export default class TabPanel extends Component {
       id,
       selected,
       selectedClassName,
-      style,
       tabId,
       ...attributes
     } = this.props;
