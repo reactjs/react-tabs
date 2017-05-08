@@ -33,6 +33,15 @@
 
 - `selectedTabPanelClassName` was added to add `<Tabs />` to change the class name of the current selected TabPanel
 - `defaultIndex` was added to set the initial displayed tab
+- Add function `resetIdCounter` to reset the id-counter for isomorphic apps.
+
+```js
+const reactTabs = require('react-tabs');
+
+...
+reactTabs.resetIdCounter();
+render();
+```
 
 #### Bug Fixes
 
