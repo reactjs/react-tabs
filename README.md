@@ -64,7 +64,7 @@ If you specify additional props on the `<Tabs />` component they will be forward
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
-> default: `"PropTypes"`
+> default: `"ReactTabs"`
 
 Provide a custom class name for the outer `<div />` of the tabs.
 
@@ -142,7 +142,7 @@ If you specify additional props on the `<TabList />` component they will be forw
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
-> default: `"PropTypes__TabList"`
+> default: `"ReactTabs__TabList"`
 
 Provide a custom class name for the `<ul />`.
 
@@ -160,7 +160,7 @@ Provide a custom class name for disabled tabs.
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
-> default: `"PropTypes__Tab"`
+> default: `"ReactTabs__Tab"`
 
 Provide a custom class name for the `<li />`.
 
@@ -178,7 +178,7 @@ If you specify additional props on the `<TabPanel />` component they will be for
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
-> default: `"PropTypes__TabPanel"`
+> default: `"ReactTabs__TabPanel"`
 
 Provide a custom class name for the `<div />` containing the tab content.
 
