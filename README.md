@@ -249,7 +249,13 @@ class App extends Component {
 
 ## Styling
 
-react-tabs does not include any style loading by default. Default stylesheets are provided and can be included in your application if desired.
+react-tabs come with a set of default styles, which are on by default. If you don't want to include those styles, you can disable them using the following
+
+```js
+Tabs.setUseDefaultStyles(false);
+```
+
+If you want more control of how and when to import the default styles, you can follow the approach in the sections below
 
 ### Webpack
 
