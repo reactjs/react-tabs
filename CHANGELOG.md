@@ -4,8 +4,8 @@
 
 #### Breaking Changes
 
-- `activeTabClassName` and `disabledTabClassName` moved from `<TabList />` to `<Tabs />`
-- `activeTabClassName` was renamed to `selectedTabClassName` on `<Tabs />`
+- `activeTabClassName` moved from `<TabList />` to `<Tabs />` and renamed to `selectedTabClassName`
+- `disabledTabClassName` moved from `<TabList />` to `<Tabs />`
 - `className` property on all components now overwrites the default classes instead of adding a second class name
 
 ```js
