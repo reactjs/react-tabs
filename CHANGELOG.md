@@ -1,6 +1,6 @@
 # Changelog
 
-### Next Major
+### 1.0.0 (May 10, 2017)
 
 #### Breaking Changes
 
