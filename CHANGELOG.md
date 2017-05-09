@@ -28,6 +28,7 @@
 ```
 
 - `selectedIndex` now enables controlled mode, which disables internal management of the active tab. If you were using `selectedIndex` before to set the initial displayed tab use `defaultIndex` now.
+- The value `-1` for `selectedIndex` and `defaultIndex` do not activate the first tab anymore, but instead display no tab panel. Use `-1` if you want to display only the tabs but have not tab being active. If you want to have the first tab open us `0`
 - Support for bower package manager was removed.
 - Removed deprecated default export of tabs:
 
