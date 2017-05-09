@@ -4,6 +4,7 @@
 
 #### Breaking Changes
 
+- Peer dependency for react requires now `^0.14.9` or `^15.3.0`
 - `activeTabClassName` moved from `<TabList />` to `<Tabs />` and renamed to `selectedTabClassName`
 - `disabledTabClassName` moved from `<TabList />` to `<Tabs />`
 - `className` property on all components now overwrites the default classes instead of adding a second class name
@@ -18,22 +19,35 @@
 </Tabs>
 
 // Same effect in 1.0
-<Tabs className={['tabs', 'ReactTabs']}>
-    <TabList className={['list', 'ReactTabs__TabList']}>
-        <Tab className={['tab', 'ReactTabs__Tab']} />
+<Tabs className={['tabs', 'react-tabs']}>
+    <TabList className={['list', 'react-tabs__tab-list']}>
+        <Tab className={['tab', 'react-tabs__tab']} />
     </TabList>
-    <TabPanel className={['panel', 'ReactTabs__TabPanel']} />
+    <TabPanel className={['panel', 'react-tabs__tab-panel']} />
 </Tabs>
 ```
 
 - `selectedIndex` now enables controlled mode, which disables internal management of the active tab. If you were using `selectedIndex` to set the initial displayed tab use `defaultIndex`
-- No styles do get added by default anymore. If you want to use the default styles you need to add them yourself. See README.
 - Support for bower package manager was removed.
+- Removed deprecated default export of tabs:
+
+```js
+// 0.8
+import ReactTabs from 'react-tabs';
+
+<ReactTabs.Tabs></ReactTabs.Tabs>
+
+// in 1.0
+import { Tabs } from 'react-tabs';
+
+<Tabs></Tabs>
+```
+
+- Removed jsstylesheet dependency and removed default style from javascript. If you want to use the default styles you can use one of the supported methods (see [README.md](https://github.com/reactjs/react-tabs#styling))
+- The default class names were all lowercased and separated by hyphen, but still follow BEM methodology. E.g. `ReactTabs` -> `react-tabs`, `ReactTabs__TabPanel--selected` -> `react-tabs__tab-panel--selected`
 
 #### New Features
 
-- `selectedTabPanelClassName` was added to add `<Tabs />` to change the class name of the current selected TabPanel
-- `defaultIndex` was added to set the initial displayed tab
 - New static method to reset the id counter for isomorphic apps. Call this before rendering your application on the server.
 
 ```js
@@ -58,14 +72,30 @@ resetIdCounter();
 </Tabs>
 ```
 
-#### Bug Fixes
+- Introduce controlled and uncontrolled mode. This two modes allow either to control the tabs from your component from the outside or leave the control to the tabs within react-tabs components. (see [README.md](https://github.com/reactjs/react-tabs#controlled-vs-uncontrolled-mode) for more information)
+- New prop `selectedTabPanelClassName` on `<Tabs />` to change the class name of the current selected tab panel.
+- New prop `defaultIndex` on `<Tabs />` to allow setting the initial displayed tab.
+- New prop `forceRender` on `<TabPanel />` to allow force rendering of individual tab panels.
+- New prop `selectedClassName` on `<TabPanel />` to allow changing selected class name of individual tab panels.
+- New prop `selectedClassName` on `<Tab />` to allow changing selected class name of individual tabs.
+- New prop `disabledClassName` on `<Tab />` to allow changing disabled class name of individual tabs.
+- Property `className` on all components can now officially take an array as argument.
+- PropTypes are now wrapped in `if(process.env.NODE_ENV === 'production') Component.propTypes = { ... }` in order to allow removing if proptypes in production builds.
 
--
+#### Documentation
+
+- Rewrite README.md
+- Change ReactDOM.render to render (#163) (Gerard Banasig)
+- Add NPM package badge (#164) (Hum4n01d)
 
 #### Internal
 
-- Refactor components to use native classes
+- Refactor components to use native classes (#134) (LeoAJ)
 - Refactor to not use react-dom and remove dependency on it
+- Update dependencies
+- Rename main.js to index.js
+- Update travis versions
+- Use prettier (#169)
 
 ### 0.8.3 (Apr 19, 2017)
 
