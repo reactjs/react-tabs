@@ -64,7 +64,7 @@ If you specify additional props on the `<Tabs />` component they will be forward
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
-> default: `"PropTypes"`
+> default: `"react-tabs"`
 
 Provide a custom class name for the outer `<div />` of the tabs.
 
@@ -86,7 +86,7 @@ This allows changing the tab that should be open on initial render. This is a ze
 
 #### disabledTabClassName: `string`
 
-> default: `"ReactTabs__Tab--disabled"`
+> default: `"react-tabs__tab--disabled"`
 
 Provide a custom class name for disabled tabs.
 
@@ -122,7 +122,7 @@ This enables controlled mode, which also requires `onSelect` to be set. See [her
 
 #### selectedTabClassName: `string`
 
-> default: `"ReactTabs__Tab--selected"`
+> default: `"react-tabs__tab--selected"`
 
 Provide a custom class name for the active tab.
 
@@ -130,7 +130,7 @@ Provide a custom class name for the active tab.
 
 #### selectedTabPanelClassName: `string`
 
-> default: `"ReactTabs__TabPanel--selected"`
+> default: `"react-tabs__tab-panel--selected"`
 
 Provide a custom class name for the active tab panel.
 
@@ -142,7 +142,7 @@ If you specify additional props on the `<TabList />` component they will be forw
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
-> default: `"PropTypes__TabList"`
+> default: `"react-tabs__tab-list"`
 
 Provide a custom class name for the `<ul />`.
 
@@ -154,13 +154,13 @@ If you specify additional props on the `<Tab />` component they will be forwarde
 
 #### disabledClassName: `string`
 
-> default: `"ReactTabs__Tab--disabled"`
+> default: `"react-tabs__tab--disabled"`
 
 Provide a custom class name for disabled tabs.
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
-> default: `"PropTypes__Tab"`
+> default: `"react-tabs__tab"`
 
 Provide a custom class name for the `<li />`.
 
@@ -168,7 +168,7 @@ Provide a custom class name for the `<li />`.
 
 #### selectedClassName: `string`
 
-> default: `"ReactTabs__Tab--selected"`
+> default: `"react-tabs__tab--selected"`
 
 Provide a custom class name for the active tab.
 
@@ -178,7 +178,7 @@ If you specify additional props on the `<TabPanel />` component they will be for
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
-> default: `"PropTypes__TabPanel"`
+> default: `"react-tabs__tab-panel"`
 
 Provide a custom class name for the `<div />` containing the tab content.
 
@@ -194,7 +194,7 @@ By default the tab content will only be rendered when the tab is active. If set 
 
 #### selectedClassName: `string`
 
-> default: `"ReactTabs__TabPanel--selected"`
+> default: `"react-tabs__tab-panel--selected"`
 
 Provide a custom class name for the active tab panel.
 

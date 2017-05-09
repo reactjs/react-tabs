@@ -121,6 +121,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var DEFAULT_CLASS = 'react-tabs__tab';
+
 var Tab = function (_Component) {
   _inherits(Tab, _Component);
 
@@ -166,7 +168,8 @@ var Tab = function (_Component) {
       _extends({}, attributes, {
         className: (0, _classnames2.default)(className, (_cx = {}, _cx[selectedClassName] = selected, _cx[disabledClassName] = disabled, _cx)),
         ref: function ref(node) {
-          _this2.node = node;if (tabRef) tabRef(node);
+          _this2.node = node;
+          if (tabRef) tabRef(node);
         },
         role: 'tab',
         id: id,
@@ -183,16 +186,16 @@ var Tab = function (_Component) {
 }(_react.Component);
 
 Tab.defaultProps = {
-  className: 'ReactTabs__Tab',
-  disabledClassName: 'ReactTabs__Tab--disabled',
+  className: DEFAULT_CLASS,
+  disabledClassName: DEFAULT_CLASS + '--disabled',
   focus: false,
   id: null,
   panelId: null,
   selected: false,
-  selectedClassName: 'ReactTabs__Tab--selected'
+  selectedClassName: DEFAULT_CLASS + '--selected'
 };
 exports.default = Tab;
- true ? Tab.propTypes = {
+Tab.propTypes =  true ? {
   children: _propTypes2.default.oneOfType([_propTypes2.default.array, _propTypes2.default.object, _propTypes2.default.string]),
   className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object]),
   disabled: _propTypes2.default.bool,
@@ -202,7 +205,7 @@ exports.default = Tab;
   panelId: _propTypes2.default.string, // private
   selected: _propTypes2.default.bool, // private
   selectedClassName: _propTypes2.default.string, // private
-  tabRef: _propTypes2.default.func } : void 0;
+  tabRef: _propTypes2.default.func } : {};
 
 /***/ }),
 /* 3 */
@@ -254,10 +257,7 @@ var TabList = function (_Component) {
 
     return _react2.default.createElement(
       'ul',
-      _extends({}, attributes, {
-        className: (0, _classnames2.default)(className),
-        role: 'tablist'
-      }),
+      _extends({}, attributes, { className: (0, _classnames2.default)(className), role: 'tablist' }),
       children
     );
   };
@@ -266,13 +266,13 @@ var TabList = function (_Component) {
 }(_react.Component);
 
 TabList.defaultProps = {
-  className: 'ReactTabs__TabList'
+  className: 'react-tabs__tab-list'
 };
 exports.default = TabList;
- true ? TabList.propTypes = {
+TabList.propTypes =  true ? {
   children: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array]),
   className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object])
-} : void 0;
+} : {};
 
 /***/ }),
 /* 4 */
@@ -307,6 +307,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var DEFAULT_CLASS = 'react-tabs__tab-panel';
+
 var TabPanel = function (_Component) {
   _inherits(TabPanel, _Component);
 
@@ -326,9 +328,8 @@ var TabPanel = function (_Component) {
         id = _props.id,
         selected = _props.selected,
         selectedClassName = _props.selectedClassName,
-        style = _props.style,
         tabId = _props.tabId,
-        attributes = _objectWithoutProperties(_props, ['children', 'className', 'forceRender', 'id', 'selected', 'selectedClassName', 'style', 'tabId']);
+        attributes = _objectWithoutProperties(_props, ['children', 'className', 'forceRender', 'id', 'selected', 'selectedClassName', 'tabId']);
 
     return _react2.default.createElement(
       'div',
@@ -346,21 +347,20 @@ var TabPanel = function (_Component) {
 }(_react.Component);
 
 TabPanel.defaultProps = {
-  className: 'ReactTabs__TabPanel',
+  className: DEFAULT_CLASS,
   forceRender: false,
-  selectedClassName: 'ReactTabs__TabPanel--selected',
+  selectedClassName: DEFAULT_CLASS + '--selected',
   style: {}
 };
 exports.default = TabPanel;
- true ? TabPanel.propTypes = {
+TabPanel.propTypes =  true ? {
   selectedClassName: _propTypes2.default.string, // private
   children: _propTypes2.default.node,
   className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object]),
   forceRender: _propTypes2.default.bool,
   id: _propTypes2.default.string, // private
   selected: _propTypes2.default.bool, // private
-  style: _propTypes2.default.object,
-  tabId: _propTypes2.default.string } : void 0;
+  tabId: _propTypes2.default.string } : {};
 
 /***/ }),
 /* 5 */
@@ -675,7 +675,7 @@ Tabs.defaultProps = {
   defaultIndex: null
 };
 exports.default = Tabs;
- true ? Tabs.propTypes = {
+Tabs.propTypes =  true ? {
   children: _propTypes3.childrenPropType,
   className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object]),
   defaultFocus: _propTypes2.default.bool,
@@ -686,7 +686,7 @@ exports.default = Tabs;
   selectedIndex: _propTypes3.selectedIndexPropType,
   selectedTabClassName: _propTypes2.default.string,
   selectedTabPanelClassName: _propTypes2.default.string
-} : void 0;
+} : {};
 
 /***/ }),
 /* 10 */
@@ -751,6 +751,8 @@ function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
 
+var canUseActiveElement = !!(typeof window !== 'undefined' && window.document && window.document.activeElement);
+
 var UncontrolledTabs = function (_Component) {
   _inherits(UncontrolledTabs, _Component);
 
@@ -787,8 +789,8 @@ var UncontrolledTabs = function (_Component) {
       }
     }, _this.handleClick = function (e) {
       var node = e.target;
+      // eslint-disable-next-line no-cond-assign
       do {
-        // eslint-disable-line no-cond-assign
         if (_this.isTabFromContainer(node)) {
           if (isTabDisabled(node)) {
             return;
@@ -909,11 +911,15 @@ var UncontrolledTabs = function (_Component) {
 
         // Figure out if the current focus in the DOM is set on a Tab
         // If it is we should keep the focus on the next selected tab
-        var wasTabFocused = _react2.default.Children.toArray(child.props.children).filter(function (tab) {
-          return tab.type === _Tab2.default;
-        }).some(function (tab, i) {
-          return document.activeElement === _this2.getTab(i);
-        });
+        var wasTabFocused = false;
+
+        if (canUseActiveElement) {
+          wasTabFocused = _react2.default.Children.toArray(child.props.children).filter(function (tab) {
+            return tab.type === _Tab2.default;
+          }).some(function (tab, i) {
+            return document.activeElement === _this2.getTab(i);
+          });
+        }
 
         result = (0, _react.cloneElement)(child, {
           children: _react2.default.Children.map(child.props.children, function (tab) {
@@ -1024,11 +1030,11 @@ var UncontrolledTabs = function (_Component) {
 }(_react.Component);
 
 UncontrolledTabs.defaultProps = {
-  className: 'ReactTabs',
+  className: 'react-tabs',
   focus: false
 };
 exports.default = UncontrolledTabs;
- true ? UncontrolledTabs.propTypes = {
+UncontrolledTabs.propTypes =  true ? {
   children: _propTypes3.childrenPropType,
   className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object]),
   disabledTabClassName: _propTypes2.default.string,
@@ -1038,7 +1044,7 @@ exports.default = UncontrolledTabs;
   selectedIndex: _propTypes2.default.number.isRequired,
   selectedTabClassName: _propTypes2.default.string,
   selectedTabPanelClassName: _propTypes2.default.string
-} : void 0;
+} : {};
 
 /***/ }),
 /* 11 */

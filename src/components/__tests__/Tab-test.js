@@ -14,7 +14,7 @@ describe('<Tab />', () => {
   it('should have sane defaults', () => {
     const wrapper = shallow(<Tab />);
 
-    expect(wrapper.hasClass('ReactTabs__Tab')).toBe(true);
+    expect(wrapper.hasClass('react-tabs__tab')).toBe(true);
     expect(wrapper.prop('role')).toBe('tab');
     expect(wrapper.prop('aria-selected')).toBe('false');
     expect(wrapper.prop('aria-disabled')).toBe('false');
@@ -26,15 +26,15 @@ describe('<Tab />', () => {
   it('should accept className', () => {
     const wrapper = shallow(<Tab className="foobar" />);
 
-    expect(wrapper.hasClass('ReactTabs__Tab')).toBe(false);
+    expect(wrapper.hasClass('react-tabs__tab')).toBe(false);
     expect(wrapper.hasClass('foobar')).toBe(true);
   });
 
   it('should support being selected', () => {
     const wrapper = shallow(<Tab selected id="abcd" panelId="1234">Hello</Tab>);
 
-    expect(wrapper.hasClass('ReactTabs__Tab')).toBe(true);
-    expect(wrapper.hasClass('ReactTabs__Tab--selected')).toBe(true);
+    expect(wrapper.hasClass('react-tabs__tab')).toBe(true);
+    expect(wrapper.hasClass('react-tabs__tab--selected')).toBe(true);
     expect(wrapper.prop('aria-selected')).toBe('true');
     expect(wrapper.prop('aria-disabled')).toBe('false');
     expect(wrapper.prop('aria-controls')).toBe('1234');
@@ -45,8 +45,8 @@ describe('<Tab />', () => {
   it('should support being selected with custom class', () => {
     const wrapper = shallow(<Tab selected selectedClassName="cool" />);
 
-    expect(wrapper.hasClass('ReactTabs__Tab')).toBe(true);
-    expect(wrapper.hasClass('ReactTabs__Tab--selected')).toBe(false);
+    expect(wrapper.hasClass('react-tabs__tab')).toBe(true);
+    expect(wrapper.hasClass('react-tabs__tab--selected')).toBe(false);
     expect(wrapper.hasClass('cool')).toBe(true);
     expect(wrapper.prop('aria-selected')).toBe('true');
   });
@@ -54,16 +54,16 @@ describe('<Tab />', () => {
   it('should support being disabled', () => {
     const wrapper = shallow(<Tab disabled />);
 
-    expect(wrapper.hasClass('ReactTabs__Tab')).toBe(true);
-    expect(wrapper.hasClass('ReactTabs__Tab--disabled')).toBe(true);
+    expect(wrapper.hasClass('react-tabs__tab')).toBe(true);
+    expect(wrapper.hasClass('react-tabs__tab--disabled')).toBe(true);
     expect(wrapper.prop('aria-disabled')).toBe('true');
   });
 
   it('should support being disabled with custom class name', () => {
     const wrapper = shallow(<Tab disabled disabledClassName="coolDisabled" />);
 
-    expect(wrapper.hasClass('ReactTabs__Tab')).toBe(true);
-    expect(wrapper.hasClass('ReactTabs__Tab--disabled')).toBe(false);
+    expect(wrapper.hasClass('react-tabs__tab')).toBe(true);
+    expect(wrapper.hasClass('react-tabs__tab--disabled')).toBe(false);
     expect(wrapper.hasClass('coolDisabled')).toBe(true);
     expect(wrapper.prop('aria-disabled')).toBe('true');
   });
