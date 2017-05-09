@@ -45,6 +45,18 @@ import { Tabs } from 'react-tabs';
 
 - Removed jsstylesheet dependency and removed default style from javascript. If you want to use the default styles you can use one of the supported methods (see [README.md](https://github.com/reactjs/react-tabs#styling))
 - The default class names were all lowercased and separated by hyphen, but still follow BEM methodology. E.g. `ReactTabs` -> `react-tabs`, `ReactTabs__TabPanel--selected` -> `react-tabs__tab-panel--selected`
+- `<TabPanel />` components do not set the inline style `display: none` anymore. Hidding and showing a tab panel is now completely done via css and classnames. If you have your own style for the tabs make sure to add the following rules:
+
+```css
+.react-tabs__tab-panel {
+    display: none;
+}
+
+.react-tabs__tab-panel--selected {
+    display: block;
+}
+/* If you use custom class names obviously use the class names you set for the tab panels and selected tab panels */
+```
 
 #### New Features
 
