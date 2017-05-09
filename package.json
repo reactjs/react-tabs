@@ -13,7 +13,7 @@
     "format": "prettier --write --single-quote --print-width 100 --trailing-comma all \"src/**/*.js\"",
     "lint": "eslint src",
     "precommit": "lint-staged",
-    "preversion": "npm run lint && npm test && npm run build && npm run bundle && git add dist/ && git commit -m 'publish: Distribution'",
+    "preversion": "npm run lint && npm test && npm run build && npm run bundle && git add dist/ && git diff --quiet --exit-code --cached || git commit -n -m 'publish: Distribution'",
     "prepublish": "npm run build",
     "test": "jest",
     "start": "webpack-dev-server --inline --content-base examples/"
