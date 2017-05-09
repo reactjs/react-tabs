@@ -27,7 +27,7 @@
 </Tabs>
 ```
 
-- `selectedIndex` now enables controlled mode, which disables internal management of the active tab. If you were using `selectedIndex` to set the initial displayed tab use `defaultIndex`
+- `selectedIndex` now enables controlled mode, which disables internal management of the active tab. If you were using `selectedIndex` before to set the initial displayed tab use `defaultIndex` now.
 - Support for bower package manager was removed.
 - Removed deprecated default export of tabs:
 
@@ -80,7 +80,7 @@ resetIdCounter();
 - New prop `selectedClassName` on `<Tab />` to allow changing selected class name of individual tabs.
 - New prop `disabledClassName` on `<Tab />` to allow changing disabled class name of individual tabs.
 - Property `className` on all components can now officially take an array as argument.
-- PropTypes are now wrapped in `if(process.env.NODE_ENV === 'production') Component.propTypes = { ... }` in order to allow removing if proptypes in production builds.
+- PropTypes are now wrapped in `if(process.env.NODE_ENV === 'production') Component.propTypes = { ... }` in order to allow removing of proptypes in production builds.
 
 #### Documentation
 
