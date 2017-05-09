@@ -48,7 +48,7 @@ import { Tabs } from 'react-tabs';
 
 #### New Features
 
-- New static method to reset the id counter for isomorphic apps. Call this before rendering your application on the server.
+- New static method to reset the id counter for isomorphic apps. Call this before rendering your application on the server. (#129) (Neehar Venugopal)
 
 ```js
 import { resetIdCounter } from 'react-tabs';
@@ -56,7 +56,7 @@ import { resetIdCounter } from 'react-tabs';
 resetIdCounter();
 ```
 
-- Allows arbitrary components anywhere inside `<TabList>`
+- Allows arbitrary components anywhere inside `<TabList>` (#139) (Alexander Wallin)
 - Allow random order of `<TabList />`, `<TabPanel />` and other arbitrary components. The `<TabPanel />` components are matched to the `<Tab />` components in order from top to bottom.
 
 ```js
