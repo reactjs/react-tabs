@@ -2,7 +2,7 @@
 
 Accessible react tab component
 
-> Supports React 0.14 and 15
+> Supports React 0.14.9+ and 15.3+
 
 > This is the documentation for 1.0 if you are looking for the documentation for version 0.8 please got to this [page](https://github.com/reactjs/react-tabs/blob/0.8/README.md)
 
