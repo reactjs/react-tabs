@@ -9,7 +9,7 @@ Accessible react tab component
 ## Installing
 
 ```bash
-$ yarn add react-tabs
+yarn add react-tabs
 ```
 
 You can also still use npm
