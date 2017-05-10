@@ -30,9 +30,7 @@ https://reactcommunity.org/react-tabs/example/
 
 (TODO: This demos are outdated and use super old versions of react and react-tabs)
 
-## Usage
-
-### Basic Example
+## Basic Example
 
 ```js
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -54,7 +52,22 @@ export default () => (
 );
 ```
 
-### Components
+## API
+
+### resetIdCounter(): void
+
+Allows reseting the internal id counter which is used to generate unique id's for tabs and tab panels. 
+
+You should never need to use this in the browser. Only if you are running a isomorphic react app that is rendered on the server you should call `resetIdCounter()` before every render so that the ids that get generated on the server match the ids generated in the browser.
+
+```js
+import { resetIdCounter } from 'react-tabs';
+
+resetIdCounter();
+ReactDOMServer.renderToString(...);
+```
+
+## Components
 
 react-tabs consists of 4 components which all need to be used together.
 
