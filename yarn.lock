@@ -4447,7 +4447,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@~15.5.7:
+prop-types@^15.5.0, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@~15.5.7:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -4551,15 +4551,7 @@ react-addons-test-utils@^15.0.0:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-children-utilities@^0.1.10:
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/react-children-utilities/-/react-children-utilities-0.1.11.tgz#66e3ddb1f51471519b50187bc86f24c2db1da886"
-  dependencies:
-    prop-types "^15.5.10"
-    react "^15.5.4"
-    react-dom "^15.5.4"
-
-react-dom@^15.0.0, react-dom@^15.5.4:
+react-dom@^15.0.0:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.5.4.tgz#ba0c28786fd52ed7e4f2135fe0288d462aef93da"
   dependencies:
@@ -4585,7 +4577,7 @@ react-test-renderer@^15.5.4:
     fbjs "^0.8.9"
     object-assign "^4.1.0"
 
-react@^15.0.0, react@^15.5.4:
+react@^15.0.0:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react/-/react-15.5.4.tgz#fa83eb01506ab237cdc1c8c3b1cea8de012bf047"
   dependencies:
