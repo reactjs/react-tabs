@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { cloneElement, Component } from 'react';
+import Children from 'react-children-utilities';
 import cx from 'classnames';
 import uuid from '../helpers/uuid';
 import { childrenPropType } from '../helpers/propTypes';
@@ -132,7 +133,7 @@ export default class UncontrolledTabs extends Component {
     }
 
     // Map children to dynamically setup refs
-    return React.Children.map(children, child => {
+    return Children.deepMap(children, child => {
       // null happens when conditionally rendering TabPanel/Tab
       // see https://github.com/reactjs/react-tabs/issues/37
       if (child === null) {
@@ -157,7 +158,7 @@ export default class UncontrolledTabs extends Component {
         }
 
         result = cloneElement(child, {
-          children: React.Children.map(child.props.children, tab => {
+          children: Children.deepMap(child.props.children, tab => {
             // null happens when conditionally rendering TabPanel/Tab
             // see https://github.com/reactjs/react-tabs/issues/37
             if (tab === null) {
