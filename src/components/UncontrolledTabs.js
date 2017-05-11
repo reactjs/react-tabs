@@ -7,6 +7,7 @@ import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
 import { getPanelsCount, getTabsCount } from '../helpers/count';
+import { deepMap } from '../helpers/childrenDeepMap';
 
 // Determine if a node from event.target is a Tab element
 function isTabNode(node) {
@@ -134,13 +135,7 @@ export default class UncontrolledTabs extends Component {
     }
 
     // Map children to dynamically setup refs
-    return React.Children.map(children, child => {
-      // null happens when conditionally rendering TabPanel/Tab
-      // see https://github.com/reactjs/react-tabs/issues/37
-      if (child === null) {
-        return null;
-      }
-
+    return deepMap(children, child => {
       let result = child;
 
       // Clone TabList and Tab components to have refs
@@ -159,17 +154,7 @@ export default class UncontrolledTabs extends Component {
         }
 
         result = cloneElement(child, {
-          children: React.Children.map(child.props.children, tab => {
-            // null happens when conditionally rendering TabPanel/Tab
-            // see https://github.com/reactjs/react-tabs/issues/37
-            if (tab === null) {
-              return null;
-            }
-
-            // Exit early if this is not a tab. That way we can have arbitrary
-            // elements anywhere inside <TabList>
-            if (tab.type !== Tab) return tab;
-
+          children: deepMap(child.props.children, tab => {
             const key = `tabs-${listIndex}`;
             const selected = selectedIndex === listIndex;
 
