@@ -19,12 +19,12 @@ export default class Tab extends Component {
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     disabled: PropTypes.bool,
-    disabledClassName: PropTypes.string, // private
+    disabledClassName: PropTypes.string,
     focus: PropTypes.bool, // private
     id: PropTypes.string, // private
     panelId: PropTypes.string, // private
     selected: PropTypes.bool, // private
-    selectedClassName: PropTypes.string, // private
+    selectedClassName: PropTypes.string,
     tabRef: PropTypes.func, // private
   };
 
