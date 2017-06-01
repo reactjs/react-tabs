@@ -165,11 +165,19 @@ Provide a custom class name for the `<ul />`.
 
 If you specify additional props on the `<Tab />` component they will be forwarded to the rendered `<li />`.
 
+#### disabled: `boolean`
+
+> default: `false`
+
+Disable this tab which will make it not do anything when clicked. Also a disabled class name will be added (see `disabledClassName`)
+
 #### disabledClassName: `string`
 
 > default: `"react-tabs__tab--disabled"`
 
 Provide a custom class name for disabled tabs.
+
+> This option can also be set for all `<Tab />` components with the prop `disabledTabClassName` on `<Tabs />`.
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
@@ -184,6 +192,8 @@ Provide a custom class name for the `<li />`.
 > default: `"react-tabs__tab--selected"`
 
 Provide a custom class name for the active tab.
+
+> This option can also be set for all `<Tab />` components with the prop `selectedTabClassName` on `<Tabs />`.
 
 ### &lt;TabPanel /&gt;
 
@@ -210,6 +220,8 @@ By default the tab content will only be rendered when the tab is active. If set 
 > default: `"react-tabs__tab-panel--selected"`
 
 Provide a custom class name for the active tab panel.
+
+> This option can also be set for all `<TabPanel />` components with the prop `selectedTabPanelClassName` on `<Tabs />`.
 
 ## Controlled vs Uncontrolled mode
 
