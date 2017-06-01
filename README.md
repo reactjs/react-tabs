@@ -165,6 +165,14 @@ Provide a custom class name for the `<ul />`.
 
 If you specify additional props on the `<Tab />` component they will be forwarded to the rendered `<li />`.
 
+#### className: `string | Array<string> | { [string]: boolean }`
+
+> default: `"react-tabs__tab"`
+
+Provide a custom class name for the `<li />`.
+
+> You can also supply an array of class names or an object where the class names are the key and the value is a boolean indicating if the name should be added. See the docs of [classnames](https://github.com/JedWatson/classnames#usage) on how to supply different class names.
+
 #### disabled: `boolean`
 
 > default: `false`
@@ -178,14 +186,6 @@ Disable this tab which will make it not do anything when clicked. Also a disable
 Provide a custom class name for disabled tabs.
 
 > This option can also be set for all `<Tab />` components with the prop `disabledTabClassName` on `<Tabs />`.
-
-#### className: `string | Array<string> | { [string]: boolean }`
-
-> default: `"react-tabs__tab"`
-
-Provide a custom class name for the `<li />`.
-
-> You can also supply an array of class names or an object where the class names are the key and the value is a boolean indicating if the name should be added. See the docs of [classnames](https://github.com/JedWatson/classnames#usage) on how to supply different class names.
 
 #### selectedClassName: `string`
 
