@@ -1,4 +1,5 @@
 import React from 'react';
+import Children from 'react-children-utilities';
 import Tab from '../components/Tab';
 import TabList from '../components/TabList';
 import TabPanel from '../components/TabPanel';
@@ -9,7 +10,7 @@ export function childrenPropType(props, propName, componentName) {
   let panelsCount = 0;
   const children = props[propName];
 
-  React.Children.forEach(children, child => {
+  Children.deepForEach(children, child => {
     // null happens when conditionally rendering TabPanel/Tab
     // see https://github.com/reactjs/react-tabs/issues/37
     if (child === null) {
@@ -30,10 +31,12 @@ export function childrenPropType(props, propName, componentName) {
       });
     } else if (child.type === TabPanel) {
       panelsCount++;
+      /*
     } else {
-      error = new Error(
-        `Expected 'TabList' or 'TabPanel' but found '${child.type.displayName || child.type}' in \`${componentName}\``,
-      );
+    error = new Error(
+      `Expected 'TabList' or 'TabPanel' but found '${child.type.displayName || child.type}' in \`${componentName}\``,
+    );
+    */
     }
   });
 

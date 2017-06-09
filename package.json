@@ -78,7 +78,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.0",
-    "prop-types": "^15.5.0"
+    "prop-types": "^15.5.0",
+    "react-children-utilities": "^0.1.10"
   },
   "jest": {
     "roots": [
