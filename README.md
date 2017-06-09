@@ -250,7 +250,7 @@ This mode has to be enabled by supplying `selectedIndex` to the `<Tabs />` compo
 
 In this mode react-tabs does not handle any tab selection state internally and leaves all the state management up to the outer application.
 
-This mode als enforces you to set a handler for `onSelect`. `defaultIndex` does not have any effect and will therefore throw an error.
+This mode also enforces you to set a handler for `onSelect`. `defaultIndex` does not have any effect and will therefore throw an error.
 
 ```js
 class App extends Component {
