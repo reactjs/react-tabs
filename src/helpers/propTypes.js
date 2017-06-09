@@ -8,10 +8,15 @@ export function childrenPropType(props, propName, componentName) {
   let tabsCount = 0;
   let panelsCount = 0;
   let tabListFound = false;
+  const listTabs = [];
   const children = props[propName];
 
   deepForEach(children, child => {
     if (child.type === TabList) {
+      if (child.props && child.props.children && typeof child.props.children === 'object') {
+        deepForEach(child.props.children, listChild => listTabs.push(listChild));
+      }
+
       if (tabListFound) {
         error = new Error(
           "Found multiple 'TabList' components inside 'Tabs'. Only one is allowed.",
@@ -20,7 +25,7 @@ export function childrenPropType(props, propName, componentName) {
       tabListFound = true;
     }
     if (child.type === Tab) {
-      if (!tabListFound) {
+      if (!tabListFound || listTabs.indexOf(child) === -1) {
         error = new Error(
           "Found a 'Tab' component outside of the 'TabList' component. 'Tab' components have to be inside the 'TabList' component.",
         );

@@ -160,6 +160,46 @@ describe('<Tabs />', () => {
       expect(result instanceof Error).toBe(true);
     });
 
+    test('should result with warning when tab outside of tablist', () => {
+      const oldConsoleError = console.error; // eslint-disable-line no-console
+      console.error = () => {}; // eslint-disable-line no-console
+      const wrapper = shallow(
+        <Tabs>
+          <TabList>
+            <Tab>Foo</Tab>
+          </TabList>
+          <Tab>Foo</Tab>
+          <TabPanel />
+          <TabPanel />
+        </Tabs>,
+      );
+      console.error = oldConsoleError; // eslint-disable-line no-console
+
+      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      expect(result instanceof Error).toBe(true);
+    });
+
+    test('should result with warning when multiple tablist components exist', () => {
+      const oldConsoleError = console.error; // eslint-disable-line no-console
+      console.error = () => {}; // eslint-disable-line no-console
+      const wrapper = shallow(
+        <Tabs>
+          <TabList>
+            <Tab>Foo</Tab>
+          </TabList>
+          <TabList>
+            <Tab>Foo</Tab>
+          </TabList>
+          <TabPanel />
+          <TabPanel />
+        </Tabs>,
+      );
+      console.error = oldConsoleError; // eslint-disable-line no-console
+
+      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      expect(result instanceof Error).toBe(true);
+    });
+
     test('should result with warning when onSelect missing when selectedIndex set', () => {
       const oldConsoleError = console.error; // eslint-disable-line no-console
       const catchedErrors = [];
