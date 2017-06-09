@@ -32,7 +32,8 @@ export function childrenPropType(props, propName, componentName) {
       panelsCount++;
     } else {
       error = new Error(
-        `Expected 'TabList' or 'TabPanel' but found '${child.type.displayName || child.type}' in \`${componentName}\``,
+        `Expected 'TabList' or 'TabPanel' but found '${child.type.displayName ||
+          child.type}' in \`${componentName}\``,
       );
     }
   });

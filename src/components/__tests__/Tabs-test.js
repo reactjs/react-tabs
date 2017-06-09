@@ -127,7 +127,7 @@ describe('<Tabs />', () => {
       const wrapper = mount(createTabs());
       const tablist = wrapper.childAt(0);
 
-      for (let i = 0, j = 0, l = tablist.children.length; i < l; i++, (j += 2)) {
+      for (let i = 0, j = 0, l = tablist.children.length; i < l; i++, j += 2) {
         const tab = tablist.childAt(i);
         const panel = wrapper.childAt(i + 1);
 

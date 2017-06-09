@@ -18,9 +18,11 @@ function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
 
-const canUseActiveElement = !!(typeof window !== 'undefined' &&
+const canUseActiveElement = !!(
+  typeof window !== 'undefined' &&
   window.document &&
-  window.document.activeElement);
+  window.document.activeElement
+);
 
 export default class UncontrolledTabs extends Component {
   static defaultProps = {
