@@ -1,13 +1,13 @@
 /* eslint-env jest */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 
-function hasClassAt(wrapper, index, className) {
-  return wrapper.childAt(index).find('li').hasClass(className);
+function expectToMatchSnapshot(component) {
+  expect(renderer.create(component).toJSON()).toMatchSnapshot();
 }
 
 describe('<TabList />', () => {
@@ -19,34 +19,24 @@ describe('<TabList />', () => {
   });
 
   it('should have sane defaults', () => {
-    const wrapper = shallow(<TabList />);
-
-    expect(wrapper.hasClass('react-tabs__tab-list')).toBe(true);
-    expect(wrapper.prop('role')).toBe('tablist');
+    expectToMatchSnapshot(<TabList />);
   });
 
   it('should accept className', () => {
-    const wrapper = shallow(<TabList className="foobar" />);
-
-    expect(wrapper.hasClass('react-tabs__tab-list')).toBe(false);
-    expect(wrapper.hasClass('foobar')).toBe(true);
+    expectToMatchSnapshot(<TabList className="foobar" />);
   });
 
   it('should pass through custom properties', () => {
-    const wrapper = shallow(<TabList data-tooltip="Tooltip contents" />);
-
-    expect(wrapper.prop('data-tooltip')).toBe('Tooltip contents');
+    expectToMatchSnapshot(<TabList data-tooltip="Tooltip contents" />);
   });
 
   it('should not allow overriding all default properties', () => {
     // eslint-disable-next-line jsx-a11y/aria-role
-    const wrapper = shallow(<TabList role="micro-tab" />);
-
-    expect(wrapper.prop('role')).toBe('tablist');
+    expectToMatchSnapshot(<TabList role="micro-tab" />);
   });
 
   it('should retain the default classnames for active and disabled tab', () => {
-    const wrapper = mount(
+    expectToMatchSnapshot(
       <Tabs defaultIndex={0}>
         <TabList>
           <Tab>Foo</Tab>
@@ -56,14 +46,10 @@ describe('<TabList />', () => {
         <TabPanel>Bar</TabPanel>
       </Tabs>,
     );
-
-    const tabsList = wrapper.childAt(0);
-    expect(hasClassAt(tabsList, 0, 'react-tabs__tab--selected')).toBe(true);
-    expect(hasClassAt(tabsList, 1, 'react-tabs__tab--disabled')).toBe(true);
   });
 
   it('should display the custom classnames for selected and disabled tab specified on tabs', () => {
-    const wrapper = mount(
+    expectToMatchSnapshot(
       <Tabs defaultIndex={0} selectedTabClassName="active" disabledTabClassName="disabled">
         <TabList>
           <Tab>Foo</Tab>
@@ -73,17 +59,10 @@ describe('<TabList />', () => {
         <TabPanel>Bar</TabPanel>
       </Tabs>,
     );
-
-    const tabsList = wrapper.childAt(0);
-    expect(hasClassAt(tabsList, 0, 'react-tabs__tab--selected')).toBe(false);
-    expect(hasClassAt(tabsList, 1, 'react-tabs__tab--disabled')).toBe(false);
-
-    expect(hasClassAt(tabsList, 0, 'active')).toBe(true);
-    expect(hasClassAt(tabsList, 1, 'disabled')).toBe(true);
   });
 
   it('should display the custom classnames for selected and disabled tab', () => {
-    const wrapper = mount(
+    expectToMatchSnapshot(
       <Tabs defaultIndex={0}>
         <TabList>
           <Tab selectedClassName="active" disabledClassName="disabled">Foo</Tab>
@@ -95,12 +74,5 @@ describe('<TabList />', () => {
         <TabPanel>Bar</TabPanel>
       </Tabs>,
     );
-
-    const tabsList = wrapper.childAt(0);
-    expect(hasClassAt(tabsList, 0, 'react-tabs__tab--selected')).toBe(false);
-    expect(hasClassAt(tabsList, 1, 'react-tabs__tab--disabled')).toBe(false);
-
-    expect(hasClassAt(tabsList, 0, 'active')).toBe(true);
-    expect(hasClassAt(tabsList, 1, 'disabled')).toBe(true);
   });
 });

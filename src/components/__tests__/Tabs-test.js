@@ -2,11 +2,16 @@
 /* eslint-disable react/no-multi-comp */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 import { reset as resetIdCounter } from '../../helpers/uuid';
+
+function expectToMatchSnapshot(component) {
+  expect(renderer.create(component).toJSON()).toMatchSnapshot();
+}
 
 function createTabs(props = {}) {
   return (
@@ -34,6 +39,8 @@ function assertTabSelected(wrapper, index) {
 }
 
 describe('<Tabs />', () => {
+  beforeEach(() => resetIdCounter());
+
   beforeAll(() => {
     // eslint-disable-next-line no-console
     console.error = error => {
@@ -42,29 +49,16 @@ describe('<Tabs />', () => {
   });
 
   describe('props', () => {
-    test('should default to selectedIndex being 0', () => {
-      const wrapper = mount(createTabs());
-
-      assertTabSelected(wrapper, 0);
+    test('should have sane defaults', () => {
+      expectToMatchSnapshot(createTabs());
     });
 
     test('should honor positive defaultIndex prop', () => {
-      const wrapper = mount(createTabs({ defaultIndex: 1 }));
-
-      assertTabSelected(wrapper, 1);
+      expectToMatchSnapshot(createTabs({ defaultIndex: 1 }));
     });
 
     test('should honor negative defaultIndex prop', () => {
-      const wrapper = mount(createTabs({ defaultIndex: -1 }));
-      const tablist = wrapper.childAt(0);
-
-      for (let i = 0, l = tablist.children.length; i < l; i++) {
-        const tab = tablist.childAt(i);
-        const panel = wrapper.childAt(i + 1);
-
-        expect(tab.prop('selected')).toBe(false);
-        expect(panel.prop('selected')).toBe(false);
-      }
+      expectToMatchSnapshot(createTabs({ defaultIndex: -1 }));
     });
 
     test('should call onSelect when selection changes', () => {
@@ -84,56 +78,18 @@ describe('<Tabs />', () => {
       expect(called.last).toBe(0);
     });
 
-    test('should have a default className', () => {
-      const wrapper = mount(createTabs());
-
-      expect(wrapper.hasClass('react-tabs')).toBe(true);
-    });
-
     test('should accept className', () => {
-      const wrapper = mount(createTabs({ className: 'foobar' }));
-
-      expect(wrapper.hasClass('react-tabs')).toBe(false);
-      expect(wrapper.hasClass('foobar')).toBe(true);
+      expectToMatchSnapshot(createTabs({ className: 'foobar' }));
     });
   });
 
   describe('child props', () => {
-    test('should set disabled on disabled node', () => {
-      const wrapper = mount(createTabs());
-      const tablist = wrapper.childAt(0);
-
-      expect(tablist.childAt(3).prop('disabled')).toBe(true);
-    });
-
-    test('should set ids correctly', () => {
-      const wrapper = mount(createTabs());
-      const tablist = wrapper.childAt(0);
-
-      for (let i = 0, l = tablist.children.length; i < l; i++) {
-        const tab = tablist.childAt(i);
-        const panel = wrapper.childAt(i + 1);
-
-        expect(tab.prop('id')).toBe(panel.prop('tabId'));
-        expect(panel.prop('id')).toBe(tab.prop('panelId'));
-      }
-    });
-
     test('should reset ids correctly', () => {
-      mount(createTabs());
+      expectToMatchSnapshot(createTabs());
 
       resetIdCounter();
 
-      const wrapper = mount(createTabs());
-      const tablist = wrapper.childAt(0);
-
-      for (let i = 0, j = 0, l = tablist.children.length; i < l; i++, j += 2) {
-        const tab = tablist.childAt(i);
-        const panel = wrapper.childAt(i + 1);
-
-        expect(tab.prop('id')).toBe(`react-tabs-${j}`);
-        expect(panel.prop('id')).toBe(`react-tabs-${j + 1}`);
-      }
+      expectToMatchSnapshot(createTabs());
     });
   });
 
@@ -183,11 +139,7 @@ describe('<Tabs />', () => {
     });
 
     test('should render all tabs if forceRenderTabPanel is true', () => {
-      const wrapper = mount(createTabs({ forceRenderTabPanel: true }));
-
-      expect(wrapper.childAt(1).text()).toBe('Hello Foo');
-      expect(wrapper.childAt(2).text()).toBe('Hello Bar');
-      expect(wrapper.childAt(3).text()).toBe('Hello Baz');
+      expectToMatchSnapshot(createTabs({ forceRenderTabPanel: true }));
     });
 
     test('should not clone non tabs element', () => {
@@ -305,7 +257,7 @@ describe('<Tabs />', () => {
     });
 
     test('should allow random order for elements', () => {
-      const wrapper = mount(
+      expectToMatchSnapshot(
         <Tabs forceRenderTabPanel>
           <TabPanel>Hello Foo</TabPanel>
           <TabList>
@@ -315,9 +267,6 @@ describe('<Tabs />', () => {
           <TabPanel>Hello Bar</TabPanel>
         </Tabs>,
       );
-
-      expect(wrapper.childAt(0).text()).toBe('Hello Foo');
-      expect(wrapper.childAt(2).text()).toBe('Hello Bar');
     });
 
     test('should not throw a warning when wrong element is found', () => {
@@ -395,15 +344,11 @@ describe('<Tabs />', () => {
   });
 
   test('should pass through custom properties', () => {
-    const wrapper = shallow(<Tabs data-tooltip="Tooltip contents" />);
-
-    expect(wrapper.prop('data-tooltip')).toBe('Tooltip contents');
+    expectToMatchSnapshot(<Tabs data-tooltip="Tooltip contents" />);
   });
 
   test('should not add known props to dom', () => {
-    const wrapper = shallow(<Tabs defaultIndex={3} />);
-
-    expect(wrapper.prop('defaultIndex')).toBe(undefined);
+    expectToMatchSnapshot(<Tabs defaultIndex={3} />);
   });
 
   test('should cancel if event handler returns false', () => {
