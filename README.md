@@ -197,7 +197,7 @@ Provide a custom class name for the active tab.
 
 ### &lt;TabPanel /&gt;
 
-If you specify additional props on the `<TabPanel />` component they will be forwarded to the rendered `<dev />`.
+If you specify additional props on the `<TabPanel />` component they will be forwarded to the rendered `<div />`.
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
