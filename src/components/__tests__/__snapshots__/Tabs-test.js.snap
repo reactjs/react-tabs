@@ -660,6 +660,71 @@ exports[`<Tabs /> should pass through custom properties 1`] = `
 />
 `;
 
+exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
+<div
+  className="react-tabs"
+  data-tabs={true}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+>
+  <div
+    id="tabs-nav-wrapper"
+  >
+    <button>
+      Left
+    </button>
+    <div
+      className="tabs-container"
+    >
+      <ul
+        className="react-tabs__tab-list"
+        role="tablist"
+      >
+        <li
+          aria-controls="react-tabs-1"
+          aria-disabled="false"
+          aria-selected="true"
+          className="react-tabs__tab react-tabs__tab--selected"
+          id="react-tabs-0"
+          role="tab"
+          tabIndex="0"
+        />
+        <li
+          aria-controls="react-tabs-3"
+          aria-disabled="false"
+          aria-selected="false"
+          className="react-tabs__tab"
+          id="react-tabs-2"
+          role="tab"
+          tabIndex={null}
+        />
+      </ul>
+    </div>
+    <button>
+      Right
+    </button>
+  </div>
+  <div
+    className="tab-panels"
+  >
+    <div
+      aria-labelledby="react-tabs-0"
+      className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+      id="react-tabs-1"
+      role="tabpanel"
+      style={Object {}}
+    />
+    <div
+      aria-labelledby="react-tabs-2"
+      className="react-tabs__tab-panel"
+      id="react-tabs-3"
+      role="tabpanel"
+      style={Object {}}
+    />
+  </div>
+</div>
+`;
+
 exports[`<Tabs /> validation should allow random order for elements 1`] = `
 <div
   className="react-tabs"

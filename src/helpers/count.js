@@ -1,20 +1,21 @@
-import React from 'react';
-import TabList from '../components/TabList';
+import { deepForEach } from '../helpers/childrenDeepMap';
 import Tab from '../components/Tab';
 import TabPanel from '../components/TabPanel';
 
 export function getTabsCount(children) {
-  const tabLists = React.Children.toArray(children).filter(x => x.type === TabList);
+  let tabCount = 0;
+  deepForEach(children, child => {
+    if (child.type === Tab) tabCount++;
+  });
 
-  if (tabLists[0] && tabLists[0].props.children) {
-    return React.Children.count(
-      React.Children.toArray(tabLists[0].props.children).filter(x => x.type === Tab),
-    );
-  }
-
-  return 0;
+  return tabCount;
 }
 
 export function getPanelsCount(children) {
-  return React.Children.count(React.Children.toArray(children).filter(x => x.type === TabPanel));
+  let panelCount = 0;
+  deepForEach(children, child => {
+    if (child.type === TabPanel) panelCount++;
+  });
+
+  return panelCount;
 }

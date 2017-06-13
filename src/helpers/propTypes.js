@@ -1,4 +1,4 @@
-import React from 'react';
+import { deepForEach } from '../helpers/childrenDeepMap';
 import Tab from '../components/Tab';
 import TabList from '../components/TabList';
 import TabPanel from '../components/TabPanel';
@@ -7,38 +7,36 @@ export function childrenPropType(props, propName, componentName) {
   let error;
   let tabsCount = 0;
   let panelsCount = 0;
+  let tabListFound = false;
+  const listTabs = [];
   const children = props[propName];
 
-  React.Children.forEach(children, child => {
-    // null happens when conditionally rendering TabPanel/Tab
-    // see https://github.com/reactjs/react-tabs/issues/37
-    if (child === null) {
-      return;
-    }
-
+  deepForEach(children, child => {
     if (child.type === TabList) {
-      React.Children.forEach(child.props.children, c => {
-        // null happens when conditionally rendering TabPanel/Tab
-        // see https://github.com/reactjs/react-tabs/issues/37
-        if (c === null) {
-          return;
-        }
+      if (child.props && child.props.children && typeof child.props.children === 'object') {
+        deepForEach(child.props.children, listChild => listTabs.push(listChild));
+      }
 
-        if (c.type === Tab) {
-          tabsCount++;
-        }
-      });
+      if (tabListFound) {
+        error = new Error(
+          "Found multiple 'TabList' components inside 'Tabs'. Only one is allowed.",
+        );
+      }
+      tabListFound = true;
+    }
+    if (child.type === Tab) {
+      if (!tabListFound || listTabs.indexOf(child) === -1) {
+        error = new Error(
+          "Found a 'Tab' component outside of the 'TabList' component. 'Tab' components have to be inside the 'TabList' component.",
+        );
+      }
+      tabsCount++;
     } else if (child.type === TabPanel) {
       panelsCount++;
-    } else {
-      error = new Error(
-        `Expected 'TabList' or 'TabPanel' but found '${child.type.displayName ||
-          child.type}' in \`${componentName}\``,
-      );
     }
   });
 
-  if (tabsCount !== panelsCount) {
+  if (!error && tabsCount !== panelsCount) {
     error = new Error(
       `There should be an equal number of 'Tab' and 'TabPanel' in \`${componentName}\`.` +
         `Received ${tabsCount} 'Tab' and ${panelsCount} 'TabPanel'.`,

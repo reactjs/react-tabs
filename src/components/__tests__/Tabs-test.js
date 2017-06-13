@@ -141,37 +141,6 @@ describe('<Tabs />', () => {
     test('should render all tabs if forceRenderTabPanel is true', () => {
       expectToMatchSnapshot(createTabs({ forceRenderTabPanel: true }));
     });
-
-    test('should not clone non tabs element', () => {
-      class Demo extends React.Component {
-        render() {
-          const arbitrary1 = <div ref="arbitrary1">One</div>; // eslint-disable-line react/no-string-refs
-          const arbitrary2 = <span ref="arbitrary2">Two</span>; // eslint-disable-line react/no-string-refs
-          const arbitrary3 = <small ref="arbitrary3">Three</small>; // eslint-disable-line react/no-string-refs
-
-          return (
-            <Tabs>
-              <TabList>
-                {arbitrary1}
-                <Tab>Foo</Tab>
-                {arbitrary2}
-                <Tab>Bar</Tab>
-                {arbitrary3}
-              </TabList>
-
-              <TabPanel>Hello Baz</TabPanel>
-              <TabPanel>Hello Faz</TabPanel>
-            </Tabs>
-          );
-        }
-      }
-
-      const wrapper = mount(<Demo />);
-
-      expect(wrapper.ref('arbitrary1').text()).toBe('One');
-      expect(wrapper.ref('arbitrary2').text()).toBe('Two');
-      expect(wrapper.ref('arbitrary3').text()).toBe('Three');
-    });
   });
 
   describe('validation', () => {
@@ -183,6 +152,46 @@ describe('<Tabs />', () => {
           <TabList>
             <Tab>Foo</Tab>
           </TabList>
+        </Tabs>,
+      );
+      console.error = oldConsoleError; // eslint-disable-line no-console
+
+      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      expect(result instanceof Error).toBe(true);
+    });
+
+    test('should result with warning when tab outside of tablist', () => {
+      const oldConsoleError = console.error; // eslint-disable-line no-console
+      console.error = () => {}; // eslint-disable-line no-console
+      const wrapper = shallow(
+        <Tabs>
+          <TabList>
+            <Tab>Foo</Tab>
+          </TabList>
+          <Tab>Foo</Tab>
+          <TabPanel />
+          <TabPanel />
+        </Tabs>,
+      );
+      console.error = oldConsoleError; // eslint-disable-line no-console
+
+      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      expect(result instanceof Error).toBe(true);
+    });
+
+    test('should result with warning when multiple tablist components exist', () => {
+      const oldConsoleError = console.error; // eslint-disable-line no-console
+      console.error = () => {}; // eslint-disable-line no-console
+      const wrapper = shallow(
+        <Tabs>
+          <TabList>
+            <Tab>Foo</Tab>
+          </TabList>
+          <TabList>
+            <Tab>Foo</Tab>
+          </TabList>
+          <TabPanel />
+          <TabPanel />
         </Tabs>,
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
@@ -340,6 +349,27 @@ describe('<Tabs />', () => {
 
       assertTabSelected(wrapper, 0);
       assertTabSelected(innerTabs, 1);
+    });
+
+    test('should allow other DOM nodes', () => {
+      expectToMatchSnapshot(
+        <Tabs>
+          <div id="tabs-nav-wrapper">
+            <button>Left</button>
+            <div className="tabs-container">
+              <TabList>
+                <Tab />
+                <Tab />
+              </TabList>
+            </div>
+            <button>Right</button>
+          </div>
+          <div className="tab-panels">
+            <TabPanel />
+            <TabPanel />
+          </div>
+        </Tabs>,
+      );
     });
   });
 
