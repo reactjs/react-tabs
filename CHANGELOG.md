@@ -4,7 +4,7 @@
 
 #### New Features
 
-- Add nested TabList and TabPanel support (#184)
+- Add nested TabList and TabPanel support ([#184](https://github.com/reactjs/react-tabs/pull/184)) (Emmet McPoland)
 
 This allows random elements as children for the `<Tabs />` component, for example:
   
