@@ -1,5 +1,28 @@
 # Changelog
 
+### 1.1.0 (June 13, 2017)
+
+#### New Features
+
+- Add nested TabList and TabPanel support (#184)
+
+This allows random elements as children for the `<Tabs />` component, for example:
+  
+```jsx
+<Tabs>
+  <div id="tabs-nav-wrapper">
+    <button>Left</button>
+    <div className="tabs-container">
+      <TabList>{tabs}</TabList>
+    </div>
+    <button>Right</button>
+  </div>
+  <div className="tab-panels">
+    {tabPanels}
+  </div>
+</Tabs>
+```
+
 ### 1.0.0 (May 10, 2017)
 
 #### Breaking Changes
