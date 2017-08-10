@@ -46,8 +46,6 @@ export default class UncontrolledTabs extends Component {
   tabNodes = [];
 
   setSelected(index, event) {
-    // Don't do anything if nothing has changed
-    if (index === this.props.selectedIndex) return;
     // Check index boundary
     if (index < 0 || index >= this.getTabsCount()) return;
 
