@@ -3,11 +3,9 @@ import React, { cloneElement, Component } from 'react';
 import cx from 'classnames';
 import uuid from '../helpers/uuid';
 import { childrenPropType } from '../helpers/propTypes';
-import Tab from './Tab';
-import TabList from './TabList';
-import TabPanel from './TabPanel';
 import { getPanelsCount, getTabsCount } from '../helpers/count';
 import { deepMap } from '../helpers/childrenDeepMap';
+import { isTabList, isTabPanel, isTab } from '../helpers/elementTypes';
 
 // Determine if a node from event.target is a Tab element
 function isTabNode(node) {
@@ -139,7 +137,7 @@ export default class UncontrolledTabs extends Component {
       let result = child;
 
       // Clone TabList and Tab components to have refs
-      if (child.type === TabList) {
+      if (isTabList(child)) {
         let listIndex = 0;
 
         // Figure out if the current focus in the DOM is set on a Tab
@@ -149,7 +147,7 @@ export default class UncontrolledTabs extends Component {
         if (canUseActiveElement) {
           wasTabFocused = React.Children
             .toArray(child.props.children)
-            .filter(tab => tab.type === Tab)
+            .filter(isTab)
             .some((tab, i) => document.activeElement === this.getTab(i));
         }
 
@@ -176,7 +174,7 @@ export default class UncontrolledTabs extends Component {
             return cloneElement(tab, props);
           }),
         });
-      } else if (child.type === TabPanel) {
+      } else if (isTabPanel(child)) {
         const props = {
           id: this.panelIds[index],
           tabId: this.tabIds[index],

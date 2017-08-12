@@ -110,3 +110,5 @@ For more information about controlled and uncontrolled mode of react-tabs see th
     );
   }
 }
+
+Tabs.tabsRole = 'Tabs';
