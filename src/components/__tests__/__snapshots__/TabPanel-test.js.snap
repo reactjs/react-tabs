@@ -10,6 +10,16 @@ exports[`<TabPanel /> should accept className 1`] = `
 />
 `;
 
+exports[`<TabPanel /> should allow for higher-order components 1`] = `
+<div
+  aria-labelledby={undefined}
+  className="react-tabs__tab-panel"
+  id={undefined}
+  role="tabpanel"
+  style={Object {}}
+/>
+`;
+
 exports[`<TabPanel /> should have sane defaults 1`] = `
 <div
   aria-labelledby={undefined}
