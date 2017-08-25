@@ -19,7 +19,9 @@ function createTabs(props = {}) {
       <TabList>
         <Tab>Foo</Tab>
         <Tab>Bar</Tab>
-        <Tab><a>Baz</a></Tab>
+        <Tab>
+          <a>Baz</a>
+        </Tab>
         <Tab disabled>Qux</Tab>
       </TabList>
       <TabPanel>Hello Foo</TabPanel>
@@ -244,8 +246,7 @@ describe('<Tabs />', () => {
       expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(true);
     });
 
-    test(`should result with warning when tabs/panels are imbalanced and
-        it should ignore non tab children`, () => {
+    test('should result with warning when tabs/panels are imbalanced and it should ignore non tab children', () => {
       const oldConsoleError = console.error; // eslint-disable-line no-console
       console.error = () => {}; // eslint-disable-line no-console
       const wrapper = shallow(
