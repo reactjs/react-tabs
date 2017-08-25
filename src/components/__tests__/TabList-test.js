@@ -65,7 +65,9 @@ describe('<TabList />', () => {
     expectToMatchSnapshot(
       <Tabs defaultIndex={0}>
         <TabList>
-          <Tab selectedClassName="active" disabledClassName="disabled">Foo</Tab>
+          <Tab selectedClassName="active" disabledClassName="disabled">
+            Foo
+          </Tab>
           <Tab disabled selectedClassName="active" disabledClassName="disabled">
             Bar
           </Tab>
