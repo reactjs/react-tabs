@@ -6,6 +6,8 @@ Accessible react tab component
 
 > This is the documentation for 1.0 if you are looking for the documentation for version 0.8 please got to this [page](https://github.com/reactjs/react-tabs/blob/0.8/README.md)
 
+<a href="https://app.codesponsor.io/link/napKqUy7ZTEunMtesQZm9ygE/reactjs/react-tabs" rel="nofollow"><img src="https://app.codesponsor.io/embed/napKqUy7ZTEunMtesQZm9ygE/reactjs/react-tabs.svg" style="width: 888px; height: 68px;" alt="Sponsor" /></a>
+
 ## Installing
 
 ```bash
