@@ -394,6 +394,40 @@ describe('<Tabs />', () => {
     assertTabSelected(wrapper, 0);
   });
 
+  test('should trigger onSelect handler when clicking', () => {
+    let wasClicked = false;
+    const wrapper = mount(
+      createTabs({
+        onSelect: () => {
+          wasClicked = true;
+        },
+      }),
+    );
+
+    assertTabSelected(wrapper, 0);
+
+    wrapper.childAt(0).childAt(1).simulate('click');
+    assertTabSelected(wrapper, 1);
+    expect(wasClicked).toBe(true);
+  });
+
+  test('should trigger onSelect handler when clicking on open tab', () => {
+    let wasClicked = false;
+    const wrapper = mount(
+      createTabs({
+        onSelect: () => {
+          wasClicked = true;
+        },
+      }),
+    );
+
+    assertTabSelected(wrapper, 0);
+
+    wrapper.childAt(0).childAt(0).simulate('click');
+    assertTabSelected(wrapper, 0);
+    expect(wasClicked).toBe(true);
+  });
+
   test('should switch tabs if setState is called within onSelect', () => {
     class Wrap extends React.Component {
       handleSelect = () => this.setState({ foo: 'bar' });
