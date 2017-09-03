@@ -74,7 +74,10 @@ describe('<Tabs />', () => {
         }),
       );
 
-      wrapper.childAt(0).childAt(1).simulate('click');
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .simulate('click');
 
       expect(called.index).toBe(1);
       expect(called.last).toBe(0);
@@ -98,7 +101,10 @@ describe('<Tabs />', () => {
   describe('interaction', () => {
     test('should update selectedIndex when clicked', () => {
       const wrapper = mount(createTabs());
-      wrapper.childAt(0).childAt(1).simulate('click');
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .simulate('click');
 
       assertTabSelected(wrapper, 1);
     });
@@ -106,7 +112,10 @@ describe('<Tabs />', () => {
     test('should update selectedIndex when tab child is clicked', () => {
       const wrapper = mount(createTabs());
       const tablist = wrapper.childAt(0);
-      tablist.childAt(2).first().simulate('click');
+      tablist
+        .childAt(2)
+        .first()
+        .simulate('click');
 
       assertTabSelected(wrapper, 2);
     });
@@ -114,7 +123,10 @@ describe('<Tabs />', () => {
     test('should not change selectedIndex when clicking a disabled tab', () => {
       const wrapper = mount(createTabs({ defaultIndex: 0 }));
 
-      wrapper.childAt(0).childAt(3).simulate('click');
+      wrapper
+        .childAt(0)
+        .childAt(3)
+        .simulate('click');
       assertTabSelected(wrapper, 0);
     });
   });
@@ -127,13 +139,19 @@ describe('<Tabs />', () => {
       expect(wrapper.childAt(2).text()).toBe('');
       expect(wrapper.childAt(3).text()).toBe('');
 
-      wrapper.childAt(0).childAt(1).simulate('click');
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .simulate('click');
 
       expect(wrapper.childAt(1).text()).toBe('');
       expect(wrapper.childAt(2).text()).toBe('Hello Bar');
       expect(wrapper.childAt(3).text()).toBe('');
 
-      wrapper.childAt(0).childAt(2).simulate('click');
+      wrapper
+        .childAt(0)
+        .childAt(2)
+        .simulate('click');
 
       expect(wrapper.childAt(1).text()).toBe('');
       expect(wrapper.childAt(2).text()).toBe('');
@@ -346,7 +364,10 @@ describe('<Tabs />', () => {
 
       const innerTabs = wrapper.childAt(1).childAt(0);
 
-      innerTabs.childAt(0).childAt(1).simulate('click');
+      innerTabs
+        .childAt(0)
+        .childAt(1)
+        .simulate('click');
 
       assertTabSelected(wrapper, 0);
       assertTabSelected(innerTabs, 1);
@@ -387,10 +408,16 @@ describe('<Tabs />', () => {
 
     assertTabSelected(wrapper, 0);
 
-    wrapper.childAt(0).childAt(1).simulate('click');
+    wrapper
+      .childAt(0)
+      .childAt(1)
+      .simulate('click');
     assertTabSelected(wrapper, 0);
 
-    wrapper.childAt(0).childAt(2).simulate('click');
+    wrapper
+      .childAt(0)
+      .childAt(2)
+      .simulate('click');
     assertTabSelected(wrapper, 0);
   });
 
@@ -406,7 +433,10 @@ describe('<Tabs />', () => {
 
     assertTabSelected(wrapper, 0);
 
-    wrapper.childAt(0).childAt(1).simulate('click');
+    wrapper
+      .childAt(0)
+      .childAt(1)
+      .simulate('click');
     assertTabSelected(wrapper, 1);
     expect(wasClicked).toBe(true);
   });
@@ -423,7 +453,10 @@ describe('<Tabs />', () => {
 
     assertTabSelected(wrapper, 0);
 
-    wrapper.childAt(0).childAt(0).simulate('click');
+    wrapper
+      .childAt(0)
+      .childAt(0)
+      .simulate('click');
     assertTabSelected(wrapper, 0);
     expect(wasClicked).toBe(true);
   });
@@ -438,10 +471,16 @@ describe('<Tabs />', () => {
 
     const wrapper = mount(<Wrap />);
 
-    wrapper.childAt(0).childAt(1).simulate('click');
+    wrapper
+      .childAt(0)
+      .childAt(1)
+      .simulate('click');
     assertTabSelected(wrapper, 1);
 
-    wrapper.childAt(0).childAt(2).simulate('click');
+    wrapper
+      .childAt(0)
+      .childAt(2)
+      .simulate('click');
     assertTabSelected(wrapper, 2);
   });
 });
