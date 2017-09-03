@@ -27,9 +27,18 @@
   "bugs": {
     "url": "https://github.com/reactjs/react-tabs/issues"
   },
-  "files": ["dist", "lib", "style"],
+  "files": [
+    "dist",
+    "lib",
+    "style"
+  ],
   "homepage": "https://github.com/reactjs/react-tabs",
-  "keywords": ["react", "tabs", "a11y", "react-component"],
+  "keywords": [
+    "react",
+    "tabs",
+    "a11y",
+    "react-component"
+  ],
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0"
   },
@@ -73,9 +82,14 @@
     "prop-types": "^15.5.0"
   },
   "jest": {
-    "roots": ["src"]
+    "roots": [
+      "src"
+    ]
   },
   "lint-staged": {
-    "src/**/*.js": ["eslint --fix", "git add"]
+    "src/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
