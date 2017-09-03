@@ -226,7 +226,10 @@ export default class UncontrolledTabs extends Component {
           return;
         }
 
-        const index = [].slice.call(node.parentNode.children).filter(isTabNode).indexOf(node);
+        const index = [].slice
+          .call(node.parentNode.children)
+          .filter(isTabNode)
+          .indexOf(node);
         this.setSelected(index, e);
         return;
       }
