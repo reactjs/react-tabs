@@ -19,21 +19,20 @@ function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
 
-// Work around for IE bug when accessing document.activeElement in an iframe
-// Refer to the following resources:
-// http://stackoverflow.com/a/10982960/369687
-// https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12733599
-let activeElementAvailable = true;
+let canUseActiveElement;
 try {
-  activeElementAvailable = window.document.activeElement;
-} catch (e) {}
-
-const canUseActiveElement = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  activeElementAvailable
-);
-
+  canUseActiveElement = !!(
+    typeof window !== 'undefined' &&
+    window.document &&
+    window.document.activeElement
+  );
+} catch (e) {
+  // Work around for IE bug when accessing document.activeElement in an iframe
+  // Refer to the following resources:
+  // http://stackoverflow.com/a/10982960/369687
+  // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12733599
+  canUseActiveElement = false;
+}
 export default class UncontrolledTabs extends Component {
   static defaultProps = {
     className: 'react-tabs',
@@ -237,7 +236,10 @@ export default class UncontrolledTabs extends Component {
           return;
         }
 
-        const index = [].slice.call(node.parentNode.children).filter(isTabNode).indexOf(node);
+        const index = [].slice
+          .call(node.parentNode.children)
+          .filter(isTabNode)
+          .indexOf(node);
         this.setSelected(index, e);
         return;
       }
