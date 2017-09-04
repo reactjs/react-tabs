@@ -19,12 +19,20 @@ function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
 
-const canUseActiveElement = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.activeElement
-);
-
+let canUseActiveElement;
+try {
+  canUseActiveElement = !!(
+    typeof window !== 'undefined' &&
+    window.document &&
+    window.document.activeElement
+  );
+} catch (e) {
+  // Work around for IE bug when accessing document.activeElement in an iframe
+  // Refer to the following resources:
+  // http://stackoverflow.com/a/10982960/369687
+  // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12733599
+  canUseActiveElement = false;
+}
 export default class UncontrolledTabs extends Component {
   static defaultProps = {
     className: 'react-tabs',
