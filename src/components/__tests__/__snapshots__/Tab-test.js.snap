@@ -12,6 +12,18 @@ exports[`<Tab /> should accept className 1`] = `
 />
 `;
 
+exports[`<Tab /> should allow to be wrapped in higher-order-component 1`] = `
+<li
+  aria-controls={null}
+  aria-disabled="false"
+  aria-selected="false"
+  className="react-tabs__tab"
+  id={null}
+  role="tab"
+  tabIndex={null}
+/>
+`;
+
 exports[`<Tab /> should have sane defaults 1`] = `
 <li
   aria-controls={null}

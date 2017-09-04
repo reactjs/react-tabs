@@ -80,3 +80,5 @@ export default class Tab extends Component {
     );
   }
 }
+
+Tab.tabsRole = 'Tab';

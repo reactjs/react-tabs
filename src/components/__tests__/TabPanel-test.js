@@ -2,6 +2,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import TabPanel from '../TabPanel';
+import { TabPanelWrapper } from './helpers/higherOrder';
 
 function expectToMatchSnapshot(component) {
   expect(renderer.create(component).toJSON()).toMatchSnapshot();
@@ -54,5 +55,9 @@ describe('<TabPanel />', () => {
   it('should not allow overriding all default properties', () => {
     // eslint-disable-next-line jsx-a11y/aria-role
     expectToMatchSnapshot(<TabPanel role="micro-tab" />);
+  });
+
+  it('should allow for higher-order components', () => {
+    expectToMatchSnapshot(<TabPanelWrapper />);
   });
 });

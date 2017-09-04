@@ -106,3 +106,5 @@ For more information about controlled and uncontrolled mode of react-tabs see th
     return <UncontrolledTabs {...props}>{children}</UncontrolledTabs>;
   }
 }
+
+Tabs.tabsRole = 'Tabs';

@@ -62,6 +62,7 @@
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-react": "^7.0.1",
+    "hoist-non-react-statics": "^2.3.1",
     "husky": "^0.14.3",
     "jest-cli": "^20.0.0",
     "lint-staged": "^4.0.4",
@@ -84,7 +85,8 @@
   "jest": {
     "roots": [
       "src"
-    ]
+    ],
+    "testRegex": "/__tests__/.+-test\\.js$"
   },
   "lint-staged": {
     "src/**/*.js": [

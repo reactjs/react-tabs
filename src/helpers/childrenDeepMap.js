@@ -1,10 +1,8 @@
 import { Children, cloneElement } from 'react';
-import Tab from '../components/Tab';
-import TabList from '../components/TabList';
-import TabPanel from '../components/TabPanel';
+import { isTabPanel, isTab, isTabList } from '../helpers/elementTypes';
 
 function isTabChild(child) {
-  return child.type === Tab || child.type === TabList || child.type === TabPanel;
+  return isTab(child) || isTabList(child) || isTabPanel(child);
 }
 
 export function deepMap(children, callback) {
@@ -35,10 +33,10 @@ export function deepForEach(children, callback) {
     // see https://github.com/reactjs/react-tabs/issues/37
     if (child === null) return;
 
-    if (child.type === Tab || child.type === TabPanel) {
+    if (isTab(child) || isTabPanel(child)) {
       callback(child);
     } else if (child.props && child.props.children && typeof child.props.children === 'object') {
-      if (child.type === TabList) callback(child);
+      if (isTabList(child)) callback(child);
       deepForEach(child.props.children, callback);
     }
   });

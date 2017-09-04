@@ -49,3 +49,5 @@ export default class TabPanel extends Component {
     );
   }
 }
+
+TabPanel.tabsRole = 'TabPanel';

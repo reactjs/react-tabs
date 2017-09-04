@@ -5,6 +5,7 @@ import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
+import { TabListWrapper, TabWrapper } from './helpers/higherOrder';
 
 function expectToMatchSnapshot(component) {
   expect(renderer.create(component).toJSON()).toMatchSnapshot();
@@ -72,6 +73,19 @@ describe('<TabList />', () => {
             Bar
           </Tab>
         </TabList>
+        <TabPanel>Foo</TabPanel>
+        <TabPanel>Bar</TabPanel>
+      </Tabs>,
+    );
+  });
+
+  it('should allow for higher order components', () => {
+    expectToMatchSnapshot(
+      <Tabs>
+        <TabListWrapper>
+          <TabWrapper>Foo</TabWrapper>
+          <TabWrapper>Bar</TabWrapper>
+        </TabListWrapper>
         <TabPanel>Foo</TabPanel>
         <TabPanel>Bar</TabPanel>
       </Tabs>,

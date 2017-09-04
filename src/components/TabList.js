@@ -22,3 +22,5 @@ export default class TabList extends Component {
     );
   }
 }
+
+TabList.tabsRole = 'TabList';

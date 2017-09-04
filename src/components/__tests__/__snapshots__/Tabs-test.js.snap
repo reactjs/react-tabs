@@ -641,6 +641,59 @@ exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
 </div>
 `;
 
+exports[`<Tabs /> should allow for higher order components 1`] = `
+<div
+  className="react-tabs"
+  data-tabs={true}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+>
+  <ul
+    className="react-tabs__tab-list"
+    role="tablist"
+  >
+    <li
+      aria-controls="react-tabs-1"
+      aria-disabled="false"
+      aria-selected="true"
+      className="react-tabs__tab react-tabs__tab--selected"
+      id="react-tabs-0"
+      role="tab"
+      tabIndex="0"
+    >
+      Foo
+    </li>
+    <li
+      aria-controls="react-tabs-3"
+      aria-disabled="false"
+      aria-selected="false"
+      className="react-tabs__tab"
+      id="react-tabs-2"
+      role="tab"
+      tabIndex={null}
+    >
+      Bar
+    </li>
+  </ul>
+  <div
+    aria-labelledby="react-tabs-0"
+    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    id="react-tabs-1"
+    role="tabpanel"
+    style={Object {}}
+  >
+    Foo
+  </div>
+  <div
+    aria-labelledby="react-tabs-2"
+    className="react-tabs__tab-panel"
+    id="react-tabs-3"
+    role="tabpanel"
+    style={Object {}}
+  />
+</div>
+`;
+
 exports[`<Tabs /> should not add known props to dom 1`] = `
 <div
   className="react-tabs"
