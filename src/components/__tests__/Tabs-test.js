@@ -8,6 +8,7 @@ import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 import { reset as resetIdCounter } from '../../helpers/uuid';
+import { TabListWrapper, TabWrapper, TabPanelWrapper } from './helpers/higherOrder';
 
 function expectToMatchSnapshot(component) {
   expect(renderer.create(component).toJSON()).toMatchSnapshot();
@@ -19,7 +20,9 @@ function createTabs(props = {}) {
       <TabList>
         <Tab>Foo</Tab>
         <Tab>Bar</Tab>
-        <Tab><a>Baz</a></Tab>
+        <Tab>
+          <a>Baz</a>
+        </Tab>
         <Tab disabled>Qux</Tab>
       </TabList>
       <TabPanel>Hello Foo</TabPanel>
@@ -408,5 +411,18 @@ describe('<Tabs />', () => {
 
     wrapper.childAt(0).childAt(2).simulate('click');
     assertTabSelected(wrapper, 2);
+  });
+
+  it('should allow for higher order components', () => {
+    expectToMatchSnapshot(
+      <Tabs>
+        <TabListWrapper>
+          <TabWrapper>Foo</TabWrapper>
+          <TabWrapper>Bar</TabWrapper>
+        </TabListWrapper>
+        <TabPanelWrapper>Foo</TabPanelWrapper>
+        <TabPanelWrapper>Bar</TabPanelWrapper>
+      </Tabs>,
+    );
   });
 });

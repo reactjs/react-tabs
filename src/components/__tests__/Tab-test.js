@@ -2,7 +2,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Tab from '../Tab';
-import { TabWrapper } from '../../helpers/higherOrder';
+import { TabWrapper } from './helpers/higherOrder';
 
 function expectToMatchSnapshot(component) {
   expect(renderer.create(component).toJSON()).toMatchSnapshot();

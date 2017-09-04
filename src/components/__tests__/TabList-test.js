@@ -5,8 +5,7 @@ import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
-
-import { TabListWrapper, TabWrapper } from '../../helpers/higherOrder';
+import { TabListWrapper, TabWrapper } from './helpers/higherOrder';
 
 function expectToMatchSnapshot(component) {
   expect(renderer.create(component).toJSON()).toMatchSnapshot();

@@ -2,7 +2,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import TabPanel from '../TabPanel';
-import { TabPanelWrapper } from '../../helpers/higherOrder';
+import { TabPanelWrapper } from './helpers/higherOrder';
 
 function expectToMatchSnapshot(component) {
   expect(renderer.create(component).toJSON()).toMatchSnapshot();
@@ -33,7 +33,11 @@ describe('<TabPanel />', () => {
   });
 
   it('should support being selected', () => {
-    expectToMatchSnapshot(<TabPanel selected id="abcd" tabId="1234">Hola</TabPanel>);
+    expectToMatchSnapshot(
+      <TabPanel selected id="abcd" tabId="1234">
+        Hola
+      </TabPanel>,
+    );
   });
 
   it('should support being selected with custom class name', () => {
