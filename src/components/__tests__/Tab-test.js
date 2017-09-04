@@ -25,7 +25,11 @@ describe('<Tab />', () => {
   });
 
   it('should support being selected', () => {
-    expectToMatchSnapshot(<Tab selected id="abcd" panelId="1234">Hello</Tab>);
+    expectToMatchSnapshot(
+      <Tab selected id="abcd" panelId="1234">
+        Hello
+      </Tab>,
+    );
   });
 
   it('should support being selected with custom class', () => {

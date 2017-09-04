@@ -103,11 +103,7 @@ For more information about controlled and uncontrolled mode of react-tabs see th
       props.selectedIndex = this.state.selectedIndex;
     }
 
-    return (
-      <UncontrolledTabs {...props}>
-        {children}
-      </UncontrolledTabs>
-    );
+    return <UncontrolledTabs {...props}>{children}</UncontrolledTabs>;
   }
 }
 

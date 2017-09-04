@@ -5,9 +5,13 @@
     "browser": true,
     "node": true
   },
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
     "arrow-parens": "off",
     "no-plusplus": "off",
+    "prettier/prettier": ["error", { "singleQuote": true, "printWidth": 100, "trailingComma": "all"}],
     "react/require-default-props": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
     "react/forbid-prop-types": "off",
