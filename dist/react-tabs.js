@@ -7,7 +7,7 @@
 		exports["ReactTabs"] = factory(require("react"), require("prop-types"), require("classnames"));
 	else
 		root["ReactTabs"] = factory(root["React"], root["PropTypes"], root["classNames"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -84,6 +84,41 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.isTab = isTab;
+exports.isTabPanel = isTabPanel;
+exports.isTabList = isTabList;
+function isTab(el) {
+  return el.type.tabsRole === 'Tab';
+}
+
+function isTabPanel(el) {
+  return el.type.tabsRole === 'TabPanel';
+}
+
+function isTabList(el) {
+  return el.type.tabsRole === 'TabList';
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93,7 +128,205 @@ exports.__esModule = true;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _propTypes = __webpack_require__(3);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.deepMap = deepMap;
+exports.deepForEach = deepForEach;
+
+var _react = __webpack_require__(0);
+
+var _elementTypes = __webpack_require__(2);
+
+function isTabChild(child) {
+  return (0, _elementTypes.isTab)(child) || (0, _elementTypes.isTabList)(child) || (0, _elementTypes.isTabPanel)(child);
+}
+
+function deepMap(children, callback) {
+  return _react.Children.map(children, function (child) {
+    // null happens when conditionally rendering TabPanel/Tab
+    // see https://github.com/reactjs/react-tabs/issues/37
+    if (child === null) return null;
+
+    if (isTabChild(child)) {
+      return callback(child);
+    }
+
+    if (child.props && child.props.children && _typeof(child.props.children) === 'object') {
+      // Clone the child that has children and map them too
+      return (0, _react.cloneElement)(child, _extends({}, child.props, {
+        children: deepMap(child.props.children, callback)
+      }));
+    }
+
+    return child;
+  });
+}
+
+function deepForEach(children, callback) {
+  return _react.Children.forEach(children, function (child) {
+    // null happens when conditionally rendering TabPanel/Tab
+    // see https://github.com/reactjs/react-tabs/issues/37
+    if (child === null) return;
+
+    if ((0, _elementTypes.isTab)(child) || (0, _elementTypes.isTabPanel)(child)) {
+      callback(child);
+    } else if (child.props && child.props.children && _typeof(child.props.children) === 'object') {
+      if ((0, _elementTypes.isTabList)(child)) callback(child);
+      deepForEach(child.props.children, callback);
+    }
+  });
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = uuid;
+exports.reset = reset;
+// Get a universally unique identifier
+var count = 0;
+function uuid() {
+  return "react-tabs-" + count++;
+}
+
+function reset() {
+  count = 0;
+}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.getTabsCount = getTabsCount;
+exports.getPanelsCount = getPanelsCount;
+
+var _childrenDeepMap = __webpack_require__(4);
+
+var _elementTypes = __webpack_require__(2);
+
+function getTabsCount(children) {
+  var tabCount = 0;
+  (0, _childrenDeepMap.deepForEach)(children, function (child) {
+    if ((0, _elementTypes.isTab)(child)) tabCount++;
+  });
+
+  return tabCount;
+}
+
+function getPanelsCount(children) {
+  var panelCount = 0;
+  (0, _childrenDeepMap.deepForEach)(children, function (child) {
+    if ((0, _elementTypes.isTabPanel)(child)) panelCount++;
+  });
+
+  return panelCount;
+}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.childrenPropType = childrenPropType;
+exports.onSelectPropType = onSelectPropType;
+exports.selectedIndexPropType = selectedIndexPropType;
+
+var _childrenDeepMap = __webpack_require__(4);
+
+var _elementTypes = __webpack_require__(2);
+
+function childrenPropType(props, propName, componentName) {
+  var error = void 0;
+  var tabsCount = 0;
+  var panelsCount = 0;
+  var tabListFound = false;
+  var listTabs = [];
+  var children = props[propName];
+
+  (0, _childrenDeepMap.deepForEach)(children, function (child) {
+    if ((0, _elementTypes.isTabList)(child)) {
+      if (child.props && child.props.children && _typeof(child.props.children) === 'object') {
+        (0, _childrenDeepMap.deepForEach)(child.props.children, function (listChild) {
+          return listTabs.push(listChild);
+        });
+      }
+
+      if (tabListFound) {
+        error = new Error("Found multiple 'TabList' components inside 'Tabs'. Only one is allowed.");
+      }
+      tabListFound = true;
+    }
+    if ((0, _elementTypes.isTab)(child)) {
+      if (!tabListFound || listTabs.indexOf(child) === -1) {
+        error = new Error("Found a 'Tab' component outside of the 'TabList' component. 'Tab' components have to be inside the 'TabList' component.");
+      }
+      tabsCount++;
+    } else if ((0, _elementTypes.isTabPanel)(child)) {
+      panelsCount++;
+    }
+  });
+
+  if (!error && tabsCount !== panelsCount) {
+    error = new Error('There should be an equal number of \'Tab\' and \'TabPanel\' in `' + componentName + '`.' + ('Received ' + tabsCount + ' \'Tab\' and ' + panelsCount + ' \'TabPanel\'.'));
+  }
+
+  return error;
+}
+
+function onSelectPropType(props, propName, componentName, location, propFullName) {
+  var prop = props[propName];
+  var name = propFullName || propName;
+  var error = null;
+
+  if (prop && typeof prop !== 'function') {
+    error = new Error('Invalid ' + location + ' `' + name + '` of type `' + (typeof prop === 'undefined' ? 'undefined' : _typeof(prop)) + '` supplied to `' + componentName + '`, expected `function`.');
+  } else if (props.selectedIndex != null && prop == null) {
+    error = new Error('The ' + location + ' `' + name + '` is marked as required in `' + componentName + '`, but its value is `undefined` or `null`.\n`onSelect` is required when `selectedIndex` is also set. Not doing so will make the tabs not do anything, as `selectedIndex` indicates that you want to handle the selected tab yourself.\nIf you only want to set the inital tab replace `selectedIndex` with `defaultIndex`.');
+  }
+
+  return error;
+}
+
+function selectedIndexPropType(props, propName, componentName, location, propFullName) {
+  var prop = props[propName];
+  var name = propFullName || propName;
+  var error = null;
+
+  if (prop != null && typeof prop !== 'number') {
+    error = new Error('Invalid ' + location + ' `' + name + '` of type `' + (typeof prop === 'undefined' ? 'undefined' : _typeof(prop)) + '` supplied to `' + componentName + '`, expected `number`.');
+  } else if (props.defaultIndex != null && prop != null) {
+    return new Error('The ' + location + ' `' + name + '` cannot be used together with `defaultIndex` in `' + componentName + '`.\nEither remove `' + name + '` to let `' + componentName + '` handle the selected tab internally or remove `defaultIndex` to handle it yourself.');
+  }
+
+  return error;
+}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -101,7 +334,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(5);
+var _classnames = __webpack_require__(3);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -202,8 +435,11 @@ Tab.propTypes =  true ? {
   tabRef: _propTypes2.default.func // private
 } : {};
 
+
+Tab.tabsRole = 'Tab';
+
 /***/ }),
-/* 2 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -213,7 +449,7 @@ exports.__esModule = true;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _propTypes = __webpack_require__(3);
+var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -221,7 +457,77 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(5);
+var _classnames = __webpack_require__(3);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TabList = function (_Component) {
+  _inherits(TabList, _Component);
+
+  function TabList() {
+    _classCallCheck(this, TabList);
+
+    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+  }
+
+  TabList.prototype.render = function render() {
+    var _props = this.props,
+        children = _props.children,
+        className = _props.className,
+        attributes = _objectWithoutProperties(_props, ['children', 'className']);
+
+    return _react2.default.createElement(
+      'ul',
+      _extends({}, attributes, { className: (0, _classnames2.default)(className), role: 'tablist' }),
+      children
+    );
+  };
+
+  return TabList;
+}(_react.Component);
+
+TabList.defaultProps = {
+  className: 'react-tabs__tab-list'
+};
+exports.default = TabList;
+TabList.propTypes =  true ? {
+  children: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array]),
+  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object])
+} : {};
+
+
+TabList.tabsRole = 'TabList';
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(3);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -291,14 +597,11 @@ TabPanel.propTypes =  true ? {
   tabId: _propTypes2.default.string // private
 } : {};
 
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+TabPanel.tabsRole = 'TabPanel';
 
 /***/ }),
-/* 4 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -306,9 +609,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 exports.__esModule = true;
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _propTypes = __webpack_require__(3);
+var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -316,314 +617,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(5);
+var _propTypes3 = __webpack_require__(7);
 
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TabList = function (_Component) {
-  _inherits(TabList, _Component);
-
-  function TabList() {
-    _classCallCheck(this, TabList);
-
-    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
-  }
-
-  TabList.prototype.render = function render() {
-    var _props = this.props,
-        children = _props.children,
-        className = _props.className,
-        attributes = _objectWithoutProperties(_props, ['children', 'className']);
-
-    return _react2.default.createElement(
-      'ul',
-      _extends({}, attributes, { className: (0, _classnames2.default)(className), role: 'tablist' }),
-      children
-    );
-  };
-
-  return TabList;
-}(_react.Component);
-
-TabList.defaultProps = {
-  className: 'react-tabs__tab-list'
-};
-exports.default = TabList;
-TabList.propTypes =  true ? {
-  children: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.array]),
-  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object])
-} : {};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-exports.deepMap = deepMap;
-exports.deepForEach = deepForEach;
-
-var _react = __webpack_require__(0);
-
-var _Tab = __webpack_require__(1);
-
-var _Tab2 = _interopRequireDefault(_Tab);
-
-var _TabList = __webpack_require__(4);
-
-var _TabList2 = _interopRequireDefault(_TabList);
-
-var _TabPanel = __webpack_require__(2);
-
-var _TabPanel2 = _interopRequireDefault(_TabPanel);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isTabChild(child) {
-  return child.type === _Tab2.default || child.type === _TabList2.default || child.type === _TabPanel2.default;
-}
-
-function deepMap(children, callback) {
-  return _react.Children.map(children, function (child) {
-    // null happens when conditionally rendering TabPanel/Tab
-    // see https://github.com/reactjs/react-tabs/issues/37
-    if (child === null) return null;
-
-    if (isTabChild(child)) {
-      return callback(child);
-    }
-
-    if (child.props && child.props.children && _typeof(child.props.children) === 'object') {
-      // Clone the child that has children and map them too
-      return (0, _react.cloneElement)(child, _extends({}, child.props, {
-        children: deepMap(child.props.children, callback)
-      }));
-    }
-
-    return child;
-  });
-}
-
-function deepForEach(children, callback) {
-  return _react.Children.forEach(children, function (child) {
-    // null happens when conditionally rendering TabPanel/Tab
-    // see https://github.com/reactjs/react-tabs/issues/37
-    if (child === null) return;
-
-    if (child.type === _Tab2.default || child.type === _TabPanel2.default) {
-      callback(child);
-    } else if (child.props && child.props.children && _typeof(child.props.children) === 'object') {
-      if (child.type === _TabList2.default) callback(child);
-      deepForEach(child.props.children, callback);
-    }
-  });
-}
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = uuid;
-exports.reset = reset;
-// Get a universally unique identifier
-var count = 0;
-function uuid() {
-  return "react-tabs-" + count++;
-}
-
-function reset() {
-  count = 0;
-}
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.getTabsCount = getTabsCount;
-exports.getPanelsCount = getPanelsCount;
-
-var _childrenDeepMap = __webpack_require__(6);
-
-var _Tab = __webpack_require__(1);
-
-var _Tab2 = _interopRequireDefault(_Tab);
-
-var _TabPanel = __webpack_require__(2);
-
-var _TabPanel2 = _interopRequireDefault(_TabPanel);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getTabsCount(children) {
-  var tabCount = 0;
-  (0, _childrenDeepMap.deepForEach)(children, function (child) {
-    if (child.type === _Tab2.default) tabCount++;
-  });
-
-  return tabCount;
-}
-
-function getPanelsCount(children) {
-  var panelCount = 0;
-  (0, _childrenDeepMap.deepForEach)(children, function (child) {
-    if (child.type === _TabPanel2.default) panelCount++;
-  });
-
-  return panelCount;
-}
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-exports.childrenPropType = childrenPropType;
-exports.onSelectPropType = onSelectPropType;
-exports.selectedIndexPropType = selectedIndexPropType;
-
-var _childrenDeepMap = __webpack_require__(6);
-
-var _Tab = __webpack_require__(1);
-
-var _Tab2 = _interopRequireDefault(_Tab);
-
-var _TabList = __webpack_require__(4);
-
-var _TabList2 = _interopRequireDefault(_TabList);
-
-var _TabPanel = __webpack_require__(2);
-
-var _TabPanel2 = _interopRequireDefault(_TabPanel);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function childrenPropType(props, propName, componentName) {
-  var error = void 0;
-  var tabsCount = 0;
-  var panelsCount = 0;
-  var tabListFound = false;
-  var listTabs = [];
-  var children = props[propName];
-
-  (0, _childrenDeepMap.deepForEach)(children, function (child) {
-    if (child.type === _TabList2.default) {
-      if (child.props && child.props.children && _typeof(child.props.children) === 'object') {
-        (0, _childrenDeepMap.deepForEach)(child.props.children, function (listChild) {
-          return listTabs.push(listChild);
-        });
-      }
-
-      if (tabListFound) {
-        error = new Error("Found multiple 'TabList' components inside 'Tabs'. Only one is allowed.");
-      }
-      tabListFound = true;
-    }
-    if (child.type === _Tab2.default) {
-      if (!tabListFound || listTabs.indexOf(child) === -1) {
-        error = new Error("Found a 'Tab' component outside of the 'TabList' component. 'Tab' components have to be inside the 'TabList' component.");
-      }
-      tabsCount++;
-    } else if (child.type === _TabPanel2.default) {
-      panelsCount++;
-    }
-  });
-
-  if (!error && tabsCount !== panelsCount) {
-    error = new Error('There should be an equal number of \'Tab\' and \'TabPanel\' in `' + componentName + '`.' + ('Received ' + tabsCount + ' \'Tab\' and ' + panelsCount + ' \'TabPanel\'.'));
-  }
-
-  return error;
-}
-
-function onSelectPropType(props, propName, componentName, location, propFullName) {
-  var prop = props[propName];
-  var name = propFullName || propName;
-  var error = null;
-
-  if (prop && typeof prop !== 'function') {
-    error = new Error('Invalid ' + location + ' `' + name + '` of type `' + (typeof prop === 'undefined' ? 'undefined' : _typeof(prop)) + '` supplied to `' + componentName + '`, expected `function`.');
-  } else if (props.selectedIndex != null && prop == null) {
-    error = new Error('The ' + location + ' `' + name + '` is marked as required in `' + componentName + '`, but its value is `undefined` or `null`.\n`onSelect` is required when `selectedIndex` is also set. Not doing so will make the tabs not do anything, as `selectedIndex` indicates that you want to handle the selected tab yourself.\nIf you only want to set the inital tab replace `selectedIndex` with `defaultIndex`.');
-  }
-
-  return error;
-}
-
-function selectedIndexPropType(props, propName, componentName, location, propFullName) {
-  var prop = props[propName];
-  var name = propFullName || propName;
-  var error = null;
-
-  if (prop != null && typeof prop !== 'number') {
-    error = new Error('Invalid ' + location + ' `' + name + '` of type `' + (typeof prop === 'undefined' ? 'undefined' : _typeof(prop)) + '` supplied to `' + componentName + '`, expected `number`.');
-  } else if (props.defaultIndex != null && prop != null) {
-    return new Error('The ' + location + ' `' + name + '` cannot be used together with `defaultIndex` in `' + componentName + '`.\nEither remove `' + name + '` to let `' + componentName + '` handle the selected tab internally or remove `defaultIndex` to handle it yourself.');
-  }
-
-  return error;
-}
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _propTypes = __webpack_require__(3);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes3 = __webpack_require__(9);
-
-var _UncontrolledTabs = __webpack_require__(11);
+var _UncontrolledTabs = __webpack_require__(12);
 
 var _UncontrolledTabs2 = _interopRequireDefault(_UncontrolledTabs);
 
-var _count = __webpack_require__(8);
+var _count = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -751,8 +751,11 @@ Tabs.propTypes =  true ? {
   selectedTabPanelClassName: _propTypes2.default.string
 } : {};
 
+
+Tabs.tabsRole = 'Tabs';
+
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -762,7 +765,7 @@ exports.__esModule = true;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _propTypes = __webpack_require__(3);
+var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -770,31 +773,21 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(5);
+var _classnames = __webpack_require__(3);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _uuid = __webpack_require__(7);
+var _uuid = __webpack_require__(5);
 
 var _uuid2 = _interopRequireDefault(_uuid);
 
-var _propTypes3 = __webpack_require__(9);
+var _propTypes3 = __webpack_require__(7);
 
-var _Tab = __webpack_require__(1);
+var _count = __webpack_require__(6);
 
-var _Tab2 = _interopRequireDefault(_Tab);
+var _childrenDeepMap = __webpack_require__(4);
 
-var _TabList = __webpack_require__(4);
-
-var _TabList2 = _interopRequireDefault(_TabList);
-
-var _TabPanel = __webpack_require__(2);
-
-var _TabPanel2 = _interopRequireDefault(_TabPanel);
-
-var _count = __webpack_require__(8);
-
-var _childrenDeepMap = __webpack_require__(6);
+var _elementTypes = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -816,7 +809,16 @@ function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
 
-var canUseActiveElement = !!(typeof window !== 'undefined' && window.document && window.document.activeElement);
+var canUseActiveElement = void 0;
+try {
+  canUseActiveElement = !!(typeof window !== 'undefined' && window.document && window.document.activeElement);
+} catch (e) {
+  // Work around for IE bug when accessing document.activeElement in an iframe
+  // Refer to the following resources:
+  // http://stackoverflow.com/a/10982960/369687
+  // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12733599
+  canUseActiveElement = false;
+}
 
 var UncontrolledTabs = function (_Component) {
   _inherits(UncontrolledTabs, _Component);
@@ -963,7 +965,7 @@ var UncontrolledTabs = function (_Component) {
       var result = child;
 
       // Clone TabList and Tab components to have refs
-      if (child.type === _TabList2.default) {
+      if ((0, _elementTypes.isTabList)(child)) {
         var listIndex = 0;
 
         // Figure out if the current focus in the DOM is set on a Tab
@@ -971,9 +973,7 @@ var UncontrolledTabs = function (_Component) {
         var wasTabFocused = false;
 
         if (canUseActiveElement) {
-          wasTabFocused = _react2.default.Children.toArray(child.props.children).filter(function (tab) {
-            return tab.type === _Tab2.default;
-          }).some(function (tab, i) {
+          wasTabFocused = _react2.default.Children.toArray(child.props.children).filter(_elementTypes.isTab).some(function (tab, i) {
             return document.activeElement === _this2.getTab(i);
           });
         }
@@ -1001,7 +1001,7 @@ var UncontrolledTabs = function (_Component) {
             return (0, _react.cloneElement)(tab, props);
           })
         });
-      } else if (child.type === _TabPanel2.default) {
+      } else if ((0, _elementTypes.isTabPanel)(child)) {
         var props = {
           id: _this2.panelIds[index],
           tabId: _this2.tabIds[index],
@@ -1094,7 +1094,7 @@ UncontrolledTabs.propTypes =  true ? {
 } : {};
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1103,23 +1103,23 @@ UncontrolledTabs.propTypes =  true ? {
 exports.__esModule = true;
 exports.resetIdCounter = exports.Tabs = exports.TabPanel = exports.TabList = exports.Tab = undefined;
 
-var _Tabs = __webpack_require__(10);
+var _Tabs = __webpack_require__(11);
 
 var _Tabs2 = _interopRequireDefault(_Tabs);
 
-var _TabList = __webpack_require__(4);
+var _TabList = __webpack_require__(9);
 
 var _TabList2 = _interopRequireDefault(_TabList);
 
-var _Tab = __webpack_require__(1);
+var _Tab = __webpack_require__(8);
 
 var _Tab2 = _interopRequireDefault(_Tab);
 
-var _TabPanel = __webpack_require__(2);
+var _TabPanel = __webpack_require__(10);
 
 var _TabPanel2 = _interopRequireDefault(_TabPanel);
 
-var _uuid = __webpack_require__(7);
+var _uuid = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

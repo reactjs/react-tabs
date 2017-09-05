@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/reactjs/react-tabs/compare/v1.1.0...v2.0.0) (2017-09-05)
+
+
+### Bug Fixes
+
+* **tabs:** Fix activeElement check [#193](https://github.com/reactjs/react-tabs/issues/193) ([#194](https://github.com/reactjs/react-tabs/issues/194)) ([722d52f](https://github.com/reactjs/react-tabs/commit/722d52f))
+
+
+### Features
+
+* **tabs:** Allow for higher order components ([#196](https://github.com/reactjs/react-tabs/issues/196)) ([1969e65](https://github.com/reactjs/react-tabs/commit/1969e65))
+* **tabs:** Always callback setSelected. ([#195](https://github.com/reactjs/react-tabs/issues/195)) ([bc1910a](https://github.com/reactjs/react-tabs/commit/bc1910a))
+
+
+### BREAKING CHANGES
+
+* **tabs:** The `onSelect` callback will now also be called when clicking on the currently active tab.
+
+
+
 <a name="1.1.0"></a>
 ## [1.1.0](https://github.com/researchgate/node-package-blueprint/compare/v1.0.0...v1.1.0) (2017-06-13)
 
