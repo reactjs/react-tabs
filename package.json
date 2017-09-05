@@ -10,13 +10,14 @@
     "build:umd": "webpack --config webpack.build.js",
     "build:umd:min": "cross-env MINIFY=1 webpack --config webpack.build.js",
     "build": "yarn run clean && yarn run build:commonjs",
-    "bundle": "mkdir -p dist && yarn run build:umd && yarn run build:umd:min",
+    "bundle": "mkdir -p dist && run-s build:umd build:umd:min",
     "format": "eslint src --fix",
     "lint": "eslint src",
     "precommit": "lint-staged",
-    "preversion": "yarn run lint && yarn test && yarn run build && yarn run bundle && git add dist/ && git diff --quiet --exit-code --cached || git commit -n -m 'publish: Distribution'",
+    "prebump": "run-s lint test",
     "prepublish": "yarn run build",
-    "release": "standard-version",
+    "prerelease": "run-s build bundle",
+    "release": "git add dist/ && standard-version --sign -a",
     "test": "jest",
     "start": "webpack-dev-server --inline --content-base examples/"
   },
@@ -29,18 +30,9 @@
   "bugs": {
     "url": "https://github.com/reactjs/react-tabs/issues"
   },
-  "files": [
-    "dist",
-    "lib",
-    "style"
-  ],
+  "files": ["dist", "lib", "style"],
   "homepage": "https://github.com/reactjs/react-tabs",
-  "keywords": [
-    "react",
-    "tabs",
-    "a11y",
-    "react-component"
-  ],
+  "keywords": ["react", "tabs", "a11y", "react-component"],
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0"
   },
@@ -69,6 +61,7 @@
     "husky": "^0.14.3",
     "jest-cli": "^20.0.0",
     "lint-staged": "^4.0.4",
+    "npm-run-all": "^4.1.1",
     "prettier": "^1.2.2",
     "react": "^15.0.0",
     "react-addons-test-utils": "^15.0.0",
@@ -87,15 +80,10 @@
     "prop-types": "^15.5.0"
   },
   "jest": {
-    "roots": [
-      "src"
-    ],
+    "roots": ["src"],
     "testRegex": "/__tests__/.+-test\\.js$"
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "eslint --fix",
-      "git add"
-    ]
+    "src/**/*.js": ["eslint --fix", "git add"]
   }
 }
