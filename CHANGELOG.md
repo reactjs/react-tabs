@@ -8,13 +8,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* **tabs:** Fix activeElement check [#193](https://github.com/reactjs/react-tabs/issues/193) ([#194](https://github.com/reactjs/react-tabs/issues/194)) ([722d52f](https://github.com/reactjs/react-tabs/commit/722d52f))
+* **tabs:** Fix activeElement check in iframes in Internet Explorer [#193](https://github.com/reactjs/react-tabs/issues/193) ([#194](https://github.com/reactjs/react-tabs/issues/194)) ([722d52f](https://github.com/reactjs/react-tabs/commit/722d52f))
 
 
 ### Features
 
-* **tabs:** Allow for higher order components ([#196](https://github.com/reactjs/react-tabs/issues/196)) ([1969e65](https://github.com/reactjs/react-tabs/commit/1969e65))
-* **tabs:** Always callback setSelected. ([#195](https://github.com/reactjs/react-tabs/issues/195)) ([bc1910a](https://github.com/reactjs/react-tabs/commit/bc1910a))
+* **tabs:** Allow for higher order components. All HOC which use hoist-non-react-statics are supported out of the box ([#196](https://github.com/reactjs/react-tabs/issues/196)) ([1969e65](https://github.com/reactjs/react-tabs/commit/1969e65))
+* **tabs:** Always call onSelected callback even if tab is active. ([#195](https://github.com/reactjs/react-tabs/issues/195)) ([bc1910a](https://github.com/reactjs/react-tabs/commit/bc1910a))
 
 
 ### BREAKING CHANGES
