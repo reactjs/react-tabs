@@ -4,8 +4,6 @@ Accessible react tab component
 
 > Supports React 0.14.9+ and 15.3+
 
-<a href="https://app.codesponsor.io/link/napKqUy7ZTEunMtesQZm9ygE/reactjs/react-tabs" rel="nofollow"><img src="https://app.codesponsor.io/embed/napKqUy7ZTEunMtesQZm9ygE/reactjs/react-tabs.svg" style="width: 888px; height: 68px;" alt="Sponsor" /></a>
-
 ## Installing
 
 ```bash
@@ -311,3 +309,5 @@ You can also always just simply copy the default style to your own css/scss/less
 ## License
 
 MIT
+
+<a href="https://app.codesponsor.io/link/napKqUy7ZTEunMtesQZm9ygE/reactjs/react-tabs" rel="nofollow" target="_blank"><img src="https://app.codesponsor.io/embed/napKqUy7ZTEunMtesQZm9ygE/reactjs/react-tabs.svg" style="width: 888px; height: 68px;" alt="Sponsor" /></a>
