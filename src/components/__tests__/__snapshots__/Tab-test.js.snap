@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Tab /> override the tabIndex if it was provided 1`] = `
+<li
+  aria-controls={null}
+  aria-disabled="false"
+  aria-selected="false"
+  className="react-tabs__tab"
+  id={null}
+  role="tab"
+  tabIndex="0"
+>
+  Hello
+</li>
+`;
+
 exports[`<Tab /> should accept className 1`] = `
 <li
   aria-controls={null}

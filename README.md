@@ -192,6 +192,12 @@ Provide a custom class name for the active tab.
 
 > This option can also be set for all `<Tab />` components with the prop `selectedTabClassName` on `<Tabs />`.
 
+#### tabIndex: `string`
+
+> default: if selected `"0"` otherwise `null`
+
+Overrides the tabIndex to enabled tabbing between tabs.
+
 ### &lt;TabPanel /&gt;
 
 If you specify additional props on the `<TabPanel />` component they will be forwarded to the rendered `<div />`.
