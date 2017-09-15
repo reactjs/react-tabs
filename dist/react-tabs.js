@@ -403,7 +403,7 @@ var Tab = function (_Component) {
         'aria-selected': selected ? 'true' : 'false',
         'aria-disabled': disabled ? 'true' : 'false',
         'aria-controls': panelId,
-        tabIndex: selected ? '0' : null
+        tabIndex: this.props.tabIndex || (selected ? '0' : null)
       }),
       children
     );
@@ -426,6 +426,7 @@ Tab.propTypes =  true ? {
   children: _propTypes2.default.oneOfType([_propTypes2.default.array, _propTypes2.default.object, _propTypes2.default.string]),
   className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array, _propTypes2.default.object]),
   disabled: _propTypes2.default.bool,
+  tabIndex: _propTypes2.default.string,
   disabledClassName: _propTypes2.default.string,
   focus: _propTypes2.default.bool, // private
   id: _propTypes2.default.string, // private
@@ -594,7 +595,8 @@ TabPanel.propTypes =  true ? {
   id: _propTypes2.default.string, // private
   selected: _propTypes2.default.bool, // private
   selectedClassName: _propTypes2.default.string,
-  tabId: _propTypes2.default.string // private
+  tabId: _propTypes2.default.string, // private
+  tabIndex: _propTypes2.default.string
 } : {};
 
 
@@ -836,15 +838,24 @@ var UncontrolledTabs = function (_Component) {
       if (_this.isTabFromContainer(e.target)) {
         var index = _this.props.selectedIndex;
         var preventDefault = false;
+        var useSelectedIndex = false;
+
+        if (e.keyCode === 32 || e.keyCode === 13) {
+          preventDefault = true;
+          useSelectedIndex = false;
+          _this.handleClick(e);
+        }
 
         if (e.keyCode === 37 || e.keyCode === 38) {
           // Select next tab to the left
           index = _this.getPrevTab(index);
           preventDefault = true;
+          useSelectedIndex = true;
         } else if (e.keyCode === 39 || e.keyCode === 40) {
           // Select next tab to the right
           index = _this.getNextTab(index);
           preventDefault = true;
+          useSelectedIndex = true;
         }
 
         // This prevents scrollbars from moving around
@@ -852,7 +863,10 @@ var UncontrolledTabs = function (_Component) {
           e.preventDefault();
         }
 
-        _this.setSelected(index, e);
+        // Only use the selected index in the state if we're not using the tabbed index
+        if (useSelectedIndex) {
+          _this.setSelected(index, e);
+        }
       }
     }, _this.handleClick = function (e) {
       var node = e.target;

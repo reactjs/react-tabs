@@ -20,6 +20,7 @@ export default class TabPanel extends Component {
     selected: PropTypes.bool, // private
     selectedClassName: PropTypes.string,
     tabId: PropTypes.string, // private
+    tabIndex: PropTypes.string,
   };
 
   render() {
