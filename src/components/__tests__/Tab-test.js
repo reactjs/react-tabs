@@ -56,4 +56,8 @@ describe('<Tab />', () => {
   it('should allow to be wrapped in higher-order-component', () => {
     expectToMatchSnapshot(<TabWrapper />);
   });
+
+  it('override the tabIndex if it was provided', () => {
+    expectToMatchSnapshot(<Tab tabIndex="0">Hello</Tab>);
+  });
 });
