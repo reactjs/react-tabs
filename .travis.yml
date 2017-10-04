@@ -8,4 +8,4 @@ before_script:
   - 'if [[ -n "$TRAVIS_TAG" ]] && [[ "$TRAVIS_JOB_NUMBER" == *.1 ]]; then yarn run create-github-release || true; fi'
 script:
   - yarn lint
-  - yarn test
+  - yarn test -- --ci

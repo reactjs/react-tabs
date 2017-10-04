@@ -30,26 +30,17 @@
   "bugs": {
     "url": "https://github.com/reactjs/react-tabs/issues"
   },
-  "files": [
-    "dist",
-    "lib",
-    "style"
-  ],
+  "files": ["dist", "lib", "style"],
   "homepage": "https://github.com/reactjs/react-tabs",
-  "keywords": [
-    "react",
-    "tabs",
-    "a11y",
-    "react-component"
-  ],
+  "keywords": ["react", "tabs", "a11y", "react-component"],
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.1",
-    "babel-eslint": "^7.0.0",
-    "babel-jest": "^20.0.0",
+    "babel-eslint": "^8.0.1",
+    "babel-jest": "^21.2.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-class-properties": "^6.11.5",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
@@ -68,7 +59,7 @@
     "eslint-plugin-react": "^7.0.1",
     "hoist-non-react-statics": "^2.3.1",
     "husky": "^0.14.3",
-    "jest-cli": "^20.0.0",
+    "jest": "^21.2.1",
     "lint-staged": "^4.0.4",
     "npm-run-all": "^4.1.1",
     "prettier": "^1.2.2",
@@ -89,15 +80,10 @@
     "prop-types": "^15.5.0"
   },
   "jest": {
-    "roots": [
-      "src"
-    ],
+    "roots": ["src"],
     "testRegex": "/__tests__/.+-test\\.js$"
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "eslint --fix",
-      "git add"
-    ]
+    "src/**/*.js": ["eslint --fix", "git add"]
   }
 }
