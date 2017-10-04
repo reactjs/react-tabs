@@ -30,9 +30,18 @@
   "bugs": {
     "url": "https://github.com/reactjs/react-tabs/issues"
   },
-  "files": ["dist", "lib", "style"],
+  "files": [
+    "dist",
+    "lib",
+    "style"
+  ],
   "homepage": "https://github.com/reactjs/react-tabs",
-  "keywords": ["react", "tabs", "a11y", "react-component"],
+  "keywords": [
+    "react",
+    "tabs",
+    "a11y",
+    "react-component"
+  ],
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0"
   },
@@ -50,7 +59,8 @@
     "conventional-github-releaser": "^1.1.12",
     "cross-env": "^5.0.0",
     "css-loader": "^0.28.0",
-    "enzyme": "^2.3.0",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-15": "^1.0.1",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
@@ -80,10 +90,15 @@
     "prop-types": "^15.5.0"
   },
   "jest": {
-    "roots": ["src"],
+    "roots": [
+      "src"
+    ],
     "testRegex": "/__tests__/.+-test\\.js$"
   },
   "lint-staged": {
-    "src/**/*.js": ["eslint --fix", "git add"]
+    "src/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

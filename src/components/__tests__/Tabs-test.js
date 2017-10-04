@@ -1,7 +1,8 @@
 /* eslint-env jest */
 /* eslint-disable react/no-multi-comp */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-15';
 import renderer from 'react-test-renderer';
 import Tab from '../Tab';
 import TabList from '../TabList';
@@ -9,6 +10,8 @@ import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 import { reset as resetIdCounter } from '../../helpers/uuid';
 import { TabListWrapper, TabWrapper, TabPanelWrapper } from './helpers/higherOrder';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 function expectToMatchSnapshot(component) {
   expect(renderer.create(component).toJSON()).toMatchSnapshot();
@@ -34,8 +37,8 @@ function createTabs(props = {}) {
 }
 
 function assertTabSelected(wrapper, index) {
-  const tab = wrapper.childAt(0).childAt(index);
-  const panel = wrapper.childAt(index + 1);
+  const tab = wrapper.find(Tab).at(index);
+  const panel = wrapper.find(TabPanel).at(index);
 
   expect(tab.prop('selected')).toBe(true);
   expect(panel.prop('selected')).toBe(true);
@@ -76,8 +79,8 @@ describe('<Tabs />', () => {
       );
 
       wrapper
-        .childAt(0)
-        .childAt(1)
+        .find(Tab)
+        .at(1)
         .simulate('click');
 
       expect(called.index).toBe(1);
@@ -103,8 +106,8 @@ describe('<Tabs />', () => {
     test('should update selectedIndex when clicked', () => {
       const wrapper = mount(createTabs());
       wrapper
-        .childAt(0)
-        .childAt(1)
+        .find(Tab)
+        .at(1)
         .simulate('click');
 
       assertTabSelected(wrapper, 1);
@@ -112,10 +115,10 @@ describe('<Tabs />', () => {
 
     test('should update selectedIndex when tab child is clicked', () => {
       const wrapper = mount(createTabs());
-      const tablist = wrapper.childAt(0);
-      tablist
-        .childAt(2)
-        .first()
+      wrapper
+        .find(Tab)
+        .at(2)
+        .childAt(0)
         .simulate('click');
 
       assertTabSelected(wrapper, 2);
@@ -123,11 +126,11 @@ describe('<Tabs />', () => {
 
     test('should not change selectedIndex when clicking a disabled tab', () => {
       const wrapper = mount(createTabs({ defaultIndex: 0 }));
-
       wrapper
-        .childAt(0)
-        .childAt(3)
+        .find(Tab)
+        .at(3)
         .simulate('click');
+
       assertTabSelected(wrapper, 0);
     });
   });
@@ -135,28 +138,29 @@ describe('<Tabs />', () => {
   describe('performance', () => {
     test('should only render the selected tab panel', () => {
       const wrapper = mount(createTabs());
+      const tabPanels = wrapper.find(TabPanel);
 
-      expect(wrapper.childAt(1).text()).toBe('Hello Foo');
-      expect(wrapper.childAt(2).text()).toBe('');
-      expect(wrapper.childAt(3).text()).toBe('');
-
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .simulate('click');
-
-      expect(wrapper.childAt(1).text()).toBe('');
-      expect(wrapper.childAt(2).text()).toBe('Hello Bar');
-      expect(wrapper.childAt(3).text()).toBe('');
+      expect(tabPanels.at(0).text()).toBe('Hello Foo');
+      expect(tabPanels.at(1).text()).toBe('');
+      expect(tabPanels.at(2).text()).toBe('');
 
       wrapper
-        .childAt(0)
-        .childAt(2)
+        .find(Tab)
+        .at(1)
         .simulate('click');
 
-      expect(wrapper.childAt(1).text()).toBe('');
-      expect(wrapper.childAt(2).text()).toBe('');
-      expect(wrapper.childAt(3).text()).toBe('Hello Baz');
+      expect(tabPanels.at(0).text()).toBe('');
+      expect(tabPanels.at(1).text()).toBe('Hello Bar');
+      expect(tabPanels.at(2).text()).toBe('');
+
+      wrapper
+        .find(Tab)
+        .at(2)
+        .simulate('click');
+
+      expect(tabPanels.at(0).text()).toBe('');
+      expect(tabPanels.at(1).text()).toBe('');
+      expect(tabPanels.at(2).text()).toBe('Hello Baz');
     });
 
     test('should render all tabs if forceRenderTabPanel is true', () => {
@@ -363,15 +367,14 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      const innerTabs = wrapper.childAt(1).childAt(0);
-
-      innerTabs
-        .childAt(0)
-        .childAt(1)
+      wrapper
+        .find('Tabs.second')
+        .find(Tab)
+        .at(1)
         .simulate('click');
 
       assertTabSelected(wrapper, 0);
-      assertTabSelected(innerTabs, 1);
+      assertTabSelected(wrapper.find('Tabs.second'), 1);
     });
 
     test('should allow other DOM nodes', () => {
@@ -410,14 +413,14 @@ describe('<Tabs />', () => {
     assertTabSelected(wrapper, 0);
 
     wrapper
-      .childAt(0)
-      .childAt(1)
+      .find(Tab)
+      .at(1)
       .simulate('click');
     assertTabSelected(wrapper, 0);
 
     wrapper
-      .childAt(0)
-      .childAt(2)
+      .find(Tab)
+      .at(2)
       .simulate('click');
     assertTabSelected(wrapper, 0);
   });
@@ -435,8 +438,8 @@ describe('<Tabs />', () => {
     assertTabSelected(wrapper, 0);
 
     wrapper
-      .childAt(0)
-      .childAt(1)
+      .find(Tab)
+      .at(1)
       .simulate('click');
     assertTabSelected(wrapper, 1);
     expect(wasClicked).toBe(true);
@@ -455,8 +458,8 @@ describe('<Tabs />', () => {
     assertTabSelected(wrapper, 0);
 
     wrapper
-      .childAt(0)
-      .childAt(0)
+      .find(Tab)
+      .at(0)
       .simulate('click');
     assertTabSelected(wrapper, 0);
     expect(wasClicked).toBe(true);
@@ -473,14 +476,14 @@ describe('<Tabs />', () => {
     const wrapper = mount(<Wrap />);
 
     wrapper
-      .childAt(0)
-      .childAt(1)
+      .find(Tab)
+      .at(1)
       .simulate('click');
     assertTabSelected(wrapper, 1);
 
     wrapper
-      .childAt(0)
-      .childAt(2)
+      .find(Tab)
+      .at(2)
       .simulate('click');
     assertTabSelected(wrapper, 2);
   });
