@@ -203,15 +203,24 @@ export default class UncontrolledTabs extends Component {
     if (this.isTabFromContainer(e.target)) {
       let index = this.props.selectedIndex;
       let preventDefault = false;
+      let useSelectedIndex = false;
+
+      if (e.keyCode === 32 || e.keyCode === 13) {
+        preventDefault = true;
+        useSelectedIndex = false;
+        this.handleClick(e);
+      }
 
       if (e.keyCode === 37 || e.keyCode === 38) {
         // Select next tab to the left
         index = this.getPrevTab(index);
         preventDefault = true;
+        useSelectedIndex = true;
       } else if (e.keyCode === 39 || e.keyCode === 40) {
         // Select next tab to the right
         index = this.getNextTab(index);
         preventDefault = true;
+        useSelectedIndex = true;
       }
 
       // This prevents scrollbars from moving around
@@ -219,7 +228,10 @@ export default class UncontrolledTabs extends Component {
         e.preventDefault();
       }
 
-      this.setSelected(index, e);
+      // Only use the selected index in the state if we're not using the tabbed index
+      if (useSelectedIndex) {
+        this.setSelected(index, e);
+      }
     }
   };
 

@@ -19,6 +19,7 @@ export default class Tab extends Component {
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     disabled: PropTypes.bool,
+    tabIndex: PropTypes.string,
     disabledClassName: PropTypes.string,
     focus: PropTypes.bool, // private
     id: PropTypes.string, // private
@@ -73,7 +74,7 @@ export default class Tab extends Component {
         aria-selected={selected ? 'true' : 'false'}
         aria-disabled={disabled ? 'true' : 'false'}
         aria-controls={panelId}
-        tabIndex={selected ? '0' : null}
+        tabIndex={this.props.tabIndex || (selected ? '0' : null)}
       >
         {children}
       </li>
