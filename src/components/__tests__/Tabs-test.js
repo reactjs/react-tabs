@@ -485,7 +485,7 @@ describe('<Tabs />', () => {
     assertTabSelected(wrapper, 2);
   });
 
-  it('should allow for higher order components', () => {
+  test('should allow for higher order components', () => {
     expectToMatchSnapshot(
       <Tabs>
         <TabListWrapper>
@@ -494,6 +494,24 @@ describe('<Tabs />', () => {
         </TabListWrapper>
         <TabPanelWrapper>Foo</TabPanelWrapper>
         <TabPanelWrapper>Bar</TabPanelWrapper>
+      </Tabs>,
+    );
+  });
+
+  test('should allow string children', () => {
+    expectToMatchSnapshot(
+      <Tabs>
+        Foo
+        <TabList>
+          Foo
+          <Tab>Foo</Tab>
+          Foo
+          <Tab>Bar</Tab>
+          Foo
+        </TabList>
+        <TabPanel>Bar</TabPanel>
+        <TabPanel>Foo</TabPanel>
+        Foo
       </Tabs>,
     );
   });

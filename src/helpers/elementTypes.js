@@ -1,11 +1,11 @@
 export function isTab(el) {
-  return el.type.tabsRole === 'Tab';
+  return el.type && el.type.tabsRole === 'Tab';
 }
 
 export function isTabPanel(el) {
-  return el.type.tabsRole === 'TabPanel';
+  return el.type && el.type.tabsRole === 'TabPanel';
 }
 
 export function isTabList(el) {
-  return el.type.tabsRole === 'TabList';
+  return el.type && el.type.tabsRole === 'TabList';
 }
