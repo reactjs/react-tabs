@@ -54,6 +54,7 @@ export default class Tab extends Component {
       panelId,
       selected,
       selectedClassName,
+      tabIndex,
       tabRef,
       ...attributes
     } = this.props;
@@ -74,7 +75,7 @@ export default class Tab extends Component {
         aria-selected={selected ? 'true' : 'false'}
         aria-disabled={disabled ? 'true' : 'false'}
         aria-controls={panelId}
-        tabIndex={this.props.tabIndex || (selected ? '0' : null)}
+        tabIndex={tabIndex || (selected ? '0' : null)}
       >
         {children}
       </li>
