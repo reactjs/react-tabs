@@ -102,6 +102,12 @@ Provide a custom class name for disabled tabs.
 
 > This option can also be set directly at the `<Tab />` component.
 
+#### domRef: `(node: ?HTMLElement) => void`
+
+> default: `null`
+
+Register a callback that will receive the underlying DOM node for every mount. It will also receive null on unmount.
+
 #### forceRenderTabPanel: `boolean`
 
 > default: `false`

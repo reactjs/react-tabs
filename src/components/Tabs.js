@@ -18,6 +18,7 @@ export default class Tabs extends Component {
     defaultFocus: PropTypes.bool,
     defaultIndex: PropTypes.number,
     disabledTabClassName: PropTypes.string,
+    domRef: PropTypes.func,
     forceRenderTabPanel: PropTypes.bool,
     onSelect: onSelectPropType,
     selectedIndex: selectedIndexPropType,

@@ -41,6 +41,7 @@ export default class UncontrolledTabs extends Component {
     children: childrenPropType,
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     disabledTabClassName: PropTypes.string,
+    domRef: PropTypes.func,
     focus: PropTypes.bool,
     forceRenderTabPanel: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
@@ -283,6 +284,7 @@ export default class UncontrolledTabs extends Component {
       children, // unused
       className,
       disabledTabClassName, // unused
+      domRef,
       focus, // unused
       forceRenderTabPanel, // unused
       onSelect, // unused
@@ -300,6 +302,7 @@ export default class UncontrolledTabs extends Component {
         onKeyDown={this.handleKeyDown}
         ref={node => {
           this.node = node;
+          if (domRef) domRef(node);
         }}
         data-tabs
       >
