@@ -15,9 +15,9 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **dependencies:** Support react 16 ([94447e9](https://github.com/reactjs/react-tabs/commit/94447e9))
-* **tablist:** Enable overwriting tabIndex on <Tab> and allow tabbing among <Tab>s by using tab key and enter/space. ([00a8401](https://github.com/reactjs/react-tabs/commit/00a8401))
+* **tablist:** Enable overwriting tabIndex on `<Tab>` and allow tabbing among `<Tab>`s by using tab key and enter/space. ([00a8401](https://github.com/reactjs/react-tabs/commit/00a8401))
 * **tabs:** Publish also as ES2015 modules ([41415ab](https://github.com/reactjs/react-tabs/commit/41415ab))
-* **Tabs:** Add `domRef` prop for getting the ref to the tabs DOM node ([#213](https://github.com/reactjs/react-tabs/issues/213)) ([e989491](https://github.com/reactjs/react-tabs/commit/e989491))
+* **tabs:** Add `domRef` prop for getting the ref to the tabs DOM node ([#213](https://github.com/reactjs/react-tabs/issues/213)) ([e989491](https://github.com/reactjs/react-tabs/commit/e989491))
 
 
 
