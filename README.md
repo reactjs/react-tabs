@@ -2,7 +2,7 @@
 
 Accessible react tab component
 
-> Supports React 0.14.9+ and 15.3+
+> Supports React 0.14.9+, 15.3+ and 16+
 
 ## Installing
 
@@ -10,17 +10,15 @@ Accessible react tab component
 yarn add react-tabs
 ```
 
-You can also still use npm
-
-```bash
-npm install react-tabs --save
-```
-
-Or use directly in your html as UMD component
+You can also use react-tabs directly as UMD build in an HTML document by adding
 
 ```html
-<script src="https://unpkg.com/react-tabs@1.0.0/dist/react-tabs.min.js" />
+<script src="https://unpkg.com/react-tabs@2/dist/react-tabs.development.js" />
+<!-- or -->
+<script src="https://unpkg.com/react-tabs@2/dist/react-tabs.production.min.js" />
 ```
+
+For example usages of the UMD builds have a look at the [`examples/umd`](./examples/umd/) folder
 
 ## Demo
 
@@ -54,7 +52,7 @@ export default () => (
 
 ### resetIdCounter(): void
 
-Allows reseting the internal id counter which is used to generate unique id's for tabs and tab panels. 
+Allows reseting the internal id counter which is used to generate unique id's for tabs and tab panels.
 
 You should never need to use this in the browser. Only if you are running an isomorphic react app that is rendered on the server you should call `resetIdCounter()` before every render so that the ids that get generated on the server match the ids generated in the browser.
 
@@ -300,6 +298,20 @@ When using LESS you can easily import the default styles
 
 ```scss
 @import '../../path/to/node_modules/react-tabs/style/react-tabs.less';
+```
+
+### UMD
+
+When using the UMD version of react-tabs you can easily use the default styles by adding
+
+```html
+<html>
+  <head>
+    ...
+    <link rel="stylesheet" href="https://unpkg.com/react-tabs@2/style/react-tabs.css">
+  </head>
+  ...
+</html>
 ```
 
 ### Custom
