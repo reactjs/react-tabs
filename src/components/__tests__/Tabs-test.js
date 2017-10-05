@@ -90,6 +90,20 @@ describe('<Tabs />', () => {
     test('should accept className', () => {
       expectToMatchSnapshot(createTabs({ className: 'foobar' }));
     });
+
+    test('should accept domRef', () => {
+      let domNode;
+      mount(
+        createTabs({
+          domRef: node => {
+            domNode = node;
+          },
+        }),
+      );
+
+      expect(domNode).not.toBeUndefined();
+      expect(domNode.className).toBe('react-tabs');
+    });
   });
 
   describe('child props', () => {
