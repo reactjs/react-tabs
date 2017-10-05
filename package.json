@@ -40,7 +40,7 @@
     "babel-eslint": "^8.0.1",
     "babel-jest": "^21.3.0-beta.1",
     "babel-loader": "^7.1.2",
-    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-external-helpers": "^7.0.0-beta.2",
     "babel-plugin-transform-class-properties": "^7.0.0-beta.2",
     "babel-plugin-transform-object-rest-spread": "^7.0.0-beta.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.0",
