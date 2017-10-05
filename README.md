@@ -195,7 +195,7 @@ Provide a custom class name for the active tab.
 
 #### tabIndex: `string`
 
-> default: `null`
+> default: if selected `"0"` otherwise `null`
 
 Overrides the tabIndex to enabled tabbing between tabs.
 
