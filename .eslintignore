@@ -1,2 +1,4 @@
 /webpack.*
 examples
+lib
+dist

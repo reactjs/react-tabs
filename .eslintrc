@@ -5,13 +5,14 @@
     "browser": true,
     "node": true
   },
-  "plugins": [
-    "prettier"
-  ],
+  "plugins": ["prettier"],
   "rules": {
     "arrow-parens": "off",
     "no-plusplus": "off",
-    "prettier/prettier": ["error", { "singleQuote": true, "printWidth": 100, "trailingComma": "all"}],
+    "prettier/prettier": [
+      "error",
+      { "singleQuote": true, "printWidth": 100, "trailingComma": "all" }
+    ],
     "react/require-default-props": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
     "react/forbid-prop-types": "off",
@@ -20,7 +21,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/__tests__/**/*"],
+        "devDependencies": ["**/__tests__/**/*", "rollup.config.js"],
         "optionalDependencies": false
       }
     ]
