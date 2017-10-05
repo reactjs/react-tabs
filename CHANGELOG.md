@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/reactjs/react-tabs/compare/v2.0.0...v2.1.0) (2017-10-05)
+
+
+### Bug Fixes
+
+* **tabs:** Correctly handle children of type string ([#211](https://github.com/reactjs/react-tabs/issues/211)) ([6fd4002](https://github.com/reactjs/react-tabs/commit/6fd4002))
+* **umd:** Fix the umd builds by switching to rollup ([#212](https://github.com/reactjs/react-tabs/issues/212)) ([46c1a60](https://github.com/reactjs/react-tabs/commit/46c1a60))
+
+
+### Features
+
+* **dependencies:** Support react 16 ([94447e9](https://github.com/reactjs/react-tabs/commit/94447e9))
+* **tablist:** Enable overwriting tabIndex on <Tab> and allow tabbing among <Tab>s by using tab key and enter/space. ([00a8401](https://github.com/reactjs/react-tabs/commit/00a8401))
+* **tabs:** Publish also as ES2015 modules ([41415ab](https://github.com/reactjs/react-tabs/commit/41415ab))
+* **Tabs:** Add `domRef` prop for getting the ref to the tabs DOM node ([#213](https://github.com/reactjs/react-tabs/issues/213)) ([e989491](https://github.com/reactjs/react-tabs/commit/e989491))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/reactjs/react-tabs/compare/v1.1.0...v2.0.0) (2017-09-05)
 
