@@ -28,9 +28,18 @@
   "bugs": {
     "url": "https://github.com/reactjs/react-tabs/issues"
   },
-  "files": ["dist", "lib", "style"],
+  "files": [
+    "dist",
+    "lib",
+    "style"
+  ],
   "homepage": "https://github.com/reactjs/react-tabs",
-  "keywords": ["react", "tabs", "a11y", "react-component"],
+  "keywords": [
+    "react",
+    "tabs",
+    "a11y",
+    "react-component"
+  ],
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0 || ^16.0.0"
   },
@@ -76,9 +85,9 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^2.0.1",
     "standard-version": "^4.2.0",
-    "style-loader": "^0.18.1",
+    "style-loader": "^0.19.0",
     "uglifyjs-webpack-plugin": "^0.4.2",
-    "webpack": "^2.3.3",
+    "webpack": "^3.6.0",
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
@@ -86,10 +95,15 @@
     "prop-types": "^15.5.0"
   },
   "jest": {
-    "roots": ["src"],
+    "roots": [
+      "src"
+    ],
     "testRegex": "/__tests__/.+-test\\.js$"
   },
   "lint-staged": {
-    "src/**/*.js": ["eslint --fix", "git add"]
+    "src/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
