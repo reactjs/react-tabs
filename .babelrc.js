@@ -1,7 +1,8 @@
 'use strict';
 
 const target = process.env.BABEL_TARGET;
-const modules = target === 'rollup' ? false : 'commonjs';
+const output = process.env.BABEL_OUTPUT;
+const modules = target === 'rollup' || output === 'esm' ? false : 'commonjs';
 
 const options = {
   presets: [['env', { loose: true, modules }], 'react'],

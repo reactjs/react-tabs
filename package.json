@@ -3,11 +3,13 @@
   "version": "2.0.0",
   "description": "React tabs component",
   "main": "lib/index.js",
+  "module": "esm/index.js",
   "scripts": {
     "clean:commonjs": "rimraf lib",
     "clean:umd": "rimraf dist",
     "create-github-release": "conventional-github-releaser -p angular",
     "build:commonjs": "babel src/ --out-dir lib/ --ignore **/__tests__,**/__mocks__",
+    "build:esm": "BABEL_OUTPUT=esm babel src/ --out-dir esm/ --ignore **/__tests__,**/__mocks__",
     "build:umd": "BABEL_TARGET=rollup yarn rollup -c",
     "build": "npm-run-all clean:* --parallel build:*",
     "format": "eslint src --fix",
@@ -30,6 +32,7 @@
   },
   "files": [
     "dist",
+    "esm",
     "lib",
     "style"
   ],
