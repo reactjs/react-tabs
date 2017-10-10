@@ -46,7 +46,6 @@ exports[`<TabList /> should allow for higher order components 1`] = `
     className="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="react-tabs-13"
     role="tabpanel"
-    style={Object {}}
   >
     Foo
   </div>
@@ -55,7 +54,6 @@ exports[`<TabList /> should allow for higher order components 1`] = `
     className="react-tabs__tab-panel"
     id="react-tabs-15"
     role="tabpanel"
-    style={Object {}}
   />
 </div>
 `;
@@ -99,7 +97,6 @@ exports[`<TabList /> should display the custom classnames for selected and disab
     className="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="react-tabs-9"
     role="tabpanel"
-    style={Object {}}
   >
     Foo
   </div>
@@ -108,7 +105,6 @@ exports[`<TabList /> should display the custom classnames for selected and disab
     className="react-tabs__tab-panel"
     id="react-tabs-11"
     role="tabpanel"
-    style={Object {}}
   />
 </div>
 `;
@@ -152,7 +148,6 @@ exports[`<TabList /> should display the custom classnames for selected and disab
     className="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="react-tabs-5"
     role="tabpanel"
-    style={Object {}}
   >
     Foo
   </div>
@@ -161,7 +156,6 @@ exports[`<TabList /> should display the custom classnames for selected and disab
     className="react-tabs__tab-panel"
     id="react-tabs-7"
     role="tabpanel"
-    style={Object {}}
   />
 </div>
 `;
@@ -227,7 +221,6 @@ exports[`<TabList /> should retain the default classnames for active and disable
     className="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="react-tabs-1"
     role="tabpanel"
-    style={Object {}}
   >
     Foo
   </div>
@@ -236,7 +229,6 @@ exports[`<TabList /> should retain the default classnames for active and disable
     className="react-tabs__tab-panel"
     id="react-tabs-3"
     role="tabpanel"
-    style={Object {}}
   />
 </div>
 `;

@@ -24,7 +24,7 @@ function createTabs(props = {}) {
         <Tab>Foo</Tab>
         <Tab>Bar</Tab>
         <Tab>
-          <a>Baz</a>
+          <a href="a">Baz</a>
         </Tab>
         <Tab disabled>Qux</Tab>
       </TabList>
@@ -481,9 +481,10 @@ describe('<Tabs />', () => {
 
   test('should switch tabs if setState is called within onSelect', () => {
     class Wrap extends React.Component {
+      state = {};
       handleSelect = () => this.setState({ foo: 'bar' });
       render() {
-        return createTabs({ onSelect: this.handleSelect });
+        return createTabs({ onSelect: this.handleSelect, className: this.state.foo });
       }
     }
 

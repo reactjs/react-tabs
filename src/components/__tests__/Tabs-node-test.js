@@ -16,7 +16,7 @@ function createTabs(props = {}) {
         <Tab>Foo</Tab>
         <Tab>Bar</Tab>
         <Tab>
-          <a>Baz</a>
+          <a href="a">Baz</a>
         </Tab>
         <Tab disabled>Qux</Tab>
       </TabList>

@@ -9,7 +9,6 @@ export default class TabPanel extends Component {
     className: DEFAULT_CLASS,
     forceRender: false,
     selectedClassName: `${DEFAULT_CLASS}--selected`,
-    style: {},
   };
 
   static propTypes = {

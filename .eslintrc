@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb", "prettier"],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
@@ -7,7 +7,6 @@
   },
   "plugins": ["prettier"],
   "rules": {
-    "arrow-parens": "off",
     "no-plusplus": "off",
     "prettier/prettier": [
       "error",
