@@ -21,6 +21,12 @@
       color: black;
       border-radius: 5px 5px 0 0;
     }
+
+    &--disabled {
+      color: GrayText;
+      cursor: default;
+    }
+
     &:focus {
       box-shadow: 0 0 5px hsl(208, 99%, 50%);
       border-color: hsl(208, 99%, 50%);
@@ -43,11 +49,6 @@
 
     &--selected {
       display: block;
-    }
-
-    &--disabled {
-      color: GrayText;
-      cursor: default;
     }
   }
 }

@@ -22,14 +22,6 @@
   border-radius: 5px 5px 0 0;
 }
 
-.react-tabs__tab-panel {
-  display: none;
-}
-
-.react-tabs__tab-panel--selected {
-  display: block;
-}
-
 .react-tabs__tab--disabled {
   color: GrayText;
   cursor: default;
@@ -49,4 +41,12 @@
   right: -4px;
   bottom: -5px;
   background: #fff;
+}
+
+.react-tabs__tab-panel {
+  display: none;
+}
+
+.react-tabs__tab-panel--selected {
+  display: block;
 }
