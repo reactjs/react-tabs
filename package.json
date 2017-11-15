@@ -20,7 +20,7 @@
     "release": "standard-version --sign",
     "test": "BABEL_OUTPUT=commonjs jest",
     "start": "webpack-dev-server --inline --content-base examples/",
-    "website:build": "webpack && cp -R examples/src/examples examples/dist"
+    "website:build": "rimraf examples/dist && webpack && cp -R examples/src/example examples/dist"
   },
   "repository": {
     "type": "git",
