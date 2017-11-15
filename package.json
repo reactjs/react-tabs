@@ -22,7 +22,7 @@
     "start": "webpack-dev-server --inline --content-base examples/",
     "website": "run-s website:clean website:build website:redirect",
     "website:clean": "rimraf examples/dist",
-    "website:build": "webpack",
+    "website:build": "cross-env NODE_ENV=production webpack",
     "website:redirect": "cp -R examples/src/example examples/dist"
   },
   "repository": {
