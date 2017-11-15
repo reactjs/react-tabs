@@ -49,7 +49,6 @@ module.exports = {
   output: {
     path: targetDirectory,
     filename: '[name]-[chunkhash].js',
-    publicPath: '/',
     hashDigestLength: 8,
   },
   devServer: {
