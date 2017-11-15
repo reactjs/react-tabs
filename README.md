@@ -1,6 +1,8 @@
 # react-tabs [![Build Status](https://travis-ci.org/reactjs/react-tabs.svg?branch=master)](https://travis-ci.org/reactjs/react-tabs) [![npm version](https://img.shields.io/npm/v/react-tabs.svg)](https://www.npmjs.com/package/react-tabs)
 
-Accessible react tab component
+An accessible and easy tab component for ReactJS.
+
+https://reactcommunity.org/react-tabs/
 
 > Supports React 0.14.9+, 15.3+ and 16+
 
@@ -20,12 +22,6 @@ You can also use react-tabs directly as UMD build in an HTML document by adding
 
 For example usages of the UMD builds have a look at the [`examples/umd`](./examples/umd/) folder.
 The development UMD build also needs the package `prop-types` being loaded besides `react`.
-
-## Demo
-
-https://reactcommunity.org/react-tabs/example/
-
-(TODO: This demos are outdated and use super old versions of react and react-tabs)
 
 ## Basic Example
 
