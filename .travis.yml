@@ -8,3 +8,12 @@ before_script:
 script:
   - yarn lint
   - yarn test -- --ci
+after_success: yarn build:website
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $CONVENTIONAL_GITHUB_RELEASER_TOKEN
+  local_dir: examples/dist
+  on:
+    branch: master
+    node: "8"
