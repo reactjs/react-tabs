@@ -1,5 +1,5 @@
 /webpack.*
-examples
+/old_examples
 lib
 dist
 esm

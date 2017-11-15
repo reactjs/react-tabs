@@ -15,12 +15,18 @@
     "react/require-default-props": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
     "react/forbid-prop-types": "off",
+    "react/prefer-stateless-function": "off",
     "react/sort-comp": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/__tests__/**/*", "rollup.config.js"],
+        "devDependencies": [
+          "**/__tests__/**/*",
+          "examples/src/**/*.js",
+          "rollup.config.js",
+          "webpack-new.config.js"
+        ],
         "optionalDependencies": false
       }
     ]

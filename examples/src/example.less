@@ -1,0 +1,212 @@
+@import "../../style/react-tabs.less";
+
+@heading-color:                  black;
+@text-color:                     #333;
+@link-color:                     #007eff;
+@gutter:                         30px;
+@header-bg-color: #3c72a9;
+@header-color: #d3e9ff;
+
+body {
+	color: @text-color;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.4;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: @link-color;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 850px;
+	padding: 0 @gutter;
+}
+
+h1, h2, h3 {
+	font-weight: 500;
+	line-height: 1;
+	margin-top: 0;
+}
+
+// common
+
+.page-body,
+.page-footer,
+.page-header {
+	padding: @gutter 0;
+}
+
+// header
+
+.page-header {
+	background-color: @header-bg-color;
+	color: @header-color;
+	text-align: center;
+
+	&__title {
+		color: white;
+		font-size: 3em;
+		margin-bottom: 0.33em;
+	}
+	&__subtitle {
+		font-size: 1.2em;
+		margin-bottom: 1em;
+		font-weight: 300;
+		line-height: 1.4;
+	}
+
+	a {
+		border-bottom: 1px solid fade(white, 30%);
+		color: white;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			border-bottom-color: white;
+			outline: none;
+			text-decoration: none;
+		}
+	}
+
+	&__button {
+			display: inline-block;
+			margin-bottom: 1rem;
+			color: rgba(255,255,255,0.7);
+			background-color: rgba(255,255,255,0.08);
+			border-color: rgba(255,255,255,0.2) !important;
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 0.3rem;
+			transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+			text-decoration: none;
+
+			&:hover {
+				color: rgba(255,255,255,0.8);
+				text-decoration: none;
+				background-color: rgba(255,255,255,0.2);
+				border-color: rgba(255,255,255,0.3);
+				text-decoration: none;
+			}
+	}
+}
+
+// subheader
+
+.page-subheader {
+	background-color: mix(@link-color, white, 10%);
+	line-height: 20px;
+	padding: @gutter 0;
+}
+.page-subheader__button {
+	float: right;
+}
+.page-subheader__link {
+	border-bottom: 1px solid fade(@link-color, 30%);
+	outline: none;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		border-bottom-color: @link-color;
+		outline: none;
+		text-decoration: none;
+	}
+}
+
+// footer
+
+.page-footer {
+	background-color: #fafafa;
+	color: #999;
+	padding: @gutter 0;
+	text-align: center;
+
+	a {
+		color: black;
+	}
+}
+
+// Miscellaneous
+// ------------------------------
+
+.section {
+	margin-bottom: 40px;
+
+	.source-checkbox-label {
+		border: none;
+		cursor: pointer;
+		color: @link-color;
+		text-decoration: none;
+		font-size: .7em;
+	}
+
+	.react-live-preview {
+		padding: 2em;
+	}
+
+	.live-preview {
+		box-shadow: 0.055rem 0.055rem 1.11rem rgba(20,20,20,0.27);
+
+		.live-editor {
+			height: 0;
+			overflow-y: scroll;
+			transition: height .2s;
+			max-width: 850px;
+
+			pre {
+				overflow: scroll;
+			}
+
+			&--visible {
+				height: 300px;
+			}
+		}
+	}
+}
+
+.hint {
+	font-size: .95em;
+	margin: 15px 0;
+	color: #666;
+}
+
+// layout changes based on screen dimensions
+
+@media (max-width: 767px) {
+	.page-header__button {
+		display: block;
+		padding: 0.75rem;
+		font-size: 0.9rem;
+	}
+
+	.section {
+		.live-preview {
+			.live-editor {
+				max-width: ~"calc(100vw - 60px)";
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.page-header__button {
+		padding: 0.75rem 1rem;
+	}
+	.page-body,
+	.page-header {
+		padding: 3em 0 1.5em;
+	}
+	.page-header {
+		font-size: 1.4em;
+	}
+}

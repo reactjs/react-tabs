@@ -1,45 +1,76 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
 const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const EXAMPLES_DIR = path.join(__dirname, 'examples');
-
-function buildEntries() {
-  return fs.readdirSync(EXAMPLES_DIR).reduce(function(entries, dir) {
-    const isDraft = dir.charAt(0) === '_';
-    const isDirectory = fs.lstatSync(path.join(EXAMPLES_DIR, dir)).isDirectory();
-    const entryFile = path.join(EXAMPLES_DIR, dir, 'app.js');
-
-    if (!isDraft && isDirectory && fs.existsSync(entryFile)) {
-      entries[dir] = entryFile;
-    }
-
-    return entries;
-  }, {});
-}
+const sourceDirectory = path.resolve(__dirname, 'examples/src');
+const targetDirectory = path.resolve(__dirname, 'examples/dist');
 
 module.exports = {
-  entry: buildEntries(),
+  context: sourceDirectory,
+  entry: {
+    app: './app.js',
+  },
   output: {
+    path: targetDirectory,
     filename: '[name].js',
-    chunkFilename: '[id].chunk.js',
-    path: path.join(__dirname, 'examples/__build__'),
-    publicPath: '/__build__/',
+    publicPath: '/',
+  },
+  devServer: {
+    contentBase: sourceDirectory,
+    port: 8000,
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
+        exclude: [/node_modules/],
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader'],
+        }),
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        }),
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+        ],
       },
     ],
   },
-  plugins: [new webpack.optimize.CommonsChunkPlugin({ name: 'shared' })],
+  resolve: {
+    alias: {
+      'react-tabs': path.resolve(__dirname, 'src/index'),
+    },
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'common',
+      filename: 'common.js',
+      minChunk: 2,
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      inject: false,
+      template: path.resolve(__dirname, 'examples/src/index.html'),
+    }),
+    new ExtractTextPlugin('example.css'),
+  ],
 };
