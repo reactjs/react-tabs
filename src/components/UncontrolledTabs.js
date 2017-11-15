@@ -152,8 +152,7 @@ export default class UncontrolledTabs extends Component {
         let wasTabFocused = false;
 
         if (canUseActiveElement) {
-          wasTabFocused = React.Children
-            .toArray(child.props.children)
+          wasTabFocused = React.Children.toArray(child.props.children)
             .filter(isTab)
             .some((tab, i) => document.activeElement === this.getTab(i));
         }

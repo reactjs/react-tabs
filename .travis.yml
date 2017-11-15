@@ -11,11 +11,11 @@ cache:
   directories:
     - "node_modules"
 before_script:
-  - 'if [[ -n "$TRAVIS_TAG" ]] && [[ "$TRAVIS_JOB_NUMBER" == *.1 ]]; then yarn run create-github-release || true; fi'
+  - 'if [[ -n "$TRAVIS_TAG" ]] && [[ "$TRAVIS_JOB_NUMBER" == *.1 ]]; then yarn run create-github-release; fi'
 script:
   - yarn lint
   - yarn test -- --ci
-after_success: yarn website:build
+after_success: yarn website
 deploy:
   provider: pages
   skip_cleanup: true
