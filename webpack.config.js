@@ -21,7 +21,7 @@ const plugins = [
       removeRedundantAttributes: !isDev,
     },
   }),
-  new ExtractTextPlugin('app-[hash].css'),
+  new ExtractTextPlugin('app-[contenthash:8].css'),
   new webpack.optimize.ModuleConcatenationPlugin(),
 ];
 
@@ -48,8 +48,9 @@ module.exports = {
   },
   output: {
     path: targetDirectory,
-    filename: '[name]-[hash].js',
+    filename: '[name]-[chunkhash].js',
     publicPath: '/',
+    hashDigestLength: 8,
   },
   devServer: {
     contentBase: sourceDirectory,
