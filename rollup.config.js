@@ -18,7 +18,7 @@ const devConfig = {
     sourcemap: true,
   },
   plugins: [
-    commonjs(),
+    commonjs({ exclude: 'src/**' }),
     nodeResolve(),
     babel(),
     replace({
@@ -41,7 +41,7 @@ const productionConfig = {
   },
   plugins: [
     ignore(['prop-types']),
-    commonjs(),
+    commonjs({ exclude: 'src/**' }),
     nodeResolve(),
     babel({ plugins: ['transform-react-remove-prop-types'] }),
     replace({

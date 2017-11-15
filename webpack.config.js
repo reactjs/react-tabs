@@ -2,9 +2,44 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const sourceDirectory = path.resolve(__dirname, 'examples/src');
 const targetDirectory = path.resolve(__dirname, 'examples/dist');
+
+const isDev = process.env.NODE_ENV !== 'production';
+
+const plugins = [
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    inject: false,
+    template: path.resolve(__dirname, 'examples/src/index.html'),
+    minify: {
+      collapseWhitespace: !isDev,
+      collapseInlineTagWhitespace: !isDev,
+      removeComments: !isDev,
+      removeRedundantAttributes: !isDev,
+    },
+  }),
+  new ExtractTextPlugin('example.css'),
+  new webpack.optimize.ModuleConcatenationPlugin(),
+];
+
+if (!isDev) {
+  plugins.push(
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+            warnings: false,
+        },
+      },
+      sourceMap: false,
+    }),
+);
+}
 
 module.exports = {
   context: sourceDirectory,
@@ -60,17 +95,5 @@ module.exports = {
       'react-tabs': path.resolve(__dirname, 'src/index'),
     },
   },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      filename: 'common.js',
-      minChunk: 2,
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      inject: false,
-      template: path.resolve(__dirname, 'examples/src/index.html'),
-    }),
-    new ExtractTextPlugin('example.css'),
-  ],
+  plugins,
 };
