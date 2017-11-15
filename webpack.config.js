@@ -12,7 +12,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 const plugins = [
   new HtmlWebpackPlugin({
     filename: 'index.html',
-    inject: false,
+    inject: true,
     template: path.resolve(__dirname, 'examples/src/index.html'),
     minify: {
       collapseWhitespace: !isDev,
@@ -21,7 +21,7 @@ const plugins = [
       removeRedundantAttributes: !isDev,
     },
   }),
-  new ExtractTextPlugin('example.css'),
+  new ExtractTextPlugin('app-[hash].css'),
   new webpack.optimize.ModuleConcatenationPlugin(),
 ];
 
@@ -48,7 +48,7 @@ module.exports = {
   },
   output: {
     path: targetDirectory,
-    filename: '[name].js',
+    filename: '[name]-[hash].js',
     publicPath: '/',
   },
   devServer: {
