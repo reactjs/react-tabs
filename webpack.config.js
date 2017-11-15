@@ -16,7 +16,6 @@ const plugins = [
     template: path.resolve(__dirname, 'examples/src/index.html'),
     minify: {
       collapseWhitespace: !isDev,
-      collapseInlineTagWhitespace: !isDev,
       removeComments: !isDev,
       removeRedundantAttributes: !isDev,
     },
