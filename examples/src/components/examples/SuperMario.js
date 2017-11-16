@@ -102,6 +102,6 @@ const code = `const Component = (
 render(Component);`;
 
 const hint =
-  'These is a simple usecase where the Luigi tab is disable by default. You can also use [tab] to focus tabs and use arrow left/right or up/down to switch tabs.';
+  'This is a simple usecase where the Luigi tab is disable by default. You can also use [tab] to focus the tabs and use arrow left/right or up/down to switch tabs.';
 
 export default () => <ExampleItem code={code} hint={hint} label="Super Mario Example" />;
