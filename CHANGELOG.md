@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/reactjs/react-tabs/compare/v2.1.0...v2.1.1) (2017-11-17)
+
+
+### Bug Fixes
+
+* **style:** Fix less and sass to correctly generate tab--disabled class ([b95891e](https://github.com/reactjs/react-tabs/commit/b95891e))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/reactjs/react-tabs/compare/v2.0.0...v2.1.0) (2017-10-05)
 
