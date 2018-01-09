@@ -9,7 +9,7 @@ import { isTabList, isTabPanel, isTab } from '../helpers/elementTypes';
 
 // Determine if a node from event.target is a Tab element
 function isTabNode(node) {
-  return node.nodeName === 'LI' && node.getAttribute('role') === 'tab';
+  return node.getAttribute('role') === 'tab';
 }
 
 // Determine if a tab node is disabled
