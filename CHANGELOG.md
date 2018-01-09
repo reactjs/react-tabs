@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/reactjs/react-tabs/compare/v2.1.1...v2.2.0) (2018-01-09)
+
+
+### Features
+
+* **tabs:** verify click tabNode using *[role=tab] ([#220](https://github.com/reactjs/react-tabs/issues/220)) ([5bd6bfe](https://github.com/reactjs/react-tabs/commit/5bd6bfe))
+
+
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/reactjs/react-tabs/compare/v2.1.0...v2.1.1) (2017-11-17)
 
