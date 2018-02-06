@@ -16,6 +16,7 @@ export default class TabPanel extends Component {
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     forceRender: PropTypes.bool,
     id: PropTypes.string, // private
+    noBEM: PropTypes.bool,
     selected: PropTypes.bool, // private
     selectedClassName: PropTypes.string,
     tabId: PropTypes.string, // private
@@ -27,6 +28,7 @@ export default class TabPanel extends Component {
       className,
       forceRender,
       id,
+      noBEM,
       selected,
       selectedClassName,
       tabId,
@@ -36,7 +38,8 @@ export default class TabPanel extends Component {
     return (
       <div
         {...attributes}
-        className={cx(className, {
+        className={cx({
+          [className]: noBEM ? !selected : true,
           [selectedClassName]: selected,
         })}
         role="tabpanel"

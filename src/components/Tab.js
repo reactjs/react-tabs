@@ -23,6 +23,7 @@ export default class Tab extends Component {
     disabledClassName: PropTypes.string,
     focus: PropTypes.bool, // private
     id: PropTypes.string, // private
+    noBEM: PropTypes.bool,
     panelId: PropTypes.string, // private
     selected: PropTypes.bool, // private
     selectedClassName: PropTypes.string,
@@ -51,6 +52,7 @@ export default class Tab extends Component {
       disabledClassName,
       focus, // unused
       id,
+      noBEM,
       panelId,
       selected,
       selectedClassName,
@@ -62,7 +64,8 @@ export default class Tab extends Component {
     return (
       <li
         {...attributes}
-        className={cx(className, {
+        className={cx({
+          [className]: noBEM ? !selected && !disabled : true,
           [selectedClassName]: selected,
           [disabledClassName]: disabled,
         })}
