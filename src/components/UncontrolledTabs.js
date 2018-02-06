@@ -44,6 +44,7 @@ export default class UncontrolledTabs extends Component {
     domRef: PropTypes.func,
     focus: PropTypes.bool,
     forceRenderTabPanel: PropTypes.bool,
+    noBEM: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
     selectedIndex: PropTypes.number.isRequired,
     selectedTabClassName: PropTypes.string,
@@ -122,6 +123,7 @@ export default class UncontrolledTabs extends Component {
       disabledTabClassName,
       focus,
       forceRenderTabPanel,
+      noBEM,
       selectedIndex,
       selectedTabClassName,
       selectedTabPanelClassName,
@@ -174,6 +176,7 @@ export default class UncontrolledTabs extends Component {
 
             if (selectedTabClassName) props.selectedClassName = selectedTabClassName;
             if (disabledTabClassName) props.disabledClassName = disabledTabClassName;
+            if (noBEM) props.noBEM = noBEM;
 
             listIndex++;
 
@@ -286,6 +289,7 @@ export default class UncontrolledTabs extends Component {
       domRef,
       focus, // unused
       forceRenderTabPanel, // unused
+      noBEM, // unused
       onSelect, // unused
       selectedIndex, // unused
       selectedTabClassName, // unused

@@ -20,6 +20,7 @@ export default class Tabs extends Component {
     disabledTabClassName: PropTypes.string,
     domRef: PropTypes.func,
     forceRenderTabPanel: PropTypes.bool,
+    noBEM: PropTypes.bool,
     onSelect: onSelectPropType,
     selectedIndex: selectedIndexPropType,
     selectedTabClassName: PropTypes.string,
