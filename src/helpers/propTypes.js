@@ -25,7 +25,8 @@ export function childrenPropType(props, propName, componentName) {
     if (isTab(child)) {
       if (!tabListFound || listTabs.indexOf(child) === -1) {
         error = new Error(
-          "Found a 'Tab' component outside of the 'TabList' component. 'Tab' components have to be inside the 'TabList' component.",
+          "Found a 'Tab' component outside of the 'TabList' component. 'Tab' components " +
+            "have to be inside the 'TabList' component.",
         );
       }
       tabsCount++;
@@ -36,7 +37,7 @@ export function childrenPropType(props, propName, componentName) {
 
   if (!error && tabsCount !== panelsCount) {
     error = new Error(
-      `There should be an equal number of 'Tab' and 'TabPanel' in \`${componentName}\`.` +
+      `There should be an equal number of 'Tab' and 'TabPanel' in \`${componentName}\`. ` +
         `Received ${tabsCount} 'Tab' and ${panelsCount} 'TabPanel'.`,
     );
   }
@@ -51,17 +52,17 @@ export function onSelectPropType(props, propName, componentName, location, propF
 
   if (prop && typeof prop !== 'function') {
     error = new Error(
-      `Invalid ${location} \`${name}\` of type \`${typeof prop}\` supplied to \`${
-        componentName
-      }\`, expected \`function\`.`,
+      `Invalid ${location} \`${name}\` of type \`${typeof prop}\` supplied ` +
+        `to \`${componentName}\`, expected \`function\`.`,
     );
   } else if (props.selectedIndex != null && prop == null) {
     error = new Error(
-      `The ${location} \`${name}\` is marked as required in \`${
-        componentName
-      }\`, but its value is \`undefined\` or \`null\`.
-\`onSelect\` is required when \`selectedIndex\` is also set. Not doing so will make the tabs not do anything, as \`selectedIndex\` indicates that you want to handle the selected tab yourself.
-If you only want to set the inital tab replace \`selectedIndex\` with \`defaultIndex\`.`,
+      `The ${location} \`${name}\` is marked as required in \`${componentName}\`, but ` +
+        `its value is \`undefined\` or \`null\`.\n` +
+        `\`onSelect\` is required when \`selectedIndex\` is also set. Not doing so will ` +
+        `make the tabs not do anything, as \`selectedIndex\` indicates that you want to ` +
+        `handle the selected tab yourself.\n` +
+        `If you only want to set the inital tab replace \`selectedIndex\` with \`defaultIndex\`.`,
     );
   }
 
@@ -75,18 +76,15 @@ export function selectedIndexPropType(props, propName, componentName, location, 
 
   if (prop != null && typeof prop !== 'number') {
     error = new Error(
-      `Invalid ${location} \`${name}\` of type \`${typeof prop}\` supplied to \`${
-        componentName
-      }\`, expected \`number\`.`,
+      `Invalid ${location} \`${name}\` of type \`${typeof prop}\` supplied to ` +
+        `\`${componentName}\`, expected \`number\`.`,
     );
   } else if (props.defaultIndex != null && prop != null) {
     return new Error(
-      `The ${location} \`${name}\` cannot be used together with \`defaultIndex\` in \`${
-        componentName
-      }\`.
-Either remove \`${name}\` to let \`${
-        componentName
-      }\` handle the selected tab internally or remove \`defaultIndex\` to handle it yourself.`,
+      `The ${location} \`${name}\` cannot be used together with \`defaultIndex\` ` +
+        `in \`${componentName}\`.\n` +
+        `Either remove \`${name}\` to let \`${componentName}\` handle the selected ` +
+        `tab internally or remove \`defaultIndex\` to handle it yourself.`,
     );
   }
 

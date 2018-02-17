@@ -196,7 +196,7 @@ describe('<Tabs />', () => {
       console.error = oldConsoleError; // eslint-disable-line no-console
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
-      expect(result instanceof Error).toBe(true);
+      expect(result).toBeInstanceOf(Error);
     });
 
     test('should result with warning when tab outside of tablist', () => {
@@ -215,7 +215,7 @@ describe('<Tabs />', () => {
       console.error = oldConsoleError; // eslint-disable-line no-console
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
-      expect(result instanceof Error).toBe(true);
+      expect(result).toBeInstanceOf(Error);
     });
 
     test('should result with warning when multiple tablist components exist', () => {
@@ -236,15 +236,15 @@ describe('<Tabs />', () => {
       console.error = oldConsoleError; // eslint-disable-line no-console
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
-      expect(result instanceof Error).toBe(true);
+      expect(result).toBeInstanceOf(Error);
     });
 
     test('should result with warning when onSelect missing when selectedIndex set', () => {
       const oldConsoleError = console.error; // eslint-disable-line no-console
-      const catchedErrors = [];
+      let catchedError;
       // eslint-disable-next-line no-console
       console.error = error => {
-        catchedErrors.push(error);
+        catchedError = error;
       };
       shallow(
         <Tabs selectedIndex={1}>
@@ -258,15 +258,15 @@ describe('<Tabs />', () => {
 
       const expectedMessage =
         'The prop `onSelect` is marked as required in `Tabs`, but its value is `undefined` or `null`.';
-      expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(true);
+      expect(catchedError).toMatch(expectedMessage);
     });
 
     test('should result with warning when defaultIndex and selectedIndex set', () => {
       const oldConsoleError = console.error; // eslint-disable-line no-console
-      const catchedErrors = [];
+      let catchedError;
       // eslint-disable-next-line no-console
       console.error = error => {
-        catchedErrors.push(error);
+        catchedError = error;
       };
       shallow(
         <Tabs selectedIndex={1} defaultIndex={1}>
@@ -280,7 +280,7 @@ describe('<Tabs />', () => {
 
       const expectedMessage =
         'The prop `selectedIndex` cannot be used together with `defaultIndex` in `Tabs`.';
-      expect(catchedErrors.some(msg => msg.indexOf(expectedMessage) > -1)).toBe(true);
+      expect(catchedError).toMatch(expectedMessage);
     });
 
     test('should result with warning when tabs/panels are imbalanced and it should ignore non tab children', () => {
@@ -300,7 +300,7 @@ describe('<Tabs />', () => {
       console.error = oldConsoleError; // eslint-disable-line no-console
 
       const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
-      expect(result instanceof Error).toBe(true);
+      expect(result).toBeInstanceOf(Error);
     });
 
     test('should allow random order for elements', () => {
