@@ -323,10 +323,37 @@ When using the UMD version of react-tabs you can easily use the default styles b
 </html>
 ```
 
-### Custom
+
+### Custom Style
 
 You can also always just simply copy the default style to your own css/scss/less and modify it to your own needs. The changelog will always tell you when classes change and we also consider changes that break the styling as semver major.
 
+### Custom Components
+
+In case you want to create your own component wrapping the ones that the library provides, you have to set its `tabsRole`. This is value is used inside react-tabs to check the role of a component inside `Tabs`.
+
+``` javascript
+import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
+
+const CustomTab = ({ children }) => (
+  <Tab>
+    <h1>{children}</h1>
+  </Tab>
+);
+
+CustomTab.tabsRosle = 'Tab'; // Required field to use your custom Tab
+
+const App = () => (
+  <Tabs>
+    <TabList>
+      <CustomTab>Custom Tab 1</CustomTab>
+      <CustomTab>Custom Tab 2</CustomTab>
+    </TabList>
+    <TabPanel>Panel 1</TabPanel>
+    <TabPanel>Panel 2</TabPanel>
+  </Tabs>
+);
+```
 ## License
 
 MIT
