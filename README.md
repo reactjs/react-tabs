@@ -332,6 +332,11 @@ You can also always just simply copy the default style to your own css/scss/less
 
 In case you want to create your own component wrapping the ones that the library provides, you have to set its `tabsRole`. This is value is used inside react-tabs to check the role of a component inside `<Tabs />`.
 
+Possible values for tabsRole are: 
+ * Tab
+ * TabPanel
+ * TabList
+
 ``` javascript
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 
