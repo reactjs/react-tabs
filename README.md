@@ -346,7 +346,7 @@ const CustomTab = ({ children }) => (
   </Tab>
 );
 
-CustomTab.tabsRosle = 'Tab'; // Required field to use your custom Tab
+CustomTab.tabsRole = 'Tab'; // Required field to use your custom Tab
 
 const App = () => (
   <Tabs>
