@@ -10,7 +10,7 @@
     "create-github-release": "conventional-github-releaser -p angular",
     "build:commonjs": "cross-env BABEL_OUTPUT=commonjs babel src/ --out-dir lib/ --ignore **/__tests__,**/__mocks__",
     "build:esm": "babel src/ --out-dir esm/ --ignore **/__tests__,**/__mocks__",
-    "build:umd": "yarn rollup -c",
+    "build:umd": "rollup -c",
     "build": "npm-run-all clean:* --parallel build:*",
     "format": "eslint src --fix",
     "lint": "eslint src",
