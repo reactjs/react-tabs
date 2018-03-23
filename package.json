@@ -38,7 +38,8 @@
     "dist",
     "esm",
     "lib",
-    "style"
+    "style",
+    "src"
   ],
   "homepage": "https://github.com/reactjs/react-tabs",
   "keywords": [
