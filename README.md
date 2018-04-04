@@ -260,6 +260,7 @@ This mode also enforces you to set a handler for `onSelect`. `defaultIndex` does
 ```js
 class App extends Component {
   constructor() {
+    super();
     this.state = { tabIndex: 0 };
   }
   render() {
