@@ -36,7 +36,7 @@ if (!isDev) {
         },
       },
       sourceMap: false,
-    }),
+    })
 );
 }
 
