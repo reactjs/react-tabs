@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const sourceDirectory = path.resolve(__dirname, 'examples/src');
@@ -20,33 +20,29 @@ const plugins = [
       removeRedundantAttributes: !isDev,
     },
   }),
-  new ExtractTextPlugin('app-[contenthash:8].css'),
-  new webpack.optimize.ModuleConcatenationPlugin(),
+  new MiniCssExtractPlugin({
+    filename: "[name].css",
+    chunkFilename: "app-[id].css"
+  }),
 ];
 
 if (!isDev) {
   plugins.push(
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        compress: {
-            warnings: false,
-        },
-      },
-      sourceMap: false,
     })
-);
+  );
 }
 
 module.exports = {
+  mode: isDev ? 'development' : 'production',
   context: sourceDirectory,
   entry: {
     app: './app.js',
   },
   output: {
     path: targetDirectory,
+    chunkFilename: 'chunk-[chunkhash].js',
     filename: '[name]-[chunkhash].js',
     hashDigestLength: 8,
   },
@@ -67,17 +63,11 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'less-loader'],
-        }),
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader'],
-        }),
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.html$/,

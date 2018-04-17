@@ -8,10 +8,7 @@
   "plugins": ["prettier"],
   "rules": {
     "no-plusplus": "off",
-    "prettier/prettier": [
-      "error",
-      { "singleQuote": true, "printWidth": 100, "trailingComma": "all" }
-    ],
+    "prettier/prettier": "error",
     "react/require-default-props": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
     "react/forbid-prop-types": "off",
