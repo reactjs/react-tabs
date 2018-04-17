@@ -21,16 +21,16 @@ const plugins = [
     },
   }),
   new MiniCssExtractPlugin({
-    filename: "[name].css",
-    chunkFilename: "app-[id].css"
+    filename: '[name]-[contenthash].css',
+    chunkFilename: '[name]-[contenthash].css',
   }),
 ];
 
 if (!isDev) {
   plugins.push(
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    })
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
   );
 }
 
@@ -62,12 +62,8 @@ module.exports = {
         ],
       },
       {
-        test: /\.less$/,
+        test: /\.(less|css)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.html$/,
