@@ -15,7 +15,11 @@ export function deepMap(children, callback) {
       return callback(child);
     }
 
-    if (child.props && child.props.children && typeof child.props.children === 'object') {
+    if (
+      child.props &&
+      child.props.children &&
+      typeof child.props.children === 'object'
+    ) {
       // Clone the child that has children and map them too
       return cloneElement(child, {
         ...child.props,
@@ -35,7 +39,11 @@ export function deepForEach(children, callback) {
 
     if (isTab(child) || isTabPanel(child)) {
       callback(child);
-    } else if (child.props && child.props.children && typeof child.props.children === 'object') {
+    } else if (
+      child.props &&
+      child.props.children &&
+      typeof child.props.children === 'object'
+    ) {
       if (isTabList(child)) callback(child);
       deepForEach(child.props.children, callback);
     }

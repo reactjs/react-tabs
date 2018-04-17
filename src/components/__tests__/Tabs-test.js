@@ -9,7 +9,11 @@ import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 import { reset as resetIdCounter } from '../../helpers/uuid';
-import { TabListWrapper, TabWrapper, TabPanelWrapper } from './helpers/higherOrder';
+import {
+  TabListWrapper,
+  TabWrapper,
+  TabPanelWrapper,
+} from './helpers/higherOrder';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -195,7 +199,11 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
-      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      const result = Tabs.propTypes.children(
+        wrapper.props(),
+        'children',
+        'Tabs',
+      );
       expect(result).toBeInstanceOf(Error);
     });
 
@@ -214,7 +222,11 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
-      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      const result = Tabs.propTypes.children(
+        wrapper.props(),
+        'children',
+        'Tabs',
+      );
       expect(result).toBeInstanceOf(Error);
     });
 
@@ -235,7 +247,11 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
-      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      const result = Tabs.propTypes.children(
+        wrapper.props(),
+        'children',
+        'Tabs',
+      );
       expect(result).toBeInstanceOf(Error);
     });
 
@@ -299,7 +315,11 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
-      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      const result = Tabs.propTypes.children(
+        wrapper.props(),
+        'children',
+        'Tabs',
+      );
       expect(result).toBeInstanceOf(Error);
     });
 
@@ -327,7 +347,11 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      const result = Tabs.propTypes.children(wrapper.props(), 'children', 'Tabs');
+      const result = Tabs.propTypes.children(
+        wrapper.props(),
+        'children',
+        'Tabs',
+      );
       expect(result instanceof Error).toBe(false);
     });
 
@@ -484,7 +508,10 @@ describe('<Tabs />', () => {
       state = {};
       handleSelect = () => this.setState({ foo: 'bar' });
       render() {
-        return createTabs({ onSelect: this.handleSelect, className: this.state.foo });
+        return createTabs({
+          onSelect: this.handleSelect,
+          className: this.state.foo,
+        });
       }
     }
 

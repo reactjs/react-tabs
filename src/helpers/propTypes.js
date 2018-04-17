@@ -11,8 +11,14 @@ export function childrenPropType(props, propName, componentName) {
 
   deepForEach(children, child => {
     if (isTabList(child)) {
-      if (child.props && child.props.children && typeof child.props.children === 'object') {
-        deepForEach(child.props.children, listChild => listTabs.push(listChild));
+      if (
+        child.props &&
+        child.props.children &&
+        typeof child.props.children === 'object'
+      ) {
+        deepForEach(child.props.children, listChild =>
+          listTabs.push(listChild),
+        );
       }
 
       if (tabListFound) {
@@ -45,7 +51,13 @@ export function childrenPropType(props, propName, componentName) {
   return error;
 }
 
-export function onSelectPropType(props, propName, componentName, location, propFullName) {
+export function onSelectPropType(
+  props,
+  propName,
+  componentName,
+  location,
+  propFullName,
+) {
   const prop = props[propName];
   const name = propFullName || propName;
   let error = null;
@@ -69,7 +81,13 @@ export function onSelectPropType(props, propName, componentName, location, propF
   return error;
 }
 
-export function selectedIndexPropType(props, propName, componentName, location, propFullName) {
+export function selectedIndexPropType(
+  props,
+  propName,
+  componentName,
+  location,
+  propFullName,
+) {
   const prop = props[propName];
   const name = propFullName || propName;
   let error = null;

@@ -13,7 +13,11 @@ export default class TabPanel extends Component {
 
   static propTypes = {
     children: PropTypes.node,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+    className: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object,
+    ]),
     forceRender: PropTypes.bool,
     id: PropTypes.string, // private
     selected: PropTypes.bool, // private

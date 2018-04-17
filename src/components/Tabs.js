@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { childrenPropType, onSelectPropType, selectedIndexPropType } from '../helpers/propTypes';
+import {
+  childrenPropType,
+  onSelectPropType,
+  selectedIndexPropType,
+} from '../helpers/propTypes';
 import UncontrolledTabs from './UncontrolledTabs';
 import { getTabsCount } from '../helpers/count';
 
@@ -14,7 +18,11 @@ export default class Tabs extends Component {
 
   static propTypes = {
     children: childrenPropType,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+    className: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.object,
+    ]),
     defaultFocus: PropTypes.bool,
     defaultIndex: PropTypes.number,
     disabledTabClassName: PropTypes.string,
