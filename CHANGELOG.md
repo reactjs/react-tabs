@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
+* **publish:** Compile with latest babel to get rid of react proptype warnings
 * **publish:** Added src folder to package ([#232](https://github.com/reactjs/react-tabs/issues/232)) ([a4cc6d0](https://github.com/reactjs/react-tabs/commit/a4cc6d0))
 
 
