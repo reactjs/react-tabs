@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.2.2"></a>
+## [2.2.2](https://github.com/reactjs/react-tabs/compare/v2.2.1...v2.2.2) (2018-04-18)
+
+
+### Bug Fixes
+
+* **publish:** Added src folder to package ([#232](https://github.com/reactjs/react-tabs/issues/232)) ([a4cc6d0](https://github.com/reactjs/react-tabs/commit/a4cc6d0))
+
+
+
 <a name="2.2.1"></a>
 ## [2.2.1](https://github.com/reactjs/react-tabs/compare/v2.2.0...v2.2.1) (2018-01-09)
 

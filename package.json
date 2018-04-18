@@ -1,6 +1,6 @@
 {
   "name": "react-tabs",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "An accessible and easy tab component for ReactJS",
   "main": "lib/index.js",
   "module": "esm/index.js",
