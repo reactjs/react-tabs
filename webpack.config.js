@@ -67,6 +67,15 @@ module.exports = {
         sideEffects: true,
       },
       {
+        test: /\.png$/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+        sideEffects: true,
+      },
+      {
         test: /\.html$/,
         use: [
           {

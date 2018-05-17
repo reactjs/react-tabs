@@ -180,6 +180,40 @@ h1, h2, h3 {
 	color: #666;
 }
 
+.avengers-tab-list {
+    margin: 0;
+    padding: 0;
+}
+
+.avengers-tab {
+	display: inline-block;
+    position: relative;
+    list-style: none;
+    padding: 6px 12px 0;
+	cursor: pointer;
+	border-radius: 5px 5px 0 0;
+	margin-right: 2px;
+
+	&--selected {
+		box-shadow: 2px -1px 2px 0px rgba(0,0,0,0.5);
+		background: #fff;
+		color: black;
+		z-index: 3;
+	  }
+}
+
+.avengers-tab-panel {
+	padding: 10px;
+	display: none;
+	z-index: 2;
+	position: relative;
+
+	&--selected {
+		box-shadow: 2px -1px 2px 0px rgba(0,0,0,0.5);
+		display: block;
+	}
+}
+
 // layout changes based on screen dimensions
 
 @media (max-width: 767px) {
