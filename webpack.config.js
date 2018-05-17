@@ -64,6 +64,7 @@ module.exports = {
       {
         test: /\.(less|css)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        sideEffects: true,
       },
       {
         test: /\.html$/,
