@@ -107,6 +107,32 @@ export default class UncontrolledTabs extends Component {
     return index;
   }
 
+  getFirstTab() {
+    const count = this.getTabsCount();
+
+    // Look for non disabled tab from the first tab
+    for (let i = 0; i < count; i++) {
+      if (!isTabDisabled(this.getTab(i))) {
+        return i;
+      }
+    }
+
+    return null;
+  }
+
+  getLastTab() {
+    let i = this.getTabsCount();
+
+    // Look for non disabled tab from the last tab
+    while (i--) {
+      if (!isTabDisabled(this.getTab(i))) {
+        return i;
+      }
+    }
+
+    return null;
+  }
+
   getTabsCount() {
     return getTabsCount(this.props.children);
   }
@@ -226,6 +252,16 @@ export default class UncontrolledTabs extends Component {
       } else if (e.keyCode === 39 || e.keyCode === 40) {
         // Select next tab to the right
         index = this.getNextTab(index);
+        preventDefault = true;
+        useSelectedIndex = true;
+      } else if (e.keyCode === 35) {
+        // Select last tab (End key)
+        index = this.getLastTab();
+        preventDefault = true;
+        useSelectedIndex = true;
+      } else if (e.keyCode === 36) {
+        // Select first tab (Home key)
+        index = this.getFirstTab();
         preventDefault = true;
         useSelectedIndex = true;
       }
