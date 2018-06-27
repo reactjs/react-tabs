@@ -20,7 +20,7 @@ You can also use react-tabs directly as UMD build in an HTML document by adding
 <script src="https://unpkg.com/react-tabs@2/dist/react-tabs.production.min.js" />
 ```
 
-For example usages of the UMD builds have a look at the [`examples/umd`](./examples/umd/) folder.
+For example usages of the UMD builds have a look at the [`old_examples/umd`](./old_examples/umd/) folder.
 The development UMD build also needs the package `prop-types` being loaded besides `react`.
 
 ## Basic Example
