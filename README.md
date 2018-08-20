@@ -11,6 +11,10 @@ http://reactcommunity.org/react-tabs/
 ```bash
 yarn add react-tabs
 ```
+or
+```bash
+npm install --save react-tabs
+```
 
 You can also use react-tabs directly as UMD build in an HTML document by adding
 
