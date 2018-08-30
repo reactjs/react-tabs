@@ -1,8 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - "8"
-  - "6"
+  - "lts/*"
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH="$HOME/.yarn/bin:$PATH"
@@ -23,4 +22,4 @@ deploy:
   local_dir: examples/dist
   on:
     branch: master
-    node: "8"
+    node: "lts/*"
