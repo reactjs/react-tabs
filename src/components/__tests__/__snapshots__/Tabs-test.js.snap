@@ -763,7 +763,9 @@ exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
   <div
     id="tabs-nav-wrapper"
   >
-    <button>
+    <button
+      type="button"
+    >
       Left
     </button>
     <div
@@ -793,7 +795,9 @@ exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
         />
       </ul>
     </div>
-    <button>
+    <button
+      type="button"
+    >
       Right
     </button>
   </div>
