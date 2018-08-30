@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/reactjs/react-tabs/compare/v2.2.2...v2.3.0) (2018-08-30)
+
+
+### Bug Fixes
+
+* Fix flickering on iphone when touching tabs ([5d608aa](https://github.com/reactjs/react-tabs/commit/5d608aa)), closes [#186](https://github.com/reactjs/react-tabs/issues/186)
+* **style:** Correctly fix flash on iOS ([25cfa16](https://github.com/reactjs/react-tabs/commit/25cfa16))
+
+
+### Features
+
+* Add support for home and end key on tab list ([#246](https://github.com/reactjs/react-tabs/issues/246)) ([8f5cd84](https://github.com/reactjs/react-tabs/commit/8f5cd84))
+
+
+
 <a name="2.2.2"></a>
 ## [2.2.2](https://github.com/reactjs/react-tabs/compare/v2.2.1...v2.2.2) (2018-04-18)
 
