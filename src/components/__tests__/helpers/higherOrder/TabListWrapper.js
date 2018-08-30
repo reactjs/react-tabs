@@ -1,6 +1,6 @@
 import React from 'react';
 import hoist from 'hoist-non-react-statics';
-import TabList from '../../../../components/TabList';
+import TabList from '../../../TabList';
 
 function TabListWrapper(props) {
   return <TabList {...props} />;

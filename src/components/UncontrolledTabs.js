@@ -60,8 +60,10 @@ export default class UncontrolledTabs extends Component {
     // Check index boundary
     if (index < 0 || index >= this.getTabsCount()) return;
 
+    const { onSelect, selectedIndex } = this.props;
+
     // Call change event handler
-    this.props.onSelect(index, this.props.selectedIndex, event);
+    onSelect(index, selectedIndex, event);
   }
 
   getNextTab(index) {
@@ -134,11 +136,13 @@ export default class UncontrolledTabs extends Component {
   }
 
   getTabsCount() {
-    return getTabsCount(this.props.children);
+    const { children } = this.props;
+    return getTabsCount(children);
   }
 
   getPanelsCount() {
-    return getPanelsCount(this.props.children);
+    const { children } = this.props;
+    return getPanelsCount(children);
   }
 
   getTab(index) {
@@ -234,7 +238,7 @@ export default class UncontrolledTabs extends Component {
 
   handleKeyDown = e => {
     if (this.isTabFromContainer(e.target)) {
-      let index = this.props.selectedIndex;
+      let { selectedIndex: index } = this.props;
       let preventDefault = false;
       let useSelectedIndex = false;
 
@@ -312,7 +316,7 @@ export default class UncontrolledTabs extends Component {
     let nodeAncestor = node.parentElement;
     do {
       if (nodeAncestor === this.node) return true;
-      else if (nodeAncestor.getAttribute('data-tabs')) break;
+      if (nodeAncestor.getAttribute('data-tabs')) break;
 
       nodeAncestor = nodeAncestor.parentElement;
     } while (nodeAncestor);

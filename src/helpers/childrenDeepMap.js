@@ -1,5 +1,5 @@
 import { Children, cloneElement } from 'react';
-import { isTabPanel, isTab, isTabList } from '../helpers/elementTypes';
+import { isTabPanel, isTab, isTabList } from './elementTypes';
 
 function isTabChild(child) {
   return isTab(child) || isTabList(child) || isTabPanel(child);

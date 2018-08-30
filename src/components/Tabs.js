@@ -37,7 +37,7 @@ export default class Tabs extends Component {
   constructor(props) {
     super(props);
 
-    this.state = Tabs.copyPropsToState(this.props, {}, this.props.defaultFocus);
+    this.state = Tabs.copyPropsToState(this.props, {}, props.defaultFocus);
   }
 
   componentWillReceiveProps(newProps) {
@@ -61,10 +61,12 @@ For more information about controlled and uncontrolled mode of react-tabs see th
   }
 
   handleSelected = (index, last, event) => {
+    const { onSelect } = this.props;
+
     // Call change event handler
-    if (typeof this.props.onSelect === 'function') {
+    if (typeof onSelect === 'function') {
       // Check if the change event handler cancels the tab change
-      if (this.props.onSelect(index, last, event) === false) return;
+      if (onSelect(index, last, event) === false) return;
     }
 
     const state = {
@@ -104,12 +106,13 @@ For more information about controlled and uncontrolled mode of react-tabs see th
 
   render() {
     const { children, defaultIndex, defaultFocus, ...props } = this.props;
+    const { focus, selectedIndex } = this.state;
 
-    props.focus = this.state.focus;
+    props.focus = focus;
     props.onSelect = this.handleSelected;
 
-    if (this.state.selectedIndex != null) {
-      props.selectedIndex = this.state.selectedIndex;
+    if (selectedIndex != null) {
+      props.selectedIndex = selectedIndex;
     }
 
     return <UncontrolledTabs {...props}>{children}</UncontrolledTabs>;

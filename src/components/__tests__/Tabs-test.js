@@ -199,6 +199,7 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
+      // eslint-disable-next-line react/forbid-foreign-prop-types
       const result = Tabs.propTypes.children(
         wrapper.props(),
         'children',
@@ -222,6 +223,7 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
+      // eslint-disable-next-line react/forbid-foreign-prop-types
       const result = Tabs.propTypes.children(
         wrapper.props(),
         'children',
@@ -247,6 +249,7 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
+      // eslint-disable-next-line react/forbid-foreign-prop-types
       const result = Tabs.propTypes.children(
         wrapper.props(),
         'children',
@@ -315,6 +318,7 @@ describe('<Tabs />', () => {
       );
       console.error = oldConsoleError; // eslint-disable-line no-console
 
+      // eslint-disable-next-line react/forbid-foreign-prop-types
       const result = Tabs.propTypes.children(
         wrapper.props(),
         'children',
@@ -347,6 +351,7 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
+      // eslint-disable-next-line react/forbid-foreign-prop-types
       const result = Tabs.propTypes.children(
         wrapper.props(),
         'children',
@@ -419,14 +424,14 @@ describe('<Tabs />', () => {
       expectToMatchSnapshot(
         <Tabs>
           <div id="tabs-nav-wrapper">
-            <button>Left</button>
+            <button type="button">Left</button>
             <div className="tabs-container">
               <TabList>
                 <Tab />
                 <Tab />
               </TabList>
             </div>
-            <button>Right</button>
+            <button type="button">Right</button>
           </div>
           <div className="tab-panels">
             <TabPanel />
@@ -506,11 +511,14 @@ describe('<Tabs />', () => {
   test('should switch tabs if setState is called within onSelect', () => {
     class Wrap extends React.Component {
       state = {};
+
       handleSelect = () => this.setState({ foo: 'bar' });
+
       render() {
+        const { foo } = this.state;
         return createTabs({
           onSelect: this.handleSelect,
-          className: this.state.foo,
+          className: foo,
         });
       }
     }

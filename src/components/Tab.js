@@ -46,7 +46,8 @@ export default class Tab extends Component {
   }
 
   checkFocus() {
-    if (this.props.selected && this.props.focus) {
+    const { selected, focus } = this.props;
+    if (selected && focus) {
       this.node.focus();
     }
   }

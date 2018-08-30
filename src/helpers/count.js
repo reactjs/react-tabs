@@ -1,4 +1,4 @@
-import { deepForEach } from '../helpers/childrenDeepMap';
+import { deepForEach } from './childrenDeepMap';
 import { isTab, isTabPanel } from './elementTypes';
 
 export function getTabsCount(children) {

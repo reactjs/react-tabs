@@ -1,5 +1,5 @@
-import { deepForEach } from '../helpers/childrenDeepMap';
-import { isTab, isTabList, isTabPanel } from '../helpers/elementTypes';
+import { deepForEach } from './childrenDeepMap';
+import { isTab, isTabList, isTabPanel } from './elementTypes';
 
 export function childrenPropType(props, propName, componentName) {
   let error;
