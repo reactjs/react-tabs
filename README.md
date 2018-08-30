@@ -6,6 +6,11 @@ http://reactcommunity.org/react-tabs/
 
 > Supports React 0.14.9+, 15.3+ and 16+
 
+<ins><blockquote class="rich-diff-level-zero"> <p class="rich-diff-level-one">react-tabs was tested on real mobile devices and browsers with<br>
+  <img src="http://reactcommunity.org/react-tabs/7215e21fc3d710d2257900135d6fc03c.svg" height="50" alt="Browserstack">
+
+</p> </blockquote></ins>
+
 ## Installing
 
 ```bash
@@ -337,7 +342,7 @@ You can also always just simply copy the default style to your own css/scss/less
 
 In case you want to create your own component wrapping the ones that the library provides, you have to set its `tabsRole`. This value is used inside react-tabs to check the role of a component inside `<Tabs />`.
 
-Possible values for tabsRole are: 
+Possible values for tabsRole are:
  * Tab
  * TabPanel
  * TabList
@@ -364,6 +369,7 @@ const App = () => (
   </Tabs>
 );
 ```
+
 ## License
 
 MIT
