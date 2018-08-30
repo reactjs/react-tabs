@@ -1,3 +1,7 @@
+.react-tabs {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .react-tabs__tab-list {
   border-bottom: 1px solid #aaa;
   margin: 0 0 10px;
@@ -13,7 +17,6 @@
   list-style: none;
   padding: 6px 12px;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .react-tabs__tab--selected {
