@@ -67,7 +67,7 @@ module.exports = {
         sideEffects: true,
       },
       {
-        test: /\.png$/,
+        test: /\.(png|svg)$/,
         use: [
           {
             loader: 'file-loader',
