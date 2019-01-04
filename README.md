@@ -2,7 +2,7 @@
 
 An accessible and easy tab component for ReactJS.
 
-http://reactcommunity.org/react-tabs/
+https://reactcommunity.org/react-tabs/
 
 > Supports React 16.3.0 or newer
 
