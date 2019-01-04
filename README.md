@@ -294,7 +294,7 @@ react-tabs does not include any style loading by default. Default stylesheets ar
 
 ### Webpack
 
-When using webpack and a appropriate loader (`css-loader`, `sass-loader`, `less-loader` or `style-loader`) you can simply import the default stylesheet.
+When using webpack and an appropriate loader (`css-loader`, `sass-loader`, `less-loader` or `style-loader`) you can simply import the default stylesheet.
 
 ```js
 import 'react-tabs/style/react-tabs.css';
