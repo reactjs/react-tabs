@@ -8,6 +8,9 @@ import {
 import UncontrolledTabs from './UncontrolledTabs';
 import { getTabsCount } from '../helpers/count';
 
+const MODE_CONTROLLED = 0;
+const MODE_UNCONTROLLED = 1;
+
 export default class Tabs extends Component {
   static defaultProps = {
     defaultFocus: false,
@@ -40,28 +43,17 @@ export default class Tabs extends Component {
     this.state = Tabs.copyPropsToState(this.props, {}, props.defaultFocus);
   }
 
-  componentWillReceiveProps(newProps) {
-    if (
-      process.env.NODE_ENV !== 'production' &&
-      Tabs.inUncontrolledMode(newProps) !== Tabs.inUncontrolledMode(this.props)
-    ) {
-      throw new Error(
-        `Switching between controlled mode (by using \`selectedIndex\`) and uncontrolled mode is not supported in \`Tabs\`.
-For more information about controlled and uncontrolled mode of react-tabs see the README.`,
-      );
-    }
-    // Use a transactional update to prevent race conditions
-    // when reading the state in copyPropsToState
-    // See https://github.com/reactjs/react-tabs/issues/51
-    this.setState(state => Tabs.copyPropsToState(newProps, state));
+  static getDerivedStateFromProps(props, state) {
+    return Tabs.copyPropsToState(props, state);
   }
 
-  static inUncontrolledMode(props) {
-    return props.selectedIndex === null;
+  static getModeFromProps(props) {
+    return props.selectedIndex === null ? MODE_UNCONTROLLED : MODE_CONTROLLED;
   }
 
   handleSelected = (index, last, event) => {
     const { onSelect } = this.props;
+    const { mode } = this.state;
 
     // Call change event handler
     if (typeof onSelect === 'function') {
@@ -74,7 +66,7 @@ For more information about controlled and uncontrolled mode of react-tabs see th
       focus: event.type === 'keydown',
     };
 
-    if (Tabs.inUncontrolledMode(this.props)) {
+    if (mode === MODE_UNCONTROLLED) {
       // Update selected index
       state.selectedIndex = index;
     }
@@ -85,11 +77,23 @@ For more information about controlled and uncontrolled mode of react-tabs see th
   // preserve the existing selectedIndex from state.
   // If the state has not selectedIndex, default to the defaultIndex or 0
   static copyPropsToState(props, state, focus = false) {
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      state.mode !== undefined &&
+      state.mode !== Tabs.getModeFromProps(props)
+    ) {
+      throw new Error(
+        `Switching between controlled mode (by using \`selectedIndex\`) and uncontrolled mode is not supported in \`Tabs\`.
+For more information about controlled and uncontrolled mode of react-tabs see the README.`,
+      );
+    }
+
     const newState = {
       focus,
+      mode: Tabs.getModeFromProps(props),
     };
 
-    if (Tabs.inUncontrolledMode(props)) {
+    if (newState.mode === MODE_UNCONTROLLED) {
       const maxTabIndex = getTabsCount(props.children) - 1;
       let selectedIndex = null;
 
