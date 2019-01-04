@@ -1,4 +1,3 @@
-sudo: false
 language: node_js
 node_js:
   - "lts/*"
@@ -7,8 +6,6 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 cache:
   yarn: true
-  directories:
-    - "node_modules"
 before_script:
   - 'if [[ -n "$TRAVIS_TAG" ]] && [[ "$TRAVIS_JOB_NUMBER" == *.1 ]]; then yarn run create-github-release; fi'
 script:
