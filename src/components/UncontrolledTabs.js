@@ -7,14 +7,18 @@ import { getPanelsCount, getTabsCount } from '../helpers/count';
 import { deepMap } from '../helpers/childrenDeepMap';
 import { isTabList, isTabPanel, isTab } from '../helpers/elementTypes';
 
+function isNode(node) {
+  return node && 'getAttribute' in node;
+}
+
 // Determine if a node from event.target is a Tab element
 function isTabNode(node) {
-  return 'getAttribute' in node && node.getAttribute('role') === 'tab';
+  return isNode(node) && node.getAttribute('role') === 'tab';
 }
 
 // Determine if a tab node is disabled
 function isTabDisabled(node) {
-  return node.getAttribute('aria-disabled') === 'true';
+  return isNode(node) && node.getAttribute('aria-disabled') === 'true';
 }
 
 let canUseActiveElement;
@@ -298,7 +302,7 @@ export default class UncontrolledTabs extends Component {
         this.setSelected(index, e);
         return;
       }
-    } while ((node = node.parentNode) !== null);
+    } while ((node = node.parentNode) != null);
   };
 
   /**
