@@ -61,7 +61,7 @@ export default () => (
 
 Allows reseting the internal id counter which is used to generate unique id's for tabs and tab panels.
 
-You should never need to use this in the browser. Only if you are running an isomorphic react app that is rendered on the server you should call `resetIdCounter()` before every render so that the ids that get generated on the server match the ids generated in the browser.
+You should never need to use this in the browser. Only if you are running an isomorphic react app that is rendered on the server you should call `resetIdCounter()` before every page render so that the ids that get generated on the server match the ids generated in the browser.
 
 ```js
 import { resetIdCounter } from 'react-tabs';
