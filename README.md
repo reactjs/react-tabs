@@ -128,9 +128,9 @@ By default only the current active tab will be rendered to DOM. If set to `true`
 
 This event handler is called every time a tab is about to change. It will be called with the `index` that it will be changed to, the `lastIndex` which was selected before and the underlying `event` which is usually either a `keydown` or `click` event. When `index` and `lastIndex` are equal it means the user clicked on the currently active tab.
 
-The callback can optionally return `true` to cancel the change to the new tab.
+The callback can optionally return `false` to cancel the change to the new tab.
 
-> Returning `true` when the change to the new tab should be canceled is also important in controlled mode, as react-tabs still internally handles the focus of the tabs.
+> Returning `false` when the change to the new tab should be canceled is also important in controlled mode, as react-tabs still internally handles the focus of the tabs.
 
 > In controlled mode the `onSelect` handler is a required prop.
 
