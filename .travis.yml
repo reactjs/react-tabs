@@ -11,7 +11,7 @@ before_script:
 script:
   - yarn lint
   - yarn test -- --ci
-after_success: yarn website
+  - yarn website
 deploy:
   provider: pages
   skip_cleanup: true
