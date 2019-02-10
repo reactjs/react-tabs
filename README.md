@@ -24,9 +24,9 @@ npm install --save react-tabs
 You can also use react-tabs directly as UMD build in an HTML document by adding
 
 ```html
-<script src="https://unpkg.com/react-tabs@2/dist/react-tabs.development.js" />
+<script src="https://unpkg.com/react-tabs/dist/react-tabs.development.js" />
 <!-- or -->
-<script src="https://unpkg.com/react-tabs@2/dist/react-tabs.production.min.js" />
+<script src="https://unpkg.com/react-tabs/dist/react-tabs.production.min.js" />
 ```
 
 For example usages of the UMD builds have a look at the [`old_examples/umd`](./old_examples/umd/) folder.
@@ -328,7 +328,7 @@ When using the UMD version of react-tabs you can easily use the default styles b
 <html>
   <head>
     ...
-    <link rel="stylesheet" href="https://unpkg.com/react-tabs@2/style/react-tabs.css">
+    <link rel="stylesheet" href="https://unpkg.com/react-tabs/style/react-tabs.css">
   </head>
   ...
 </html>
