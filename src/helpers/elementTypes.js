@@ -1,11 +1,7 @@
-export function isTab(el) {
-  return el.type && el.type.tabsRole === 'Tab';
+function makeTypeChecker(tabsRole) {
+  return element => !!element.type && element.type.tabsRole === tabsRole;
 }
 
-export function isTabPanel(el) {
-  return el.type && el.type.tabsRole === 'TabPanel';
-}
-
-export function isTabList(el) {
-  return el.type && el.type.tabsRole === 'TabList';
-}
+export const isTab = makeTypeChecker('Tab');
+export const isTabList = makeTypeChecker('TabList');
+export const isTabPanel = makeTypeChecker('TabPanel');
