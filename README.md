@@ -1,4 +1,4 @@
-# react-tabs [![Build Status](https://travis-ci.org/reactjs/react-tabs.svg?branch=master)](https://travis-ci.org/reactjs/react-tabs) [![npm version](https://img.shields.io/npm/v/react-tabs.svg)](https://www.npmjs.com/package/react-tabs)
+# react-tabs [![Build Status](https://travis-ci.org/reactjs/react-tabs.svg?branch=master)](https://travis-ci.org/reactjs/react-tabs) [![npm version](https://img.shields.io/npm/v/react-tabs.svg)](https://www.npmjs.com/package/react-tabs) [![Open Source Helpers](https://www.codetriage.com/reactjs/react-tabs/badges/users.svg)](https://www.codetriage.com/reactjs/react-tabs)
 
 An accessible and easy tab component for ReactJS.
 
