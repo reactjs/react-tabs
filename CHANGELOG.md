@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.1"></a>
+## [2.3.1](https://github.com/reactjs/react-tabs/compare/v2.3.0...v2.3.1) (2019-07-10)
+
+
+### Bug Fixes
+
+* **tabs:** Handle nodes with parentNode set to undefined instead of null correctly ([0259616](https://github.com/reactjs/react-tabs/commit/0259616))
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/reactjs/react-tabs/compare/v2.2.2...v2.3.0) (2018-08-30)
 
