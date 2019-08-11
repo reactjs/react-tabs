@@ -40,9 +40,12 @@ export default class TabPanel extends Component {
     return (
       <div
         {...attributes}
-        className={cx(className, {
-          [selectedClassName]: selected,
-        })}
+        className={`
+          ${cx(DEFAULT_CLASS, {
+            [selectedClassName]: selected,
+          })} 
+          ${className}
+        `}
         role="tabpanel"
         id={id}
         aria-labelledby={tabId}
