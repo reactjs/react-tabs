@@ -62,7 +62,10 @@ exports[`<Tabs /> child props should reset ids correctly 1`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -70,19 +73,28 @@ exports[`<Tabs /> child props should reset ids correctly 1`] = `
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -151,7 +163,10 @@ exports[`<Tabs /> child props should reset ids correctly 2`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -159,19 +174,28 @@ exports[`<Tabs /> child props should reset ids correctly 2`] = `
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -240,7 +264,10 @@ exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is t
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -248,7 +275,10 @@ exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is t
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   >
@@ -256,7 +286,10 @@ exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is t
   </div>
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-5"
     role="tabpanel"
   >
@@ -264,7 +297,10 @@ exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is t
   </div>
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-7"
     role="tabpanel"
   >
@@ -335,7 +371,10 @@ exports[`<Tabs /> props should accept className 1`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -343,19 +382,28 @@ exports[`<Tabs /> props should accept className 1`] = `
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -424,7 +472,10 @@ exports[`<Tabs /> props should have sane defaults 1`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -432,19 +483,28 @@ exports[`<Tabs /> props should have sane defaults 1`] = `
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -513,25 +573,37 @@ exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -600,13 +672,19 @@ exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   >
@@ -614,13 +692,19 @@ exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
   </div>
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -663,7 +747,10 @@ exports[`<Tabs /> should allow for higher order components 1`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -671,7 +758,10 @@ exports[`<Tabs /> should allow for higher order components 1`] = `
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   />
@@ -718,7 +808,10 @@ exports[`<Tabs /> should allow string children 1`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -726,7 +819,10 @@ exports[`<Tabs /> should allow string children 1`] = `
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   />
@@ -806,13 +902,19 @@ exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
   >
     <div
       aria-labelledby="react-tabs-0"
-      className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+      className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
       id="react-tabs-1"
       role="tabpanel"
     />
     <div
       aria-labelledby="react-tabs-2"
-      className="react-tabs__tab-panel"
+      className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
       id="react-tabs-3"
       role="tabpanel"
     />
@@ -829,7 +931,10 @@ exports[`<Tabs /> validation should allow random order for elements 1`] = `
 >
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -864,7 +969,10 @@ exports[`<Tabs /> validation should allow random order for elements 1`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   >

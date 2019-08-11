@@ -43,7 +43,10 @@ exports[`<TabList /> should allow for higher order components 1`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-12"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-13"
     role="tabpanel"
   >
@@ -51,7 +54,10 @@ exports[`<TabList /> should allow for higher order components 1`] = `
   </div>
   <div
     aria-labelledby="react-tabs-14"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-15"
     role="tabpanel"
   />
@@ -94,7 +100,10 @@ exports[`<TabList /> should display the custom classnames for selected and disab
   </ul>
   <div
     aria-labelledby="react-tabs-8"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-9"
     role="tabpanel"
   >
@@ -102,7 +111,10 @@ exports[`<TabList /> should display the custom classnames for selected and disab
   </div>
   <div
     aria-labelledby="react-tabs-10"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-11"
     role="tabpanel"
   />
@@ -145,7 +157,10 @@ exports[`<TabList /> should display the custom classnames for selected and disab
   </ul>
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-5"
     role="tabpanel"
   >
@@ -153,7 +168,10 @@ exports[`<TabList /> should display the custom classnames for selected and disab
   </div>
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -218,7 +236,10 @@ exports[`<TabList /> should retain the default classnames for active and disable
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    className="
+          react-tabs__tab-panel react-tabs__tab-panel--selected 
+          react-tabs__tab-panel
+        "
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -226,7 +247,10 @@ exports[`<TabList /> should retain the default classnames for active and disable
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    className="
+          react-tabs__tab-panel 
+          react-tabs__tab-panel
+        "
     id="react-tabs-3"
     role="tabpanel"
   />
