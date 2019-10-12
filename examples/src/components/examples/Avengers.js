@@ -70,13 +70,13 @@ const code = `class Component extends React.Component {
       const { img, color: backgroundColor, text: color, desc } = this.characters[name];
 
       tabs.push(
-        <Tab style={{ backgroundColor }} className="avengers-tab">
+        <Tab style={{ backgroundColor }} className="avengers-tab" key={name}>
           <img src={img} alt={name} height="32" width="32" />
         </Tab>
       );
 
       tabPanels.push(
-        <TabPanel style={{ backgroundColor, color }} className="avengers-tab-panel">
+        <TabPanel style={{ backgroundColor, color }} className="avengers-tab-panel" key={name}>
           {desc}
         </TabPanel>
       );
