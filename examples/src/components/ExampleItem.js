@@ -17,7 +17,7 @@ export default class ExampleItem extends Component {
     });
   }
 
-  handleEditSourceClick = () => {
+  handleEditSourceChange = () => {
     this.setState({
       editorOpen: !this.state.editorOpen,
     });
@@ -46,7 +46,7 @@ export default class ExampleItem extends Component {
               id={formId}
               name={formId}
               checked={editorOpen}
-              onClick={this.handleEditSourceClick}
+              onChange={this.handleEditSourceChange}
             />
             View source
           </label>
