@@ -298,7 +298,6 @@ export default class UncontrolledTabs extends Component {
 
   handleClick = e => {
     let node = e.target;
-    // eslint-disable-next-line no-cond-assign
     do {
       if (this.isTabFromContainer(node)) {
         if (isTabDisabled(node)) {
@@ -312,6 +311,7 @@ export default class UncontrolledTabs extends Component {
         this.setSelected(index, e);
         return;
       }
+      // eslint-disable-next-line no-cond-assign
     } while ((node = node.parentNode) != null);
   };
 

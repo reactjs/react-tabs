@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const sourceDirectory = path.resolve(__dirname, 'examples/src');
 const targetDirectory = path.resolve(__dirname, 'examples/dist');
@@ -71,6 +70,9 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
+            options: {
+              esModule: false,
+            },
           },
         ],
         sideEffects: true,
