@@ -21,6 +21,7 @@ export default class Tabs extends Component {
 
   static propTypes = {
     children: childrenPropType,
+    direction: PropTypes.oneOf(['rtl', 'ltr']),
     className: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.array,

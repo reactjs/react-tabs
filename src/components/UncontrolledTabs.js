@@ -43,6 +43,7 @@ export default class UncontrolledTabs extends Component {
 
   static propTypes = {
     children: childrenPropType,
+    direction: PropTypes.oneOf(['rtl', 'ltr']),
     className: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.array,
@@ -241,6 +242,7 @@ export default class UncontrolledTabs extends Component {
   }
 
   handleKeyDown = e => {
+    const { direction } = this.props;
     if (this.isTabFromContainer(e.target)) {
       let { selectedIndex: index } = this.props;
       let preventDefault = false;
@@ -254,12 +256,20 @@ export default class UncontrolledTabs extends Component {
 
       if (e.keyCode === 37 || e.keyCode === 38) {
         // Select next tab to the left
-        index = this.getPrevTab(index);
+        if (direction === 'rtl') {
+          index = this.getNextTab(index);
+        } else {
+          index = this.getPrevTab(index);
+        }
         preventDefault = true;
         useSelectedIndex = true;
       } else if (e.keyCode === 39 || e.keyCode === 40) {
         // Select next tab to the right
-        index = this.getNextTab(index);
+        if (direction === 'rtl') {
+          index = this.getPrevTab(index);
+        } else {
+          index = this.getNextTab(index);
+        }
         preventDefault = true;
         useSelectedIndex = true;
       } else if (e.keyCode === 35) {

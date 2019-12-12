@@ -63,7 +63,9 @@ export default class ExampleItem extends Component {
             <div className={editorClassNames}>
               <LiveEditor ignoreTabKey />
             </div>
-            <LivePreview />
+            <LivePreview
+              style={{ dir: this.props.direction === 'rtl' ? 'rtl' : 'ltr' }}
+            />
           </div>
         </LiveProvider>
       </div>

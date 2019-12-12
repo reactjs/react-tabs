@@ -165,6 +165,17 @@ describe('<Tabs />', () => {
         assertTabSelected(wrapper, 1);
       });
 
+      test('should update selectedIndex when arrow left key pressed (RTL)', () => {
+        const wrapper = mount(createTabs({ direction: 'rtl' }));
+        wrapper
+          .find(Tab)
+          .at(1)
+          .simulate('focus')
+          .simulate('keydown', { keyCode: 37 });
+
+        assertTabSelected(wrapper, 1);
+      });
+
       test.skip('should not change selectedIndex when arrow left key pressed on a disabled tab', () => {
         const wrapper = mount(createTabs({ defaultIndex: 0 }));
         wrapper
