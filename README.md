@@ -158,6 +158,12 @@ Provide a custom class name for the active tab panel.
 
 > This option can also be set directly at the `<TabPanel />` component.
 
+#### direction: `string`
+
+> default: `"ltr"`
+
+Provide the direction of the component, can be either rtl or ltr.
+
 ### &lt;TabList /&gt;
 
 If you specify additional props on the `<TabList />` component they will be forwarded to the rendered `<ul />`.
