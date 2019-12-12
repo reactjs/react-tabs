@@ -1,6 +1,13 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [3.1.0](https://github.com/reactjs/react-tabs/compare/v3.0.0...v3.1.0) (2019-12-12)
+
+
+### Features
+
+* Right to left support ([#311](https://github.com/reactjs/react-tabs/issues/311)) ([f789bbf](https://github.com/reactjs/react-tabs/commit/f789bbfb73b9f7b3a5c44b4fd43ca0bd1187e474))
 
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/reactjs/react-tabs/compare/v2.3.0...v3.0.0) (2019-01-04)
