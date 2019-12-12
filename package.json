@@ -14,7 +14,6 @@
     "build": "npm-run-all clean:* --parallel build:*",
     "format": "eslint src --fix --report-unused-disable-directives",
     "lint": "eslint src --report-unused-disable-directives",
-    "precommit": "lint-staged",
     "prebump": "run-s lint test",
     "prepublish": "yarn run build",
     "release": "standard-version --sign",
@@ -122,5 +121,10 @@
       "yarn run eslint --fix",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
