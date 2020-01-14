@@ -377,6 +377,20 @@ const App = () => (
 );
 ```
 
+This works for custom tabs, but will not suffice for something like a TabPanel. Because of how react-tabs works internally (it uses cloning to opaquely control various parts of the tab state), you need to pass any incoming props to the component you're wrapping. The easiest way to do this is to use the rest and spread operators, e.g.:
+
+``` javascript
+const CustomTabPanel = ({ children, myCustomProp, ...otherProps }) => (
+  <TabPanel {...otherProps}>
+    <h1>{children}</h1>
+    {myCustomProp && `myCustomProp: ${myCustomProp}`}
+  </TabPanel>
+)
+
+CustomTabPanel.tabsRole = 'TabPanel'
+```
+
+
 ## License
 
 MIT
