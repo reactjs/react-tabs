@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { cloneElement, Component } from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 import uuid from '../helpers/uuid';
 import { childrenPropType } from '../helpers/propTypes';
 import { getPanelsCount, getTabsCount } from '../helpers/count';

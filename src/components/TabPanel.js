@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 
 const DEFAULT_CLASS = 'react-tabs__tab-panel';
 

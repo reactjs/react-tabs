@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 
 export default class TabList extends Component {
   static defaultProps = {

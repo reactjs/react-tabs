@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import T from 'prop-types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'; // eslint-disable-line
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
-import classNames from 'classnames';
+import classNames from 'clsx';
 
 const scope = { Tabs, Tab, TabList, TabPanel };
 
