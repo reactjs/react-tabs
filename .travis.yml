@@ -11,23 +11,14 @@ script:
   - yarn test -- --ci
   - yarn website
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $CONVENTIONAL_GITHUB_RELEASER_TOKEN
-  local_dir: examples/dist
-  on:
-    branch: master
-    node: 'lts/*'
-
-jobs:
-  include:
-    # Define the release stage that runs semantic-release
-    - stage: release
-      node_js: lts/*
-      script: skip
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script: yarn release
-        on:
-          branch: master
+  - provider: pages
+    skip_cleanup: true
+    github_token: $CONVENTIONAL_GITHUB_RELEASER_TOKEN
+    local_dir: examples/dist
+    on:
+      branch: master
+  - provider: script
+    skip_cleanup: true
+    script: yarn release
+    on:
+      branch: master
