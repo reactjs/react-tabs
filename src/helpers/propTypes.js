@@ -9,14 +9,14 @@ export function childrenPropType(props, propName, componentName) {
   const listTabs = [];
   const children = props[propName];
 
-  deepForEach(children, child => {
+  deepForEach(children, (child) => {
     if (isTabList(child)) {
       if (
         child.props &&
         child.props.children &&
         typeof child.props.children === 'object'
       ) {
-        deepForEach(child.props.children, listChild =>
+        deepForEach(child.props.children, (listChild) =>
           listTabs.push(listChild),
         );
       }

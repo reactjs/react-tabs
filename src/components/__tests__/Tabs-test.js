@@ -52,7 +52,7 @@ describe('<Tabs />', () => {
 
   beforeAll(() => {
     // eslint-disable-next-line no-console
-    console.error = error => {
+    console.error = (error) => {
       throw new Error(error);
     };
   });
@@ -81,10 +81,7 @@ describe('<Tabs />', () => {
         }),
       );
 
-      wrapper
-        .find(Tab)
-        .at(1)
-        .simulate('click');
+      wrapper.find(Tab).at(1).simulate('click');
 
       expect(called.index).toBe(1);
       expect(called.last).toBe(0);
@@ -98,7 +95,7 @@ describe('<Tabs />', () => {
       let domNode;
       mount(
         createTabs({
-          domRef: node => {
+          domRef: (node) => {
             domNode = node;
           },
         }),
@@ -123,31 +120,21 @@ describe('<Tabs />', () => {
     describe('mouse', () => {
       test('should update selectedIndex when clicked', () => {
         const wrapper = mount(createTabs());
-        wrapper
-          .find(Tab)
-          .at(1)
-          .simulate('click');
+        wrapper.find(Tab).at(1).simulate('click');
 
         assertTabSelected(wrapper, 1);
       });
 
       test('should update selectedIndex when tab child is clicked', () => {
         const wrapper = mount(createTabs());
-        wrapper
-          .find(Tab)
-          .at(2)
-          .childAt(0)
-          .simulate('click');
+        wrapper.find(Tab).at(2).childAt(0).simulate('click');
 
         assertTabSelected(wrapper, 2);
       });
 
       test('should not change selectedIndex when clicking a disabled tab', () => {
         const wrapper = mount(createTabs({ defaultIndex: 0 }));
-        wrapper
-          .find(Tab)
-          .at(3)
-          .simulate('click');
+        wrapper.find(Tab).at(3).simulate('click');
 
         assertTabSelected(wrapper, 0);
       });
@@ -198,19 +185,13 @@ describe('<Tabs />', () => {
       expect(tabPanels.at(1).text()).toBe('');
       expect(tabPanels.at(2).text()).toBe('');
 
-      wrapper
-        .find(Tab)
-        .at(1)
-        .simulate('click');
+      wrapper.find(Tab).at(1).simulate('click');
 
       expect(tabPanels.at(0).text()).toBe('');
       expect(tabPanels.at(1).text()).toBe('Hello Bar');
       expect(tabPanels.at(2).text()).toBe('');
 
-      wrapper
-        .find(Tab)
-        .at(2)
-        .simulate('click');
+      wrapper.find(Tab).at(2).simulate('click');
 
       expect(tabPanels.at(0).text()).toBe('');
       expect(tabPanels.at(1).text()).toBe('');
@@ -298,7 +279,7 @@ describe('<Tabs />', () => {
       const oldConsoleError = console.error; // eslint-disable-line no-console
       let catchedError;
       // eslint-disable-next-line no-console
-      console.error = error => {
+      console.error = (error) => {
         catchedError = error;
       };
       shallow(
@@ -320,7 +301,7 @@ describe('<Tabs />', () => {
       const oldConsoleError = console.error; // eslint-disable-line no-console
       let catchedError;
       // eslint-disable-next-line no-console
-      console.error = error => {
+      console.error = (error) => {
         catchedError = error;
       };
       shallow(
@@ -446,11 +427,7 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      wrapper
-        .find('Tabs.second')
-        .find(Tab)
-        .at(1)
-        .simulate('click');
+      wrapper.find('Tabs.second').find(Tab).at(1).simulate('click');
 
       assertTabSelected(wrapper, 0);
       assertTabSelected(wrapper.find('Tabs.second'), 1);
@@ -491,16 +468,10 @@ describe('<Tabs />', () => {
 
     assertTabSelected(wrapper, 0);
 
-    wrapper
-      .find(Tab)
-      .at(1)
-      .simulate('click');
+    wrapper.find(Tab).at(1).simulate('click');
     assertTabSelected(wrapper, 0);
 
-    wrapper
-      .find(Tab)
-      .at(2)
-      .simulate('click');
+    wrapper.find(Tab).at(2).simulate('click');
     assertTabSelected(wrapper, 0);
   });
 
@@ -516,10 +487,7 @@ describe('<Tabs />', () => {
 
     assertTabSelected(wrapper, 0);
 
-    wrapper
-      .find(Tab)
-      .at(1)
-      .simulate('click');
+    wrapper.find(Tab).at(1).simulate('click');
     assertTabSelected(wrapper, 1);
     expect(wasClicked).toBe(true);
   });
@@ -536,10 +504,7 @@ describe('<Tabs />', () => {
 
     assertTabSelected(wrapper, 0);
 
-    wrapper
-      .find(Tab)
-      .at(0)
-      .simulate('click');
+    wrapper.find(Tab).at(0).simulate('click');
     assertTabSelected(wrapper, 0);
     expect(wasClicked).toBe(true);
   });
@@ -561,16 +526,10 @@ describe('<Tabs />', () => {
 
     const wrapper = mount(<Wrap />);
 
-    wrapper
-      .find(Tab)
-      .at(1)
-      .simulate('click');
+    wrapper.find(Tab).at(1).simulate('click');
     assertTabSelected(wrapper, 1);
 
-    wrapper
-      .find(Tab)
-      .at(2)
-      .simulate('click');
+    wrapper.find(Tab).at(2).simulate('click');
     assertTabSelected(wrapper, 2);
   });
 

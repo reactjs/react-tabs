@@ -11,7 +11,7 @@ function expectToMatchSnapshot(component) {
 describe('<Tab />', () => {
   beforeAll(() => {
     // eslint-disable-next-line no-console
-    console.error = error => {
+    console.error = (error) => {
       throw new Error(error);
     };
   });

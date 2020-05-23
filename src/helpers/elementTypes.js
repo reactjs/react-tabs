@@ -1,5 +1,5 @@
 function makeTypeChecker(tabsRole) {
-  return element => !!element.type && element.type.tabsRole === tabsRole;
+  return (element) => !!element.type && element.type.tabsRole === tabsRole;
 }
 
 export const isTab = makeTypeChecker('Tab');

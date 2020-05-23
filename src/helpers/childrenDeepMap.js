@@ -6,7 +6,7 @@ function isTabChild(child) {
 }
 
 export function deepMap(children, callback) {
-  return Children.map(children, child => {
+  return Children.map(children, (child) => {
     // null happens when conditionally rendering TabPanel/Tab
     // see https://github.com/reactjs/react-tabs/issues/37
     if (child === null) return null;
@@ -32,7 +32,7 @@ export function deepMap(children, callback) {
 }
 
 export function deepForEach(children, callback) {
-  return Children.forEach(children, child => {
+  return Children.forEach(children, (child) => {
     // null happens when conditionally rendering TabPanel/Tab
     // see https://github.com/reactjs/react-tabs/issues/37
     if (child === null) return;

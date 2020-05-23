@@ -75,7 +75,7 @@ export default class Tab extends Component {
           [selectedClassName]: selected,
           [disabledClassName]: disabled,
         })}
-        ref={node => {
+        ref={(node) => {
           this.node = node;
           if (tabRef) tabRef(node);
         }}

@@ -3,7 +3,7 @@ import { isTab, isTabPanel } from './elementTypes';
 
 export function getTabsCount(children) {
   let tabCount = 0;
-  deepForEach(children, child => {
+  deepForEach(children, (child) => {
     if (isTab(child)) tabCount++;
   });
 
@@ -12,7 +12,7 @@ export function getTabsCount(children) {
 
 export function getPanelsCount(children) {
   let panelCount = 0;
-  deepForEach(children, child => {
+  deepForEach(children, (child) => {
     if (isTabPanel(child)) panelCount++;
   });
 

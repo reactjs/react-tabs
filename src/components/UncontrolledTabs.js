@@ -179,7 +179,7 @@ export default class UncontrolledTabs extends Component {
     }
 
     // Map children to dynamically setup refs
-    return deepMap(children, child => {
+    return deepMap(children, (child) => {
       let result = child;
 
       // Clone TabList and Tab components to have refs
@@ -197,12 +197,12 @@ export default class UncontrolledTabs extends Component {
         }
 
         result = cloneElement(child, {
-          children: deepMap(child.props.children, tab => {
+          children: deepMap(child.props.children, (tab) => {
             const key = `tabs-${listIndex}`;
             const selected = selectedIndex === listIndex;
 
             const props = {
-              tabRef: node => {
+              tabRef: (node) => {
                 this.tabNodes[key] = node;
               },
               id: this.tabIds[listIndex],
@@ -241,7 +241,7 @@ export default class UncontrolledTabs extends Component {
     });
   }
 
-  handleKeyDown = e => {
+  handleKeyDown = (e) => {
     const { direction } = this.props;
     if (this.isTabFromContainer(e.target)) {
       let { selectedIndex: index } = this.props;
@@ -296,7 +296,7 @@ export default class UncontrolledTabs extends Component {
     }
   };
 
-  handleClick = e => {
+  handleClick = (e) => {
     let node = e.target;
     do {
       if (this.isTabFromContainer(node)) {
@@ -360,7 +360,7 @@ export default class UncontrolledTabs extends Component {
         className={cx(className)}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
-        ref={node => {
+        ref={(node) => {
           this.node = node;
           if (domRef) domRef(node);
         }}
