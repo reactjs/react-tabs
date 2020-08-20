@@ -274,24 +274,20 @@ In this mode react-tabs does not handle any tab selection state internally and l
 This mode also enforces you to set a handler for `onSelect`. `defaultIndex` does not have any effect and will therefore throw an error.
 
 ```js
-class App extends Component {
-  constructor() {
-    super();
-    this.state = { tabIndex: 0 };
-  }
-  render() {
-    return (
-      <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
-        <TabList>
-          <Tab>Title 1</Tab>
-          <Tab>Title 2</Tab>
-        </TabList>
-        <TabPanel></TabPanel>
-        <TabPanel></TabPanel>
-      </Tabs>
-    );
-  }
-}
+const App = () => {
+  const [tabIndex, setTabIndex] = useState(0);
+
+  return (
+    <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
+      <TabList>
+        <Tab>Title 1</Tab>
+        <Tab>Title 2</Tab>
+      </TabList>
+      <TabPanel></TabPanel>
+      <TabPanel></TabPanel>
+    </Tabs>
+  );
+};
 ```
 
 ## Styling
