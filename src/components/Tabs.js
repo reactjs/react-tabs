@@ -64,42 +64,41 @@ For more information about controlled and uncontrolled mode of react-tabs see ht
  *          It is initialized from the prop defaultFocus, and after the first render it is reset back to false. Later it can become true again when using keys to navigate the tabs.
  */
 const Tabs = (props) => {
-  const [focus, setFocus] = useState(props.defaultFocus);
+  const { children, defaultFocus, defaultIndex, onSelect } = props;
+
+  const [focus, setFocus] = useState(defaultFocus);
   const [mode] = useState(getModeFromProps(props));
   const [selectedIndex, setSelectedIndex] = useState(
-    mode === MODE_UNCONTROLLED ? props.defaultIndex || 0 : null,
+    mode === MODE_UNCONTROLLED ? defaultIndex || 0 : null,
   );
 
-  // Reset focus after initial render, see comment above
   useEffect(() => {
+    // Reset focus after initial render, see comment above
     setFocus(false);
   }, []);
 
   if (mode === MODE_UNCONTROLLED) {
     // Ensure that we handle removed tabs and don't let selectedIndex get out of bounds
+    const tabsCount = getTabsCount(children);
     useEffect(() => {
       if (selectedIndex != null) {
-        const maxTabIndex = Math.max(0, getTabsCount(props.children) - 1);
+        const maxTabIndex = Math.max(0, tabsCount - 1);
         setSelectedIndex(Math.min(selectedIndex, maxTabIndex));
       }
-    }, [getTabsCount(props.children)]);
+    }, [tabsCount]);
   }
 
   checkForIllegalModeChange(props, mode);
 
   const handleSelected = (index, last, event) => {
-    const { onSelect } = props;
-
     // Call change event handler
     if (typeof onSelect === 'function') {
       // Check if the change event handler cancels the tab change
       if (onSelect(index, last, event) === false) return;
     }
 
-    if (event.type === 'keydown') {
-      // Set focus if the change was triggered from the keyboard
-      setFocus(true);
-    }
+    // Always set focus on tabs
+    setFocus(true);
 
     if (mode === MODE_UNCONTROLLED) {
       // Update selected index
@@ -107,19 +106,19 @@ const Tabs = (props) => {
     }
   };
 
-  let newProps = { ...props };
-  const { children } = props;
+  let subProps = { ...props };
 
-  newProps.focus = focus;
-  newProps.onSelect = handleSelected;
+  subProps.focus = focus;
+  subProps.onSelect = handleSelected;
 
   if (selectedIndex != null) {
-    newProps.selectedIndex = selectedIndex;
+    subProps.selectedIndex = selectedIndex;
   }
-  delete newProps.defaultFocus;
-  delete newProps.defaultIndex;
-  return <UncontrolledTabs {...newProps}>{children}</UncontrolledTabs>;
+  delete subProps.defaultFocus;
+  delete subProps.defaultIndex;
+  return <UncontrolledTabs {...subProps}>{children}</UncontrolledTabs>;
 };
+
 Tabs.propTypes = propTypes;
 Tabs.defaultProps = defaultProps;
 Tabs.tabsRole = 'Tabs';
