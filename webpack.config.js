@@ -44,10 +44,7 @@ module.exports = {
     chunkFilename: 'chunk-[chunkhash].js',
     filename: '[name]-[chunkhash].js',
     hashDigestLength: 8,
-  },
-  devServer: {
-    contentBase: sourceDirectory,
-    port: 8000,
+    publicPath: './',
   },
   module: {
     rules: [

@@ -2,87 +2,90 @@
 
 exports[`<Tabs /> child props should reset ids correctly 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="react-tabs-1"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
+      class="react-tabs__tab react-tabs__tab--selected"
+      data-testid="tab1"
       id="react-tabs-0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
-      Foo
+      Tab1
     </li>
     <li
       aria-controls="react-tabs-3"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab2"
       id="react-tabs-2"
       role="tab"
-      tabIndex={null}
     >
-      Bar
+      Tab2
     </li>
     <li
       aria-controls="react-tabs-5"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab3"
       id="react-tabs-4"
       role="tab"
-      tabIndex={null}
     >
       <a
         href="a"
       >
-        Baz
+        Tab3
       </a>
     </li>
     <li
       aria-controls="react-tabs-7"
       aria-disabled="true"
       aria-selected="false"
-      className="react-tabs__tab react-tabs__tab--disabled"
+      class="react-tabs__tab react-tabs__tab--disabled"
+      data-testid="tab4"
       id="react-tabs-6"
       role="tab"
-      tabIndex={null}
     >
-      Qux
+      Tab4
     </li>
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    data-testid="panel1"
     id="react-tabs-1"
     role="tabpanel"
   >
-    Hello Foo
+    Hello Tab1
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel2"
     id="react-tabs-3"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel3"
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel4"
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -91,87 +94,90 @@ exports[`<Tabs /> child props should reset ids correctly 1`] = `
 
 exports[`<Tabs /> child props should reset ids correctly 2`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="react-tabs-1"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
+      class="react-tabs__tab react-tabs__tab--selected"
+      data-testid="tab1"
       id="react-tabs-0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
-      Foo
+      Tab1
     </li>
     <li
       aria-controls="react-tabs-3"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab2"
       id="react-tabs-2"
       role="tab"
-      tabIndex={null}
     >
-      Bar
+      Tab2
     </li>
     <li
       aria-controls="react-tabs-5"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab3"
       id="react-tabs-4"
       role="tab"
-      tabIndex={null}
     >
       <a
         href="a"
       >
-        Baz
+        Tab3
       </a>
     </li>
     <li
       aria-controls="react-tabs-7"
       aria-disabled="true"
       aria-selected="false"
-      className="react-tabs__tab react-tabs__tab--disabled"
+      class="react-tabs__tab react-tabs__tab--disabled"
+      data-testid="tab4"
       id="react-tabs-6"
       role="tab"
-      tabIndex={null}
     >
-      Qux
+      Tab4
     </li>
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    data-testid="panel1"
     id="react-tabs-1"
     role="tabpanel"
   >
-    Hello Foo
+    Hello Tab1
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel2"
     id="react-tabs-3"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel3"
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel4"
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -180,182 +186,188 @@ exports[`<Tabs /> child props should reset ids correctly 2`] = `
 
 exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is true 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="react-tabs-1"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
+      class="react-tabs__tab react-tabs__tab--selected"
+      data-testid="tab1"
       id="react-tabs-0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
-      Foo
+      Tab1
     </li>
     <li
       aria-controls="react-tabs-3"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab2"
       id="react-tabs-2"
       role="tab"
-      tabIndex={null}
     >
-      Bar
+      Tab2
     </li>
     <li
       aria-controls="react-tabs-5"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab3"
       id="react-tabs-4"
       role="tab"
-      tabIndex={null}
     >
       <a
         href="a"
       >
-        Baz
+        Tab3
       </a>
     </li>
     <li
       aria-controls="react-tabs-7"
       aria-disabled="true"
       aria-selected="false"
-      className="react-tabs__tab react-tabs__tab--disabled"
+      class="react-tabs__tab react-tabs__tab--disabled"
+      data-testid="tab4"
       id="react-tabs-6"
       role="tab"
-      tabIndex={null}
     >
-      Qux
+      Tab4
     </li>
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    data-testid="panel1"
     id="react-tabs-1"
     role="tabpanel"
   >
-    Hello Foo
+    Hello Tab1
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel2"
     id="react-tabs-3"
     role="tabpanel"
   >
-    Hello Bar
+    Hello Tab2
   </div>
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel3"
     id="react-tabs-5"
     role="tabpanel"
   >
-    Hello Baz
+    Hello Tab3
   </div>
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel4"
     id="react-tabs-7"
     role="tabpanel"
   >
-    Hello Qux
+    Hello Tab4
   </div>
 </div>
 `;
 
 exports[`<Tabs /> props should accept className 1`] = `
 <div
-  className="foobar"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="foobar"
+  data-tabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="react-tabs-1"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
+      class="react-tabs__tab react-tabs__tab--selected"
+      data-testid="tab1"
       id="react-tabs-0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
-      Foo
+      Tab1
     </li>
     <li
       aria-controls="react-tabs-3"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab2"
       id="react-tabs-2"
       role="tab"
-      tabIndex={null}
     >
-      Bar
+      Tab2
     </li>
     <li
       aria-controls="react-tabs-5"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab3"
       id="react-tabs-4"
       role="tab"
-      tabIndex={null}
     >
       <a
         href="a"
       >
-        Baz
+        Tab3
       </a>
     </li>
     <li
       aria-controls="react-tabs-7"
       aria-disabled="true"
       aria-selected="false"
-      className="react-tabs__tab react-tabs__tab--disabled"
+      class="react-tabs__tab react-tabs__tab--disabled"
+      data-testid="tab4"
       id="react-tabs-6"
       role="tab"
-      tabIndex={null}
     >
-      Qux
+      Tab4
     </li>
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    data-testid="panel1"
     id="react-tabs-1"
     role="tabpanel"
   >
-    Hello Foo
+    Hello Tab1
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel2"
     id="react-tabs-3"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel3"
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel4"
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -364,87 +376,90 @@ exports[`<Tabs /> props should accept className 1`] = `
 
 exports[`<Tabs /> props should have sane defaults 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="react-tabs-1"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
+      class="react-tabs__tab react-tabs__tab--selected"
+      data-testid="tab1"
       id="react-tabs-0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
-      Foo
+      Tab1
     </li>
     <li
       aria-controls="react-tabs-3"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab2"
       id="react-tabs-2"
       role="tab"
-      tabIndex={null}
     >
-      Bar
+      Tab2
     </li>
     <li
       aria-controls="react-tabs-5"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab3"
       id="react-tabs-4"
       role="tab"
-      tabIndex={null}
     >
       <a
         href="a"
       >
-        Baz
+        Tab3
       </a>
     </li>
     <li
       aria-controls="react-tabs-7"
       aria-disabled="true"
       aria-selected="false"
-      className="react-tabs__tab react-tabs__tab--disabled"
+      class="react-tabs__tab react-tabs__tab--disabled"
+      data-testid="tab4"
       id="react-tabs-6"
       role="tab"
-      tabIndex={null}
     >
-      Qux
+      Tab4
     </li>
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    data-testid="panel1"
     id="react-tabs-1"
     role="tabpanel"
   >
-    Hello Foo
+    Hello Tab1
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel2"
     id="react-tabs-3"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel3"
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel4"
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -453,85 +468,87 @@ exports[`<Tabs /> props should have sane defaults 1`] = `
 
 exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="react-tabs-1"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab1"
       id="react-tabs-0"
       role="tab"
-      tabIndex={null}
     >
-      Foo
+      Tab1
     </li>
     <li
       aria-controls="react-tabs-3"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab2"
       id="react-tabs-2"
       role="tab"
-      tabIndex={null}
     >
-      Bar
+      Tab2
     </li>
     <li
       aria-controls="react-tabs-5"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab3"
       id="react-tabs-4"
       role="tab"
-      tabIndex={null}
     >
       <a
         href="a"
       >
-        Baz
+        Tab3
       </a>
     </li>
     <li
       aria-controls="react-tabs-7"
       aria-disabled="true"
       aria-selected="false"
-      className="react-tabs__tab react-tabs__tab--disabled"
+      class="react-tabs__tab react-tabs__tab--disabled"
+      data-testid="tab4"
       id="react-tabs-6"
       role="tab"
-      tabIndex={null}
     >
-      Qux
+      Tab4
     </li>
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel1"
     id="react-tabs-1"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel2"
     id="react-tabs-3"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel3"
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel4"
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -540,87 +557,90 @@ exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
 
 exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="react-tabs-1"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab1"
       id="react-tabs-0"
       role="tab"
-      tabIndex={null}
     >
-      Foo
+      Tab1
     </li>
     <li
       aria-controls="react-tabs-3"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
+      class="react-tabs__tab react-tabs__tab--selected"
+      data-testid="tab2"
       id="react-tabs-2"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
-      Bar
+      Tab2
     </li>
     <li
       aria-controls="react-tabs-5"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
+      data-testid="tab3"
       id="react-tabs-4"
       role="tab"
-      tabIndex={null}
     >
       <a
         href="a"
       >
-        Baz
+        Tab3
       </a>
     </li>
     <li
       aria-controls="react-tabs-7"
       aria-disabled="true"
       aria-selected="false"
-      className="react-tabs__tab react-tabs__tab--disabled"
+      class="react-tabs__tab react-tabs__tab--disabled"
+      data-testid="tab4"
       id="react-tabs-6"
       role="tab"
-      tabIndex={null}
     >
-      Qux
+      Tab4
     </li>
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel1"
     id="react-tabs-1"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    data-testid="panel2"
     id="react-tabs-3"
     role="tabpanel"
   >
-    Hello Bar
+    Hello Tab2
   </div>
   <div
     aria-labelledby="react-tabs-4"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel3"
     id="react-tabs-5"
     role="tabpanel"
   />
   <div
     aria-labelledby="react-tabs-6"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
+    data-testid="panel4"
     id="react-tabs-7"
     role="tabpanel"
   />
@@ -629,23 +649,21 @@ exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
 
 exports[`<Tabs /> should allow for higher order components 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="react-tabs-1"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
+      class="react-tabs__tab react-tabs__tab--selected"
       id="react-tabs-0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
       Foo
     </li>
@@ -653,17 +671,16 @@ exports[`<Tabs /> should allow for higher order components 1`] = `
       aria-controls="react-tabs-3"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
       id="react-tabs-2"
       role="tab"
-      tabIndex={null}
     >
       Bar
     </li>
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -671,7 +688,7 @@ exports[`<Tabs /> should allow for higher order components 1`] = `
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
     id="react-tabs-3"
     role="tabpanel"
   />
@@ -680,14 +697,12 @@ exports[`<Tabs /> should allow for higher order components 1`] = `
 
 exports[`<Tabs /> should allow string children 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 >
   Foo
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     Foo
@@ -695,10 +710,10 @@ exports[`<Tabs /> should allow string children 1`] = `
       aria-controls="react-tabs-1"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
+      class="react-tabs__tab react-tabs__tab--selected"
       id="react-tabs-0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
       Foo
     </li>
@@ -707,10 +722,9 @@ exports[`<Tabs /> should allow string children 1`] = `
       aria-controls="react-tabs-3"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
       id="react-tabs-2"
       role="tab"
-      tabIndex={null}
     >
       Bar
     </li>
@@ -718,7 +732,7 @@ exports[`<Tabs /> should allow string children 1`] = `
   </ul>
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="react-tabs-1"
     role="tabpanel"
   >
@@ -726,7 +740,7 @@ exports[`<Tabs /> should allow string children 1`] = `
   </div>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
     id="react-tabs-3"
     role="tabpanel"
   />
@@ -736,29 +750,23 @@ exports[`<Tabs /> should allow string children 1`] = `
 
 exports[`<Tabs /> should not add known props to dom 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 />
 `;
 
 exports[`<Tabs /> should pass through custom properties 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
+  class="react-tabs"
+  data-tabs="true"
   data-tooltip="Tooltip contents"
-  onClick={[Function]}
-  onKeyDown={[Function]}
 />
 `;
 
 exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 >
   <div
     id="tabs-nav-wrapper"
@@ -769,29 +777,28 @@ exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
       Left
     </button>
     <div
-      className="tabs-container"
+      class="tabs-container"
     >
       <ul
-        className="react-tabs__tab-list"
+        class="react-tabs__tab-list"
         role="tablist"
       >
         <li
           aria-controls="react-tabs-1"
           aria-disabled="false"
           aria-selected="true"
-          className="react-tabs__tab react-tabs__tab--selected"
+          class="react-tabs__tab react-tabs__tab--selected"
           id="react-tabs-0"
           role="tab"
-          tabIndex="0"
+          tabindex="0"
         />
         <li
           aria-controls="react-tabs-3"
           aria-disabled="false"
           aria-selected="false"
-          className="react-tabs__tab"
+          class="react-tabs__tab"
           id="react-tabs-2"
           role="tab"
-          tabIndex={null}
         />
       </ul>
     </div>
@@ -802,17 +809,17 @@ exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
     </button>
   </div>
   <div
-    className="tab-panels"
+    class="tab-panels"
   >
     <div
       aria-labelledby="react-tabs-0"
-      className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+      class="react-tabs__tab-panel react-tabs__tab-panel--selected"
       id="react-tabs-1"
       role="tabpanel"
     />
     <div
       aria-labelledby="react-tabs-2"
-      className="react-tabs__tab-panel"
+      class="react-tabs__tab-panel"
       id="react-tabs-3"
       role="tabpanel"
     />
@@ -822,31 +829,29 @@ exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
 
 exports[`<Tabs /> validation should allow random order for elements 1`] = `
 <div
-  className="react-tabs"
-  data-tabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-tabs="true"
 >
   <div
     aria-labelledby="react-tabs-0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="react-tabs-1"
     role="tabpanel"
   >
     Hello Foo
   </div>
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="react-tabs-1"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
+      class="react-tabs__tab react-tabs__tab--selected"
       id="react-tabs-0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
       Foo
     </li>
@@ -854,17 +859,16 @@ exports[`<Tabs /> validation should allow random order for elements 1`] = `
       aria-controls="react-tabs-3"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
+      class="react-tabs__tab"
       id="react-tabs-2"
       role="tab"
-      tabIndex={null}
     >
       Bar
     </li>
   </ul>
   <div
     aria-labelledby="react-tabs-2"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
     id="react-tabs-3"
     role="tabpanel"
   >
@@ -872,3 +876,102 @@ exports[`<Tabs /> validation should allow random order for elements 1`] = `
   </div>
 </div>
 `;
+
+exports[`<Tabs /> validation should be okay with rendering just TabList 1`] = `
+<div
+  class="react-tabs"
+  data-tabs="true"
+>
+  <ul
+    class="react-tabs__tab-list"
+    role="tablist"
+  />
+</div>
+`;
+
+exports[`<Tabs /> validation should be okay with rendering without any children 1`] = `
+<div
+  class="react-tabs"
+  data-tabs="true"
+/>
+`;
+
+exports[`<Tabs /> validation should gracefully render null 1`] = `
+<div
+  class="react-tabs"
+  data-tabs="true"
+>
+  <ul
+    class="react-tabs__tab-list"
+    role="tablist"
+  >
+    <li
+      aria-controls="react-tabs-1"
+      aria-disabled="false"
+      aria-selected="true"
+      class="react-tabs__tab react-tabs__tab--selected"
+      id="react-tabs-0"
+      role="tab"
+      tabindex="0"
+    >
+      Tab A
+    </li>
+  </ul>
+  <div
+    aria-labelledby="react-tabs-0"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    id="react-tabs-1"
+    role="tabpanel"
+  >
+    Content A
+  </div>
+</div>
+`;
+
+exports[`<Tabs /> validation should not throw a warning when wrong element is found 1`] = `
+<div
+  class="react-tabs"
+  data-tabs="true"
+>
+  <ul
+    class="react-tabs__tab-list"
+    role="tablist"
+  >
+    <li
+      aria-controls="react-tabs-1"
+      aria-disabled="false"
+      aria-selected="true"
+      class="react-tabs__tab react-tabs__tab--selected"
+      id="react-tabs-0"
+      role="tab"
+      tabindex="0"
+    />
+    <div />
+  </ul>
+  <div
+    aria-labelledby="react-tabs-0"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    id="react-tabs-1"
+    role="tabpanel"
+  />
+</div>
+`;
+
+exports[`<Tabs /> validation should result with warning when defaultIndex and selectedIndex set 1`] = `
+"Warning: Failed prop type: The prop \`selectedIndex\` cannot be used together with \`defaultIndex\` in \`Tabs\`.
+Either remove \`selectedIndex\` to let \`Tabs\` handle the selected tab internally or remove \`defaultIndex\` to handle it yourself."
+`;
+
+exports[`<Tabs /> validation should result with warning when multiple tablist components exist 1`] = `"Warning: Failed prop type: Found multiple 'TabList' components inside 'Tabs'. Only one is allowed."`;
+
+exports[`<Tabs /> validation should result with warning when onSelect missing when selectedIndex set 1`] = `
+"Warning: Failed prop type: The prop \`onSelect\` is marked as required in \`Tabs\`, but its value is \`undefined\` or \`null\`.
+\`onSelect\` is required when \`selectedIndex\` is also set. Not doing so will make the tabs not do anything, as \`selectedIndex\` indicates that you want to handle the selected tab yourself.
+If you only want to set the inital tab replace \`selectedIndex\` with \`defaultIndex\`."
+`;
+
+exports[`<Tabs /> validation should result with warning when tab outside of tablist 1`] = `"Warning: Failed prop type: Found a 'Tab' component outside of the 'TabList' component. 'Tab' components have to be inside the 'TabList' component."`;
+
+exports[`<Tabs /> validation should result with warning when tabs/panels are imbalanced 1`] = `"Warning: Failed prop type: There should be an equal number of 'Tab' and 'TabPanel' in \`Tabs\`. Received 1 'Tab' and 0 'TabPanel'."`;
+
+exports[`<Tabs /> validation should result with warning when tabs/panels are imbalanced and it should ignore non tab children 1`] = `"Warning: Failed prop type: There should be an equal number of 'Tab' and 'TabPanel' in \`Tabs\`. Received 1 'Tab' and 2 'TabPanel'."`;

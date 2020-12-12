@@ -311,7 +311,6 @@ export default class UncontrolledTabs extends Component {
         this.setSelected(index, e);
         return;
       }
-      // eslint-disable-next-line no-cond-assign
     } while ((node = node.parentNode) != null);
   };
 

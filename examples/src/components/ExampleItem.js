@@ -3,6 +3,7 @@ import T from 'prop-types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'; // eslint-disable-line
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import classNames from 'clsx';
+import dracula from 'prism-react-renderer/themes/dracula';
 
 const scope = { Tabs, Tab, TabList, TabPanel };
 
@@ -53,17 +54,18 @@ export default class ExampleItem extends Component {
         </h3>
         {this.renderHint()}
         <LiveProvider
-          mountStylesheet={false}
           scope={scope}
           code={this.props.code}
+          theme={dracula}
           noInline
         >
           <LiveError />
           <div className="live-preview">
             <div className={editorClassNames}>
-              <LiveEditor ignoreTabKey />
+              <LiveEditor />
             </div>
             <LivePreview
+              className="react-live-preview"
               style={{ dir: this.props.direction === 'rtl' ? 'rtl' : 'ltr' }}
             />
           </div>
