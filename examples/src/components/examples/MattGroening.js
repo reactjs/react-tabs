@@ -62,7 +62,6 @@ const code = `const Component = (
         </TabPanel>
         <TabPanel>
           <p>Chinese-Martian intern at Planet Express. Fonfon Ru of Kif Kroker.</p>
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/FuturamaAmyWong.png/140px-FuturamaAmyWong.png" alt="Amy Wong" />
         </TabPanel>
         <TabPanel>
           <p>Many times great-nephew of Fry. CEO and owner of Planet Express delivery company. Tenured professor of Mars University.</p>

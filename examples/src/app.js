@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'react-live/react-live.css';
 import './example.less';
 import SuperMario from './components/examples/SuperMario';
 import MattGroening from './components/examples/MattGroening';

@@ -1,8 +1,9 @@
 /* eslint-env jest */
+import { format } from 'util';
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import renderer from 'react-test-renderer';
+import { render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
@@ -14,37 +15,37 @@ import {
   TabPanelWrapper,
 } from './helpers/higherOrder';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 function expectToMatchSnapshot(component) {
-  expect(renderer.create(component).toJSON()).toMatchSnapshot();
+  expect(render(component).container.firstChild).toMatchSnapshot();
 }
 
 function createTabs(props = {}) {
   return (
     <Tabs {...props}>
       <TabList>
-        <Tab>Foo</Tab>
-        <Tab>Bar</Tab>
-        <Tab>
-          <a href="a">Baz</a>
+        <Tab data-testid="tab1">Tab1</Tab>
+        <Tab data-testid="tab2">Tab2</Tab>
+        <Tab data-testid="tab3">
+          <a href="a">Tab3</a>
         </Tab>
-        <Tab disabled>Qux</Tab>
+        <Tab data-testid="tab4" disabled>
+          Tab4
+        </Tab>
       </TabList>
-      <TabPanel>Hello Foo</TabPanel>
-      <TabPanel>Hello Bar</TabPanel>
-      <TabPanel>Hello Baz</TabPanel>
-      <TabPanel>Hello Qux</TabPanel>
+      <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
+      <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
+      <TabPanel data-testid="panel3">Hello Tab3</TabPanel>
+      <TabPanel data-testid="panel4">Hello Tab4</TabPanel>
     </Tabs>
   );
 }
 
-function assertTabSelected(wrapper, index) {
-  const tab = wrapper.find(Tab).at(index);
-  const panel = wrapper.find(TabPanel).at(index);
+function assertTabSelected(tabNo, node = screen) {
+  const tab = node.getByTestId(`tab${tabNo}`);
+  const panel = node.getByTestId(`panel${tabNo}`);
 
-  expect(tab.prop('selected')).toBe(true);
-  expect(panel.prop('selected')).toBe(true);
+  expect(tab).toHaveAttribute('aria-selected', 'true');
+  expect(panel).toHaveTextContent(`Hello Tab${tabNo}`);
 }
 
 describe('<Tabs />', () => {
@@ -52,7 +53,13 @@ describe('<Tabs />', () => {
 
   beforeAll(() => {
     // eslint-disable-next-line no-console
-    console.error = (error) => {
+    console.error = (error, ...args) => {
+      if (args.length > 0 && typeof error === 'string') {
+        if (error.endsWith('%s%s')) {
+          throw new Error(format(error.slice(0, -2), ...args.slice(0, -1)));
+        }
+        throw new Error(format(error, ...args));
+      }
       throw new Error(error);
     };
   });
@@ -72,7 +79,7 @@ describe('<Tabs />', () => {
 
     test('should call onSelect when selection changes', () => {
       const called = { index: -1, last: -1 };
-      const wrapper = mount(
+      render(
         createTabs({
           onSelect(index, last) {
             called.index = index;
@@ -81,7 +88,7 @@ describe('<Tabs />', () => {
         }),
       );
 
-      wrapper.find(Tab).at(1).simulate('click');
+      userEvent.click(screen.getByTestId('tab2'));
 
       expect(called.index).toBe(1);
       expect(called.last).toBe(0);
@@ -93,7 +100,7 @@ describe('<Tabs />', () => {
 
     test('should accept domRef', () => {
       let domNode;
-      mount(
+      render(
         createTabs({
           domRef: (node) => {
             domNode = node;
@@ -119,83 +126,80 @@ describe('<Tabs />', () => {
   describe('interaction', () => {
     describe('mouse', () => {
       test('should update selectedIndex when clicked', () => {
-        const wrapper = mount(createTabs());
-        wrapper.find(Tab).at(1).simulate('click');
+        render(createTabs());
+        userEvent.click(screen.getByTestId('tab2'));
 
-        assertTabSelected(wrapper, 1);
+        assertTabSelected(2);
       });
 
       test('should update selectedIndex when tab child is clicked', () => {
-        const wrapper = mount(createTabs());
-        wrapper.find(Tab).at(2).childAt(0).simulate('click');
+        render(createTabs());
+        userEvent.click(screen.getByTestId('tab3'));
 
-        assertTabSelected(wrapper, 2);
+        assertTabSelected(3);
       });
 
       test('should not change selectedIndex when clicking a disabled tab', () => {
-        const wrapper = mount(createTabs({ defaultIndex: 0 }));
-        wrapper.find(Tab).at(3).simulate('click');
+        render(createTabs({ defaultIndex: 0 }));
+        userEvent.click(screen.getByTestId('tab4'));
 
-        assertTabSelected(wrapper, 0);
+        assertTabSelected(1);
       });
     });
 
     describe('keyboard', () => {
       test('should update selectedIndex when arrow right key pressed', () => {
-        const wrapper = mount(createTabs());
-        wrapper
-          .find(Tab)
-          .at(1)
-          .simulate('focus')
-          .simulate('keydown', { keyCode: 39 });
+        render(createTabs());
+        const element = screen.getByTestId('tab1');
+        userEvent.click(element);
+        userEvent.type(element, '{arrowright}');
 
-        assertTabSelected(wrapper, 1);
+        assertTabSelected(2);
       });
 
       test('should update selectedIndex when arrow left key pressed (RTL)', () => {
-        const wrapper = mount(createTabs({ direction: 'rtl' }));
-        wrapper
-          .find(Tab)
-          .at(1)
-          .simulate('focus')
-          .simulate('keydown', { keyCode: 37 });
+        render(createTabs({ direction: 'rtl' }));
+        const element = screen.getByTestId('tab1');
+        userEvent.click(element);
+        userEvent.type(element, '{arrowleft}');
 
-        assertTabSelected(wrapper, 1);
+        assertTabSelected(2);
       });
 
       test.skip('should not change selectedIndex when arrow left key pressed on a disabled tab', () => {
-        const wrapper = mount(createTabs({ defaultIndex: 0 }));
-        wrapper
-          .find(Tab)
-          .at(3)
-          .simulate('focus')
-          .simulate('keydown', { keyCode: 37 });
+        render(createTabs());
+        const element = screen.getByTestId('tab4');
+        userEvent.click(element);
+        userEvent.type(element, '{arrowleft}');
 
-        assertTabSelected(wrapper, 0);
+        assertTabSelected(1);
       });
     });
   });
 
   describe('performance', () => {
     test('should only render the selected tab panel', () => {
-      const wrapper = mount(createTabs());
-      const tabPanels = wrapper.find(TabPanel);
+      render(createTabs());
+      const tabPanels = screen.getAllByRole('tabpanel');
 
-      expect(tabPanels.at(0).text()).toBe('Hello Foo');
-      expect(tabPanels.at(1).text()).toBe('');
-      expect(tabPanels.at(2).text()).toBe('');
+      expect(tabPanels[0]).toHaveTextContent('Hello Tab1');
+      expect(tabPanels[1]).toHaveTextContent('');
+      expect(tabPanels[2]).toHaveTextContent('');
+      expect(tabPanels[3]).toHaveTextContent('');
 
-      wrapper.find(Tab).at(1).simulate('click');
+      userEvent.click(screen.getByTestId('tab2'));
 
-      expect(tabPanels.at(0).text()).toBe('');
-      expect(tabPanels.at(1).text()).toBe('Hello Bar');
-      expect(tabPanels.at(2).text()).toBe('');
+      expect(tabPanels[0]).toHaveTextContent('');
+      expect(tabPanels[1]).toHaveTextContent('Hello Tab2');
+      expect(tabPanels[2]).toHaveTextContent('');
+      expect(tabPanels[3]).toHaveTextContent('');
 
-      wrapper.find(Tab).at(2).simulate('click');
+      userEvent.click(screen.getByTestId('tab3'));
 
-      expect(tabPanels.at(0).text()).toBe('');
-      expect(tabPanels.at(1).text()).toBe('');
-      expect(tabPanels.at(2).text()).toBe('Hello Baz');
+      expect(tabPanels[0]).toHaveTextContent('');
+      expect(tabPanels[1]).toHaveTextContent('');
+      expect(tabPanels[2]).toHaveTextContent('Hello Tab3');
+      expect(tabPanels[3]).toHaveTextContent('');
     });
 
     test('should render all tabs if forceRenderTabPanel is true', () => {
@@ -205,143 +209,89 @@ describe('<Tabs />', () => {
 
   describe('validation', () => {
     test('should result with warning when tabs/panels are imbalanced', () => {
-      const oldConsoleError = console.error; // eslint-disable-line no-console
-      console.error = () => {}; // eslint-disable-line no-console
-      const wrapper = shallow(
-        <Tabs>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-        </Tabs>,
-      );
-      console.error = oldConsoleError; // eslint-disable-line no-console
-
-      // eslint-disable-next-line react/forbid-foreign-prop-types
-      const result = Tabs.propTypes.children(
-        wrapper.props(),
-        'children',
-        'Tabs',
-      );
-      expect(result).toBeInstanceOf(Error);
+      expect(() =>
+        render(
+          <Tabs>
+            <TabList>
+              <Tab>Foo</Tab>
+            </TabList>
+          </Tabs>,
+        ),
+      ).toThrowErrorMatchingSnapshot();
     });
 
     test('should result with warning when tab outside of tablist', () => {
-      const oldConsoleError = console.error; // eslint-disable-line no-console
-      console.error = () => {}; // eslint-disable-line no-console
-      const wrapper = shallow(
-        <Tabs>
-          <TabList>
+      expect(() =>
+        render(
+          <Tabs>
+            <TabList>
+              <Tab>Foo</Tab>
+            </TabList>
             <Tab>Foo</Tab>
-          </TabList>
-          <Tab>Foo</Tab>
-          <TabPanel />
-          <TabPanel />
-        </Tabs>,
-      );
-      console.error = oldConsoleError; // eslint-disable-line no-console
-
-      // eslint-disable-next-line react/forbid-foreign-prop-types
-      const result = Tabs.propTypes.children(
-        wrapper.props(),
-        'children',
-        'Tabs',
-      );
-      expect(result).toBeInstanceOf(Error);
+            <TabPanel />
+            <TabPanel />
+          </Tabs>,
+        ),
+      ).toThrowErrorMatchingSnapshot();
     });
 
     test('should result with warning when multiple tablist components exist', () => {
-      const oldConsoleError = console.error; // eslint-disable-line no-console
-      console.error = () => {}; // eslint-disable-line no-console
-      const wrapper = shallow(
-        <Tabs>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-          <TabPanel />
-          <TabPanel />
-        </Tabs>,
-      );
-      console.error = oldConsoleError; // eslint-disable-line no-console
-
-      // eslint-disable-next-line react/forbid-foreign-prop-types
-      const result = Tabs.propTypes.children(
-        wrapper.props(),
-        'children',
-        'Tabs',
-      );
-      expect(result).toBeInstanceOf(Error);
+      expect(() =>
+        render(
+          <Tabs>
+            <TabList>
+              <Tab>Foo</Tab>
+            </TabList>
+            <TabList>
+              <Tab>Foo</Tab>
+            </TabList>
+            <TabPanel />
+            <TabPanel />
+          </Tabs>,
+        ),
+      ).toThrowErrorMatchingSnapshot();
     });
 
     test('should result with warning when onSelect missing when selectedIndex set', () => {
-      const oldConsoleError = console.error; // eslint-disable-line no-console
-      let catchedError;
-      // eslint-disable-next-line no-console
-      console.error = (error) => {
-        catchedError = error;
-      };
-      shallow(
-        <Tabs selectedIndex={1}>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-          <TabPanel>Foo</TabPanel>
-        </Tabs>,
-      );
-      console.error = oldConsoleError; // eslint-disable-line no-console
-
-      const expectedMessage =
-        'The prop `onSelect` is marked as required in `Tabs`, but its value is `undefined` or `null`.';
-      expect(catchedError).toMatch(expectedMessage);
+      expect(() =>
+        render(
+          <Tabs selectedIndex={1}>
+            <TabList>
+              <Tab>Foo</Tab>
+            </TabList>
+            <TabPanel>Foo</TabPanel>
+          </Tabs>,
+        ),
+      ).toThrowErrorMatchingSnapshot();
     });
 
     test('should result with warning when defaultIndex and selectedIndex set', () => {
-      const oldConsoleError = console.error; // eslint-disable-line no-console
-      let catchedError;
-      // eslint-disable-next-line no-console
-      console.error = (error) => {
-        catchedError = error;
-      };
-      shallow(
-        <Tabs selectedIndex={1} defaultIndex={1}>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-          <TabPanel>Foo</TabPanel>
-        </Tabs>,
-      );
-      console.error = oldConsoleError; // eslint-disable-line no-console
-
-      const expectedMessage =
-        'The prop `selectedIndex` cannot be used together with `defaultIndex` in `Tabs`.';
-      expect(catchedError).toMatch(expectedMessage);
+      expect(() =>
+        render(
+          <Tabs selectedIndex={1} defaultIndex={1}>
+            <TabList>
+              <Tab>Foo</Tab>
+            </TabList>
+            <TabPanel>Foo</TabPanel>
+          </Tabs>,
+        ),
+      ).toThrowErrorMatchingSnapshot();
     });
 
     test('should result with warning when tabs/panels are imbalanced and it should ignore non tab children', () => {
-      const oldConsoleError = console.error; // eslint-disable-line no-console
-      console.error = () => {}; // eslint-disable-line no-console
-      const wrapper = shallow(
-        <Tabs>
-          <TabList>
-            <Tab>Foo</Tab>
-            <div>+</div>
-          </TabList>
+      expect(() =>
+        render(
+          <Tabs>
+            <TabList>
+              <Tab>Foo</Tab>
+              <div>+</div>
+            </TabList>
 
-          <TabPanel>Hello Foo</TabPanel>
-          <TabPanel>Hello Bar</TabPanel>
-        </Tabs>,
-      );
-      console.error = oldConsoleError; // eslint-disable-line no-console
-
-      // eslint-disable-next-line react/forbid-foreign-prop-types
-      const result = Tabs.propTypes.children(
-        wrapper.props(),
-        'children',
-        'Tabs',
-      );
-      expect(result).toBeInstanceOf(Error);
+            <TabPanel>Hello Foo</TabPanel>
+            <TabPanel>Hello Bar</TabPanel>
+          </Tabs>,
+        ),
+      ).toThrowErrorMatchingSnapshot();
     });
 
     test('should allow random order for elements', () => {
@@ -358,7 +308,7 @@ describe('<Tabs />', () => {
     });
 
     test('should not throw a warning when wrong element is found', () => {
-      const wrapper = shallow(
+      expectToMatchSnapshot(
         <Tabs>
           <TabList>
             <Tab />
@@ -367,70 +317,59 @@ describe('<Tabs />', () => {
           <TabPanel />
         </Tabs>,
       );
-
-      // eslint-disable-next-line react/forbid-foreign-prop-types
-      const result = Tabs.propTypes.children(
-        wrapper.props(),
-        'children',
-        'Tabs',
-      );
-      expect(result instanceof Error).toBe(false);
     });
 
     test('should be okay with rendering without any children', () => {
-      expect(() => shallow(<Tabs />)).not.toThrow();
+      expectToMatchSnapshot(<Tabs />);
     });
 
     test('should be okay with rendering just TabList', () => {
-      expect(() =>
-        shallow(
-          <Tabs>
-            <TabList />
-          </Tabs>,
-        ),
-      ).not.toThrow();
+      expectToMatchSnapshot(
+        <Tabs>
+          <TabList />
+        </Tabs>,
+      );
     });
 
     test('should gracefully render null', () => {
-      expect(() =>
-        shallow(
-          <Tabs>
-            <TabList>
-              <Tab>Tab A</Tab>
-              {false && <Tab>Tab B</Tab>}
-            </TabList>
-            <TabPanel>Content A</TabPanel>
-            {false && <TabPanel>Content B</TabPanel>}
-          </Tabs>,
-        ),
-      ).not.toThrow();
+      expectToMatchSnapshot(
+        <Tabs>
+          <TabList>
+            <Tab>Tab A</Tab>
+            {false && <Tab>Tab B</Tab>}
+          </TabList>
+          <TabPanel>Content A</TabPanel>
+          {false && <TabPanel>Content B</TabPanel>}
+        </Tabs>,
+      );
     });
 
     test('should support nested tabs', () => {
-      const wrapper = mount(
-        <Tabs className="first">
+      render(
+        <Tabs data-testid="first">
           <TabList>
-            <Tab />
+            <Tab data-testid="tab1" />
             <Tab />
           </TabList>
-          <TabPanel>
-            <Tabs className="second">
+          <TabPanel data-testid="panel1">
+            Hello Tab1
+            <Tabs data-testid="second">
               <TabList>
                 <Tab />
-                <Tab />
+                <Tab data-testid="tab2" />
               </TabList>
               <TabPanel />
-              <TabPanel />
+              <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
             </Tabs>
           </TabPanel>
           <TabPanel />
         </Tabs>,
       );
 
-      wrapper.find('Tabs.second').find(Tab).at(1).simulate('click');
+      userEvent.click(within(screen.getByTestId('second')).getByTestId('tab2'));
 
-      assertTabSelected(wrapper, 0);
-      assertTabSelected(wrapper.find('Tabs.second'), 1);
+      assertTabSelected(1);
+      assertTabSelected(2, within(screen.getByTestId('second')));
     });
 
     test('should allow other DOM nodes', () => {
@@ -464,20 +403,20 @@ describe('<Tabs />', () => {
   });
 
   test('should cancel if event handler returns false', () => {
-    const wrapper = mount(createTabs({ onSelect: () => false }));
+    render(createTabs({ onSelect: () => false }));
 
-    assertTabSelected(wrapper, 0);
+    assertTabSelected(1);
 
-    wrapper.find(Tab).at(1).simulate('click');
-    assertTabSelected(wrapper, 0);
+    userEvent.click(screen.getByTestId('tab2'));
+    assertTabSelected(1);
 
-    wrapper.find(Tab).at(2).simulate('click');
-    assertTabSelected(wrapper, 0);
+    userEvent.click(screen.getByTestId('tab3'));
+    assertTabSelected(1);
   });
 
   test('should trigger onSelect handler when clicking', () => {
     let wasClicked = false;
-    const wrapper = mount(
+    render(
       createTabs({
         onSelect: () => {
           wasClicked = true;
@@ -485,16 +424,16 @@ describe('<Tabs />', () => {
       }),
     );
 
-    assertTabSelected(wrapper, 0);
+    assertTabSelected(1);
 
-    wrapper.find(Tab).at(1).simulate('click');
-    assertTabSelected(wrapper, 1);
+    userEvent.click(screen.getByTestId('tab2'));
+    assertTabSelected(2);
     expect(wasClicked).toBe(true);
   });
 
   test('should trigger onSelect handler when clicking on open tab', () => {
     let wasClicked = false;
-    const wrapper = mount(
+    render(
       createTabs({
         onSelect: () => {
           wasClicked = true;
@@ -502,10 +441,10 @@ describe('<Tabs />', () => {
       }),
     );
 
-    assertTabSelected(wrapper, 0);
+    assertTabSelected(1);
 
-    wrapper.find(Tab).at(0).simulate('click');
-    assertTabSelected(wrapper, 0);
+    userEvent.click(screen.getByTestId('tab1'));
+    assertTabSelected(1);
     expect(wasClicked).toBe(true);
   });
 
@@ -524,13 +463,13 @@ describe('<Tabs />', () => {
       }
     }
 
-    const wrapper = mount(<Wrap />);
+    render(<Wrap />);
 
-    wrapper.find(Tab).at(1).simulate('click');
-    assertTabSelected(wrapper, 1);
+    userEvent.click(screen.getByTestId('tab2'));
+    assertTabSelected(2);
 
-    wrapper.find(Tab).at(2).simulate('click');
-    assertTabSelected(wrapper, 2);
+    userEvent.click(screen.getByTestId('tab3'));
+    assertTabSelected(3);
   });
 
   test('should allow for higher order components', () => {
