@@ -7,7 +7,7 @@ https://reactcommunity.org/react-tabs/
 > Supports React 16.3.0 or newer
 
 <ins><blockquote class="rich-diff-level-zero"> <p class="rich-diff-level-one">react-tabs was tested on real mobile devices and browsers with<br>
-  <img src="http://reactcommunity.org/react-tabs/7215e21fc3d710d2257900135d6fc03c.svg" height="50" alt="Browserstack">
+  <img src="https://reactcommunity.org/react-tabs/2e0bf9a22057e69b716b45a3d5bffbe7.svg" height="50" alt="Browserstack">
 
 </p> </blockquote></ins>
 
