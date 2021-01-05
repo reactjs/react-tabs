@@ -100,6 +100,12 @@ This allows changing the tab that should be open on initial render. This is a ze
 
 > This can only be used in uncontrolled mode when react-tabs handles the current selected tab internally and for this reason cannot be used together with `selectedIndex`. See [here](#controlled-vs-uncontrolled-mode) for more info on modes.
 
+#### direction: `string`
+
+> default: `"ltr"`
+
+Provide the direction of the component, can be either rtl or ltr.
+
 #### disabledTabClassName: `string`
 
 > default: `"react-tabs__tab--disabled"`
@@ -157,12 +163,6 @@ Provide a custom class name for the active tab.
 Provide a custom class name for the active tab panel.
 
 > This option can also be set directly at the `<TabPanel />` component.
-
-#### direction: `string`
-
-> default: `"ltr"`
-
-Provide the direction of the component, can be either rtl or ltr.
 
 ### &lt;TabList /&gt;
 
