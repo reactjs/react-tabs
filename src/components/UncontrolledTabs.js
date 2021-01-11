@@ -361,6 +361,7 @@ export default class UncontrolledTabs extends Component {
       selectedIndex, // unused
       selectedTabClassName, // unused
       selectedTabPanelClassName, // unused
+      environment, // unused
       ...attributes
     } = this.props;
 
