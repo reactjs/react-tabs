@@ -103,7 +103,7 @@
     "semantic-release": "17.3.2",
     "webpack": "5.13.0",
     "webpack-cli": "4.3.1",
-    "webpack-dev-server": "3.11.1"
+    "webpack-dev-server": "3.11.2"
   },
   "dependencies": {
     "clsx": "^1.1.0",
