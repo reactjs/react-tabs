@@ -122,8 +122,6 @@ Register a callback that will receive the underlying DOM node for every mount. I
 
 #### environment: `Window`
 
-> default: `window`
-
 If you're rendering `react-tabs` within a different `window` context than the default one; for example, an iframe.
 
 #### forceRenderTabPanel: `boolean`

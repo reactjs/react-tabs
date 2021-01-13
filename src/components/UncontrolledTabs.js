@@ -24,11 +24,14 @@ function isTabDisabled(node) {
 let canUseActiveElement;
 
 function determineCanUseActiveElement(environment) {
+  const env =
+    environment || (typeof window !== 'undefined' ? window : undefined);
+
   try {
     canUseActiveElement = !!(
-      typeof environment !== 'undefined' &&
-      environment.document &&
-      environment.document.activeElement
+      typeof env !== 'undefined' &&
+      env.document &&
+      env.document.activeElement
     );
   } catch (e) {
     // Work around for IE bug when accessing document.activeElement in an iframe
@@ -202,9 +205,12 @@ export default class UncontrolledTabs extends Component {
         if (canUseActiveElement) {
           wasTabFocused = React.Children.toArray(child.props.children)
             .filter(isTab)
-            .some(
-              (tab, i) => environment.document.activeElement === this.getTab(i),
-            );
+            .some((tab, i) => {
+              const env =
+                environment ||
+                (typeof window !== 'undefined' ? window : undefined);
+              return env && env.document.activeElement === this.getTab(i);
+            });
         }
 
         result = cloneElement(child, {

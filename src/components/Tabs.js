@@ -17,7 +17,7 @@ export default class Tabs extends Component {
     forceRenderTabPanel: false,
     selectedIndex: null,
     defaultIndex: null,
-    environment: window,
+    environment: null,
   };
 
   static propTypes = {
