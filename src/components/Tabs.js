@@ -17,6 +17,7 @@ export default class Tabs extends Component {
     forceRenderTabPanel: false,
     selectedIndex: null,
     defaultIndex: null,
+    disableUpDownKeys: false,
   };
 
   static propTypes = {
@@ -30,6 +31,7 @@ export default class Tabs extends Component {
     defaultFocus: PropTypes.bool,
     defaultIndex: PropTypes.number,
     disabledTabClassName: PropTypes.string,
+    disableUpDownKeys: PropTypes.bool,
     domRef: PropTypes.func,
     forceRenderTabPanel: PropTypes.bool,
     onSelect: onSelectPropType,

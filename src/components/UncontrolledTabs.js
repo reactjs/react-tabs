@@ -50,6 +50,7 @@ export default class UncontrolledTabs extends Component {
       PropTypes.object,
     ]),
     disabledTabClassName: PropTypes.string,
+    disableUpDownKeys: PropTypes.bool,
     domRef: PropTypes.func,
     focus: PropTypes.bool,
     forceRenderTabPanel: PropTypes.bool,
@@ -242,7 +243,7 @@ export default class UncontrolledTabs extends Component {
   }
 
   handleKeyDown = (e) => {
-    const { direction } = this.props;
+    const { direction, disableUpDownKeys } = this.props;
     if (this.isTabFromContainer(e.target)) {
       let { selectedIndex: index } = this.props;
       let preventDefault = false;
@@ -254,8 +255,8 @@ export default class UncontrolledTabs extends Component {
         this.handleClick(e);
       }
 
-      if (e.keyCode === 37 || e.keyCode === 38) {
-        // Select next tab to the left
+      if (e.keyCode === 37 || (!disableUpDownKeys && e.keyCode === 38)) {
+        // Select next tab to the left, validate if up arrow is not disabled
         if (direction === 'rtl') {
           index = this.getNextTab(index);
         } else {
@@ -263,8 +264,8 @@ export default class UncontrolledTabs extends Component {
         }
         preventDefault = true;
         useSelectedIndex = true;
-      } else if (e.keyCode === 39 || e.keyCode === 40) {
-        // Select next tab to the right
+      } else if (e.keyCode === 39 || (!disableUpDownKeys && e.keyCode === 40)) {
+        // Select next tab to the right, validate if down arrow is not disabled
         if (direction === 'rtl') {
           index = this.getPrevTab(index);
         } else {
@@ -350,6 +351,7 @@ export default class UncontrolledTabs extends Component {
       selectedIndex, // unused
       selectedTabClassName, // unused
       selectedTabPanelClassName, // unused
+      disableUpDownKeys, // unused
       ...attributes
     } = this.props;
 
