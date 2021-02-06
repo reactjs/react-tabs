@@ -114,6 +114,12 @@ Provide a custom class name for disabled tabs.
 
 > This option can also be set directly at the `<Tab />` component.
 
+#### disableUpDownKeys: `bool`
+
+> default: `false`
+
+Disable up & down arrow keys to change tabs.
+
 #### domRef: `(node: ?HTMLElement) => void`
 
 > default: `null`

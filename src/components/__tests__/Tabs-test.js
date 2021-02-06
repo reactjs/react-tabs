@@ -502,4 +502,43 @@ describe('<Tabs />', () => {
       </Tabs>,
     );
   });
+
+  test('should change tabs when arrow up/down is pressed', () => {
+    render(createTabs());
+    const firstTab = screen.getByTestId('tab1');
+    const secondTab = screen.getByTestId('tab2');
+
+    userEvent.tab();
+    expect(firstTab).toHaveFocus();
+    assertTabSelected(1);
+
+    userEvent.type(firstTab, '{arrowdown}');
+    expect(secondTab).toHaveFocus();
+    assertTabSelected(2);
+
+    userEvent.type(secondTab, '{arrowup}');
+    expect(firstTab).toHaveFocus();
+    assertTabSelected(1);
+  });
+
+  test('should not change tabs when arrow up/down is pressed and disableUpDownKeys is passed', () => {
+    render(
+      createTabs({
+        disableUpDownKeys: true,
+      }),
+    );
+    const firstTab = screen.getByTestId('tab1');
+
+    userEvent.tab();
+    expect(firstTab).toHaveFocus();
+    assertTabSelected(1);
+
+    userEvent.type(firstTab, '{arrowdown}');
+    expect(firstTab).toHaveFocus();
+    assertTabSelected(1);
+
+    userEvent.type(firstTab, '{arrowup}');
+    expect(firstTab).toHaveFocus();
+    assertTabSelected(1);
+  });
 });
