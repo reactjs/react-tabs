@@ -120,6 +120,10 @@ Provide a custom class name for disabled tabs.
 
 Register a callback that will receive the underlying DOM node for every mount. It will also receive null on unmount.
 
+#### environment: `Window`
+
+If you're rendering `react-tabs` within a different `window` context than the default one; for example, an iframe.
+
 #### forceRenderTabPanel: `boolean`
 
 > default: `false`

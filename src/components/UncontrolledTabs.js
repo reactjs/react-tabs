@@ -22,18 +22,24 @@ function isTabDisabled(node) {
 }
 
 let canUseActiveElement;
-try {
-  canUseActiveElement = !!(
-    typeof window !== 'undefined' &&
-    window.document &&
-    window.document.activeElement
-  );
-} catch (e) {
-  // Work around for IE bug when accessing document.activeElement in an iframe
-  // Refer to the following resources:
-  // http://stackoverflow.com/a/10982960/369687
-  // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12733599
-  canUseActiveElement = false;
+
+function determineCanUseActiveElement(environment) {
+  const env =
+    environment || (typeof window !== 'undefined' ? window : undefined);
+
+  try {
+    canUseActiveElement = !!(
+      typeof env !== 'undefined' &&
+      env.document &&
+      env.document.activeElement
+    );
+  } catch (e) {
+    // Work around for IE bug when accessing document.activeElement in an iframe
+    // Refer to the following resources:
+    // http://stackoverflow.com/a/10982960/369687
+    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12733599
+    canUseActiveElement = false;
+  }
 }
 export default class UncontrolledTabs extends Component {
   static defaultProps = {
@@ -57,6 +63,7 @@ export default class UncontrolledTabs extends Component {
     selectedIndex: PropTypes.number.isRequired,
     selectedTabClassName: PropTypes.string,
     selectedTabPanelClassName: PropTypes.string,
+    environment: PropTypes.object,
   };
 
   tabNodes = [];
@@ -164,6 +171,7 @@ export default class UncontrolledTabs extends Component {
       selectedIndex,
       selectedTabClassName,
       selectedTabPanelClassName,
+      environment,
     } = this.props;
 
     this.tabIds = this.tabIds || [];
@@ -190,10 +198,19 @@ export default class UncontrolledTabs extends Component {
         // If it is we should keep the focus on the next selected tab
         let wasTabFocused = false;
 
+        if (canUseActiveElement == null) {
+          determineCanUseActiveElement(environment);
+        }
+
         if (canUseActiveElement) {
           wasTabFocused = React.Children.toArray(child.props.children)
             .filter(isTab)
-            .some((tab, i) => document.activeElement === this.getTab(i));
+            .some((tab, i) => {
+              const env =
+                environment ||
+                (typeof window !== 'undefined' ? window : undefined);
+              return env && env.document.activeElement === this.getTab(i);
+            });
         }
 
         result = cloneElement(child, {
@@ -350,6 +367,7 @@ export default class UncontrolledTabs extends Component {
       selectedIndex, // unused
       selectedTabClassName, // unused
       selectedTabPanelClassName, // unused
+      environment, // unused
       ...attributes
     } = this.props;
 
