@@ -17,6 +17,7 @@ export default class Tabs extends Component {
     forceRenderTabPanel: false,
     selectedIndex: null,
     defaultIndex: null,
+    environment: null,
     disableUpDownKeys: false,
   };
 
@@ -38,6 +39,7 @@ export default class Tabs extends Component {
     selectedIndex: selectedIndexPropType,
     selectedTabClassName: PropTypes.string,
     selectedTabPanelClassName: PropTypes.string,
+    environment: PropTypes.object,
   };
 
   constructor(props) {
