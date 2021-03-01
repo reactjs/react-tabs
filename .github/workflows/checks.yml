@@ -36,7 +36,7 @@ jobs:
       run: yarn install --frozen-lockfile --non-interactive
 
     - name: Unit tests
-      run: yarn test -- --ci
+      run: yarn test --ci
 
   lint:
     name: Lint
