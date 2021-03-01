@@ -15,6 +15,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
@@ -30,6 +35,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
@@ -46,6 +56,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
