@@ -11,6 +11,9 @@ jobs:
   tests:
     name: Unit tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
 
     steps:
     - name: Checkout
@@ -19,11 +22,11 @@ jobs:
       uses: actions/cache@v2
       with:
         path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ matrix.node-version }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: ${{ matrix.node-version }}
     - name: Install dependencies
       run: yarn install --frozen-lockfile --non-interactive
     - name: Unit tests
@@ -31,6 +34,9 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
 
     steps:
     - name: Checkout
@@ -39,11 +45,11 @@ jobs:
       uses: actions/cache@v2
       with:
         path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ matrix.node-version }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: ${{ matrix.node-version }}
     - name: Install dependencies
       run: yarn install --frozen-lockfile --non-interactive
     - name: Lint
@@ -52,6 +58,9 @@ jobs:
     name: Test build website
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
 
     steps:
     - name: Checkout
@@ -60,11 +69,11 @@ jobs:
       uses: actions/cache@v2
       with:
         path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ matrix.node-version }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: ${{ matrix.node-version }}
     - name: Install dependencies
       run: yarn install --frozen-lockfile --non-interactive
     - name: Build website
