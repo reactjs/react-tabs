@@ -99,7 +99,7 @@ For more information about controlled and uncontrolled mode of react-tabs see th
     };
 
     if (newState.mode === MODE_UNCONTROLLED) {
-      const maxTabIndex = getTabsCount(props.children) - 1;
+      const maxTabIndex = Math.max(0, getTabsCount(props.children) - 1);
       let selectedIndex = null;
 
       if (state.selectedIndex != null) {
