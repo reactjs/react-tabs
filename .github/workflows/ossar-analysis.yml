@@ -4,7 +4,10 @@
 name: OSSAR
 
 on:
-  push:
+  push: 
+    branches:
+      - main
+      - renovate/**
   pull_request:
 
 jobs:
