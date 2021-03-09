@@ -541,4 +541,21 @@ describe('<Tabs />', () => {
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
   });
+
+  test('should render first tab once tabs are available', () => {
+    const { rerender } = render(<Tabs></Tabs>);
+
+    rerender(
+      <Tabs>
+        <TabList>
+          <Tab data-testid="tab1">Tab1</Tab>
+          <Tab data-testid="tab2">Tab2</Tab>
+        </TabList>
+        <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
+        <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
+      </Tabs>,
+    );
+
+    assertTabSelected(1);
+  });
 });
