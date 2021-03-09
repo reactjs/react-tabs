@@ -3,6 +3,9 @@ name: CI
 
 on:
   push:
+    branches: 
+      - main
+      - renovate/**
   pull_request:
 
 env:
@@ -65,7 +68,7 @@ jobs:
 
   website:
     name: Test build website
-    if: ${{ github.event.issue.pull_request }}
+    if: github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
