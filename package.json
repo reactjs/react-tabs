@@ -50,9 +50,9 @@
     "react": "^16.3.0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@babel/cli": "7.13.10",
-    "@babel/core": "7.13.13",
-    "@babel/eslint-parser": "7.13.10",
+    "@babel/cli": "7.13.14",
+    "@babel/core": "7.13.14",
+    "@babel/eslint-parser": "7.13.14",
     "@babel/plugin-external-helpers": "7.12.13",
     "@babel/plugin-proposal-class-properties": "7.13.0",
     "@babel/plugin-proposal-object-rest-spread": "7.13.8",
