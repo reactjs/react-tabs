@@ -89,7 +89,7 @@ export default class Tabs extends Component {
     ) {
       throw new Error(
         `Switching between controlled mode (by using \`selectedIndex\`) and uncontrolled mode is not supported in \`Tabs\`.
-For more information about controlled and uncontrolled mode of react-tabs see the README.`,
+For more information about controlled and uncontrolled mode of react-tabs see https://github.com/reactjs/react-tabs#controlled-vs-uncontrolled-mode.`,
       );
     }
 
