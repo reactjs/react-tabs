@@ -975,3 +975,37 @@ exports[`<Tabs /> validation should result with warning when tab outside of tabl
 exports[`<Tabs /> validation should result with warning when tabs/panels are imbalanced 1`] = `"Warning: Failed prop type: There should be an equal number of 'Tab' and 'TabPanel' in \`Tabs\`. Received 1 'Tab' and 0 'TabPanel'."`;
 
 exports[`<Tabs /> validation should result with warning when tabs/panels are imbalanced and it should ignore non tab children 1`] = `"Warning: Failed prop type: There should be an equal number of 'Tab' and 'TabPanel' in \`Tabs\`. Received 1 'Tab' and 2 'TabPanel'."`;
+
+exports[`<Tabs /> validation should support using without panels 1`] = `
+<div
+  class="react-tabs"
+  data-tabs="true"
+>
+  <ul
+    class="react-tabs__tab-list"
+    role="tablist"
+  >
+    <li
+      aria-controls="react-tabs-1"
+      aria-disabled="false"
+      aria-selected="true"
+      class="react-tabs__tab react-tabs__tab--selected"
+      id="react-tabs-0"
+      role="tab"
+      tabindex="0"
+    >
+      Foo
+    </li>
+    <li
+      aria-controls="react-tabs-3"
+      aria-disabled="false"
+      aria-selected="false"
+      class="react-tabs__tab"
+      id="react-tabs-2"
+      role="tab"
+    >
+      Bar
+    </li>
+  </ul>
+</div>
+`;

@@ -392,6 +392,17 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
     });
+
+    it('should support using without panels', () => {
+      expectToMatchSnapshot(
+        <Tabs usePanel={false}>
+          <TabList>
+            <Tab>Foo</Tab>
+            <Tab>Bar</Tab>
+          </TabList>
+        </Tabs>,
+      );
+    });
   });
 
   test('should pass through custom properties', () => {

@@ -8,7 +8,6 @@ export function childrenPropType(props, propName, componentName) {
   let tabListFound = false;
   const listTabs = [];
   const children = props[propName];
-
   deepForEach(children, (child) => {
     if (isTabList(child)) {
       if (
@@ -41,7 +40,7 @@ export function childrenPropType(props, propName, componentName) {
     }
   });
 
-  if (!error && tabsCount !== panelsCount) {
+  if (!error && props.usePanel && tabsCount !== panelsCount) {
     error = new Error(
       `There should be an equal number of 'Tab' and 'TabPanel' in \`${componentName}\`. ` +
         `Received ${tabsCount} 'Tab' and ${panelsCount} 'TabPanel'.`,

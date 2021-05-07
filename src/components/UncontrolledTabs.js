@@ -49,6 +49,7 @@ export default class UncontrolledTabs extends Component {
 
   static propTypes = {
     children: childrenPropType,
+    usePanel: PropTypes.bool,
     direction: PropTypes.oneOf(['rtl', 'ltr']),
     className: PropTypes.oneOfType([
       PropTypes.string,
@@ -359,6 +360,7 @@ export default class UncontrolledTabs extends Component {
     // Delete all known props, so they don't get added to DOM
     const {
       children, // unused
+      usePanel,
       className,
       disabledTabClassName, // unused
       domRef,
