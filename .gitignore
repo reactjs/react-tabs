@@ -5,3 +5,9 @@ lib/
 dist/
 esm/
 yarn-error.log
+*.DS_Store
+.idea
+*.vscode/
+.project
+.classpath
+*.sublime-workspace
