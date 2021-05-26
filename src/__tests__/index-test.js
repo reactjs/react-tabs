@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import { Tab, Tabs, TabList, TabPanel } from '../index';
 import TabComponent from '../components/Tab';
 import TabListComponent from '../components/TabList';

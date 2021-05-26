@@ -1,7 +1,6 @@
 /**
  * @jest-environment node
  */
-/* eslint-env jest */
 import React from 'react';
 import Tab from '../Tab';
 import TabList from '../TabList';

@@ -32,5 +32,13 @@
     ],
     "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
     "no-console": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files":["**/*-test.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
