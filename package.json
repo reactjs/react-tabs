@@ -101,7 +101,7 @@
     "rollup-plugin-terser": "7.0.2",
     "semantic-release": "17.4.3",
     "webpack": "5.38.1",
-    "webpack-cli": "4.7.1",
+    "webpack-cli": "4.7.2",
     "webpack-dev-server": "3.11.2"
   },
   "dependencies": {
