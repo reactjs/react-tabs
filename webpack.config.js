@@ -64,14 +64,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              esModule: false,
-            },
-          },
-        ],
+        type: 'asset/resource',
         sideEffects: true,
       },
       {
