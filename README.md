@@ -353,6 +353,7 @@ You can also always just simply copy the default style to your own css/scss/less
 
 ### Custom Components
 
+#### Set `tabsRole`
 In case you want to create your own component wrapping the ones that the library provides, you have to set its `tabsRole`. This value is used inside react-tabs to check the role of a component inside `<Tabs />`.
 
 Possible values for tabsRole are:
@@ -360,11 +361,17 @@ Possible values for tabsRole are:
  * TabPanel
  * TabList
 
+#### Pass through properties
+Note: Because of how react-tabs works internally (it uses cloning to opaquely control various parts of the tab state), you need to pass any incoming props to the component you're wrapping. The easiest way to do this is to use the rest and spread operators, e.g. see `{...otherProps}` below.
+
+
+
 ``` javascript
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 
-const CustomTab = ({ children }) => (
-  <Tab>
+// All custom elements should pass through other props
+const CustomTab = ({ children, ...otherProps }) => (
+  <Tab {...otherProps}>
     <h1>{children}</h1>
   </Tab>
 );
@@ -382,20 +389,6 @@ const App = () => (
   </Tabs>
 );
 ```
-
-This works for custom tabs, but will not suffice for something like a TabPanel. Because of how react-tabs works internally (it uses cloning to opaquely control various parts of the tab state), you need to pass any incoming props to the component you're wrapping. The easiest way to do this is to use the rest and spread operators, e.g.:
-
-``` javascript
-const CustomTabPanel = ({ children, myCustomProp, ...otherProps }) => (
-  <TabPanel {...otherProps}>
-    <h1>{children}</h1>
-    {myCustomProp && `myCustomProp: ${myCustomProp}`}
-  </TabPanel>
-)
-
-CustomTabPanel.tabsRole = 'TabPanel'
-```
-
 
 ## License
 
