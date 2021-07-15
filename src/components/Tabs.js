@@ -13,6 +13,7 @@ const MODE_UNCONTROLLED = 1;
 
 export default class Tabs extends Component {
   static defaultProps = {
+    usePanel: true,
     defaultFocus: false,
     forceRenderTabPanel: false,
     selectedIndex: null,
@@ -23,6 +24,7 @@ export default class Tabs extends Component {
 
   static propTypes = {
     children: childrenPropType,
+    usePanel: PropTypes.bool,
     direction: PropTypes.oneOf(['rtl', 'ltr']),
     className: PropTypes.oneOfType([
       PropTypes.string,
