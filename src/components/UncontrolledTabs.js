@@ -183,8 +183,8 @@ export default class UncontrolledTabs extends Component {
     // Don't bother removing ids, just keep them in case they are added again
     // This is more efficient, and keeps the uuid counter under control
     while (diff++ < 0) {
-      this.tabIds.push(uuid());
-      this.panelIds.push(uuid());
+      this.tabIds.push(uuid(selectedTabClassName));
+      this.panelIds.push(uuid(selectedTabPanelClassName));
     }
 
     // Map children to dynamically setup refs
