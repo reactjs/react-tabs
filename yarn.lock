@@ -1596,10 +1596,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@testing-library/dom@8.1.1", "@testing-library/dom@^8.0.0":
-  version "8.1.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.1.1.tgz#44308211c92cc5c82190e940e101d452b684f62e"
-  integrity sha512-PkyaKetl+at2XWhTVUL8Lpjdl0rFMZ2DCEOQexXFjg1TumMXOtxGTVFf1AIxdh11DFu9w/AO8gZcP3XnVwR8YA==
+"@testing-library/dom@8.2.0", "@testing-library/dom@^8.0.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.2.0.tgz#ac46a1b9d7c81f0d341ae38fb5424b64c27d151e"
+  integrity sha512-U8cTWENQPHO3QHvxBdfltJ+wC78ytMdg69ASvIdkGdQ/XRg4M9H2vvM3mHddxl+w/fM6NNqzGMwpQoh82v9VIA==
   dependencies:
     "@babel/code-frame" "^7.10.4"
     "@babel/runtime" "^7.12.5"
