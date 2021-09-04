@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.15.4",
-    "@babel/core": "7.15.4",
+    "@babel/core": "7.15.5",
     "@babel/eslint-parser": "7.15.4",
     "@babel/plugin-external-helpers": "7.14.5",
     "@babel/plugin-proposal-class-properties": "7.14.5",
