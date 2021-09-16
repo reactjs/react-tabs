@@ -7,6 +7,9 @@
     "plugin:prettier/recommended"
   ],
   "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false
+  },
   "settings": {
     "react": {
       "version": "detect"
