@@ -12,7 +12,7 @@ const plugins = [
   new HtmlWebpackPlugin({
     filename: 'index.html',
     inject: true,
-    template: path.resolve(__dirname, 'examples/src/index.html'),
+    template: path.resolve(sourceDirectory, 'index.html'),
     minify: {
       collapseWhitespace: !isDev,
       removeComments: !isDev,
