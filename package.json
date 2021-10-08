@@ -17,7 +17,7 @@
     "prepublishOnly": "yarn run build",
     "release": "semantic-release --branches main",
     "test": "cross-env BABEL_OUTPUT=commonjs jest",
-    "start": "webpack serve --inline --content-base examples/ --port 8000",
+    "start": "webpack serve --allowed-hosts all --static-directory examples --port 8000",
     "website": "run-s website:clean website:build website:redirect",
     "website:clean": "rimraf examples/dist",
     "website:build": "cross-env BABEL_TARGET=examples NODE_ENV=production webpack",
@@ -102,7 +102,7 @@
     "semantic-release": "18.0.0",
     "webpack": "5.58.1",
     "webpack-cli": "4.9.0",
-    "webpack-dev-server": "3.11.2"
+    "webpack-dev-server": "4.3.1"
   },
   "dependencies": {
     "clsx": "^1.1.0",
