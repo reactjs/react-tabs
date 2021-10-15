@@ -78,7 +78,7 @@
     "file-loader": "6.2.0",
     "hoist-non-react-statics": "3.3.2",
     "html-loader": "2.1.2",
-    "html-webpack-plugin": "5.3.2",
+    "html-webpack-plugin": "5.4.0",
     "jest": "27.2.5",
     "jest-environment-jsdom": "27.2.5",
     "less": "4.1.2",
