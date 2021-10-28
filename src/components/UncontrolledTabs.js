@@ -13,7 +13,7 @@ function isNode(node) {
 
 // Determine if a node from event.target is a Tab element
 function isTabNode(node) {
-  return isNode(node) && node.getAttribute('role') === 'tab';
+  return isNode(node) && node.getAttribute('data-rttab');
 }
 
 // Determine if a tab node is disabled
@@ -347,7 +347,7 @@ export default class UncontrolledTabs extends Component {
     let nodeAncestor = node.parentElement;
     do {
       if (nodeAncestor === this.node) return true;
-      if (nodeAncestor.getAttribute('data-tabs')) break;
+      if (nodeAncestor.getAttribute('data-rttabs')) break;
 
       nodeAncestor = nodeAncestor.parentElement;
     } while (nodeAncestor);
@@ -383,7 +383,7 @@ export default class UncontrolledTabs extends Component {
           this.node = node;
           if (domRef) domRef(node);
         }}
-        data-tabs
+        data-rttabs
       >
         {this.getChildren()}
       </div>

@@ -3,7 +3,7 @@
 exports[`<Tabs /> child props should reset ids correctly 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -14,6 +14,7 @@ exports[`<Tabs /> child props should reset ids correctly 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       data-testid="tab1"
       id="react-tabs-0"
       role="tab"
@@ -26,6 +27,7 @@ exports[`<Tabs /> child props should reset ids correctly 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab2"
       id="react-tabs-2"
       role="tab"
@@ -37,6 +39,7 @@ exports[`<Tabs /> child props should reset ids correctly 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab3"
       id="react-tabs-4"
       role="tab"
@@ -52,6 +55,7 @@ exports[`<Tabs /> child props should reset ids correctly 1`] = `
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
+      data-rttab="true"
       data-testid="tab4"
       id="react-tabs-6"
       role="tab"
@@ -95,7 +99,7 @@ exports[`<Tabs /> child props should reset ids correctly 1`] = `
 exports[`<Tabs /> child props should reset ids correctly 2`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -106,6 +110,7 @@ exports[`<Tabs /> child props should reset ids correctly 2`] = `
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       data-testid="tab1"
       id="react-tabs-0"
       role="tab"
@@ -118,6 +123,7 @@ exports[`<Tabs /> child props should reset ids correctly 2`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab2"
       id="react-tabs-2"
       role="tab"
@@ -129,6 +135,7 @@ exports[`<Tabs /> child props should reset ids correctly 2`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab3"
       id="react-tabs-4"
       role="tab"
@@ -144,6 +151,7 @@ exports[`<Tabs /> child props should reset ids correctly 2`] = `
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
+      data-rttab="true"
       data-testid="tab4"
       id="react-tabs-6"
       role="tab"
@@ -187,7 +195,7 @@ exports[`<Tabs /> child props should reset ids correctly 2`] = `
 exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is true 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -198,6 +206,7 @@ exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is t
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       data-testid="tab1"
       id="react-tabs-0"
       role="tab"
@@ -210,6 +219,7 @@ exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is t
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab2"
       id="react-tabs-2"
       role="tab"
@@ -221,6 +231,7 @@ exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is t
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab3"
       id="react-tabs-4"
       role="tab"
@@ -236,6 +247,7 @@ exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is t
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
+      data-rttab="true"
       data-testid="tab4"
       id="react-tabs-6"
       role="tab"
@@ -285,7 +297,7 @@ exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is t
 exports[`<Tabs /> props should accept className 1`] = `
 <div
   class="foobar"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -296,6 +308,7 @@ exports[`<Tabs /> props should accept className 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       data-testid="tab1"
       id="react-tabs-0"
       role="tab"
@@ -308,6 +321,7 @@ exports[`<Tabs /> props should accept className 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab2"
       id="react-tabs-2"
       role="tab"
@@ -319,6 +333,7 @@ exports[`<Tabs /> props should accept className 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab3"
       id="react-tabs-4"
       role="tab"
@@ -334,6 +349,7 @@ exports[`<Tabs /> props should accept className 1`] = `
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
+      data-rttab="true"
       data-testid="tab4"
       id="react-tabs-6"
       role="tab"
@@ -377,7 +393,7 @@ exports[`<Tabs /> props should accept className 1`] = `
 exports[`<Tabs /> props should have sane defaults 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -388,6 +404,7 @@ exports[`<Tabs /> props should have sane defaults 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       data-testid="tab1"
       id="react-tabs-0"
       role="tab"
@@ -400,6 +417,7 @@ exports[`<Tabs /> props should have sane defaults 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab2"
       id="react-tabs-2"
       role="tab"
@@ -411,6 +429,7 @@ exports[`<Tabs /> props should have sane defaults 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab3"
       id="react-tabs-4"
       role="tab"
@@ -426,6 +445,7 @@ exports[`<Tabs /> props should have sane defaults 1`] = `
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
+      data-rttab="true"
       data-testid="tab4"
       id="react-tabs-6"
       role="tab"
@@ -469,7 +489,7 @@ exports[`<Tabs /> props should have sane defaults 1`] = `
 exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -480,6 +500,7 @@ exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab1"
       id="react-tabs-0"
       role="tab"
@@ -491,6 +512,7 @@ exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab2"
       id="react-tabs-2"
       role="tab"
@@ -502,6 +524,7 @@ exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab3"
       id="react-tabs-4"
       role="tab"
@@ -517,6 +540,7 @@ exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
+      data-rttab="true"
       data-testid="tab4"
       id="react-tabs-6"
       role="tab"
@@ -558,7 +582,7 @@ exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
 exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -569,6 +593,7 @@ exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab1"
       id="react-tabs-0"
       role="tab"
@@ -580,6 +605,7 @@ exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       data-testid="tab2"
       id="react-tabs-2"
       role="tab"
@@ -592,6 +618,7 @@ exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       data-testid="tab3"
       id="react-tabs-4"
       role="tab"
@@ -607,6 +634,7 @@ exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
+      data-rttab="true"
       data-testid="tab4"
       id="react-tabs-6"
       role="tab"
@@ -650,7 +678,7 @@ exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
 exports[`<Tabs /> should allow for higher order components 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -661,6 +689,7 @@ exports[`<Tabs /> should allow for higher order components 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       id="react-tabs-0"
       role="tab"
       tabindex="0"
@@ -672,6 +701,7 @@ exports[`<Tabs /> should allow for higher order components 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       id="react-tabs-2"
       role="tab"
     >
@@ -698,7 +728,7 @@ exports[`<Tabs /> should allow for higher order components 1`] = `
 exports[`<Tabs /> should allow string children 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   Foo
   <ul
@@ -711,6 +741,7 @@ exports[`<Tabs /> should allow string children 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       id="react-tabs-0"
       role="tab"
       tabindex="0"
@@ -723,6 +754,7 @@ exports[`<Tabs /> should allow string children 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       id="react-tabs-2"
       role="tab"
     >
@@ -751,14 +783,14 @@ exports[`<Tabs /> should allow string children 1`] = `
 exports[`<Tabs /> should not add known props to dom 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 />
 `;
 
 exports[`<Tabs /> should pass through custom properties 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
   data-tooltip="Tooltip contents"
 />
 `;
@@ -766,7 +798,7 @@ exports[`<Tabs /> should pass through custom properties 1`] = `
 exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <div
     id="tabs-nav-wrapper"
@@ -788,6 +820,7 @@ exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
           aria-disabled="false"
           aria-selected="true"
           class="react-tabs__tab react-tabs__tab--selected"
+          data-rttab="true"
           id="react-tabs-0"
           role="tab"
           tabindex="0"
@@ -797,6 +830,7 @@ exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
           aria-disabled="false"
           aria-selected="false"
           class="react-tabs__tab"
+          data-rttab="true"
           id="react-tabs-2"
           role="tab"
         />
@@ -830,7 +864,7 @@ exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
 exports[`<Tabs /> validation should allow random order for elements 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <div
     aria-labelledby="react-tabs-0"
@@ -849,6 +883,7 @@ exports[`<Tabs /> validation should allow random order for elements 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       id="react-tabs-0"
       role="tab"
       tabindex="0"
@@ -860,6 +895,7 @@ exports[`<Tabs /> validation should allow random order for elements 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
+      data-rttab="true"
       id="react-tabs-2"
       role="tab"
     >
@@ -880,7 +916,7 @@ exports[`<Tabs /> validation should allow random order for elements 1`] = `
 exports[`<Tabs /> validation should be okay with rendering just TabList 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -892,14 +928,14 @@ exports[`<Tabs /> validation should be okay with rendering just TabList 1`] = `
 exports[`<Tabs /> validation should be okay with rendering without any children 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 />
 `;
 
 exports[`<Tabs /> validation should gracefully render null 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -910,6 +946,7 @@ exports[`<Tabs /> validation should gracefully render null 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       id="react-tabs-0"
       role="tab"
       tabindex="0"
@@ -931,7 +968,7 @@ exports[`<Tabs /> validation should gracefully render null 1`] = `
 exports[`<Tabs /> validation should not throw a warning when wrong element is found 1`] = `
 <div
   class="react-tabs"
-  data-tabs="true"
+  data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
@@ -942,6 +979,7 @@ exports[`<Tabs /> validation should not throw a warning when wrong element is fo
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       id="react-tabs-0"
       role="tab"
       tabindex="0"

@@ -10,7 +10,7 @@ exports[`<TabList /> should accept className 1`] = `
 exports[`<TabList /> should allow for higher order components 1`] = `
 <div
   className="react-tabs"
-  data-tabs={true}
+  data-rttabs={true}
   onClick={[Function]}
   onKeyDown={[Function]}
 >
@@ -23,6 +23,7 @@ exports[`<TabList /> should allow for higher order components 1`] = `
       aria-disabled="false"
       aria-selected="true"
       className="react-tabs__tab react-tabs__tab--selected"
+      data-rttab={true}
       id="react-tabs-12"
       role="tab"
       tabIndex="0"
@@ -34,6 +35,7 @@ exports[`<TabList /> should allow for higher order components 1`] = `
       aria-disabled="false"
       aria-selected="false"
       className="react-tabs__tab"
+      data-rttab={true}
       id="react-tabs-14"
       role="tab"
       tabIndex={null}
@@ -61,7 +63,7 @@ exports[`<TabList /> should allow for higher order components 1`] = `
 exports[`<TabList /> should display the custom classnames for selected and disabled tab 1`] = `
 <div
   className="react-tabs"
-  data-tabs={true}
+  data-rttabs={true}
   onClick={[Function]}
   onKeyDown={[Function]}
 >
@@ -74,6 +76,7 @@ exports[`<TabList /> should display the custom classnames for selected and disab
       aria-disabled="false"
       aria-selected="true"
       className="react-tabs__tab active"
+      data-rttab={true}
       id="react-tabs-8"
       role="tab"
       tabIndex="0"
@@ -85,6 +88,7 @@ exports[`<TabList /> should display the custom classnames for selected and disab
       aria-disabled="true"
       aria-selected="false"
       className="react-tabs__tab disabled"
+      data-rttab={true}
       id="react-tabs-10"
       role="tab"
       tabIndex={null}
@@ -112,7 +116,7 @@ exports[`<TabList /> should display the custom classnames for selected and disab
 exports[`<TabList /> should display the custom classnames for selected and disabled tab specified on tabs 1`] = `
 <div
   className="react-tabs"
-  data-tabs={true}
+  data-rttabs={true}
   onClick={[Function]}
   onKeyDown={[Function]}
 >
@@ -125,6 +129,7 @@ exports[`<TabList /> should display the custom classnames for selected and disab
       aria-disabled="false"
       aria-selected="true"
       className="react-tabs__tab active"
+      data-rttab={true}
       id="react-tabs-4"
       role="tab"
       tabIndex="0"
@@ -136,6 +141,7 @@ exports[`<TabList /> should display the custom classnames for selected and disab
       aria-disabled="true"
       aria-selected="false"
       className="react-tabs__tab disabled"
+      data-rttab={true}
       id="react-tabs-6"
       role="tab"
       tabIndex={null}
@@ -185,7 +191,7 @@ exports[`<TabList /> should pass through custom properties 1`] = `
 exports[`<TabList /> should retain the default classnames for active and disabled tab 1`] = `
 <div
   className="react-tabs"
-  data-tabs={true}
+  data-rttabs={true}
   onClick={[Function]}
   onKeyDown={[Function]}
 >
@@ -198,6 +204,7 @@ exports[`<TabList /> should retain the default classnames for active and disable
       aria-disabled="false"
       aria-selected="true"
       className="react-tabs__tab react-tabs__tab--selected"
+      data-rttab={true}
       id="react-tabs-0"
       role="tab"
       tabIndex="0"
@@ -209,6 +216,7 @@ exports[`<TabList /> should retain the default classnames for active and disable
       aria-disabled="true"
       aria-selected="false"
       className="react-tabs__tab react-tabs__tab--disabled"
+      data-rttab={true}
       id="react-tabs-2"
       role="tab"
       tabIndex={null}

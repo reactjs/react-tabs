@@ -85,6 +85,7 @@ export default class Tab extends Component {
         aria-disabled={disabled ? 'true' : 'false'}
         aria-controls={panelId}
         tabIndex={tabIndex || (selected ? '0' : null)}
+        data-rttab
       >
         {children}
       </li>
