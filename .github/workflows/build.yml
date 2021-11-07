@@ -3,13 +3,13 @@ name: CI
 
 on:
   push:
-    branches: 
+    branches:
       - main
       - renovate/**
   pull_request:
 
 env:
-  NODE_VERSION: 14
+  NODE_VERSION: 16
 
 jobs:
   tests:
@@ -123,7 +123,7 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive
 
       - name: Release
-        run: yarn release
+        run: npx semantic-release --branches main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -152,7 +152,7 @@ jobs:
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --non-interactive
-        
+
       - name: Build
         run: yarn website
 

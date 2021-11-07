@@ -6,9 +6,7 @@ const modules = output == null ? false : output;
 
 const options = {
   presets: [['@babel/env', { loose: true, modules }], '@babel/react'],
-  plugins: [
-    ['@babel/proposal-class-properties', { loose: true }],
-  ],
+  plugins: [],
 };
 
 if (target === 'examples') {
