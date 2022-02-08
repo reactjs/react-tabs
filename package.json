@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.17.0",
-    "@babel/core": "7.17.0",
+    "@babel/core": "7.17.2",
     "@babel/eslint-parser": "7.17.0",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
