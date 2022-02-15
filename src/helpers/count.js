@@ -1,5 +1,5 @@
 import { deepForEach } from './childrenDeepMap';
-import { isTab, isTabPanel } from './elementTypes';
+import { isTab } from './elementTypes';
 
 export function getTabsCount(children) {
   let tabCount = 0;
@@ -8,13 +8,4 @@ export function getTabsCount(children) {
   });
 
   return tabCount;
-}
-
-export function getPanelsCount(children) {
-  let panelCount = 0;
-  deepForEach(children, (child) => {
-    if (isTabPanel(child)) panelCount++;
-  });
-
-  return panelCount;
 }

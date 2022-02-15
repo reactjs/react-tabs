@@ -264,6 +264,35 @@ describe('<Tabs />', () => {
       ).toThrowErrorMatchingSnapshot();
     });
 
+    test('should throw when mode of component changes', () => {
+      const { rerender } = render(
+        <Tabs defaultIndex={1} onSelect={() => {}}>
+          <TabList>
+            <Tab>Foo</Tab>
+            <Tab>Foo2</Tab>
+          </TabList>
+          <TabPanel>Foo</TabPanel>
+          <TabPanel>Foo2</TabPanel>
+        </Tabs>,
+      );
+      try {
+        rerender(
+          <Tabs selectedIndex={1} onSelect={() => {}}>
+            <TabList>
+              <Tab>Foo</Tab>
+              <Tab>Foo2</Tab>
+            </TabList>
+            <TabPanel>Foo</TabPanel>
+            <TabPanel>Foo2</TabPanel>
+          </Tabs>,
+        );
+      } catch (e) {
+        expect(e.message).toContain(
+          'Switching between controlled mode (by using `selectedIndex`) and uncontrolled mode is not supported in `Tabs`.',
+        );
+      }
+    });
+
     test('should result with warning when defaultIndex and selectedIndex set', () => {
       expect(() =>
         render(
