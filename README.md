@@ -1,4 +1,4 @@
-# react-tabs [![npm version](https://img.shields.io/npm/v/react-tabs.svg)](https://www.npmjs.com/package/react-tabs)
+# react-tabs [![npm version](https://img.shields.io/npm/v/react-tabs.svg)](https://www.npmjs.com/package/react-tabs) [![codecov](https://codecov.io/gh/reactjs/react-tabs/branch/main/graph/badge.svg?token=XnEVrthAub)](https://codecov.io/gh/reactjs/react-tabs)
 
 An accessible and easy tab component for ReactJS.
 
