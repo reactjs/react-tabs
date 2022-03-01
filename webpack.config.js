@@ -10,7 +10,6 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 const plugins = [
   new HtmlWebpackPlugin({
-    filename: 'index.html',
     inject: true,
     template: path.resolve(sourceDirectory, 'index.html'),
     minify: {
@@ -44,7 +43,14 @@ module.exports = {
     chunkFilename: 'chunk-[chunkhash].js',
     filename: '[name]-[chunkhash].js',
     hashDigestLength: 8,
-    publicPath: './',
+    publicPath: '/',
+  },
+  devServer: {
+    static: {
+      directory: targetDirectory,
+    },
+    allowedHosts: ['localhost', '.gitpod.io'],
+    port: 8000,
   },
   module: {
     rules: [

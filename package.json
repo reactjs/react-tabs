@@ -16,7 +16,7 @@
     "prebump": "run-s lint test",
     "prepublishOnly": "yarn run build",
     "test": "cross-env BABEL_OUTPUT=commonjs jest",
-    "start": "webpack serve --allowed-hosts all --static-directory examples --port 8000",
+    "start": "webpack serve",
     "website": "run-s website:clean website:build website:redirect",
     "website:clean": "rimraf examples/dist",
     "website:build": "cross-env BABEL_TARGET=examples NODE_ENV=production webpack",
