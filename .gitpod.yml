@@ -1,2 +1,8 @@
+
 tasks:
   - init: yarn install && yarn run builds
+
+vscode:
+  extensions:
+    - esbenp.prettier-vscode
+    - dbaeumer.vscode-eslint
