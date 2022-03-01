@@ -105,6 +105,10 @@
       "src"
     ],
     "testRegex": "/__tests__/.+-test\\.js$",
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "coveragePathIgnorePatterns": [
+      "/node_module/",
+      "/__tests__/"
+    ]
   }
 }
