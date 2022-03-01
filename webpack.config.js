@@ -43,7 +43,7 @@ module.exports = {
     chunkFilename: 'chunk-[chunkhash].js',
     filename: '[name]-[chunkhash].js',
     hashDigestLength: 8,
-    publicPath: '/',
+    publicPath: isDev ? '/' : './',
   },
   devServer: {
     static: {
