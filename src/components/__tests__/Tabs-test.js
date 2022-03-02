@@ -156,6 +156,42 @@ describe('<Tabs />', () => {
         assertTabSelected(2);
       });
 
+      test('should overflow when arrow right key pressed and no right tab available', () => {
+        render(createTabs());
+        const element = screen.getByTestId('tab3');
+        userEvent.click(element);
+        userEvent.type(element, '{arrowright}');
+
+        assertTabSelected(1);
+      });
+
+      test('should overflow when arrow left key pressed and no left tab available', () => {
+        render(createTabs());
+        const element = screen.getByTestId('tab1');
+        userEvent.click(element);
+        userEvent.type(element, '{arrowleft}');
+
+        assertTabSelected(3);
+      });
+
+      test('should move to first tab on home key', () => {
+        render(createTabs());
+        const element = screen.getByTestId('tab3');
+        userEvent.click(element);
+        userEvent.type(element, '{home}');
+
+        assertTabSelected(1);
+      });
+
+      test('should move to first tab on end key', () => {
+        render(createTabs());
+        const element = screen.getByTestId('tab1');
+        userEvent.click(element);
+        userEvent.type(element, '{end}');
+
+        assertTabSelected(3);
+      });
+
       test('should update selectedIndex when arrow left key pressed (RTL)', () => {
         render(createTabs({ direction: 'rtl' }));
         const element = screen.getByTestId('tab1');
@@ -163,6 +199,15 @@ describe('<Tabs />', () => {
         userEvent.type(element, '{arrowleft}');
 
         assertTabSelected(2);
+      });
+
+      test('should update selectedIndex when arrow right key pressed (RTL)', () => {
+        render(createTabs({ direction: 'rtl' }));
+        const element = screen.getByTestId('tab2');
+        userEvent.click(element);
+        userEvent.type(element, '{arrowright}');
+
+        assertTabSelected(1);
       });
 
       test.skip('should not change selectedIndex when arrow left key pressed on a disabled tab', () => {

@@ -38,6 +38,7 @@ function determineCanUseActiveElement(environment) {
     // Refer to the following resources:
     // http://stackoverflow.com/a/10982960/369687
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12733599
+    // istanbul ignore next
     canUseActiveElement = false;
   }
 }
@@ -265,13 +266,16 @@ const UncontrolledTabs = (props) => {
       let preventDefault = false;
       let useSelectedIndex = false;
 
-      if (e.keyCode === 32 || e.keyCode === 13) {
+      if (e.keyCode === 32 /* space */ || e.keyCode === 13 /* enter */) {
         preventDefault = true;
         useSelectedIndex = false;
         handleClick(e);
       }
 
-      if (e.keyCode === 37 || (!disableUpDownKeys && e.keyCode === 38)) {
+      if (
+        e.keyCode === 37 /* arrow left */ ||
+        (!disableUpDownKeys && e.keyCode === 38) /* arrow up */
+      ) {
         // Select next tab to the left, validate if up arrow is not disabled
         if (direction === 'rtl') {
           index = getNextTab(index);
@@ -280,7 +284,10 @@ const UncontrolledTabs = (props) => {
         }
         preventDefault = true;
         useSelectedIndex = true;
-      } else if (e.keyCode === 39 || (!disableUpDownKeys && e.keyCode === 40)) {
+      } else if (
+        e.keyCode === 39 /* arrow right */ ||
+        (!disableUpDownKeys && e.keyCode === 40) /* arrow down */
+      ) {
         // Select next tab to the right, validate if down arrow is not disabled
         if (direction === 'rtl') {
           index = getPrevTab(index);
