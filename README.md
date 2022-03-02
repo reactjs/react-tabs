@@ -4,7 +4,7 @@ An accessible and easy tab component for ReactJS.
 
 https://reactcommunity.org/react-tabs/
 
-> Supports React 16.3.0 or newer
+> Supports React 16.8.0 or newer
 
 <ins><blockquote class="rich-diff-level-zero"> <p class="rich-diff-level-one">react-tabs was tested on real mobile devices and browsers with<br>
   <img src="./examples/src/images/Browserstack-logo.svg" height="50" alt="Browserstack">
