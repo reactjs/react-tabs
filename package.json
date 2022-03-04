@@ -85,7 +85,7 @@
     "react-modal": "3.14.4",
     "react-test-renderer": "17.0.2",
     "rimraf": "3.0.2",
-    "rollup": "2.69.0",
+    "rollup": "2.69.1",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-ignore": "1.0.10",
