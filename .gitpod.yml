@@ -1,6 +1,6 @@
 
 tasks:
-  - init: yarn install && yarn run builds
+  - init: yarn install && yarn run build
 
 vscode:
   extensions:
