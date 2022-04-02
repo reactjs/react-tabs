@@ -1322,10 +1322,10 @@
     "@testing-library/dom" "^8.5.0"
     "@types/react-dom" "*"
 
-"@testing-library/user-event@14.0.2":
-  version "14.0.2"
-  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.0.2.tgz#dccf8aa4fcc1ccee2872a5c40b5c9b481cc475cb"
-  integrity sha512-EyFixW34OaSoYN1x+L0Wi7RQPfj/plZKjWgGf0g+tX2cen7qF/4E3VrDOe0Ykym2UHW5XwUz0ZjHJRwSBFdKPw==
+"@testing-library/user-event@14.0.4":
+  version "14.0.4"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.0.4.tgz#5b430a9c27f25078bff4471661b755115d0db9d4"
+  integrity sha512-VBZe5lcUsmrQyOwIFvqOxLBoaTw1/Qy4Ek+VgmFYs719bs2SxUp42vbsb7ATlQDkHdj4OIQlucfpwxe5WoG1jA==
 
 "@tootallnate/once@1":
   version "1.1.2"
