@@ -6,12 +6,20 @@ import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
-import { reset as resetIdCounter } from '../../helpers/uuid';
 import {
   TabListWrapper,
   TabWrapper,
   TabPanelWrapper,
 } from './helpers/higherOrder';
+
+jest.mock('react', () => {
+  const originalModule = jest.requireActual('react');
+
+  return {
+    ...originalModule,
+    useId: () => ':r0:',
+  };
+});
 
 function expectToMatchSnapshot(component) {
   expect(render(component).container.firstChild).toMatchSnapshot();
@@ -47,8 +55,6 @@ function assertTabSelected(tabNo, node = screen) {
 }
 
 describe('<Tabs />', () => {
-  beforeEach(() => resetIdCounter());
-
   describe('props', () => {
     test('should have sane defaults', () => {
       expectToMatchSnapshot(createTabs());
@@ -95,16 +101,6 @@ describe('<Tabs />', () => {
 
       expect(domNode).not.toBeUndefined();
       expect(domNode.className).toBe('react-tabs');
-    });
-  });
-
-  describe('child props', () => {
-    test('should reset ids correctly', () => {
-      expectToMatchSnapshot(createTabs());
-
-      resetIdCounter();
-
-      expectToMatchSnapshot(createTabs());
     });
   });
 

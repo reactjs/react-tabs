@@ -6,7 +6,15 @@ import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
-import { reset as resetIdCounter } from '../../helpers/uuid';
+
+jest.mock('react', () => {
+  const originalModule = jest.requireActual('react');
+
+  return {
+    ...originalModule,
+    useId: () => ':r0:',
+  };
+});
 
 function createTabs(props = {}) {
   return (
@@ -28,15 +36,6 @@ function createTabs(props = {}) {
 }
 
 describe('ServerSide <Tabs />', () => {
-  beforeEach(() => resetIdCounter());
-
-  beforeAll(() => {
-    // eslint-disable-next-line no-console
-    console.error = (error) => {
-      throw new Error(error);
-    };
-  });
-
   test('does not crash in node environments', () => {
     expect(() => createTabs()).not.toThrow();
   });
