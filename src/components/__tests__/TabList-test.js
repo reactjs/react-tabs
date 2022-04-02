@@ -6,6 +6,15 @@ import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 import { TabListWrapper, TabWrapper } from './helpers/higherOrder';
 
+jest.mock('react', () => {
+  const originalModule = jest.requireActual('react');
+
+  return {
+    ...originalModule,
+    useId: () => ':r0:',
+  };
+});
+
 function expectToMatchSnapshot(component) {
   expect(renderer.create(component).toJSON()).toMatchSnapshot();
 }

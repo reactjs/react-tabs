@@ -33,7 +33,7 @@ describe('<TabPanel />', () => {
 
   it('should support being selected', () => {
     expectToMatchSnapshot(
-      <TabPanel selected id="abcd" tabId="1234">
+      <TabPanel selected id="abcd">
         Hola
       </TabPanel>,
     );
@@ -41,7 +41,7 @@ describe('<TabPanel />', () => {
 
   it('should support being selected with custom class name', () => {
     expectToMatchSnapshot(
-      <TabPanel selected id="abcd" tabId="1234" selectedClassName="selected">
+      <TabPanel selected id="abcd" selectedClassName="selected">
         Hola
       </TabPanel>,
     );

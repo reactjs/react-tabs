@@ -2,43 +2,55 @@
 
 exports[`<TabPanel /> should accept className 1`] = `
 <div
+  aria-labelledby="tabundefined"
   className="foobar"
+  id="panelundefined"
   role="tabpanel"
 />
 `;
 
 exports[`<TabPanel /> should allow for higher-order components 1`] = `
 <div
+  aria-labelledby="tabundefined"
   className="react-tabs__tab-panel"
+  id="panelundefined"
   role="tabpanel"
 />
 `;
 
 exports[`<TabPanel /> should have sane defaults 1`] = `
 <div
+  aria-labelledby="tabundefined"
   className="react-tabs__tab-panel"
+  id="panelundefined"
   role="tabpanel"
 />
 `;
 
 exports[`<TabPanel /> should not allow overriding all default properties 1`] = `
 <div
+  aria-labelledby="tabundefined"
   className="react-tabs__tab-panel"
+  id="panelundefined"
   role="tabpanel"
 />
 `;
 
 exports[`<TabPanel /> should pass through custom properties 1`] = `
 <div
+  aria-labelledby="tabundefined"
   className="react-tabs__tab-panel"
   data-tooltip="Tooltip contents"
+  id="panelundefined"
   role="tabpanel"
 />
 `;
 
 exports[`<TabPanel /> should render when forced 1`] = `
 <div
+  aria-labelledby="tabundefined"
   className="react-tabs__tab-panel"
+  id="panelundefined"
   role="tabpanel"
 >
   Hola
@@ -47,7 +59,9 @@ exports[`<TabPanel /> should render when forced 1`] = `
 
 exports[`<TabPanel /> should render when selected 1`] = `
 <div
+  aria-labelledby="tabundefined"
   className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+  id="panelundefined"
   role="tabpanel"
 >
   Hola
@@ -56,9 +70,9 @@ exports[`<TabPanel /> should render when selected 1`] = `
 
 exports[`<TabPanel /> should support being selected 1`] = `
 <div
-  aria-labelledby="1234"
+  aria-labelledby="tababcd"
   className="react-tabs__tab-panel react-tabs__tab-panel--selected"
-  id="abcd"
+  id="panelabcd"
   role="tabpanel"
 >
   Hola
@@ -67,9 +81,9 @@ exports[`<TabPanel /> should support being selected 1`] = `
 
 exports[`<TabPanel /> should support being selected with custom class name 1`] = `
 <div
-  aria-labelledby="1234"
+  aria-labelledby="tababcd"
   className="react-tabs__tab-panel selected"
-  id="abcd"
+  id="panelabcd"
   role="tabpanel"
 >
   Hola
