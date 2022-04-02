@@ -467,7 +467,7 @@ describe('<Tabs />', () => {
     assertTabSelected(1);
   });
 
-  test('should not focus tabs if focusTabOnClick is false', () => {
+  test('should not focus tabs if focusTabOnClick is false', async () => {
     render(createTabs({ focusTabOnClick: false }));
     const firstTab = screen.getByTestId('tab1');
     const secondTab = screen.getByTestId('tab2');
@@ -476,13 +476,13 @@ describe('<Tabs />', () => {
     expect(secondTab).not.toHaveFocus();
     assertTabSelected(1);
 
-    userEvent.click(secondTab);
+    await userEvent.click(secondTab);
     expect(firstTab).not.toHaveFocus();
     expect(secondTab).not.toHaveFocus();
     assertTabSelected(2);
   });
 
-  test('should not focus tab again on rerender', () => {
+  test('should not focus tab again on rerender', async () => {
     const { rerender } = render(
       <>
         <input data-testid="input1" />
@@ -495,12 +495,12 @@ describe('<Tabs />', () => {
     expect(firstTab).not.toHaveFocus();
     expect(inputField).not.toHaveFocus();
 
-    userEvent.click(firstTab);
+    await userEvent.click(firstTab);
 
     expect(firstTab).toHaveFocus();
     expect(inputField).not.toHaveFocus();
 
-    userEvent.click(inputField);
+    await userEvent.click(inputField);
 
     expect(firstTab).not.toHaveFocus();
     expect(inputField).toHaveFocus();
