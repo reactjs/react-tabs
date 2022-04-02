@@ -151,6 +151,26 @@ describe('<Tabs />', () => {
         assertTabSelected(1);
       });
 
+      test('should not do anything when arrow right key pressed and no other tab available', async () => {
+        render(
+          <Tabs>
+            <TabList>
+              <Tab data-testid="tab1">Tab1</Tab>
+              <Tab data-testid="tab2" disabled>
+                Tab2
+              </Tab>
+            </TabList>
+            <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
+            <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
+          </Tabs>,
+        );
+        const element = screen.getByTestId('tab1');
+        await userEvent.click(element);
+        await userEvent.keyboard('{ArrowRight}');
+
+        assertTabSelected(1);
+      });
+
       test('should overflow when arrow left key pressed and no left tab available', async () => {
         render(createTabs());
         const element = screen.getByTestId('tab1');
@@ -158,6 +178,26 @@ describe('<Tabs />', () => {
         await userEvent.keyboard('{ArrowLeft}');
 
         assertTabSelected(3);
+      });
+
+      test('should not do anything when arrow left key pressed and no other tab available', async () => {
+        render(
+          <Tabs>
+            <TabList>
+              <Tab data-testid="tab1" disabled>
+                Tab1
+              </Tab>
+              <Tab data-testid="tab2">Tab2</Tab>
+            </TabList>
+            <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
+            <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
+          </Tabs>,
+        );
+        const element = screen.getByTestId('tab2');
+        await userEvent.click(element);
+        await userEvent.keyboard('{ArrowLeft}');
+
+        assertTabSelected(2);
       });
 
       test('should move to first tab on home key', async () => {
