@@ -4,6 +4,7 @@
   "description": "An accessible and easy tab component for ReactJS",
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "clean:commonjs": "rimraf lib",
     "clean:umd": "rimraf dist",
@@ -36,7 +37,8 @@
     "esm",
     "lib",
     "style",
-    "src"
+    "src",
+    "index.d.ts"
   ],
   "homepage": "https://github.com/reactjs/react-tabs",
   "keywords": [
