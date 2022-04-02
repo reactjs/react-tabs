@@ -994,22 +994,3 @@ exports[`<Tabs /> validation should not throw a warning when wrong element is fo
   />
 </div>
 `;
-
-exports[`<Tabs /> validation should result with warning when defaultIndex and selectedIndex set 1`] = `
-"Warning: Failed prop type: The prop \`selectedIndex\` cannot be used together with \`defaultIndex\` in \`Tabs\`.
-Either remove \`selectedIndex\` to let \`Tabs\` handle the selected tab internally or remove \`defaultIndex\` to handle it yourself."
-`;
-
-exports[`<Tabs /> validation should result with warning when multiple tablist components exist 1`] = `"Warning: Failed prop type: Found multiple 'TabList' components inside 'Tabs'. Only one is allowed."`;
-
-exports[`<Tabs /> validation should result with warning when onSelect missing when selectedIndex set 1`] = `
-"Warning: Failed prop type: The prop \`onSelect\` is marked as required in \`Tabs\`, but its value is \`undefined\` or \`null\`.
-\`onSelect\` is required when \`selectedIndex\` is also set. Not doing so will make the tabs not do anything, as \`selectedIndex\` indicates that you want to handle the selected tab yourself.
-If you only want to set the inital tab replace \`selectedIndex\` with \`defaultIndex\`."
-`;
-
-exports[`<Tabs /> validation should result with warning when tab outside of tablist 1`] = `"Warning: Failed prop type: Found a 'Tab' component outside of the 'TabList' component. 'Tab' components have to be inside the 'TabList' component."`;
-
-exports[`<Tabs /> validation should result with warning when tabs/panels are imbalanced 1`] = `"Warning: Failed prop type: There should be an equal number of 'Tab' and 'TabPanel' in \`Tabs\`. Received 1 'Tab' and 0 'TabPanel'."`;
-
-exports[`<Tabs /> validation should result with warning when tabs/panels are imbalanced and it should ignore non tab children 1`] = `"Warning: Failed prop type: There should be an equal number of 'Tab' and 'TabPanel' in \`Tabs\`. Received 1 'Tab' and 2 'TabPanel'."`;

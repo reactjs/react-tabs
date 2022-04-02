@@ -1,4 +1,3 @@
-import { format } from 'util';
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -50,19 +49,6 @@ function assertTabSelected(tabNo, node = screen) {
 describe('<Tabs />', () => {
   beforeEach(() => resetIdCounter());
 
-  beforeAll(() => {
-    // eslint-disable-next-line no-console
-    console.error = (error, ...args) => {
-      if (args.length > 0 && typeof error === 'string') {
-        if (error.endsWith('%s%s')) {
-          throw new Error(format(error.slice(0, -2), ...args.slice(0, -1)));
-        }
-        throw new Error(format(error, ...args));
-      }
-      throw new Error(error);
-    };
-  });
-
   describe('props', () => {
     test('should have sane defaults', () => {
       expectToMatchSnapshot(createTabs());
@@ -76,7 +62,7 @@ describe('<Tabs />', () => {
       expectToMatchSnapshot(createTabs({ defaultIndex: -1 }));
     });
 
-    test('should call onSelect when selection changes', () => {
+    test('should call onSelect when selection changes', async () => {
       const called = { index: -1, last: -1 };
       render(
         createTabs({
@@ -87,7 +73,7 @@ describe('<Tabs />', () => {
         }),
       );
 
-      userEvent.click(screen.getByTestId('tab2'));
+      await userEvent.click(screen.getByTestId('tab2'));
 
       expect(called.index).toBe(1);
       expect(called.last).toBe(0);
@@ -124,97 +110,97 @@ describe('<Tabs />', () => {
 
   describe('interaction', () => {
     describe('mouse', () => {
-      test('should update selectedIndex when clicked', () => {
+      test('should update selectedIndex when clicked', async () => {
         render(createTabs());
-        userEvent.click(screen.getByTestId('tab2'));
+        await userEvent.click(screen.getByTestId('tab2'));
 
         assertTabSelected(2);
       });
 
-      test('should update selectedIndex when tab child is clicked', () => {
+      test('should update selectedIndex when tab child is clicked', async () => {
         render(createTabs());
-        userEvent.click(screen.getByTestId('tab3'));
+        await userEvent.click(screen.getByTestId('tab3'));
 
         assertTabSelected(3);
       });
 
-      test('should not change selectedIndex when clicking a disabled tab', () => {
+      test('should not change selectedIndex when clicking a disabled tab', async () => {
         render(createTabs({ defaultIndex: 0 }));
-        userEvent.click(screen.getByTestId('tab4'));
+        await userEvent.click(screen.getByTestId('tab4'));
 
         assertTabSelected(1);
       });
     });
 
     describe('keyboard', () => {
-      test('should update selectedIndex when arrow right key pressed', () => {
+      test('should update selectedIndex when arrow right key pressed', async () => {
         render(createTabs());
         const element = screen.getByTestId('tab1');
-        userEvent.click(element);
-        userEvent.type(element, '{arrowright}');
+        await userEvent.click(element);
+        await userEvent.type(element, '{ArrowRight}');
 
         assertTabSelected(2);
       });
 
-      test('should overflow when arrow right key pressed and no right tab available', () => {
+      test('should overflow when arrow right key pressed and no right tab available', async () => {
         render(createTabs());
         const element = screen.getByTestId('tab3');
-        userEvent.click(element);
-        userEvent.type(element, '{arrowright}');
+        await userEvent.click(element);
+        await userEvent.type(element, '{ArrowRight}');
 
         assertTabSelected(1);
       });
 
-      test('should overflow when arrow left key pressed and no left tab available', () => {
+      test('should overflow when arrow left key pressed and no left tab available', async () => {
         render(createTabs());
         const element = screen.getByTestId('tab1');
-        userEvent.click(element);
-        userEvent.type(element, '{arrowleft}');
+        await userEvent.click(element);
+        await userEvent.keyboard('{ArrowLeft}');
 
         assertTabSelected(3);
       });
 
-      test('should move to first tab on home key', () => {
+      test('should move to first tab on home key', async () => {
         render(createTabs());
         const element = screen.getByTestId('tab3');
-        userEvent.click(element);
-        userEvent.type(element, '{home}');
+        await userEvent.click(element);
+        await userEvent.type(element, '{Home}');
 
         assertTabSelected(1);
       });
 
-      test('should move to first tab on end key', () => {
+      test('should move to first tab on end key', async () => {
         render(createTabs());
         const element = screen.getByTestId('tab1');
-        userEvent.click(element);
-        userEvent.type(element, '{end}');
+        await userEvent.click(element);
+        await userEvent.type(element, '{End}');
 
         assertTabSelected(3);
       });
 
-      test('should update selectedIndex when arrow left key pressed (RTL)', () => {
+      test('should update selectedIndex when arrow left key pressed (RTL)', async () => {
         render(createTabs({ direction: 'rtl' }));
         const element = screen.getByTestId('tab1');
-        userEvent.click(element);
-        userEvent.type(element, '{arrowleft}');
+        await userEvent.click(element);
+        await userEvent.type(element, '{ArrowLeft}');
 
         assertTabSelected(2);
       });
 
-      test('should update selectedIndex when arrow right key pressed (RTL)', () => {
+      test('should update selectedIndex when arrow right key pressed (RTL)', async () => {
         render(createTabs({ direction: 'rtl' }));
         const element = screen.getByTestId('tab2');
-        userEvent.click(element);
-        userEvent.type(element, '{arrowright}');
+        await userEvent.click(element);
+        await userEvent.type(element, '{ArrowRight}');
 
         assertTabSelected(1);
       });
 
-      test.skip('should not change selectedIndex when arrow left key pressed on a disabled tab', () => {
+      test('should not change selectedIndex when arrow left key pressed on a disabled tab', async () => {
         render(createTabs());
         const element = screen.getByTestId('tab4');
-        userEvent.click(element);
-        userEvent.type(element, '{arrowleft}');
+        await userEvent.click(element);
+        await userEvent.type(element, '{ArrowLeft}');
 
         assertTabSelected(1);
       });
@@ -222,7 +208,7 @@ describe('<Tabs />', () => {
   });
 
   describe('performance', () => {
-    test('should only render the selected tab panel', () => {
+    test('should only render the selected tab panel', async () => {
       render(createTabs());
       const tabPanels = screen.getAllByRole('tabpanel');
 
@@ -231,14 +217,14 @@ describe('<Tabs />', () => {
       expect(tabPanels[2]).toHaveTextContent('');
       expect(tabPanels[3]).toHaveTextContent('');
 
-      userEvent.click(screen.getByTestId('tab2'));
+      await userEvent.click(screen.getByTestId('tab2'));
 
       expect(tabPanels[0]).toHaveTextContent('');
       expect(tabPanels[1]).toHaveTextContent('Hello Tab2');
       expect(tabPanels[2]).toHaveTextContent('');
       expect(tabPanels[3]).toHaveTextContent('');
 
-      userEvent.click(screen.getByTestId('tab3'));
+      await userEvent.click(screen.getByTestId('tab3'));
 
       expect(tabPanels[0]).toHaveTextContent('');
       expect(tabPanels[1]).toHaveTextContent('');
@@ -252,121 +238,6 @@ describe('<Tabs />', () => {
   });
 
   describe('validation', () => {
-    test('should result with warning when tabs/panels are imbalanced', () => {
-      expect(() =>
-        render(
-          <Tabs>
-            <TabList>
-              <Tab>Foo</Tab>
-            </TabList>
-          </Tabs>,
-        ),
-      ).toThrowErrorMatchingSnapshot();
-    });
-
-    test('should result with warning when tab outside of tablist', () => {
-      expect(() =>
-        render(
-          <Tabs>
-            <TabList>
-              <Tab>Foo</Tab>
-            </TabList>
-            <Tab>Foo</Tab>
-            <TabPanel />
-            <TabPanel />
-          </Tabs>,
-        ),
-      ).toThrowErrorMatchingSnapshot();
-    });
-
-    test('should result with warning when multiple tablist components exist', () => {
-      expect(() =>
-        render(
-          <Tabs>
-            <TabList>
-              <Tab>Foo</Tab>
-            </TabList>
-            <TabList>
-              <Tab>Foo</Tab>
-            </TabList>
-            <TabPanel />
-            <TabPanel />
-          </Tabs>,
-        ),
-      ).toThrowErrorMatchingSnapshot();
-    });
-
-    test('should result with warning when onSelect missing when selectedIndex set', () => {
-      expect(() =>
-        render(
-          <Tabs selectedIndex={1}>
-            <TabList>
-              <Tab>Foo</Tab>
-            </TabList>
-            <TabPanel>Foo</TabPanel>
-          </Tabs>,
-        ),
-      ).toThrowErrorMatchingSnapshot();
-    });
-
-    test('should throw when mode of component changes', () => {
-      const { rerender } = render(
-        <Tabs defaultIndex={1} onSelect={() => {}}>
-          <TabList>
-            <Tab>Foo</Tab>
-            <Tab>Foo2</Tab>
-          </TabList>
-          <TabPanel>Foo</TabPanel>
-          <TabPanel>Foo2</TabPanel>
-        </Tabs>,
-      );
-      try {
-        rerender(
-          <Tabs selectedIndex={1} onSelect={() => {}}>
-            <TabList>
-              <Tab>Foo</Tab>
-              <Tab>Foo2</Tab>
-            </TabList>
-            <TabPanel>Foo</TabPanel>
-            <TabPanel>Foo2</TabPanel>
-          </Tabs>,
-        );
-      } catch (e) {
-        expect(e.message).toContain(
-          'Switching between controlled mode (by using `selectedIndex`) and uncontrolled mode is not supported in `Tabs`.',
-        );
-      }
-    });
-
-    test('should result with warning when defaultIndex and selectedIndex set', () => {
-      expect(() =>
-        render(
-          <Tabs selectedIndex={1} defaultIndex={1}>
-            <TabList>
-              <Tab>Foo</Tab>
-            </TabList>
-            <TabPanel>Foo</TabPanel>
-          </Tabs>,
-        ),
-      ).toThrowErrorMatchingSnapshot();
-    });
-
-    test('should result with warning when tabs/panels are imbalanced and it should ignore non tab children', () => {
-      expect(() =>
-        render(
-          <Tabs>
-            <TabList>
-              <Tab>Foo</Tab>
-              <div>+</div>
-            </TabList>
-
-            <TabPanel>Hello Foo</TabPanel>
-            <TabPanel>Hello Bar</TabPanel>
-          </Tabs>,
-        ),
-      ).toThrowErrorMatchingSnapshot();
-    });
-
     test('should allow random order for elements', () => {
       expectToMatchSnapshot(
         <Tabs forceRenderTabPanel>
@@ -417,7 +288,7 @@ describe('<Tabs />', () => {
       );
     });
 
-    test('should support nested tabs', () => {
+    test('should support nested tabs', async () => {
       render(
         <Tabs data-testid="first">
           <TabList>
@@ -439,7 +310,9 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      userEvent.click(within(screen.getByTestId('second')).getByTestId('tab2'));
+      await userEvent.click(
+        within(screen.getByTestId('second')).getByTestId('tab2'),
+      );
 
       assertTabSelected(1);
       assertTabSelected(2, within(screen.getByTestId('second')));
@@ -475,19 +348,19 @@ describe('<Tabs />', () => {
     expectToMatchSnapshot(<Tabs defaultIndex={3} />);
   });
 
-  test('should cancel if event handler returns false', () => {
+  test('should cancel if event handler returns false', async () => {
     render(createTabs({ onSelect: () => false }));
 
     assertTabSelected(1);
 
-    userEvent.click(screen.getByTestId('tab2'));
+    await userEvent.click(screen.getByTestId('tab2'));
     assertTabSelected(1);
 
-    userEvent.click(screen.getByTestId('tab3'));
+    await userEvent.click(screen.getByTestId('tab3'));
     assertTabSelected(1);
   });
 
-  test('should trigger onSelect handler when clicking', () => {
+  test('should trigger onSelect handler when clicking', async () => {
     let wasClicked = false;
     render(
       createTabs({
@@ -499,12 +372,12 @@ describe('<Tabs />', () => {
 
     assertTabSelected(1);
 
-    userEvent.click(screen.getByTestId('tab2'));
+    await userEvent.click(screen.getByTestId('tab2'));
     assertTabSelected(2);
     expect(wasClicked).toBe(true);
   });
 
-  test('should trigger onSelect handler when clicking on open tab', () => {
+  test('should trigger onSelect handler when clicking on open tab', async () => {
     let wasClicked = false;
     render(
       createTabs({
@@ -516,12 +389,12 @@ describe('<Tabs />', () => {
 
     assertTabSelected(1);
 
-    userEvent.click(screen.getByTestId('tab1'));
+    await userEvent.click(screen.getByTestId('tab1'));
     assertTabSelected(1);
     expect(wasClicked).toBe(true);
   });
 
-  test('should switch tabs if setState is called within onSelect', () => {
+  test('should switch tabs if setState is called within onSelect', async () => {
     class Wrap extends React.Component {
       state = {};
 
@@ -538,10 +411,10 @@ describe('<Tabs />', () => {
 
     render(<Wrap />);
 
-    userEvent.click(screen.getByTestId('tab2'));
+    await userEvent.click(screen.getByTestId('tab2'));
     assertTabSelected(2);
 
-    userEvent.click(screen.getByTestId('tab3'));
+    await userEvent.click(screen.getByTestId('tab3'));
     assertTabSelected(3);
   });
 
@@ -576,25 +449,25 @@ describe('<Tabs />', () => {
     );
   });
 
-  test('should change tabs when arrow up/down is pressed', () => {
+  test('should change tabs when arrow up/down is pressed', async () => {
     render(createTabs());
     const firstTab = screen.getByTestId('tab1');
     const secondTab = screen.getByTestId('tab2');
 
-    userEvent.tab();
+    await userEvent.tab();
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
 
-    userEvent.type(firstTab, '{arrowdown}');
+    await userEvent.type(firstTab, '{ArrowDown}');
     expect(secondTab).toHaveFocus();
     assertTabSelected(2);
 
-    userEvent.type(secondTab, '{arrowup}');
+    await userEvent.type(secondTab, '{ArrowUp}');
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
   });
 
-  test('should not focus tabs if focusTabOnClick is false', () => {
+  test('should not focus tabs if focusTabOnClick is false', async () => {
     render(createTabs({ focusTabOnClick: false }));
     const firstTab = screen.getByTestId('tab1');
     const secondTab = screen.getByTestId('tab2');
@@ -603,13 +476,13 @@ describe('<Tabs />', () => {
     expect(secondTab).not.toHaveFocus();
     assertTabSelected(1);
 
-    userEvent.click(secondTab);
+    await userEvent.click(secondTab);
     expect(firstTab).not.toHaveFocus();
     expect(secondTab).not.toHaveFocus();
     assertTabSelected(2);
   });
 
-  test('should not focus tab again on rerender', () => {
+  test('should not focus tab again on rerender', async () => {
     const { rerender } = render(
       <>
         <input data-testid="input1" />
@@ -622,12 +495,12 @@ describe('<Tabs />', () => {
     expect(firstTab).not.toHaveFocus();
     expect(inputField).not.toHaveFocus();
 
-    userEvent.click(firstTab);
+    await userEvent.click(firstTab);
 
     expect(firstTab).toHaveFocus();
     expect(inputField).not.toHaveFocus();
 
-    userEvent.click(inputField);
+    await userEvent.click(inputField);
 
     expect(firstTab).not.toHaveFocus();
     expect(inputField).toHaveFocus();
@@ -643,7 +516,7 @@ describe('<Tabs />', () => {
     expect(inputField).toHaveFocus();
   });
 
-  test('should not change tabs when arrow up/down is pressed and disableUpDownKeys is passed', () => {
+  test('should not change tabs when arrow up/down is pressed and disableUpDownKeys is passed', async () => {
     render(
       createTabs({
         disableUpDownKeys: true,
@@ -651,15 +524,15 @@ describe('<Tabs />', () => {
     );
     const firstTab = screen.getByTestId('tab1');
 
-    userEvent.tab();
+    await userEvent.tab();
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
 
-    userEvent.type(firstTab, '{arrowdown}');
+    await userEvent.type(firstTab, '{ArrowDown}');
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
 
-    userEvent.type(firstTab, '{arrowup}');
+    await userEvent.type(firstTab, '{ArrowUp}');
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
   });

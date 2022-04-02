@@ -266,15 +266,24 @@ const UncontrolledTabs = (props) => {
       let preventDefault = false;
       let useSelectedIndex = false;
 
-      if (e.keyCode === 32 /* space */ || e.keyCode === 13 /* enter */) {
+      if (
+        e.code === 'Space' ||
+        e.keyCode === 32 /* space */ ||
+        e.code === 'Enter' ||
+        e.keyCode === 13 /* enter */
+      ) {
         preventDefault = true;
         useSelectedIndex = false;
         handleClick(e);
       }
 
+      // keyCode is deprecated and only used here for IE
+
       if (
+        e.code === 'ArrowLeft' ||
         e.keyCode === 37 /* arrow left */ ||
-        (!disableUpDownKeys && e.keyCode === 38) /* arrow up */
+        (!disableUpDownKeys &&
+          (e.keyCode === 38 || e.code === 'ArrowUp')) /* arrow up */
       ) {
         // Select next tab to the left, validate if up arrow is not disabled
         if (direction === 'rtl') {
@@ -285,8 +294,10 @@ const UncontrolledTabs = (props) => {
         preventDefault = true;
         useSelectedIndex = true;
       } else if (
+        e.code === 'ArrowRight' ||
         e.keyCode === 39 /* arrow right */ ||
-        (!disableUpDownKeys && e.keyCode === 40) /* arrow down */
+        (!disableUpDownKeys &&
+          (e.keyCode === 40 || e.code === 'ArrowDown')) /* arrow down */
       ) {
         // Select next tab to the right, validate if down arrow is not disabled
         if (direction === 'rtl') {
@@ -296,12 +307,12 @@ const UncontrolledTabs = (props) => {
         }
         preventDefault = true;
         useSelectedIndex = true;
-      } else if (e.keyCode === 35) {
+      } else if (e.keyCode === 35 || e.code === 'End') {
         // Select last tab (End key)
         index = getLastTab();
         preventDefault = true;
         useSelectedIndex = true;
-      } else if (e.keyCode === 36) {
+      } else if (e.keyCode === 36 || e.code === 'Home') {
         // Select first tab (Home key)
         index = getFirstTab();
         preventDefault = true;
