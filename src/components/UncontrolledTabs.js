@@ -101,7 +101,8 @@ const UncontrolledTabs = (props) => {
       }
     }
 
-    // No tabs are disabled, return index
+    // All tabs are disabled, return index
+    /* istanbul ignore next */
     return index;
   }
 
@@ -123,7 +124,8 @@ const UncontrolledTabs = (props) => {
       }
     }
 
-    // No tabs are disabled, return index
+    // All tabs are disabled, return index
+    /* istanbul ignore next */
     return index;
   }
 
@@ -137,6 +139,7 @@ const UncontrolledTabs = (props) => {
       }
     }
 
+    /* istanbul ignore next */
     return null;
   }
 
@@ -150,6 +153,7 @@ const UncontrolledTabs = (props) => {
       }
     }
 
+    /* istanbul ignore next */
     return null;
   }
 
