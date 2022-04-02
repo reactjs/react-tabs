@@ -12,7 +12,6 @@ const MODE_CONTROLLED = 0;
 const MODE_UNCONTROLLED = 1;
 const propTypes = {
   children: childrenPropType,
-  direction: PropTypes.oneOf(['rtl', 'ltr']),
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -20,16 +19,17 @@ const propTypes = {
   ]),
   defaultFocus: PropTypes.bool,
   defaultIndex: PropTypes.number,
+  direction: PropTypes.oneOf(['rtl', 'ltr']),
   disabledTabClassName: PropTypes.string,
   disableUpDownKeys: PropTypes.bool,
   domRef: PropTypes.func,
+  environment: PropTypes.object,
   focusTabOnClick: PropTypes.bool,
   forceRenderTabPanel: PropTypes.bool,
   onSelect: onSelectPropType,
   selectedIndex: selectedIndexPropType,
   selectedTabClassName: PropTypes.string,
   selectedTabPanelClassName: PropTypes.string,
-  environment: PropTypes.object,
 };
 const defaultProps = {
   defaultFocus: false,
