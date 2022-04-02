@@ -23,6 +23,7 @@ const propTypes = {
   disabledTabClassName: PropTypes.string,
   disableUpDownKeys: PropTypes.bool,
   domRef: PropTypes.func,
+  focusTabOnClick: PropTypes.bool,
   forceRenderTabPanel: PropTypes.bool,
   onSelect: onSelectPropType,
   selectedIndex: selectedIndexPropType,
@@ -32,6 +33,7 @@ const propTypes = {
 };
 const defaultProps = {
   defaultFocus: false,
+  focusTabOnClick: true,
   forceRenderTabPanel: false,
   selectedIndex: null,
   defaultIndex: null,
@@ -64,7 +66,8 @@ For more information about controlled and uncontrolled mode of react-tabs see ht
  *          It is initialized from the prop defaultFocus, and after the first render it is reset back to false. Later it can become true again when using keys to navigate the tabs.
  */
 const Tabs = (props) => {
-  const { children, defaultFocus, defaultIndex, onSelect } = props;
+  const { children, defaultFocus, defaultIndex, focusTabOnClick, onSelect } =
+    props;
 
   const [focus, setFocus] = useState(defaultFocus);
   const [mode] = useState(getModeFromProps(props));
@@ -97,8 +100,10 @@ const Tabs = (props) => {
       if (onSelect(index, last, event) === false) return;
     }
 
-    // Always set focus on tabs
-    setFocus(true);
+    // Always set focus on tabs unless it is disabled
+    if (focusTabOnClick) {
+      setFocus(true);
+    }
 
     if (mode === MODE_UNCONTROLLED) {
       // Update selected index
@@ -116,6 +121,7 @@ const Tabs = (props) => {
   }
   delete subProps.defaultFocus;
   delete subProps.defaultIndex;
+  delete subProps.focusTabOnClick;
   return <UncontrolledTabs {...subProps}>{children}</UncontrolledTabs>;
 };
 

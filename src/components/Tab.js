@@ -37,21 +37,12 @@ const propTypes = {
 
 const Tab = (props) => {
   let nodeRef = useRef();
-  const checkFocus = () => {
-    const { selected, focus } = props;
-    if (selected && focus) {
-      nodeRef.current.focus();
-    }
-  };
-  useEffect(() => {
-    checkFocus();
-  });
   const {
     children,
     className,
     disabled,
     disabledClassName,
-    focus, // unused
+    focus,
     id,
     panelId,
     selected,
@@ -60,6 +51,12 @@ const Tab = (props) => {
     tabRef,
     ...attributes
   } = props;
+
+  useEffect(() => {
+    if (selected && focus) {
+      nodeRef.current.focus();
+    }
+  }, [selected, focus]);
 
   return (
     <li

@@ -467,6 +467,55 @@ describe('<Tabs />', () => {
     assertTabSelected(1);
   });
 
+  test('should not focus tabs if focusTabOnClick is false', () => {
+    render(createTabs({ focusTabOnClick: false }));
+    const firstTab = screen.getByTestId('tab1');
+    const secondTab = screen.getByTestId('tab2');
+
+    expect(firstTab).not.toHaveFocus();
+    expect(secondTab).not.toHaveFocus();
+    assertTabSelected(1);
+
+    userEvent.click(secondTab);
+    expect(firstTab).not.toHaveFocus();
+    expect(secondTab).not.toHaveFocus();
+    assertTabSelected(2);
+  });
+
+  test('should not focus tab again on rerender', () => {
+    const { rerender } = render(
+      <>
+        <input data-testid="input1" />
+        {createTabs()}
+      </>,
+    );
+    const firstTab = screen.getByTestId('tab1');
+    const inputField = screen.getByTestId('input1');
+
+    expect(firstTab).not.toHaveFocus();
+    expect(inputField).not.toHaveFocus();
+
+    userEvent.click(firstTab);
+
+    expect(firstTab).toHaveFocus();
+    expect(inputField).not.toHaveFocus();
+
+    userEvent.click(inputField);
+
+    expect(firstTab).not.toHaveFocus();
+    expect(inputField).toHaveFocus();
+
+    rerender(
+      <>
+        <input data-testid="input1" />
+        {createTabs()}
+      </>,
+    );
+
+    expect(firstTab).not.toHaveFocus();
+    expect(inputField).toHaveFocus();
+  });
+
   test('should not change tabs when arrow up/down is pressed and disableUpDownKeys is passed', async () => {
     render(
       createTabs({

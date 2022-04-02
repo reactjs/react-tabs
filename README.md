@@ -7,7 +7,7 @@ https://reactcommunity.org/react-tabs/
 > Supports React 16.8.0 or newer
 
 <ins><blockquote class="rich-diff-level-zero"> <p class="rich-diff-level-one">react-tabs was tested on real mobile devices and browsers with<br>
-  <img src="./examples/src/images/Browserstack-logo.svg" height="50" alt="Browserstack">
+<img src="./examples/src/images/Browserstack-logo.svg" height="50" alt="Browserstack">
 
 </p> </blockquote></ins>
 
@@ -16,7 +16,9 @@ https://reactcommunity.org/react-tabs/
 ```bash
 yarn add react-tabs
 ```
+
 or
+
 ```bash
 npm install --save react-tabs
 ```
@@ -78,7 +80,7 @@ react-tabs consists of 4 components which all need to be used together.
 
 If you specify additional props on the `<Tabs />` component they will be forwarded to the rendered `<div />`.
 
-#### className: `string | Array<string> | { [string]: boolean }`
+#### className: `string | Array<string> | { [string]: boolean }`
 
 > default: `"react-tabs"`
 
@@ -130,6 +132,14 @@ Register a callback that will receive the underlying DOM node for every mount. I
 
 If you're rendering `react-tabs` within a different `window` context than the default one; for example, an iframe.
 
+#### focusTabOnClick: `boolean`
+
+> default: `true`
+
+By default the tab that is clicked will also be focused in the DOM. If set to `false` the tab will not be focused anymore.
+
+> Be aware that keyboard navigation will not work after click if set to false. Though one can still focus the tabs by pressing `tab` and then keyboard navigation will work.
+
 #### forceRenderTabPanel: `boolean`
 
 > default: `false`
@@ -178,7 +188,7 @@ Provide a custom class name for the active tab panel.
 
 If you specify additional props on the `<TabList />` component they will be forwarded to the rendered `<ul />`.
 
-#### className: `string | Array<string> | { [string]: boolean }`
+#### className: `string | Array<string> | { [string]: boolean }`
 
 > default: `"react-tabs__tab-list"`
 
@@ -190,7 +200,7 @@ Provide a custom class name for the `<ul />`.
 
 If you specify additional props on the `<Tab />` component they will be forwarded to the rendered `<li />`.
 
-#### className: `string | Array<string> | { [string]: boolean }`
+#### className: `string | Array<string> | { [string]: boolean }`
 
 > default: `"react-tabs__tab"`
 
@@ -230,7 +240,7 @@ Overrides the tabIndex to enabled tabbing between tabs.
 
 If you specify additional props on the `<TabPanel />` component they will be forwarded to the rendered `<div />`.
 
-#### className: `string | Array<string> | { [string]: boolean }`
+#### className: `string | Array<string> | { [string]: boolean }`
 
 > default: `"react-tabs__tab-panel"`
 
@@ -265,7 +275,7 @@ This is the default mode of react-tabs and makes the react-tabs components handl
 In this mode you cannot force a tab change during runtime.
 
 ```js
-<Tabs defaultIndex={1} onSelect={index => console.log(index)}>
+<Tabs defaultIndex={1} onSelect={(index) => console.log(index)}>
   <TabList>
     <Tab>Title 1</Tab>
     <Tab>Title 2</Tab>
@@ -288,7 +298,7 @@ const App = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
-    <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
+    <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
       <TabList>
         <Tab>Title 1</Tab>
         <Tab>Title 2</Tab>
@@ -340,12 +350,14 @@ When using the UMD version of react-tabs you can easily use the default styles b
 <html>
   <head>
     ...
-    <link rel="stylesheet" href="https://unpkg.com/react-tabs/style/react-tabs.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/react-tabs/style/react-tabs.css"
+    />
   </head>
   ...
 </html>
 ```
-
 
 ### Custom Style
 
@@ -354,19 +366,20 @@ You can also always just simply copy the default style to your own css/scss/less
 ### Custom Components
 
 #### Set `tabsRole`
+
 In case you want to create your own component wrapping the ones that the library provides, you have to set its `tabsRole`. This value is used inside react-tabs to check the role of a component inside `<Tabs />`.
 
 Possible values for tabsRole are:
- * Tab
- * TabPanel
- * TabList
+
+- Tab
+- TabPanel
+- TabList
 
 #### Pass through properties
+
 Note: Because of how react-tabs works internally (it uses cloning to opaquely control various parts of the tab state), you need to pass any incoming props to the component you're wrapping. The easiest way to do this is to use the rest and spread operators, e.g. see `{...otherProps}` below.
 
-
-
-``` javascript
+```javascript
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 
 // All custom elements should pass through other props
