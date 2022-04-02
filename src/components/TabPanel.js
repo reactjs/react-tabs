@@ -19,7 +19,6 @@ const propTypes = {
   id: PropTypes.string, // private
   selected: PropTypes.bool, // private
   selectedClassName: PropTypes.string,
-  tabId: PropTypes.string, // private
 };
 const TabPanel = (props) => {
   const {
@@ -29,7 +28,6 @@ const TabPanel = (props) => {
     id,
     selected,
     selectedClassName,
-    tabId,
     ...attributes
   } = props;
 
@@ -40,8 +38,8 @@ const TabPanel = (props) => {
         [selectedClassName]: selected,
       })}
       role="tabpanel"
-      id={id}
-      aria-labelledby={tabId}
+      id={`panel${id}`}
+      aria-labelledby={`tab${id}`}
     >
       {forceRender || selected ? children : null}
     </div>
