@@ -24,13 +24,13 @@ const propTypes = {
     PropTypes.object,
   ]),
   disabled: PropTypes.bool,
-  tabIndex: PropTypes.string,
   disabledClassName: PropTypes.string,
   focus: PropTypes.bool, // private
   id: PropTypes.string, // private
   selected: PropTypes.bool, // private
   selectedClassName: PropTypes.string,
-  tabRef: PropTypes.func,
+  tabIndex: PropTypes.string,
+  tabRef: PropTypes.func, // private
 };
 
 const Tab = (props) => {
