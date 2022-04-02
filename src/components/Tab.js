@@ -3,12 +3,11 @@ import React, { useEffect, useRef } from 'react';
 import cx from 'clsx';
 
 const DEFAULT_CLASS = 'react-tabs__tab';
-const DEFAULT_PROPS = {
+const defaultProps = {
   className: DEFAULT_CLASS,
   disabledClassName: `${DEFAULT_CLASS}--disabled`,
   focus: false,
   id: null,
-  panelId: null,
   selected: false,
   selectedClassName: `${DEFAULT_CLASS}--selected`,
 };
@@ -29,7 +28,6 @@ const propTypes = {
   disabledClassName: PropTypes.string,
   focus: PropTypes.bool, // private
   id: PropTypes.string, // private
-  panelId: PropTypes.string, // private
   selected: PropTypes.bool, // private
   selectedClassName: PropTypes.string,
   tabRef: PropTypes.func,
@@ -44,7 +42,6 @@ const Tab = (props) => {
     disabledClassName,
     focus,
     id,
-    panelId,
     selected,
     selectedClassName,
     tabIndex,
@@ -70,10 +67,10 @@ const Tab = (props) => {
         if (tabRef) tabRef(node);
       }}
       role="tab"
-      id={id}
+      id={`tab${id}`}
       aria-selected={selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
-      aria-controls={panelId}
+      aria-controls={`panel${id}`}
       tabIndex={tabIndex || (selected ? '0' : null)}
       data-rttab
     >
@@ -84,5 +81,5 @@ const Tab = (props) => {
 Tab.propTypes = propTypes;
 
 Tab.tabsRole = 'Tab';
-Tab.defaultProps = DEFAULT_PROPS;
+Tab.defaultProps = defaultProps;
 export default Tab;

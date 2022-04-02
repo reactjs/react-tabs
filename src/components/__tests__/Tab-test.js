@@ -25,7 +25,7 @@ describe('<Tab />', () => {
 
   it('should support being selected', () => {
     expectToMatchSnapshot(
-      <Tab selected id="abcd" panelId="1234">
+      <Tab selected id="abcd">
         Hello
       </Tab>,
     );
