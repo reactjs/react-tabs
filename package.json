@@ -57,7 +57,7 @@
     "@testing-library/dom": "8.13.0",
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.0.0",
-    "@testing-library/user-event": "14.0.4",
+    "@testing-library/user-event": "14.1.0",
     "babel-jest": "27.5.1",
     "babel-loader": "8.2.4",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
