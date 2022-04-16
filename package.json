@@ -36,7 +36,9 @@
     "esm",
     "lib",
     "style",
-    "src"
+    "src/*.js",
+    "src/components/*.js",
+    "src/helpers/*.js"
   ],
   "homepage": "https://github.com/reactjs/react-tabs",
   "keywords": [
