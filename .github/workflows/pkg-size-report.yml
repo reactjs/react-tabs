@@ -37,4 +37,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          hide-files: '*.{js,css}.map'
+        hide-files: '*.{js,css}.map'
+        display-size: uncompressed, gzip
