@@ -1,0 +1,38 @@
+name: Package size report
+
+on:
+  pull_request:
+    branches: [ main ]
+
+env:
+  NODE_VERSION: 16
+
+jobs:
+  pkg-size-report:
+    name: Package size report
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Cache node_modules
+      uses: actions/cache@v3
+      id: cache-nodemodules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ env.NODE_VERSION }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Install dependencies
+      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+      run: yarn install --frozen-lockfile --non-interactive
+
+    - name: Package size report
+      uses: pkg-size/action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
