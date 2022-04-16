@@ -207,15 +207,12 @@ const UncontrolledTabs = (props) => {
           determineCanUseActiveElement(environment);
         }
 
-        if (canUseActiveElement) {
+        const env =
+          environment || (typeof window !== 'undefined' ? window : undefined);
+        if (canUseActiveElement && env) {
           wasTabFocused = React.Children.toArray(child.props.children)
             .filter(isTab)
-            .some((tab, i) => {
-              const env =
-                environment ||
-                (typeof window !== 'undefined' ? window : undefined);
-              return env && env.document.activeElement === getTab(i);
-            });
+            .some((tab, i) => env.document.activeElement === getTab(i));
         }
 
         result = cloneElement(child, {
