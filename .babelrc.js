@@ -8,7 +8,28 @@ const modules = output == null ? false : output;
 const targets = env === 'test' ? { node: 'current' } : undefined;
 
 const options = {
-  presets: [['@babel/env', { loose: true, modules, targets }], '@babel/react'],
+  assumptions: {
+    ignoreToPrimitiveHint: true,
+    iterableIsArray: true,
+    mutableTemplateObject: true,
+    noNewArrows: true,
+    objectRestNoSymbols: true,
+    setComputedProperties: true,
+    setSpreadProperties: true,
+  },
+  presets: [
+    [
+      '@babel/env',
+      {
+        loose: true,
+        modules,
+        targets,
+        corejs: '3',
+        useBuiltIns: 'entry',
+      },
+    ],
+    ['@babel/react', { useBuiltIns: true }],
+  ],
   plugins: [],
 };
 
