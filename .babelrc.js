@@ -8,6 +8,8 @@ const modules = output == null ? false : output;
 const targets = env === 'test' ? { node: 'current' } : undefined;
 
 const options = {
+  comments: false,
+  minified: true,
   assumptions: {
     ignoreToPrimitiveHint: true,
     iterableIsArray: true,
