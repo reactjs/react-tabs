@@ -374,16 +374,18 @@ Possible values for tabsRole are:
 - Tab
 - TabPanel
 - TabList
+- Tabs
 
 #### Pass through properties
 
 Note: Because of how react-tabs works internally (it uses cloning to opaquely control various parts of the tab state), you need to pass any incoming props to the component you're wrapping. The easiest way to do this is to use the rest and spread operators, e.g. see `{...otherProps}` below.
 
-```javascript
+```tsx
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
+import type { ReactTabsFunctionComponent, TabProps } from 'react-tabs';
 
 // All custom elements should pass through other props
-const CustomTab = ({ children, ...otherProps }) => (
+const CustomTab = ({ children, ...otherProps }): ReactTabsFunctionComponent<TabProps> => (
   <Tab {...otherProps}>
     <h1>{children}</h1>
   </Tab>
