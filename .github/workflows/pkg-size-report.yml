@@ -2,7 +2,7 @@ name: Package size report
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, next ]
 
 env:
   NODE_VERSION: 16
