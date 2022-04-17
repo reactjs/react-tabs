@@ -45,5 +45,3 @@ export const Tabs: FunctionComponent<TabsProps>;
 export const TabList: FunctionComponent<TabListProps>;
 export const Tab: FunctionComponent<TabProps>;
 export const TabPanel: FunctionComponent<TabPanelProps>;
-
-export declare function resetIdCounter(): void;
