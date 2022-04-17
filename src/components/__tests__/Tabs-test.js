@@ -133,11 +133,46 @@ describe('<Tabs />', () => {
     });
 
     describe('keyboard', () => {
+      test('should change focus on tab and tabindex set', async () => {
+        render(
+          <Tabs>
+            <TabList>
+              <Tab data-testid="tab1" tabIndex="0">
+                Tab1
+              </Tab>
+              <Tab data-testid="tab2" tabIndex="0">
+                Tab2
+              </Tab>
+              <Tab data-testid="tab3" tabIndex="0">
+                Tab3
+              </Tab>
+            </TabList>
+            <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
+            <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
+            <TabPanel data-testid="panel3">Hello Tab3</TabPanel>
+          </Tabs>,
+        );
+        const element = screen.getByTestId('tab1');
+        await userEvent.click(element);
+
+        assertTabSelected(1);
+
+        await userEvent.keyboard('[Tab]');
+        await userEvent.keyboard('[Enter]');
+
+        assertTabSelected(2);
+
+        await userEvent.keyboard('[Tab]');
+        await userEvent.keyboard('[Space]');
+
+        assertTabSelected(3);
+      });
+
       test('should update selectedIndex when arrow right key pressed', async () => {
         render(createTabs());
         const element = screen.getByTestId('tab1');
         await userEvent.click(element);
-        await userEvent.type(element, '{ArrowRight}');
+        await userEvent.type(element, '[ArrowRight]');
 
         assertTabSelected(2);
       });
@@ -146,7 +181,7 @@ describe('<Tabs />', () => {
         render(createTabs());
         const element = screen.getByTestId('tab3');
         await userEvent.click(element);
-        await userEvent.type(element, '{ArrowRight}');
+        await userEvent.type(element, '[ArrowRight]');
 
         assertTabSelected(1);
       });
@@ -166,7 +201,7 @@ describe('<Tabs />', () => {
         );
         const element = screen.getByTestId('tab1');
         await userEvent.click(element);
-        await userEvent.keyboard('{ArrowRight}');
+        await userEvent.keyboard('[ArrowRight]');
 
         assertTabSelected(1);
       });
@@ -175,7 +210,7 @@ describe('<Tabs />', () => {
         render(createTabs());
         const element = screen.getByTestId('tab1');
         await userEvent.click(element);
-        await userEvent.keyboard('{ArrowLeft}');
+        await userEvent.keyboard('[ArrowLeft]');
 
         assertTabSelected(3);
       });
@@ -195,7 +230,7 @@ describe('<Tabs />', () => {
         );
         const element = screen.getByTestId('tab2');
         await userEvent.click(element);
-        await userEvent.keyboard('{ArrowLeft}');
+        await userEvent.keyboard('[ArrowLeft]');
 
         assertTabSelected(2);
       });
@@ -204,7 +239,7 @@ describe('<Tabs />', () => {
         render(createTabs());
         const element = screen.getByTestId('tab3');
         await userEvent.click(element);
-        await userEvent.type(element, '{Home}');
+        await userEvent.type(element, '[Home]');
 
         assertTabSelected(1);
       });
@@ -213,7 +248,7 @@ describe('<Tabs />', () => {
         render(createTabs());
         const element = screen.getByTestId('tab1');
         await userEvent.click(element);
-        await userEvent.type(element, '{End}');
+        await userEvent.type(element, '[End]');
 
         assertTabSelected(3);
       });
@@ -222,7 +257,7 @@ describe('<Tabs />', () => {
         render(createTabs({ direction: 'rtl' }));
         const element = screen.getByTestId('tab1');
         await userEvent.click(element);
-        await userEvent.type(element, '{ArrowLeft}');
+        await userEvent.type(element, '[ArrowLeft]');
 
         assertTabSelected(2);
       });
@@ -231,7 +266,7 @@ describe('<Tabs />', () => {
         render(createTabs({ direction: 'rtl' }));
         const element = screen.getByTestId('tab2');
         await userEvent.click(element);
-        await userEvent.type(element, '{ArrowRight}');
+        await userEvent.type(element, '[ArrowRight]');
 
         assertTabSelected(1);
       });
@@ -240,7 +275,7 @@ describe('<Tabs />', () => {
         render(createTabs());
         const element = screen.getByTestId('tab4');
         await userEvent.click(element);
-        await userEvent.type(element, '{ArrowLeft}');
+        await userEvent.type(element, '[ArrowLeft]');
 
         assertTabSelected(1);
       });
@@ -498,11 +533,11 @@ describe('<Tabs />', () => {
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
 
-    await userEvent.type(firstTab, '{ArrowDown}');
+    await userEvent.type(firstTab, '[ArrowDown]');
     expect(secondTab).toHaveFocus();
     assertTabSelected(2);
 
-    await userEvent.type(secondTab, '{ArrowUp}');
+    await userEvent.type(secondTab, '[ArrowUp]');
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
   });
@@ -568,11 +603,11 @@ describe('<Tabs />', () => {
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
 
-    await userEvent.type(firstTab, '{ArrowDown}');
+    await userEvent.type(firstTab, '[ArrowDown]');
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
 
-    await userEvent.type(firstTab, '{ArrowUp}');
+    await userEvent.type(firstTab, '[ArrowUp]');
     expect(firstTab).toHaveFocus();
     assertTabSelected(1);
   });
