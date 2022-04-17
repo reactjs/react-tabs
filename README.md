@@ -5,6 +5,7 @@ An accessible and easy tab component for ReactJS.
 https://reactcommunity.org/react-tabs/
 
 > Version 5 of `react-tabs` needs react version 18 or newer
+> 
 > Version 4 of `react-tabs` needs react version 16.8 or newer
 
 <ins><blockquote class="rich-diff-level-zero"> <p class="rich-diff-level-one">react-tabs was tested on real mobile devices and browsers with<br>
