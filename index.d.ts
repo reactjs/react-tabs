@@ -41,6 +41,10 @@ export interface TabPanelProps
   selectedClassName?: string | undefined;
 }
 
+export interface ReactTabsFunctionComponent<P = {}> extends FunctionComponent<P> {
+  tabsRole: 'Tabs' | 'TabList' | 'Tab' | 'TabPanel';
+}
+
 export const Tabs: FunctionComponent<TabsProps>;
 export const TabList: FunctionComponent<TabListProps>;
 export const Tab: FunctionComponent<TabProps>;
