@@ -67,7 +67,7 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "cross-env": "7.0.3",
     "css-loader": "6.7.1",
-    "eslint": "8.13.0",
+    "eslint": "8.14.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.5.1",
