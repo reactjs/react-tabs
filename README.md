@@ -374,7 +374,7 @@ import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import type { ReactTabsFunctionComponent, TabProps } from 'react-tabs';
 
 // All custom elements should pass through other props
-const CustomTab = ({ children, ...otherProps }): ReactTabsFunctionComponent<TabProps> => (
+const CustomTab: ReactTabsFunctionComponent<TabProps> = ({ children, ...otherProps }) => (
   <Tab {...otherProps}>
     <h1>{children}</h1>
   </Tab>
