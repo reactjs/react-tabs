@@ -86,7 +86,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-live": "2.4.1",
-    "react-modal": "3.14.4",
+    "react-modal": "3.15.1",
     "react-test-renderer": "18.1.0",
     "rimraf": "3.0.2",
     "rollup": "2.70.2",
