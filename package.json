@@ -101,8 +101,8 @@
     "webpack-dev-server": "4.9.3"
   },
   "dependencies": {
-    "clsx": "^1.1.0",
-    "prop-types": "^15.5.0"
+    "clsx": "^1.2.1",
+    "prop-types": "^15.8.1"
   },
   "jest": {
     "roots": [
