@@ -17,3 +17,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: dessant/lock-threads@v3
+        with:
+          log-output: true
