@@ -3174,10 +3174,10 @@ eslint-plugin-prettier@4.2.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react@7.31.2:
-  version "7.31.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.31.2.tgz#518cad3ae428e5e9604c4710b36b622007420e79"
-  integrity sha512-l8uMqMohh0YnM4bhUThmEgSx7sr7xTMPRRAHD0CBNRZvtwJ9/LVVML6LfoYzSFQgJYW/ZkjLTyYvNOAo8oKRNw==
+eslint-plugin-react@7.31.4:
+  version "7.31.4"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.31.4.tgz#df79aa4343490cbc438d72b864cd92487de3e4d9"
+  integrity sha512-2ry4HTT+c+hSgpnV2DXj3d5oAmH11KH8HHQwtcfRdq6/+R3nEimvMbwAqK79eb4ZW1/hp8yC5elBusZM6li/Gg==
   dependencies:
     array-includes "^3.1.5"
     array.prototype.flatmap "^1.3.0"
