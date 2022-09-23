@@ -74,7 +74,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.31.8",
     "hoist-non-react-statics": "3.3.2",
-    "html-loader": "4.1.0",
+    "html-loader": "4.2.0",
     "html-webpack-plugin": "5.5.0",
     "jest": "29.0.3",
     "jest-environment-jsdom": "29.0.3",
