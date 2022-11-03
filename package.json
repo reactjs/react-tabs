@@ -63,7 +63,7 @@
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "14.4.3",
     "babel-jest": "29.2.2",
-    "babel-loader": "9.0.1",
+    "babel-loader": "9.1.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "cross-env": "7.0.3",
     "css-loader": "6.7.1",
