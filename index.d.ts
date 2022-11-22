@@ -8,6 +8,7 @@ export interface TabsProps
   direction?: 'rtl' | 'ltr' | undefined;
   disabledTabClassName?: string | undefined;
   disableUpDownKeys?: boolean | undefined;
+  disableLeftRightKeys?: boolean | undefined;
   domRef?: ((node?: HTMLElement) => void) | undefined;
   environment?: Window | undefined;
   focusTabOnClick?: boolean | undefined;
