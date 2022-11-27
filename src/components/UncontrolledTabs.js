@@ -57,6 +57,7 @@ const propTypes = {
   ]),
   disabledTabClassName: PropTypes.string,
   disableUpDownKeys: PropTypes.bool,
+  disableLeftRightKeys: PropTypes.bool,
   domRef: PropTypes.func,
   focus: PropTypes.bool,
   forceRenderTabPanel: PropTypes.bool,
@@ -256,7 +257,7 @@ const UncontrolledTabs = (props) => {
   }
 
   function handleKeyDown(e) {
-    const { direction, disableUpDownKeys } = props;
+    const { direction, disableUpDownKeys, disableLeftRightKeys } = props;
     if (isTabFromContainer(e.target)) {
       let { selectedIndex: index } = props;
       let preventDefault = false;
@@ -276,8 +277,8 @@ const UncontrolledTabs = (props) => {
       // keyCode is deprecated and only used here for IE
 
       if (
-        e.code === 'ArrowLeft' ||
-        e.keyCode === 37 /* arrow left */ ||
+        (!disableLeftRightKeys &&
+          (e.keyCode === 37 || e.code === 'ArrowLeft')) /* arrow left */ ||
         (!disableUpDownKeys &&
           (e.keyCode === 38 || e.code === 'ArrowUp')) /* arrow up */
       ) {
@@ -290,8 +291,8 @@ const UncontrolledTabs = (props) => {
         preventDefault = true;
         useSelectedIndex = true;
       } else if (
-        e.code === 'ArrowRight' ||
-        e.keyCode === 39 /* arrow right */ ||
+        (!disableLeftRightKeys &&
+          (e.keyCode === 39 || e.code === 'ArrowRight')) /* arrow right */ ||
         (!disableUpDownKeys &&
           (e.keyCode === 40 || e.code === 'ArrowDown')) /* arrow down */
       ) {
@@ -380,6 +381,7 @@ const UncontrolledTabs = (props) => {
     selectedTabPanelClassName, // unused
     environment, // unused
     disableUpDownKeys, // unused
+    disableLeftRightKeys, // unused
     ...attributes
   } = props;
   return (

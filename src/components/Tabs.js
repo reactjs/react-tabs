@@ -22,6 +22,7 @@ const propTypes = {
   direction: PropTypes.oneOf(['rtl', 'ltr']),
   disabledTabClassName: PropTypes.string,
   disableUpDownKeys: PropTypes.bool,
+  disableLeftRightKeys: PropTypes.bool,
   domRef: PropTypes.func,
   environment: PropTypes.object,
   focusTabOnClick: PropTypes.bool,
@@ -39,6 +40,7 @@ const defaultProps = {
   defaultIndex: null,
   environment: null,
   disableUpDownKeys: false,
+  disableLeftRightKeys: false,
 };
 
 const getModeFromProps = (props) => {

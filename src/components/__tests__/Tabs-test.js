@@ -608,6 +608,27 @@ describe('<Tabs />', () => {
     assertTabSelected(1);
   });
 
+  test('should not change tabs when arrow left/right is pressed and disableLeftRightKeys is passed', async () => {
+    render(
+      createTabs({
+        disableLeftRightKeys: true,
+      }),
+    );
+    const firstTab = screen.getByTestId('tab1');
+
+    await userEvent.tab();
+    expect(firstTab).toHaveFocus();
+    assertTabSelected(1);
+
+    await userEvent.type(firstTab, '[ArrowLeft]');
+    expect(firstTab).toHaveFocus();
+    assertTabSelected(1);
+
+    await userEvent.type(firstTab, '[ArrowRight]');
+    expect(firstTab).toHaveFocus();
+    assertTabSelected(1);
+  });
+
   test('should render first tab once tabs are available', () => {
     const { rerender } = render(<Tabs></Tabs>);
 
