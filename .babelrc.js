@@ -23,6 +23,7 @@ const options = {
     [
       '@babel/env',
       {
+        bugfixes: true,
         loose: true,
         modules,
         targets,
