@@ -5,7 +5,7 @@ on:
     branches: [ main, next ]
 
 env:
-  NODE_VERSION: 16
+  NODE_VERSION: 18
 
 jobs:
   pkg-size-report:
