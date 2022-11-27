@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const sourceDirectory = path.resolve(__dirname, 'examples/src');
 const targetDirectory = path.resolve(__dirname, 'examples/dist');
@@ -38,6 +39,13 @@ module.exports = {
   entry: {
     app: './app.js',
   },
+  optimization: {
+    minimizer: [
+      `...`,
+      new CssMinimizerPlugin(),
+    ],
+  },
+  target: 'web',
   output: {
     path: targetDirectory,
     chunkFilename: 'chunk-[chunkhash].js',
