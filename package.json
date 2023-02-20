@@ -81,7 +81,7 @@
     "prettier": "2.8.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-live": "2.4.1",
+    "react-live": "3.1.2",
     "react-modal": "3.16.1",
     "react-test-renderer": "18.2.0",
     "rimraf": "4.1.2",
