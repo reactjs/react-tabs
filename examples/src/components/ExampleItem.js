@@ -62,7 +62,7 @@ export default class ExampleItem extends Component {
           <LiveError />
           <div className="live-preview">
             <div className={editorClassNames}>
-              <LiveEditor />
+              <LiveEditor tabMode={editorOpen ? 'indentation' : 'focus'} />
             </div>
             <LivePreview
               className="react-live-preview"
