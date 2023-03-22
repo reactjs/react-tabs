@@ -84,7 +84,7 @@
     "react-live": "3.1.2",
     "react-modal": "3.16.1",
     "react-test-renderer": "18.2.0",
-    "rimraf": "4.4.0",
+    "rimraf": "4.4.1",
     "webpack": "5.76.3",
     "webpack-cli": "5.0.1",
     "webpack-dev-server": "4.13.1"
