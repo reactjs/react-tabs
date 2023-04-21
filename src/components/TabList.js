@@ -14,7 +14,10 @@ const propTypes = {
   ]),
 };
 const TabList = (props) => {
-  const { children, className, ...attributes } = props;
+  const { children, className, ...attributes } = {
+    ...defaultProps,
+    ...props,
+  };
 
   return (
     <ul {...attributes} className={cx(className)} role="tablist">
@@ -25,5 +28,5 @@ const TabList = (props) => {
 
 TabList.tabsRole = 'TabList';
 TabList.propTypes = propTypes;
-TabList.defaultProps = defaultProps;
+
 export default TabList;

@@ -68,11 +68,20 @@ For more information about controlled and uncontrolled mode of react-tabs see ht
  *          It is initialized from the prop defaultFocus, and after the first render it is reset back to false. Later it can become true again when using keys to navigate the tabs.
  */
 const Tabs = (props) => {
-  const { children, defaultFocus, defaultIndex, focusTabOnClick, onSelect } =
-    props;
+  const {
+    children,
+    defaultFocus,
+    defaultIndex,
+    focusTabOnClick,
+    onSelect,
+    ...attributes
+  } = {
+    ...defaultProps,
+    ...props,
+  };
 
   const [focus, setFocus] = useState(defaultFocus);
-  const [mode] = useState(getModeFromProps(props));
+  const [mode] = useState(getModeFromProps(attributes));
   const [selectedIndex, setSelectedIndex] = useState(
     mode === MODE_UNCONTROLLED ? defaultIndex || 0 : null,
   );
@@ -93,7 +102,7 @@ const Tabs = (props) => {
     }, [tabsCount]);
   }
 
-  checkForIllegalModeChange(props, mode);
+  checkForIllegalModeChange(attributes, mode);
 
   const handleSelected = (index, last, event) => {
     // Call change event handler
@@ -113,7 +122,7 @@ const Tabs = (props) => {
     }
   };
 
-  let subProps = { ...props };
+  let subProps = { ...props, ...attributes };
 
   subProps.focus = focus;
   subProps.onSelect = handleSelected;
@@ -128,7 +137,6 @@ const Tabs = (props) => {
 };
 
 Tabs.propTypes = propTypes;
-Tabs.defaultProps = defaultProps;
 Tabs.tabsRole = 'Tabs';
 
 export default Tabs;

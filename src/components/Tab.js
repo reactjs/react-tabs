@@ -47,7 +47,10 @@ const Tab = (props) => {
     tabIndex,
     tabRef,
     ...attributes
-  } = props;
+  } = {
+    ...defaultProps,
+    ...props,
+  };
 
   useEffect(() => {
     if (selected && focus) {
@@ -78,8 +81,8 @@ const Tab = (props) => {
     </li>
   );
 };
-Tab.propTypes = propTypes;
 
+Tab.propTypes = propTypes;
 Tab.tabsRole = 'Tab';
-Tab.defaultProps = defaultProps;
+
 export default Tab;
