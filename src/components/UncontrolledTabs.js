@@ -383,7 +383,10 @@ const UncontrolledTabs = (props) => {
     disableUpDownKeys, // unused
     disableLeftRightKeys, // unused
     ...attributes
-  } = props;
+  } = {
+    ...defaultProps,
+    ...props,
+  };
   return (
     <div
       {...attributes}
@@ -400,6 +403,7 @@ const UncontrolledTabs = (props) => {
     </div>
   );
 };
-UncontrolledTabs.defaultProps = defaultProps;
+
 UncontrolledTabs.propTypes = propTypes;
+
 export default UncontrolledTabs;

@@ -29,7 +29,10 @@ const TabPanel = (props) => {
     selected,
     selectedClassName,
     ...attributes
-  } = props;
+  } = {
+    ...defaultProps,
+    ...props,
+  };
 
   return (
     <div
@@ -48,5 +51,5 @@ const TabPanel = (props) => {
 
 TabPanel.tabsRole = 'TabPanel';
 TabPanel.propTypes = propTypes;
-TabPanel.defaultProps = defaultProps;
+
 export default TabPanel;
