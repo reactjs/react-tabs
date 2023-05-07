@@ -7252,10 +7252,10 @@ webpack-dev-middleware@^5.3.1:
     range-parser "^1.2.1"
     schema-utils "^4.0.0"
 
-webpack-dev-server@4.13.3:
-  version "4.13.3"
-  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-4.13.3.tgz#9feb740b8b56b886260bae1360286818a221bae8"
-  integrity sha512-KqqzrzMRSRy5ePz10VhjyL27K2dxqwXQLP5rAKwRJBPUahe7Z2bBWzHw37jeb8GCPKxZRO79ZdQUAPesMh/Nug==
+webpack-dev-server@4.14.0:
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-4.14.0.tgz#33df5a0212a83c8a12578b0417e27840326df1fa"
+  integrity sha512-KUgiUNUZldyx5xz3uK0dnXmvsSz03TAMCLtO1cUOb5oishh9sfP3vaI4XNY3EztrPUu98WKzamNfuaydTedYWQ==
   dependencies:
     "@types/bonjour" "^3.5.9"
     "@types/connect-history-api-fallback" "^1.3.5"
