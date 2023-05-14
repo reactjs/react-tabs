@@ -3,7 +3,7 @@ import T from 'prop-types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'; // eslint-disable-line
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import classNames from 'clsx';
-import dracula from 'prism-react-renderer/themes/dracula';
+import { themes } from 'prism-react-renderer';
 
 const scope = { Tabs, Tab, TabList, TabPanel };
 
@@ -56,7 +56,7 @@ export default class ExampleItem extends Component {
         <LiveProvider
           scope={scope}
           code={this.props.code}
-          theme={dracula}
+          theme={themes.dracula}
           noInline
         >
           <LiveError />

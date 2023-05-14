@@ -6051,7 +6051,7 @@ pretty-format@^29.0.0, pretty-format@^29.5.0:
     ansi-styles "^5.0.0"
     react-is "^18.0.0"
 
-prism-react-renderer@*:
+prism-react-renderer@*, prism-react-renderer@2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-2.0.4.tgz#df607d5ee1fdaeabf792b021bb7a91f7bd603a6f"
   integrity sha512-1fcayBPhlGWLjKHeZMA2eJbvLsq1YJsoP3CUOF0BNlobw4knAYS6EWHYawywaZ5zoIxYkgxuqrrkCj7b+135ow==
