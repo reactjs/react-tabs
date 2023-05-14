@@ -1,5 +1,6 @@
 build/
 coverage/
+examples/dist/
 node_modules/
 npm-debug.log
 lib/
