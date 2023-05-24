@@ -61,7 +61,7 @@ const Tab = (props) => {
   return (
     <li
       {...attributes}
-      className={cx(className, {
+      className={cx(DEFAULT_CLASS, className, { // Concatena a classe padrão com a classe existente
         [selectedClassName]: selected,
         [disabledClassName]: disabled,
       })}
