@@ -51,7 +51,7 @@
     "@babel/cli": "7.21.5",
     "@babel/core": "7.22.1",
     "@babel/eslint-parser": "7.21.8",
-    "@babel/preset-env": "7.22.2",
+    "@babel/preset-env": "7.22.4",
     "@babel/preset-react": "7.22.3",
     "@testing-library/dom": "9.3.0",
     "@testing-library/jest-dom": "5.16.5",
