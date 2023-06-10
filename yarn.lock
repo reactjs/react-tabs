@@ -4055,10 +4055,10 @@ html-minifier-terser@^7.0.0:
     relateurl "^0.2.7"
     terser "^5.15.1"
 
-html-webpack-plugin@5.5.2:
-  version "5.5.2"
-  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-5.5.2.tgz#fe394ae7fc5a6e2766f620969424ca70ee55b4ee"
-  integrity sha512-2KsxTJQmtqsT1JGaZJmoMW25wpC0HM9gpW3jH/UMH62To0UKlzRUbJ/FtQNhZ0gd4gWMoetEYkyG8FMNqEO66Q==
+html-webpack-plugin@5.5.3:
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-5.5.3.tgz#72270f4a78e222b5825b296e5e3e1328ad525a3e"
+  integrity sha512-6YrDKTuqaP/TquFH7h4srYWsZx+x6k6+FbsTm0ziCwGHDP78Unr1r9F/H4+sGmMbX08GQcJ+K64x55b+7VM/jg==
   dependencies:
     "@types/html-minifier-terser" "^6.0.0"
     html-minifier-terser "^6.0.2"
