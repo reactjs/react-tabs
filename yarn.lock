@@ -6105,6 +6105,14 @@ prism-react-renderer@2.0.5:
     "@types/prismjs" "^1.26.0"
     clsx "^1.2.1"
 
+prism-react-renderer@2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-2.0.6.tgz#24f0c1afbc07d4a268677fb05e77079ea80b6a2f"
+  integrity sha512-ERzmAI5UvrcTw5ivfEG20/dYClAsC84eSED5p9X3oKpm0xPV4A5clFK1mp7lPIdKmbLnQYsPTGiOI7WS6gWigw==
+  dependencies:
+    "@types/prismjs" "^1.26.0"
+    clsx "^1.2.1"
+
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
