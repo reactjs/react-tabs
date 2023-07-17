@@ -91,7 +91,7 @@
     "webpack-dev-server": "4.15.1"
   },
   "dependencies": {
-    "clsx": "^1.1.0",
+    "clsx": "^2.0.0",
     "prop-types": "^15.5.0"
   },
   "jest": {
