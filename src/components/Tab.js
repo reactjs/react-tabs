@@ -65,10 +65,7 @@ const Tab = (props) => {
         [selectedClassName]: selected,
         [disabledClassName]: disabled,
       })}
-      ref={(node) => {
-        nodeRef.current = node;
-        if (tabRef) tabRef(node);
-      }}
+      ref={noderef}
       role="tab"
       id={`tab${id}`}
       aria-selected={selected ? 'true' : 'false'}
