@@ -17,7 +17,7 @@ jobs:
   tests:
     name: Unit tests
     runs-on: ubuntu-latest
-    if: "github.event_name != 'pull_request'"
+    if: "!startsWith(github.ref, 'refs/heads/renovate/') || github.event_name != 'pull_request'"
 
     steps:
     - name: debug
@@ -45,7 +45,7 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    if: "!startsWith(github.ref, 'refs/heads/renovate/')"
+    if: "!startsWith(github.ref, 'refs/heads/renovate/') || github.event_name != 'pull_request'"
 
     steps:
     - name: Checkout
