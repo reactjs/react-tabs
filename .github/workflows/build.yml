@@ -17,12 +17,9 @@ jobs:
   tests:
     name: Unit tests
     runs-on: ubuntu-latest
+    if: github.actor_id != 29139614 || github.event_name != "pull_request"
 
     steps:
-    - name: debug
-      run: |
-        echo "The GitHub Actor's username is: $GITHUB_ACTOR"
-        echo "The GitHub Actor's userid is: $GITHUB_ACTOR_ID"
     - name: Checkout
       uses: actions/checkout@v3
 
@@ -44,6 +41,7 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    if: github.actor_id != 29139614 || github.event_name != "pull_request"
 
     steps:
     - name: Checkout
