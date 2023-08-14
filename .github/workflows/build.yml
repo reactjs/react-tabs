@@ -11,12 +11,18 @@ on:
 env:
   NODE_VERSION: 18
 
+permissions: {}
+
 jobs:
   tests:
     name: Unit tests
     runs-on: ubuntu-latest
 
     steps:
+    - name: debug
+      run: |
+        echo "The GitHub Actor's username is: $GITHUB_ACTOR"
+        echo "The GitHub Actor's userid is: $GITHUB_ACTOR_ID"
     - name: Checkout
       uses: actions/checkout@v3
 
@@ -24,16 +30,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ env.NODE_VERSION }}
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      id: cache-nodemodules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ env.NODE_VERSION }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
+        cache: 'yarn'
 
     - name: Install dependencies
-      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile --non-interactive
 
     - name: Unit tests
@@ -54,54 +53,24 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ env.NODE_VERSION }}
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      id: cache-nodemodules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ env.NODE_VERSION }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
+        cache: 'yarn'
 
     - name: Install dependencies
-      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile --non-interactive
 
     - name: Lint
       run: yarn lint
-
-  website:
-    name: Test build website
-    if: github.ref != 'refs/heads/main'
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      id: cache-nodemodules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ env.NODE_VERSION }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
-
-    - name: Install dependencies
-      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-      run: yarn install --frozen-lockfile --non-interactive
-
-    - name: Build website
-      run: yarn website
 
   release:
     needs: [tests, lint]
     if: github.ref == 'refs/heads/main'
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
 
     steps:
       - name: Checkout
@@ -113,16 +82,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-nodemodules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ env.NODE_VERSION }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
+          cache: 'yarn'
 
       - name: Install dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --non-interactive
 
       - name: Release
@@ -130,37 +92,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  deploy:
-    name: Deploy website
-    needs: [tests, lint]
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-nodemodules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ env.NODE_VERSION }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile --non-interactive
-
-      - name: Build
-        run: yarn website
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: examples/dist

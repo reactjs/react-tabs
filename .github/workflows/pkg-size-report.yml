@@ -7,6 +7,9 @@ on:
 env:
   NODE_VERSION: 18
 
+permissions:
+  pull-requests: write
+
 jobs:
   pkg-size-report:
     name: Package size report
