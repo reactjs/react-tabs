@@ -23,6 +23,8 @@ jobs:
     - name: debug
       run: |
         echo "The GitHub Actor's userid is: $GITHUB_REF"
+        echo "The GitHub Actor's userid is: $GITHUB_HEAD_REF"
+        echo "The GitHub Actor's userid is: $GITHUB_BASE_REF"
         echo "The GitHub event name is: $GITHUB_EVENT_NAME"
     - name: Checkout
       uses: actions/checkout@v3
