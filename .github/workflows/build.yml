@@ -20,6 +20,10 @@ jobs:
     if: github.actor_id != 29139614 || github.event_name != 'pull_request'
 
     steps:
+    - name: debug
+      run: |
+        echo "The GitHub Actor's userid is: $GITHUB_ACTOR_ID"
+        echo "The GitHub event name is: $GITHUB_EVENT_NAME"
     - name: Checkout
       uses: actions/checkout@v3
 
