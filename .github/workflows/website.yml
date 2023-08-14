@@ -16,7 +16,7 @@ permissions: {}
 jobs:
   website:
     name: Test
-    if: github.ref != 'refs/heads/main'
+    if: "github.ref != 'refs/heads/main' && !startsWith(github.head_ref, 'renovate/')"
     runs-on: ubuntu-latest
 
     steps:
