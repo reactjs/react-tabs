@@ -17,9 +17,13 @@ jobs:
   tests:
     name: Unit tests
     runs-on: ubuntu-latest
-    if: "! startsWith(github.ref, 'refs/heads/renovate/') || github.event_name != 'pull_request'"
+    if: ! startsWith(github.ref, 'refs/heads/renovate/') || github.event_name != 'pull_request'
 
     steps:
+    - name: debug
+      run: |
+        echo "The GitHub Actor's userid is: $GITHUB_REF"
+        echo "The GitHub event name is: $GITHUB_EVENT_NAME"
     - name: Checkout
       uses: actions/checkout@v3
 
