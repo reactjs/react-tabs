@@ -4,7 +4,7 @@
 name: OSSAR
 
 on:
-  push: 
+  push:
     branches:
       - main
       - renovate/**
@@ -15,6 +15,7 @@ jobs:
     # OSSAR runs on windows-latest.
     # ubuntu-latest and macos-latest support coming soon
     runs-on: windows-latest
+    if: "!startsWith(github.head_ref, 'renovate/')"
 
     steps:
       # Checkout your code repository to scan
