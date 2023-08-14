@@ -41,7 +41,7 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    if: github.actor_id != 29139614 || github.event_name != "pull_request"
+    if: github.actor_id != 29139614 || github.event_name != 'pull_request'
 
     steps:
     - name: Checkout
