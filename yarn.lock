@@ -1170,7 +1170,7 @@
     slash "^3.0.0"
     strip-ansi "^6.0.0"
 
-"@jest/environment@^29.6.3", "@jest/environment@^29.6.4":
+"@jest/environment@^29.6.4":
   version "29.6.4"
   resolved "https://registry.yarnpkg.com/@jest/environment/-/environment-29.6.4.tgz#78ec2c9f8c8829a37616934ff4fea0c028c79f4f"
   integrity sha512-sQ0SULEjA1XUTHmkBRl7A1dyITM9yb1yb3ZNKPX3KlTd6IG7mWUe3e2yfExtC2Zz1Q+mMckOLHmL/qLiuQJrBQ==
@@ -1195,7 +1195,7 @@
     expect "^29.6.4"
     jest-snapshot "^29.6.4"
 
-"@jest/fake-timers@^29.6.3", "@jest/fake-timers@^29.6.4":
+"@jest/fake-timers@^29.6.4":
   version "29.6.4"
   resolved "https://registry.yarnpkg.com/@jest/fake-timers/-/fake-timers-29.6.4.tgz#45a27f093c43d5d989362a3e7a8c70c83188b4f6"
   integrity sha512-6UkCwzoBK60edXIIWb0/KWkuj7R7Qq91vVInOe3De6DSpaEiqjKcJw4F7XUet24Wupahj9J6PlR09JqJ5ySDHw==
@@ -4830,13 +4830,13 @@ jest-each@^29.6.3:
     jest-util "^29.6.3"
     pretty-format "^29.6.3"
 
-jest-environment-jsdom@29.6.3:
-  version "29.6.3"
-  resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-29.6.3.tgz#c9f394f5a89f399532c794d09bd3a746d9b3e0df"
-  integrity sha512-nMJz/i27Moit9bv8Z323/13Melj4FEQH93yRu7GnilvBmPBMH4EGEkEfBTJXYuubyzhMO7w/VHzljIDV+Q/SeQ==
+jest-environment-jsdom@29.6.4:
+  version "29.6.4"
+  resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-29.6.4.tgz#0daf44454041f9e1ef7fa82eb1bd43426a82eb1c"
+  integrity sha512-K6wfgUJ16DoMs02JYFid9lOsqfpoVtyJxpRlnTxUHzvZWBnnh2VNGRB9EC1Cro96TQdq5TtSjb3qUjNaJP9IyA==
   dependencies:
-    "@jest/environment" "^29.6.3"
-    "@jest/fake-timers" "^29.6.3"
+    "@jest/environment" "^29.6.4"
+    "@jest/fake-timers" "^29.6.4"
     "@jest/types" "^29.6.3"
     "@types/jsdom" "^20.0.0"
     "@types/node" "*"
