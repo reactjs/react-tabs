@@ -40,9 +40,6 @@ const TabPanel = (props) => {
     ...defaultProps,
     ...props,
   };
-
-  console.log("Disabled",DefaultDisabledTabComponent)
-
   const DisabledComponent = disabledpanel || DefaultDisabledTabComponent()
 
   return (
