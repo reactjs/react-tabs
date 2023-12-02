@@ -88,16 +88,16 @@ const UncontrolledTabs = (props) => {
 
     // Look for non-disabled tab from index to the last tab on the right
     for (let i = index + 1; i < count; i++) {
-      if (!isTabDisabled(getTab(i))) {
+      // if (!isTabDisabled(getTab(i))) {
         return i;
-      }
+      // }
     }
 
     // If no tab found, continue searching from first on left to index
     for (let i = 0; i < index; i++) {
-      if (!isTabDisabled(getTab(i))) {
+      // if (!isTabDisabled(getTab(i))) {
         return i;
-      }
+      // }
     }
 
     // All tabs are disabled, return index
@@ -110,17 +110,17 @@ const UncontrolledTabs = (props) => {
 
     // Look for non-disabled tab from index to first tab on the left
     while (i--) {
-      if (!isTabDisabled(getTab(i))) {
+      // if (!isTabDisabled(getTab(i))) {
         return i;
-      }
+      // }
     }
 
     // If no tab found, continue searching from last tab on right to index
     i = getTabsCount();
     while (i-- > index) {
-      if (!isTabDisabled(getTab(i))) {
+      // if (!isTabDisabled(getTab(i))) {
         return i;
-      }
+      // }
     }
 
     // All tabs are disabled, return index
@@ -133,9 +133,9 @@ const UncontrolledTabs = (props) => {
 
     // Look for non disabled tab from the first tab
     for (let i = 0; i < count; i++) {
-      if (!isTabDisabled(getTab(i))) {
+      // if (!isTabDisabled(getTab(i))) {
         return i;
-      }
+      // }
     }
 
     /* istanbul ignore next */
@@ -147,9 +147,9 @@ const UncontrolledTabs = (props) => {
 
     // Look for non disabled tab from the last tab
     while (i--) {
-      if (!isTabDisabled(getTab(i))) {
+      // if (!isTabDisabled(getTab(i))) {
         return i;
-      }
+      // }
     }
 
     /* istanbul ignore next */
@@ -167,6 +167,9 @@ const UncontrolledTabs = (props) => {
 
   function getChildren() {
     let index = 0;
+    let disabledTabsIndexes =[];
+    let disabledTabsMappings={};
+
     const {
       children,
       disabledTabClassName,
@@ -190,7 +193,7 @@ const UncontrolledTabs = (props) => {
     }
 
     // Map children to dynamically setup refs
-    return deepMap(children, (child) => {
+    return deepMap(children, (child,childIndex) => {
       let result = child;
 
       // Clone TabList and Tab components to have refs
@@ -217,7 +220,7 @@ const UncontrolledTabs = (props) => {
           children: deepMap(child.props.children, (tab) => {
             const key = `tabs-${listIndex}`;
             const selected = selectedIndex === listIndex;
-
+            
             const props = {
               tabRef: (node) => {
                 tabNodes.current[key] = node;
@@ -234,6 +237,10 @@ const UncontrolledTabs = (props) => {
 
             listIndex++;
 
+            if(tab.props.disabled){
+              disabledTabsIndexes.push(tabIds.current[listIndex])
+              disabledTabsMappings[tabIds.current[listIndex]] = tab.props.disabledpanel
+            }
             return cloneElement(tab, props);
           }),
         });
@@ -242,6 +249,8 @@ const UncontrolledTabs = (props) => {
           id: tabIds.current[index],
           selected: selectedIndex === index,
         };
+        props.disabled = disabledTabsIndexes.includes(tabIds.current[index+1]);
+        props.disabledpanel = disabledTabsMappings[tabIds.current[index+1]]
 
         if (forceRenderTabPanel) props.forceRender = forceRenderTabPanel;
         if (selectedTabPanelClassName)

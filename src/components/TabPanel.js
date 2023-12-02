@@ -20,6 +20,11 @@ const propTypes = {
   selected: PropTypes.bool, // private
   selectedClassName: PropTypes.string,
 };
+
+const DefaultDisabledTabComponent = () => {
+  return <>Disabled Tab</>
+}
+
 const TabPanel = (props) => {
   const {
     children,
@@ -28,11 +33,17 @@ const TabPanel = (props) => {
     id,
     selected,
     selectedClassName,
+    disabled,
+    disabledpanel,
     ...attributes
   } = {
     ...defaultProps,
     ...props,
   };
+
+  console.log("Disabled",DefaultDisabledTabComponent)
+
+  const DisabledComponent = disabledpanel || DefaultDisabledTabComponent()
 
   return (
     <div
@@ -44,7 +55,7 @@ const TabPanel = (props) => {
       id={`panel${id}`}
       aria-labelledby={`tab${id}`}
     >
-      {forceRender || selected ? children : null}
+      {forceRender || selected ? !disabled? children: DisabledComponent : null}
     </div>
   );
 };
