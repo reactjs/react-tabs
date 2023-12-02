@@ -88,16 +88,12 @@ const UncontrolledTabs = (props) => {
 
     // Look for non-disabled tab from index to the last tab on the right
     for (let i = index + 1; i < count; i++) {
-      // if (!isTabDisabled(getTab(i))) {
         return i;
-      // }
     }
 
     // If no tab found, continue searching from first on left to index
     for (let i = 0; i < index; i++) {
-      // if (!isTabDisabled(getTab(i))) {
         return i;
-      // }
     }
 
     // All tabs are disabled, return index
@@ -110,17 +106,13 @@ const UncontrolledTabs = (props) => {
 
     // Look for non-disabled tab from index to first tab on the left
     while (i--) {
-      // if (!isTabDisabled(getTab(i))) {
         return i;
-      // }
     }
 
     // If no tab found, continue searching from last tab on right to index
     i = getTabsCount();
     while (i-- > index) {
-      // if (!isTabDisabled(getTab(i))) {
         return i;
-      // }
     }
 
     // All tabs are disabled, return index
@@ -133,9 +125,7 @@ const UncontrolledTabs = (props) => {
 
     // Look for non disabled tab from the first tab
     for (let i = 0; i < count; i++) {
-      // if (!isTabDisabled(getTab(i))) {
         return i;
-      // }
     }
 
     /* istanbul ignore next */
@@ -147,9 +137,7 @@ const UncontrolledTabs = (props) => {
 
     // Look for non disabled tab from the last tab
     while (i--) {
-      // if (!isTabDisabled(getTab(i))) {
         return i;
-      // }
     }
 
     /* istanbul ignore next */
@@ -167,7 +155,9 @@ const UncontrolledTabs = (props) => {
 
   function getChildren() {
     let index = 0;
-    let disabledTabsIndexes =[];
+    // disabledTabsIndexes is where we store the index of the disabled tabs, which we then use in to check if the respective tabpanel is allowed or not
+    let disabledTabsIndexes =[]; 
+    // disabledTabsMappings is where we map ids of the disabled tabs. With the custom component provided by the user if any.
     let disabledTabsMappings={};
 
     const {

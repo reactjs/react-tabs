@@ -52,6 +52,7 @@ const TabPanel = (props) => {
       id={`panel${id}`}
       aria-labelledby={`tab${id}`}
     >
+      {/* {forceRender || selected ? children: null} */}
       {forceRender || selected ? !disabled? children: DisabledComponent : null}
     </div>
   );
