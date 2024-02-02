@@ -6349,10 +6349,10 @@ react-lifecycles-compat@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-live@4.1.5:
-  version "4.1.5"
-  resolved "https://registry.yarnpkg.com/react-live/-/react-live-4.1.5.tgz#a4fa4cfdcad763503a209a29bace3339764fdfb1"
-  integrity sha512-ul3Zwvqvh6KTg8j7xGCT26+c8J9vQ+LFUrZCbrrrzEExuVB/39s1GKG3NsywnL+aGAjpfnUTaVCe7KlKIvVPiw==
+react-live@4.1.6:
+  version "4.1.6"
+  resolved "https://registry.yarnpkg.com/react-live/-/react-live-4.1.6.tgz#6d9b7d381bd2b359ca859767501135112b6bab33"
+  integrity sha512-2oq3MADi3rupqZcdoHMrV9p+Eg/92BDds278ZuoOz8d68qw6ct0xZxX89MRxeChrnFHy1XPr8BVknDJNJNdvVw==
   dependencies:
     prism-react-renderer "^2.0.6"
     sucrase "^3.31.0"
