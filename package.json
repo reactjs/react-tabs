@@ -48,7 +48,7 @@
     "react": "^18.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.24.8",
+    "@babel/cli": "7.25.6",
     "@babel/core": "7.25.2",
     "@babel/eslint-parser": "7.25.1",
     "@babel/preset-env": "7.25.4",
