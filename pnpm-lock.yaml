@@ -82,8 +82,8 @@ importers:
         specifier: 3.3.2
         version: 3.3.2
       html-loader:
-        specifier: 4.2.0
-        version: 4.2.0(webpack@5.94.0(webpack-cli@5.1.4))
+        specifier: 5.1.0
+        version: 5.1.0(webpack@5.94.0(webpack-cli@5.1.4))
       html-webpack-plugin:
         specifier: 5.6.0
         version: 5.6.0(webpack@5.94.0(webpack-cli@5.1.4))
@@ -2406,9 +2406,9 @@ packages:
   html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
 
-  html-loader@4.2.0:
-    resolution: {integrity: sha512-OxCHD3yt+qwqng2vvcaPApCEvbx+nXWu+v69TYHx1FO8bffHn/JjHtE3TTQZmHjwvnJe4xxzuecetDVBrQR1Zg==}
-    engines: {node: '>= 14.15.0'}
+  html-loader@5.1.0:
+    resolution: {integrity: sha512-Jb3xwDbsm0W3qlXrCZwcYqYGnYz55hb6aoKQTlzyZPXsPpi6tHXzAfqalecglMQgNvtEfxrCQPaKT90Irt5XDA==}
+    engines: {node: '>= 18.12.0'}
     peerDependencies:
       webpack: ^5.0.0
 
@@ -7346,7 +7346,7 @@ snapshots:
 
   html-escaper@2.0.2: {}
 
-  html-loader@4.2.0(webpack@5.94.0(webpack-cli@5.1.4)):
+  html-loader@5.1.0(webpack@5.94.0(webpack-cli@5.1.4)):
     dependencies:
       html-minifier-terser: 7.2.0
       parse5: 7.1.2
