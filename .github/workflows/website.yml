@@ -32,7 +32,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build website
-        run: pnpm website
+        run: pnpm run --sequential '/website:.*/'
 
   deploy:
     name: Deploy
@@ -57,7 +57,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm website
+        run: pnpm run --sequential '/website:.*/'
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
