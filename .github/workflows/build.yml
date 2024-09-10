@@ -1,4 +1,3 @@
-
 name: CI
 
 on:
@@ -17,23 +16,26 @@ jobs:
     if: "!startsWith(github.head_ref, 'renovate/')"
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 'lts/*'
-        cache: 'yarn'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
 
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile --non-interactive
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
 
-    - name: Unit tests
-      run: yarn test --ci --coverage
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
+      - name: Unit tests
+        run: pnpm test -- --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
 
   lint:
     name: Lint
@@ -41,20 +43,23 @@ jobs:
     if: "!startsWith(github.head_ref, 'renovate/')"
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 'lts/*'
-        cache: 'yarn'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
 
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile --non-interactive
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
 
-    - name: Lint
-      run: yarn lint
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
 
   release:
     needs: [tests, lint]
@@ -73,17 +78,20 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
+        run: pnpm install --frozen-lockfile
 
       - name: Release
-        run: npx semantic-release --branches main
+        run: pnpm dlx semantic-release --branches main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

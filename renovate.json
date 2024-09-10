@@ -10,7 +10,7 @@
     "automerge": true
   },
   "postUpdateOptions": [
-    "yarnDedupeHighest"
+    "pnpmDedupe"
   ],
   "semanticCommits": "enabled",
   "semanticCommitType": "fix",

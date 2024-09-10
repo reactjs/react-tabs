@@ -14,7 +14,7 @@
     "format": "eslint src --fix --report-unused-disable-directives",
     "lint": "eslint src --report-unused-disable-directives",
     "prebump": "run-s lint test",
-    "prepublishOnly": "yarn run build",
+    "prepublishOnly": "pnpm run build",
     "test": "cross-env BABEL_OUTPUT=commonjs jest",
     "start": "webpack serve",
     "website": "run-s website:clean website:build website:redirect",
@@ -22,6 +22,7 @@
     "website:build": "cross-env BABEL_TARGET=examples NODE_ENV=production webpack",
     "website:redirect": "cp -R examples/src/example examples/dist"
   },
+  "packageManager": "pnpm@9.10.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/reactjs/react-tabs.git"

@@ -2,7 +2,7 @@ name: Package size report
 
 on:
   pull_request:
-    branches: [ main, next ]
+    branches: [main, next]
 
 permissions:
   pull-requests: write
@@ -13,22 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 'lts/*'
-        cache: 'yarn'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
 
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile --non-interactive
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
 
-    - name: Package size report
-      uses: pkg-size/action@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        hide-files: '*.{js,css}.map'
-        display-size: uncompressed, gzip
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Package size report
+        uses: pkg-size/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          hide-files: '*.{js,css}.map'
+          display-size: uncompressed, gzip
