@@ -1,6 +1,6 @@
 
 tasks:
-  - init: yarn install && yarn run build
+  - init: pnpm install && pnpm run build
 
 vscode:
   extensions:
