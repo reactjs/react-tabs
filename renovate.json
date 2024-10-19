@@ -23,6 +23,11 @@
       "semanticCommitType": "chore"
     },
     {
+      "matchPackageNames": ["pnpm"],
+      "updateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
       "matchDepTypes": [
         "devDependencies"
       ],
