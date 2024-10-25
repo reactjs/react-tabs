@@ -49,9 +49,9 @@
   },
   "devDependencies": {
     "@babel/cli": "7.25.9",
-    "@babel/core": "7.25.9",
+    "@babel/core": "7.26.0",
     "@babel/eslint-parser": "7.25.9",
-    "@babel/preset-env": "7.25.9",
+    "@babel/preset-env": "7.26.0",
     "@babel/preset-react": "7.25.9",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.2",
