@@ -76,7 +76,7 @@
     "jest-environment-jsdom": "29.7.0",
     "less": "4.2.0",
     "less-loader": "12.2.0",
-    "mini-css-extract-plugin": "2.9.1",
+    "mini-css-extract-plugin": "2.9.2",
     "prettier": "3.3.3",
     "prism-react-renderer": "2.4.0",
     "react": "18.3.1",
