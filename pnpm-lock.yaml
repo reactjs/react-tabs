@@ -115,8 +115,8 @@ importers:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
       react-live:
-        specifier: 4.1.7
-        version: 4.1.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 4.1.8
+        version: 4.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-modal:
         specifier: 3.16.1
         version: 3.16.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -3624,8 +3624,8 @@ packages:
   react-lifecycles-compat@3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
 
-  react-live@4.1.7:
-    resolution: {integrity: sha512-NTzl0POOAW3dkp7+QL30duOrIu2Vzf2LHdx4TaQ0BqOAtQcSTKEXujfm9jR2VoCHko0oi35PYp38yKQBXz4mrg==}
+  react-live@4.1.8:
+    resolution: {integrity: sha512-B2SgNqwPuS2ekqj4lcxi5TibEcjWkdVyYykBEUBshPAPDQ527x2zPEZg560n8egNtAjUpwXFQm7pcXV65aAYmg==}
     engines: {node: '>= 0.12.0', npm: '>= 2.0.0'}
     peerDependencies:
       react: '>=18.0.0'
@@ -8573,7 +8573,7 @@ snapshots:
 
   react-lifecycles-compat@3.0.4: {}
 
-  react-live@4.1.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-live@4.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       prism-react-renderer: 2.4.0(react@18.3.1)
       react: 18.3.1
