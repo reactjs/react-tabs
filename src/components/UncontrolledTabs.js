@@ -32,6 +32,7 @@ function determineCanUseActiveElement(environment) {
       env.document &&
       env.document.activeElement
     );
+    // eslint-disable-next-line no-unused-vars
   } catch (e) {
     // Work around for IE bug when accessing document.activeElement in an iframe
     // Refer to the following resources:
