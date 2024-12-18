@@ -5,11 +5,11 @@ exports[`<Tab /> override the tabIndex if it was provided 1`] = `
   aria-controls="panelnull"
   aria-disabled="false"
   aria-selected="false"
-  className="react-tabs__tab"
-  data-rttab={true}
+  class="react-tabs__tab"
+  data-rttab="true"
   id="tabnull"
   role="tab"
-  tabIndex="0"
+  tabindex="0"
 >
   Hello
 </li>
@@ -20,11 +20,10 @@ exports[`<Tab /> should accept className 1`] = `
   aria-controls="panelnull"
   aria-disabled="false"
   aria-selected="false"
-  className="foobar"
-  data-rttab={true}
+  class="foobar"
+  data-rttab="true"
   id="tabnull"
   role="tab"
-  tabIndex={null}
 />
 `;
 
@@ -33,11 +32,10 @@ exports[`<Tab /> should allow to be wrapped in higher-order-component 1`] = `
   aria-controls="panelnull"
   aria-disabled="false"
   aria-selected="false"
-  className="react-tabs__tab"
-  data-rttab={true}
+  class="react-tabs__tab"
+  data-rttab="true"
   id="tabnull"
   role="tab"
-  tabIndex={null}
 />
 `;
 
@@ -46,11 +44,10 @@ exports[`<Tab /> should have sane defaults 1`] = `
   aria-controls="panelnull"
   aria-disabled="false"
   aria-selected="false"
-  className="react-tabs__tab"
-  data-rttab={true}
+  class="react-tabs__tab"
+  data-rttab="true"
   id="tabnull"
   role="tab"
-  tabIndex={null}
 />
 `;
 
@@ -59,11 +56,10 @@ exports[`<Tab /> should not allow overriding all default properties 1`] = `
   aria-controls="panelnull"
   aria-disabled="false"
   aria-selected="false"
-  className="react-tabs__tab"
-  data-rttab={true}
+  class="react-tabs__tab"
+  data-rttab="true"
   id="tabnull"
   role="tab"
-  tabIndex={null}
 />
 `;
 
@@ -72,12 +68,11 @@ exports[`<Tab /> should pass through custom properties 1`] = `
   aria-controls="panelnull"
   aria-disabled="false"
   aria-selected="false"
-  className="react-tabs__tab"
-  data-rttab={true}
+  class="react-tabs__tab"
+  data-rttab="true"
   data-tooltip="Tooltip contents"
   id="tabnull"
   role="tab"
-  tabIndex={null}
 />
 `;
 
@@ -86,11 +81,10 @@ exports[`<Tab /> should support being disabled 1`] = `
   aria-controls="panelnull"
   aria-disabled="true"
   aria-selected="false"
-  className="react-tabs__tab react-tabs__tab--disabled"
-  data-rttab={true}
+  class="react-tabs__tab react-tabs__tab--disabled"
+  data-rttab="true"
   id="tabnull"
   role="tab"
-  tabIndex={null}
 />
 `;
 
@@ -99,11 +93,10 @@ exports[`<Tab /> should support being disabled with custom class name 1`] = `
   aria-controls="panelnull"
   aria-disabled="true"
   aria-selected="false"
-  className="react-tabs__tab coolDisabled"
-  data-rttab={true}
+  class="react-tabs__tab coolDisabled"
+  data-rttab="true"
   id="tabnull"
   role="tab"
-  tabIndex={null}
 />
 `;
 
@@ -112,11 +105,11 @@ exports[`<Tab /> should support being selected 1`] = `
   aria-controls="panelabcd"
   aria-disabled="false"
   aria-selected="true"
-  className="react-tabs__tab react-tabs__tab--selected"
-  data-rttab={true}
+  class="react-tabs__tab react-tabs__tab--selected"
+  data-rttab="true"
   id="tababcd"
   role="tab"
-  tabIndex="0"
+  tabindex="0"
 >
   Hello
 </li>
@@ -127,10 +120,10 @@ exports[`<Tab /> should support being selected with custom class 1`] = `
   aria-controls="panelnull"
   aria-disabled="false"
   aria-selected="true"
-  className="react-tabs__tab cool"
-  data-rttab={true}
+  class="react-tabs__tab cool"
+  data-rttab="true"
   id="tabnull"
   role="tab"
-  tabIndex="0"
+  tabindex="0"
 />
 `;
