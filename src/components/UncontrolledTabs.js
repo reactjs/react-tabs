@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import { checkPropTypes } from 'prop-types';
 import React, { cloneElement, useRef, useId } from 'react';
 import cx from 'clsx';
 import { childrenPropType } from '../helpers/propTypes';
@@ -49,6 +49,8 @@ const defaultProps = {
 
 const propTypes = {
   children: childrenPropType,
+  /*
+  Left for TS migration
   direction: PropTypes.oneOf(['rtl', 'ltr']),
   className: PropTypes.oneOfType([
     PropTypes.string,
@@ -65,10 +67,11 @@ const propTypes = {
   selectedIndex: PropTypes.number.isRequired,
   selectedTabClassName: PropTypes.string,
   selectedTabPanelClassName: PropTypes.string,
-  environment: PropTypes.object,
+  environment: PropTypes.object,*/
 };
 
 const UncontrolledTabs = (props) => {
+  checkPropTypes(propTypes, props, 'prop', 'UncontrolledTabs');
   let tabNodes = useRef([]);
   let tabIds = useRef([]);
   const ref = useRef();
@@ -403,7 +406,5 @@ const UncontrolledTabs = (props) => {
     </div>
   );
 };
-
-UncontrolledTabs.propTypes = propTypes;
 
 export default UncontrolledTabs;

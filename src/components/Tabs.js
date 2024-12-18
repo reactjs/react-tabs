@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import { checkPropTypes } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import {
   childrenPropType,
@@ -12,6 +12,10 @@ const MODE_CONTROLLED = 0;
 const MODE_UNCONTROLLED = 1;
 const propTypes = {
   children: childrenPropType,
+  onSelect: onSelectPropType,
+  selectedIndex: selectedIndexPropType,
+  /*
+Left for TS migration
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -27,10 +31,8 @@ const propTypes = {
   environment: PropTypes.object,
   focusTabOnClick: PropTypes.bool,
   forceRenderTabPanel: PropTypes.bool,
-  onSelect: onSelectPropType,
-  selectedIndex: selectedIndexPropType,
   selectedTabClassName: PropTypes.string,
-  selectedTabPanelClassName: PropTypes.string,
+  selectedTabPanelClassName: PropTypes.string,*/
 };
 const defaultProps = {
   defaultFocus: false,
@@ -68,6 +70,7 @@ For more information about controlled and uncontrolled mode of react-tabs see ht
  *          It is initialized from the prop defaultFocus, and after the first render it is reset back to false. Later it can become true again when using keys to navigate the tabs.
  */
 const Tabs = (props) => {
+  checkPropTypes(propTypes, props, 'prop', 'Tabs');
   const {
     children,
     defaultFocus,
@@ -136,7 +139,6 @@ const Tabs = (props) => {
   return <UncontrolledTabs {...subProps}>{children}</UncontrolledTabs>;
 };
 
-Tabs.propTypes = propTypes;
 Tabs.tabsRole = 'Tabs';
 
 export default Tabs;

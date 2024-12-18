@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import cx from 'clsx';
 
@@ -12,6 +11,8 @@ const defaultProps = {
   selectedClassName: `${DEFAULT_CLASS}--selected`,
 };
 
+/*
+Left for TS migration
 const propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.array,
@@ -31,7 +32,7 @@ const propTypes = {
   selectedClassName: PropTypes.string,
   tabIndex: PropTypes.string,
   tabRef: PropTypes.func, // private
-};
+};*/
 
 const Tab = (props) => {
   let nodeRef = useRef();
@@ -82,7 +83,6 @@ const Tab = (props) => {
   );
 };
 
-Tab.propTypes = propTypes;
 Tab.tabsRole = 'Tab';
 
 export default Tab;
