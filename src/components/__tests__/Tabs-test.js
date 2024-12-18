@@ -351,9 +351,11 @@ describe('<Tabs />', () => {
         <Tabs>
           <TabList>
             <Tab>Tab A</Tab>
+            {/* eslint-disable-next-line no-constant-binary-expression*/}
             {false && <Tab>Tab B</Tab>}
           </TabList>
           <TabPanel>Content A</TabPanel>
+          {/* eslint-disable-next-line no-constant-binary-expression*/}
           {false && <TabPanel>Content B</TabPanel>}
         </Tabs>,
       );
