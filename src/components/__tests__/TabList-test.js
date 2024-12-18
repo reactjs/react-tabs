@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
@@ -16,7 +16,8 @@ jest.mock('react', () => {
 });
 
 function expectToMatchSnapshot(component) {
-  expect(renderer.create(component).toJSON()).toMatchSnapshot();
+  const { container } = render(component);
+  expect(container.firstChild).toMatchSnapshot();
 }
 
 describe('<TabList />', () => {

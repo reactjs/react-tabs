@@ -1,10 +1,11 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import TabPanel from '../TabPanel';
 import { TabPanelWrapper } from './helpers/higherOrder';
 
 function expectToMatchSnapshot(component) {
-  expect(renderer.create(component).toJSON()).toMatchSnapshot();
+  const { container } = render(component);
+  expect(container.firstChild).toMatchSnapshot();
 }
 
 describe('<TabPanel />', () => {

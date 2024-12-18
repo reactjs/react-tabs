@@ -2,31 +2,29 @@
 
 exports[`<TabList /> should accept className 1`] = `
 <ul
-  className="foobar"
+  class="foobar"
   role="tablist"
 />
 `;
 
 exports[`<TabList /> should allow for higher order components 1`] = `
 <div
-  className="react-tabs"
-  data-rttabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-rttabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="panel:r0:0"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
-      data-rttab={true}
+      class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       id="tab:r0:0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
       Foo
     </li>
@@ -34,18 +32,17 @@ exports[`<TabList /> should allow for higher order components 1`] = `
       aria-controls="panel:r0:1"
       aria-disabled="false"
       aria-selected="false"
-      className="react-tabs__tab"
-      data-rttab={true}
+      class="react-tabs__tab"
+      data-rttab="true"
       id="tab:r0:1"
       role="tab"
-      tabIndex={null}
     >
       Bar
     </li>
   </ul>
   <div
     aria-labelledby="tab:r0:0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="panel:r0:0"
     role="tabpanel"
   >
@@ -53,7 +50,7 @@ exports[`<TabList /> should allow for higher order components 1`] = `
   </div>
   <div
     aria-labelledby="tab:r0:1"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
     id="panel:r0:1"
     role="tabpanel"
   />
@@ -62,24 +59,22 @@ exports[`<TabList /> should allow for higher order components 1`] = `
 
 exports[`<TabList /> should display the custom classnames for selected and disabled tab 1`] = `
 <div
-  className="react-tabs"
-  data-rttabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-rttabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="panel:r0:0"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab active"
-      data-rttab={true}
+      class="react-tabs__tab active"
+      data-rttab="true"
       id="tab:r0:0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
       Foo
     </li>
@@ -87,18 +82,17 @@ exports[`<TabList /> should display the custom classnames for selected and disab
       aria-controls="panel:r0:1"
       aria-disabled="true"
       aria-selected="false"
-      className="react-tabs__tab disabled"
-      data-rttab={true}
+      class="react-tabs__tab disabled"
+      data-rttab="true"
       id="tab:r0:1"
       role="tab"
-      tabIndex={null}
     >
       Bar
     </li>
   </ul>
   <div
     aria-labelledby="tab:r0:0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="panel:r0:0"
     role="tabpanel"
   >
@@ -106,7 +100,7 @@ exports[`<TabList /> should display the custom classnames for selected and disab
   </div>
   <div
     aria-labelledby="tab:r0:1"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
     id="panel:r0:1"
     role="tabpanel"
   />
@@ -115,24 +109,22 @@ exports[`<TabList /> should display the custom classnames for selected and disab
 
 exports[`<TabList /> should display the custom classnames for selected and disabled tab specified on tabs 1`] = `
 <div
-  className="react-tabs"
-  data-rttabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-rttabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="panel:r0:0"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab active"
-      data-rttab={true}
+      class="react-tabs__tab active"
+      data-rttab="true"
       id="tab:r0:0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
       Foo
     </li>
@@ -140,18 +132,17 @@ exports[`<TabList /> should display the custom classnames for selected and disab
       aria-controls="panel:r0:1"
       aria-disabled="true"
       aria-selected="false"
-      className="react-tabs__tab disabled"
-      data-rttab={true}
+      class="react-tabs__tab disabled"
+      data-rttab="true"
       id="tab:r0:1"
       role="tab"
-      tabIndex={null}
     >
       Bar
     </li>
   </ul>
   <div
     aria-labelledby="tab:r0:0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="panel:r0:0"
     role="tabpanel"
   >
@@ -159,7 +150,7 @@ exports[`<TabList /> should display the custom classnames for selected and disab
   </div>
   <div
     aria-labelledby="tab:r0:1"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
     id="panel:r0:1"
     role="tabpanel"
   />
@@ -168,21 +159,21 @@ exports[`<TabList /> should display the custom classnames for selected and disab
 
 exports[`<TabList /> should have sane defaults 1`] = `
 <ul
-  className="react-tabs__tab-list"
+  class="react-tabs__tab-list"
   role="tablist"
 />
 `;
 
 exports[`<TabList /> should not allow overriding all default properties 1`] = `
 <ul
-  className="react-tabs__tab-list"
+  class="react-tabs__tab-list"
   role="tablist"
 />
 `;
 
 exports[`<TabList /> should pass through custom properties 1`] = `
 <ul
-  className="react-tabs__tab-list"
+  class="react-tabs__tab-list"
   data-tooltip="Tooltip contents"
   role="tablist"
 />
@@ -190,24 +181,22 @@ exports[`<TabList /> should pass through custom properties 1`] = `
 
 exports[`<TabList /> should retain the default classnames for active and disabled tab 1`] = `
 <div
-  className="react-tabs"
-  data-rttabs={true}
-  onClick={[Function]}
-  onKeyDown={[Function]}
+  class="react-tabs"
+  data-rttabs="true"
 >
   <ul
-    className="react-tabs__tab-list"
+    class="react-tabs__tab-list"
     role="tablist"
   >
     <li
       aria-controls="panel:r0:0"
       aria-disabled="false"
       aria-selected="true"
-      className="react-tabs__tab react-tabs__tab--selected"
-      data-rttab={true}
+      class="react-tabs__tab react-tabs__tab--selected"
+      data-rttab="true"
       id="tab:r0:0"
       role="tab"
-      tabIndex="0"
+      tabindex="0"
     >
       Foo
     </li>
@@ -215,18 +204,17 @@ exports[`<TabList /> should retain the default classnames for active and disable
       aria-controls="panel:r0:1"
       aria-disabled="true"
       aria-selected="false"
-      className="react-tabs__tab react-tabs__tab--disabled"
-      data-rttab={true}
+      class="react-tabs__tab react-tabs__tab--disabled"
+      data-rttab="true"
       id="tab:r0:1"
       role="tab"
-      tabIndex={null}
     >
       Bar
     </li>
   </ul>
   <div
     aria-labelledby="tab:r0:0"
-    className="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    class="react-tabs__tab-panel react-tabs__tab-panel--selected"
     id="panel:r0:0"
     role="tabpanel"
   >
@@ -234,7 +222,7 @@ exports[`<TabList /> should retain the default classnames for active and disable
   </div>
   <div
     aria-labelledby="tab:r0:1"
-    className="react-tabs__tab-panel"
+    class="react-tabs__tab-panel"
     id="panel:r0:1"
     role="tabpanel"
   />
