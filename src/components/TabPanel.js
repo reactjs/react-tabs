@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import cx from 'clsx';
 
@@ -8,6 +7,9 @@ const defaultProps = {
   forceRender: false,
   selectedClassName: `${DEFAULT_CLASS}--selected`,
 };
+
+/*
+Left for TS migration
 const propTypes = {
   children: PropTypes.node,
   className: PropTypes.oneOfType([
@@ -20,6 +22,7 @@ const propTypes = {
   selected: PropTypes.bool, // private
   selectedClassName: PropTypes.string,
 };
+*/
 const TabPanel = (props) => {
   const {
     children,
@@ -50,6 +53,5 @@ const TabPanel = (props) => {
 };
 
 TabPanel.tabsRole = 'TabPanel';
-TabPanel.propTypes = propTypes;
 
 export default TabPanel;

@@ -21,10 +21,7 @@ describe('<Tabs />', () => {
   function assertPropTypeWarning(message, nth = 1) {
     expect(consoleErrorMock).toHaveBeenNthCalledWith(
       nth,
-      expect.anything(),
-      expect.anything(),
       expect.stringMatching(message),
-      expect.anything(),
     );
   }
 
