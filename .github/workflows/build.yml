@@ -34,8 +34,8 @@ jobs:
       - name: Unit tests
         run: pnpm test -- --coverage
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Upload coverage
+        uses: coverallsapp/github-action@v2
 
   lint:
     name: Lint
