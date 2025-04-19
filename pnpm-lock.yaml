@@ -31,7 +31,7 @@ importers:
         specifier: 7.26.3
         version: 7.26.3(@babel/core@7.26.10)
       '@eslint/js':
-        specifier: ^9.25.0
+        specifier: 9.25.0
         version: 9.25.0
       '@testing-library/dom':
         specifier: 10.4.0
@@ -46,7 +46,7 @@ importers:
         specifier: 14.6.1
         version: 14.6.1(@testing-library/dom@10.4.0)
       '@vitest/coverage-v8':
-        specifier: ^3.1.1
+        specifier: 3.1.1
         version: 3.1.1(vitest@3.1.1(@types/node@22.14.1)(jsdom@20.0.3)(less@4.3.0)(terser@5.39.0))
       babel-loader:
         specifier: 10.0.0
@@ -61,7 +61,7 @@ importers:
         specifier: 7.1.2
         version: 7.1.2(webpack@5.99.6)
       css-minimizer-webpack-plugin:
-        specifier: ^7.0.0
+        specifier: 7.0.2
         version: 7.0.2(webpack@5.99.6)
       eslint:
         specifier: 9.25.0
@@ -118,7 +118,7 @@ importers:
         specifier: 3.16.3
         version: 3.16.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       vitest:
-        specifier: ^3.1.1
+        specifier: 3.1.1
         version: 3.1.1(@types/node@22.14.1)(jsdom@20.0.3)(less@4.3.0)(terser@5.39.0)
       webpack:
         specifier: 5.99.6
