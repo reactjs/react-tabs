@@ -21,7 +21,7 @@
     "website:build": "cross-env BABEL_TARGET=examples NODE_ENV=production webpack",
     "website:redirect": "cp -R examples/src/example examples/dist"
   },
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@10.8.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/reactjs/react-tabs.git"
@@ -53,6 +53,7 @@
     "@babel/eslint-parser": "7.27.0",
     "@babel/preset-env": "7.26.9",
     "@babel/preset-react": "7.26.3",
+    "@eslint/js": "^9.25.0",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.3.0",
