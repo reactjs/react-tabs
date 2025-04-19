@@ -63,7 +63,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: [/node_modules/],
         use: [
           {
@@ -92,6 +92,7 @@ module.exports = {
     ],
   },
   resolve: {
+    extensions: ['.js', '.jsx', '.json', '.wasm'],
     alias: {
       'react-tabs': path.resolve(__dirname, 'src/index'),
     },
