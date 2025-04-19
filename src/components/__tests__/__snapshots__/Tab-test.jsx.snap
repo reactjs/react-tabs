@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<Tab /> override the tabIndex if it was provided 1`] = `
+exports[`<Tab /> > override the tabIndex if it was provided 1`] = `
 <li
   aria-controls="panelnull"
   aria-disabled="false"
@@ -15,7 +15,7 @@ exports[`<Tab /> override the tabIndex if it was provided 1`] = `
 </li>
 `;
 
-exports[`<Tab /> should accept className 1`] = `
+exports[`<Tab /> > should accept className 1`] = `
 <li
   aria-controls="panelnull"
   aria-disabled="false"
@@ -27,7 +27,7 @@ exports[`<Tab /> should accept className 1`] = `
 />
 `;
 
-exports[`<Tab /> should allow to be wrapped in higher-order-component 1`] = `
+exports[`<Tab /> > should allow to be wrapped in higher-order-component 1`] = `
 <li
   aria-controls="panelnull"
   aria-disabled="false"
@@ -39,7 +39,7 @@ exports[`<Tab /> should allow to be wrapped in higher-order-component 1`] = `
 />
 `;
 
-exports[`<Tab /> should have sane defaults 1`] = `
+exports[`<Tab /> > should have sane defaults 1`] = `
 <li
   aria-controls="panelnull"
   aria-disabled="false"
@@ -51,7 +51,7 @@ exports[`<Tab /> should have sane defaults 1`] = `
 />
 `;
 
-exports[`<Tab /> should not allow overriding all default properties 1`] = `
+exports[`<Tab /> > should not allow overriding all default properties 1`] = `
 <li
   aria-controls="panelnull"
   aria-disabled="false"
@@ -63,7 +63,7 @@ exports[`<Tab /> should not allow overriding all default properties 1`] = `
 />
 `;
 
-exports[`<Tab /> should pass through custom properties 1`] = `
+exports[`<Tab /> > should pass through custom properties 1`] = `
 <li
   aria-controls="panelnull"
   aria-disabled="false"
@@ -76,7 +76,7 @@ exports[`<Tab /> should pass through custom properties 1`] = `
 />
 `;
 
-exports[`<Tab /> should support being disabled 1`] = `
+exports[`<Tab /> > should support being disabled 1`] = `
 <li
   aria-controls="panelnull"
   aria-disabled="true"
@@ -88,7 +88,7 @@ exports[`<Tab /> should support being disabled 1`] = `
 />
 `;
 
-exports[`<Tab /> should support being disabled with custom class name 1`] = `
+exports[`<Tab /> > should support being disabled with custom class name 1`] = `
 <li
   aria-controls="panelnull"
   aria-disabled="true"
@@ -100,7 +100,7 @@ exports[`<Tab /> should support being disabled with custom class name 1`] = `
 />
 `;
 
-exports[`<Tab /> should support being selected 1`] = `
+exports[`<Tab /> > should support being selected 1`] = `
 <li
   aria-controls="panelabcd"
   aria-disabled="false"
@@ -115,7 +115,7 @@ exports[`<Tab /> should support being selected 1`] = `
 </li>
 `;
 
-exports[`<Tab /> should support being selected with custom class 1`] = `
+exports[`<Tab /> > should support being selected with custom class 1`] = `
 <li
   aria-controls="panelnull"
   aria-disabled="false"

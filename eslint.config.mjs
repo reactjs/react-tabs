@@ -1,4 +1,3 @@
-import globals from 'globals';
 import babelParser from '@babel/eslint-parser';
 import js from '@eslint/js';
 import reactPlugin from 'eslint-plugin-react';
@@ -18,11 +17,6 @@ export default [
   },
   {
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-
       parser: babelParser,
 
       parserOptions: {
@@ -33,6 +27,11 @@ export default [
     settings: {
       react: {
         version: 'detect',
+      },
+      'import/resolver': {
+        node: {
+          extensions: ['.js', '.jsx'],
+        },
       },
     },
 
@@ -62,15 +61,6 @@ export default [
 
       'no-console': 'error',
       'react/prop-types': 'off',
-    },
-  },
-  {
-    files: ['**/*-test.js'],
-
-    languageOptions: {
-      globals: {
-        ...globals.jest,
-      },
     },
   },
 ];

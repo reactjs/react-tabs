@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<TabPanel /> should accept className 1`] = `
+exports[`<TabPanel /> > should accept className 1`] = `
 <div
   aria-labelledby="tabundefined"
   class="foobar"
@@ -9,7 +9,7 @@ exports[`<TabPanel /> should accept className 1`] = `
 />
 `;
 
-exports[`<TabPanel /> should allow for higher-order components 1`] = `
+exports[`<TabPanel /> > should allow for higher-order components 1`] = `
 <div
   aria-labelledby="tabundefined"
   class="react-tabs__tab-panel"
@@ -18,7 +18,7 @@ exports[`<TabPanel /> should allow for higher-order components 1`] = `
 />
 `;
 
-exports[`<TabPanel /> should have sane defaults 1`] = `
+exports[`<TabPanel /> > should have sane defaults 1`] = `
 <div
   aria-labelledby="tabundefined"
   class="react-tabs__tab-panel"
@@ -27,7 +27,7 @@ exports[`<TabPanel /> should have sane defaults 1`] = `
 />
 `;
 
-exports[`<TabPanel /> should not allow overriding all default properties 1`] = `
+exports[`<TabPanel /> > should not allow overriding all default properties 1`] = `
 <div
   aria-labelledby="tabundefined"
   class="react-tabs__tab-panel"
@@ -36,7 +36,7 @@ exports[`<TabPanel /> should not allow overriding all default properties 1`] = `
 />
 `;
 
-exports[`<TabPanel /> should pass through custom properties 1`] = `
+exports[`<TabPanel /> > should pass through custom properties 1`] = `
 <div
   aria-labelledby="tabundefined"
   class="react-tabs__tab-panel"
@@ -46,7 +46,7 @@ exports[`<TabPanel /> should pass through custom properties 1`] = `
 />
 `;
 
-exports[`<TabPanel /> should render when forced 1`] = `
+exports[`<TabPanel /> > should render when forced 1`] = `
 <div
   aria-labelledby="tabundefined"
   class="react-tabs__tab-panel"
@@ -57,7 +57,7 @@ exports[`<TabPanel /> should render when forced 1`] = `
 </div>
 `;
 
-exports[`<TabPanel /> should render when selected 1`] = `
+exports[`<TabPanel /> > should render when selected 1`] = `
 <div
   aria-labelledby="tabundefined"
   class="react-tabs__tab-panel react-tabs__tab-panel--selected"
@@ -68,7 +68,7 @@ exports[`<TabPanel /> should render when selected 1`] = `
 </div>
 `;
 
-exports[`<TabPanel /> should support being selected 1`] = `
+exports[`<TabPanel /> > should support being selected 1`] = `
 <div
   aria-labelledby="tababcd"
   class="react-tabs__tab-panel react-tabs__tab-panel--selected"
@@ -79,7 +79,7 @@ exports[`<TabPanel /> should support being selected 1`] = `
 </div>
 `;
 
-exports[`<TabPanel /> should support being selected with custom class name 1`] = `
+exports[`<TabPanel /> > should support being selected with custom class name 1`] = `
 <div
   aria-labelledby="tababcd"
   class="react-tabs__tab-panel selected"

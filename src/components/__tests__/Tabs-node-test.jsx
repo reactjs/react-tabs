@@ -1,14 +1,15 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  */
+import { describe, expect, test, vi } from 'vitest';
 import React from 'react';
 import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 
-jest.mock('react', () => {
-  const originalModule = jest.requireActual('react');
+vi.mock('react', async (importOriginal) => {
+  const originalModule = await importOriginal();
 
   return {
     ...originalModule,

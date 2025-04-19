@@ -15,7 +15,7 @@
     "lint": "eslint src --report-unused-disable-directives",
     "prebump": "pnpm run --sequential '/lint|test/'",
     "prepublishOnly": "pnpm run build",
-    "test": "cross-env BABEL_OUTPUT=commonjs jest",
+    "test": "vitest run",
     "start": "webpack serve",
     "website:clean": "rm -rf examples/dist",
     "website:build": "cross-env BABEL_TARGET=examples NODE_ENV=production webpack",
@@ -58,7 +58,7 @@
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.3.0",
     "@testing-library/user-event": "14.6.1",
-    "babel-jest": "29.7.0",
+    "@vitest/coverage-v8": "^3.1.1",
     "babel-loader": "10.0.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "cross-env": "7.0.3",
@@ -70,12 +70,9 @@
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-prettier": "5.2.6",
     "eslint-plugin-react": "7.37.5",
-    "globals": "16.0.0",
     "hoist-non-react-statics": "3.3.2",
     "html-loader": "5.1.0",
     "html-webpack-plugin": "5.6.3",
-    "jest": "29.7.0",
-    "jest-environment-jsdom": "29.7.0",
     "less": "4.3.0",
     "less-loader": "12.2.0",
     "mini-css-extract-plugin": "2.9.2",
@@ -85,6 +82,7 @@
     "react-dom": "19.1.0",
     "react-live": "4.1.8",
     "react-modal": "3.16.3",
+    "vitest": "^3.1.1",
     "webpack": "5.99.6",
     "webpack-cli": "6.0.1",
     "webpack-dev-server": "5.2.1"
@@ -92,16 +90,5 @@
   "dependencies": {
     "clsx": "^2.0.0",
     "prop-types": "^15.5.0"
-  },
-  "jest": {
-    "roots": [
-      "src"
-    ],
-    "testRegex": "/__tests__/.+-test\\.js$",
-    "testEnvironment": "jsdom",
-    "coveragePathIgnorePatterns": [
-      "/node_module/",
-      "/__tests__/"
-    ]
   }
 }

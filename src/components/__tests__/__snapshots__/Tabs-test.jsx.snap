@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is true 1`] = `
+exports[`<Tabs /> > performance > should render all tabs if forceRenderTabPanel is true 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -102,7 +102,7 @@ exports[`<Tabs /> performance should render all tabs if forceRenderTabPanel is t
 </div>
 `;
 
-exports[`<Tabs /> props should accept className 1`] = `
+exports[`<Tabs /> > props > should accept className 1`] = `
 <div
   class="foobar"
   data-rttabs="true"
@@ -198,7 +198,7 @@ exports[`<Tabs /> props should accept className 1`] = `
 </div>
 `;
 
-exports[`<Tabs /> props should have sane defaults 1`] = `
+exports[`<Tabs /> > props > should have sane defaults 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -294,7 +294,7 @@ exports[`<Tabs /> props should have sane defaults 1`] = `
 </div>
 `;
 
-exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
+exports[`<Tabs /> > props > should honor negative defaultIndex prop 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -387,7 +387,7 @@ exports[`<Tabs /> props should honor negative defaultIndex prop 1`] = `
 </div>
 `;
 
-exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
+exports[`<Tabs /> > props > should honor positive defaultIndex prop 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -483,7 +483,7 @@ exports[`<Tabs /> props should honor positive defaultIndex prop 1`] = `
 </div>
 `;
 
-exports[`<Tabs /> should allow for higher order components 1`] = `
+exports[`<Tabs /> > should allow for higher order components 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -533,7 +533,7 @@ exports[`<Tabs /> should allow for higher order components 1`] = `
 </div>
 `;
 
-exports[`<Tabs /> should allow string children 1`] = `
+exports[`<Tabs /> > should allow string children 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -588,14 +588,14 @@ exports[`<Tabs /> should allow string children 1`] = `
 </div>
 `;
 
-exports[`<Tabs /> should not add known props to dom 1`] = `
+exports[`<Tabs /> > should not add known props to dom 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
 />
 `;
 
-exports[`<Tabs /> should pass through custom properties 1`] = `
+exports[`<Tabs /> > should pass through custom properties 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -603,7 +603,7 @@ exports[`<Tabs /> should pass through custom properties 1`] = `
 />
 `;
 
-exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
+exports[`<Tabs /> > validation > should allow other DOM nodes 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -669,7 +669,7 @@ exports[`<Tabs /> validation should allow other DOM nodes 1`] = `
 </div>
 `;
 
-exports[`<Tabs /> validation should allow random order for elements 1`] = `
+exports[`<Tabs /> > validation > should allow random order for elements 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -721,7 +721,7 @@ exports[`<Tabs /> validation should allow random order for elements 1`] = `
 </div>
 `;
 
-exports[`<Tabs /> validation should be okay with rendering just TabList 1`] = `
+exports[`<Tabs /> > validation > should be okay with rendering just TabList 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -733,14 +733,14 @@ exports[`<Tabs /> validation should be okay with rendering just TabList 1`] = `
 </div>
 `;
 
-exports[`<Tabs /> validation should be okay with rendering without any children 1`] = `
+exports[`<Tabs /> > validation > should be okay with rendering without any children 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
 />
 `;
 
-exports[`<Tabs /> validation should gracefully render null 1`] = `
+exports[`<Tabs /> > validation > should gracefully render null 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -773,7 +773,7 @@ exports[`<Tabs /> validation should gracefully render null 1`] = `
 </div>
 `;
 
-exports[`<Tabs /> validation should not throw a warning when wrong element is found 1`] = `
+exports[`<Tabs /> > validation > should not throw a warning when wrong element is found 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"

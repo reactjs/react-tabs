@@ -1,7 +1,8 @@
+import { afterEach, describe, expect, test, vi } from 'vitest';
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { cleanup, render, screen, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/vitest';
 import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
@@ -12,8 +13,8 @@ import {
   TabPanelWrapper,
 } from './helpers/higherOrder';
 
-jest.mock('react', () => {
-  const originalModule = jest.requireActual('react');
+vi.mock('react', async (importOriginal) => {
+  const originalModule = await importOriginal('react');
 
   return {
     ...originalModule,
@@ -53,6 +54,8 @@ function assertTabSelected(tabNo, node = screen) {
   expect(tab).toHaveAttribute('aria-selected', 'true');
   expect(panel).toHaveTextContent(`Hello Tab${tabNo}`);
 }
+
+afterEach(cleanup);
 
 describe('<Tabs />', () => {
   describe('props', () => {

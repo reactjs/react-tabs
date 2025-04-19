@@ -1,19 +1,22 @@
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import React from 'react';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { cleanup, render } from '@testing-library/react';
+import '@testing-library/jest-dom/vitest';
 import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 
-jest.mock('react', () => {
-  const originalModule = jest.requireActual('react');
+vi.mock('react', async (importOriginal) => {
+  const originalModule = await importOriginal('react');
 
   return {
     ...originalModule,
     useId: () => ':r0:',
   };
 });
+
+afterEach(cleanup);
 
 describe('<Tabs />', () => {
   let consoleErrorMock;
@@ -26,7 +29,7 @@ describe('<Tabs />', () => {
   }
 
   beforeEach(() => {
-    consoleErrorMock = jest.spyOn(console, 'error').mockImplementation();
+    consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -121,7 +124,7 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      const consoleLogMock = jest.spyOn(console, 'log').mockImplementation();
+      const consoleLogMock = vi.spyOn(console, 'log').mockImplementation();
       try {
         rerender(
           <Tabs selectedIndex={0} onSelect={onSelect}>

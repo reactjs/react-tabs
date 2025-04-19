@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<TabList /> should accept className 1`] = `
+exports[`<TabList /> > should accept className 1`] = `
 <ul
   class="foobar"
   role="tablist"
 />
 `;
 
-exports[`<TabList /> should allow for higher order components 1`] = `
+exports[`<TabList /> > should allow for higher order components 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -57,7 +57,7 @@ exports[`<TabList /> should allow for higher order components 1`] = `
 </div>
 `;
 
-exports[`<TabList /> should display the custom classnames for selected and disabled tab 1`] = `
+exports[`<TabList /> > should display the custom classnames for selected and disabled tab 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -107,7 +107,7 @@ exports[`<TabList /> should display the custom classnames for selected and disab
 </div>
 `;
 
-exports[`<TabList /> should display the custom classnames for selected and disabled tab specified on tabs 1`] = `
+exports[`<TabList /> > should display the custom classnames for selected and disabled tab specified on tabs 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
@@ -157,21 +157,21 @@ exports[`<TabList /> should display the custom classnames for selected and disab
 </div>
 `;
 
-exports[`<TabList /> should have sane defaults 1`] = `
+exports[`<TabList /> > should have sane defaults 1`] = `
 <ul
   class="react-tabs__tab-list"
   role="tablist"
 />
 `;
 
-exports[`<TabList /> should not allow overriding all default properties 1`] = `
+exports[`<TabList /> > should not allow overriding all default properties 1`] = `
 <ul
   class="react-tabs__tab-list"
   role="tablist"
 />
 `;
 
-exports[`<TabList /> should pass through custom properties 1`] = `
+exports[`<TabList /> > should pass through custom properties 1`] = `
 <ul
   class="react-tabs__tab-list"
   data-tooltip="Tooltip contents"
@@ -179,7 +179,7 @@ exports[`<TabList /> should pass through custom properties 1`] = `
 />
 `;
 
-exports[`<TabList /> should retain the default classnames for active and disabled tab 1`] = `
+exports[`<TabList /> > should retain the default classnames for active and disabled tab 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"

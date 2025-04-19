@@ -1,13 +1,14 @@
+import { afterEach, beforeAll, describe, expect, test, vi } from 'vitest';
 import React from 'react';
-import { render } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
 import Tabs from '../Tabs';
 import { TabListWrapper, TabWrapper } from './helpers/higherOrder';
 
-jest.mock('react', () => {
-  const originalModule = jest.requireActual('react');
+vi.mock('react', async (importOriginal) => {
+  const originalModule = await importOriginal();
 
   return {
     ...originalModule,
@@ -20,6 +21,8 @@ function expectToMatchSnapshot(component) {
   expect(container.firstChild).toMatchSnapshot();
 }
 
+afterEach(cleanup);
+
 describe('<TabList />', () => {
   beforeAll(() => {
     // eslint-disable-next-line no-console
@@ -28,24 +31,24 @@ describe('<TabList />', () => {
     };
   });
 
-  it('should have sane defaults', () => {
+  test('should have sane defaults', () => {
     expectToMatchSnapshot(<TabList />);
   });
 
-  it('should accept className', () => {
+  test('should accept className', () => {
     expectToMatchSnapshot(<TabList className="foobar" />);
   });
 
-  it('should pass through custom properties', () => {
+  test('should pass through custom properties', () => {
     expectToMatchSnapshot(<TabList data-tooltip="Tooltip contents" />);
   });
 
-  it('should not allow overriding all default properties', () => {
+  test('should not allow overriding all default properties', () => {
     // eslint-disable-next-line jsx-a11y/aria-role
     expectToMatchSnapshot(<TabList role="micro-tab" />);
   });
 
-  it('should retain the default classnames for active and disabled tab', () => {
+  test('should retain the default classnames for active and disabled tab', () => {
     expectToMatchSnapshot(
       <Tabs defaultIndex={0}>
         <TabList>
@@ -58,7 +61,7 @@ describe('<TabList />', () => {
     );
   });
 
-  it('should display the custom classnames for selected and disabled tab specified on tabs', () => {
+  test('should display the custom classnames for selected and disabled tab specified on tabs', () => {
     expectToMatchSnapshot(
       <Tabs
         defaultIndex={0}
@@ -75,7 +78,7 @@ describe('<TabList />', () => {
     );
   });
 
-  it('should display the custom classnames for selected and disabled tab', () => {
+  test('should display the custom classnames for selected and disabled tab', () => {
     expectToMatchSnapshot(
       <Tabs defaultIndex={0}>
         <TabList>
@@ -92,7 +95,7 @@ describe('<TabList />', () => {
     );
   });
 
-  it('should allow for higher order components', () => {
+  test('should allow for higher order components', () => {
     expectToMatchSnapshot(
       <Tabs>
         <TabListWrapper>
