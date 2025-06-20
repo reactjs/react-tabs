@@ -70,8 +70,8 @@ importers:
         specifier: 10.1.5
         version: 10.1.5(eslint@9.29.0)
       eslint-plugin-import:
-        specifier: 2.31.0
-        version: 2.31.0(eslint@9.29.0)
+        specifier: 2.32.0
+        version: 2.32.0(eslint@9.29.0)
       eslint-plugin-jsx-a11y:
         specifier: 6.10.2
         version: 6.10.2(eslint@9.29.0)
@@ -2071,8 +2071,8 @@ packages:
   eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
 
-  eslint-module-utils@2.12.0:
-    resolution: {integrity: sha512-wALZ0HFoytlyh/1+4wuZ9FJCD/leWHQzzrxJ8+rebyReSLk7LApMyd3WJaLVoN+D5+WIdJyDK1c6JnE65V4Zyg==}
+  eslint-module-utils@2.12.1:
+    resolution: {integrity: sha512-L8jSWTze7K2mTg0vos/RuLRS5soomksDPoJLXIslC7c8Wmut3bx7CPpJijDcBZtxQ5lrbUdM+s0OlNbz0DCDNw==}
     engines: {node: '>=4'}
     peerDependencies:
       '@typescript-eslint/parser': '*'
@@ -2092,8 +2092,8 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
 
-  eslint-plugin-import@2.31.0:
-    resolution: {integrity: sha512-ixmkI62Rbc2/w8Vfxyh1jQRTdRTF52VxwRVHl/ykPAmqG+Nb7/kNn+byLP0LxPgI7zWA16Jt82SybJInmMia3A==}
+  eslint-plugin-import@2.32.0:
+    resolution: {integrity: sha512-whOE1HFo/qJDyX4SnXzP4N6zOWn79WhnCUY/iDR0mPfQZO8wcYE4JClzI2oZrhBnnMUCBCHZhO6VQyoBU95mZA==}
     engines: {node: '>=4'}
     peerDependencies:
       '@typescript-eslint/parser': '*'
@@ -6436,7 +6436,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(eslint-import-resolver-node@0.3.9)(eslint@9.29.0):
+  eslint-module-utils@2.12.1(eslint-import-resolver-node@0.3.9)(eslint@9.29.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -6445,7 +6445,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.31.0(eslint@9.29.0):
+  eslint-plugin-import@2.32.0(eslint@9.29.0):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9
@@ -6456,7 +6456,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.29.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(eslint-import-resolver-node@0.3.9)(eslint@9.29.0)
+      eslint-module-utils: 2.12.1(eslint-import-resolver-node@0.3.9)(eslint@9.29.0)
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
