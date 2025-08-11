@@ -76,7 +76,7 @@
     "jsdom": "26.1.0",
     "less": "4.4.0",
     "less-loader": "12.3.0",
-    "mini-css-extract-plugin": "2.9.3",
+    "mini-css-extract-plugin": "2.9.4",
     "prettier": "3.6.2",
     "prism-react-renderer": "2.4.1",
     "react": "19.1.1",
