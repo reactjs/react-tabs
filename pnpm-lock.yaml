@@ -88,8 +88,8 @@ importers:
         specifier: 5.1.0
         version: 5.1.0(webpack@5.101.1)
       html-webpack-plugin:
-        specifier: 5.6.3
-        version: 5.6.3(webpack@5.101.1)
+        specifier: 5.6.4
+        version: 5.6.4(webpack@5.101.1)
       jsdom:
         specifier: 26.1.0
         version: 26.1.0
@@ -2448,8 +2448,8 @@ packages:
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
 
-  html-webpack-plugin@5.6.3:
-    resolution: {integrity: sha512-QSf1yjtSAsmf7rYBV7XX86uua4W/vkhIt0xNXKbsi2foEeW7vjJQz4bhnpL3xH+l1ryl1680uNv968Z+X6jSYg==}
+  html-webpack-plugin@5.6.4:
+    resolution: {integrity: sha512-V/PZeWsqhfpE27nKeX9EO2sbR+D17A+tLf6qU+ht66jdUsN0QLKJN27Z+1+gHrVMKgndBahes0PU6rRihDgHTw==}
     engines: {node: '>=10.13.0'}
     peerDependencies:
       '@rspack/core': 0.x || 1.x
@@ -6923,7 +6923,7 @@ snapshots:
       relateurl: 0.2.7
       terser: 5.43.1
 
-  html-webpack-plugin@5.6.3(webpack@5.101.1):
+  html-webpack-plugin@5.6.4(webpack@5.101.1):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
