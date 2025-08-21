@@ -56,6 +56,14 @@ const Tabs = ({
 }) => {
   checkPropTypes(propTypes, { children, onSelect, selectedIndex }, 'prop', 'Tabs');
 
+  // Check for conflicting props
+  if (process.env.NODE_ENV !== 'production' && selectedIndex !== null && defaultIndex !== null) {
+    console.error(
+      'The prop `selectedIndex` cannot be used together with `defaultIndex` in `Tabs`.\n' +
+      'Either remove `selectedIndex` to let `Tabs` handle the selected tab internally or remove `defaultIndex` to handle it yourself.'
+    );
+  }
+
   const [focus, setFocus] = useState(defaultFocus);
   const [mode] = useState(getModeFromProps({ selectedIndex }));
   const [selectedIndexState, setSelectedIndexState] = useState(
