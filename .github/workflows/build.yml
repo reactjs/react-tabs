@@ -13,7 +13,6 @@ jobs:
   tests:
     name: Unit tests
     runs-on: ubuntu-latest
-    if: "!startsWith(github.head_ref, 'renovate/')"
 
     steps:
       - name: Checkout
@@ -35,12 +34,12 @@ jobs:
         run: pnpm test --coverage
 
       - name: Upload coverage
+        continue-on-error: true
         uses: coverallsapp/github-action@v2
 
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    if: "!startsWith(github.head_ref, 'renovate/')"
 
     steps:
       - name: Checkout
