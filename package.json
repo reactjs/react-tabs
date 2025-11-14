@@ -58,7 +58,7 @@
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.0",
     "@testing-library/user-event": "14.6.1",
-    "@vitest/coverage-v8": "4.0.8",
+    "@vitest/coverage-v8": "4.0.9",
     "babel-loader": "10.0.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "cross-env": "7.0.3",
@@ -83,7 +83,7 @@
     "react-dom": "19.2.0",
     "react-live": "4.1.8",
     "react-modal": "3.16.3",
-    "vitest": "4.0.8",
+    "vitest": "4.0.9",
     "webpack": "5.102.1",
     "webpack-cli": "6.0.1",
     "webpack-dev-server": "5.2.2"
