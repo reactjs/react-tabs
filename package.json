@@ -21,7 +21,7 @@
     "website:build": "cross-env BABEL_TARGET=examples NODE_ENV=production webpack",
     "website:redirect": "cp -R examples/src/example examples/dist"
   },
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.25.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/reactjs/react-tabs.git"
