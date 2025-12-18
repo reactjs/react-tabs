@@ -84,7 +84,7 @@
     "react-live": "4.1.8",
     "react-modal": "3.16.3",
     "vitest": "4.0.16",
-    "webpack": "5.104.0",
+    "webpack": "5.104.1",
     "webpack-cli": "6.0.1",
     "webpack-dev-server": "5.2.2"
   },
