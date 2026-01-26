@@ -41,7 +41,7 @@ importers:
         version: 6.9.1
       '@testing-library/react':
         specifier: 16.3.2
-        version: 16.3.2(@testing-library/dom@10.4.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 16.3.2(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@testing-library/user-event':
         specifier: 14.6.1
         version: 14.6.1(@testing-library/dom@10.4.1)
@@ -107,19 +107,19 @@ importers:
         version: 3.8.1
       prism-react-renderer:
         specifier: 2.4.1
-        version: 2.4.1(react@19.2.3)
+        version: 2.4.1(react@19.2.4)
       react:
-        specifier: 19.2.3
-        version: 19.2.3
+        specifier: 19.2.4
+        version: 19.2.4
       react-dom:
-        specifier: 19.2.3
-        version: 19.2.3(react@19.2.3)
+        specifier: 19.2.4
+        version: 19.2.4(react@19.2.4)
       react-live:
         specifier: 4.1.8
-        version: 4.1.8(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 4.1.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-modal:
         specifier: 3.16.3
-        version: 3.16.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 3.16.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       vitest:
         specifier: 4.0.18
         version: 4.0.18(@types/node@25.0.10)(jsdom@27.4.0)(less@4.5.1)(terser@5.46.0)
@@ -3610,10 +3610,10 @@ packages:
     resolution: {integrity: sha512-s4VSOf6yN0rvbRZGxs8Om5CWj6seneMwK3oDb4lWDH0UPhWcxwOWw5+qk24bxq87szX1ydrwylIOp2uG1ojUpA==}
     engines: {node: '>= 0.8'}
 
-  react-dom@19.2.3:
-    resolution: {integrity: sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==}
+  react-dom@19.2.4:
+    resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
     peerDependencies:
-      react: ^19.2.3
+      react: ^19.2.4
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -3637,8 +3637,8 @@ packages:
       react: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18 || ^19
       react-dom: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18 || ^19
 
-  react@19.2.3:
-    resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
+  react@19.2.4:
+    resolution: {integrity: sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==}
     engines: {node: '>=0.10.0'}
 
   readable-stream@2.3.8:
@@ -5680,12 +5680,12 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
 
-  '@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@babel/runtime': 7.28.6
       '@testing-library/dom': 10.4.1
-      react: 19.2.3
-      react-dom: 19.2.3(react@19.2.3)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
 
   '@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1)':
     dependencies:
@@ -8175,11 +8175,11 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 17.0.2
 
-  prism-react-renderer@2.4.1(react@19.2.3):
+  prism-react-renderer@2.4.1(react@19.2.4):
     dependencies:
       '@types/prismjs': 1.26.5
       clsx: 2.1.1
-      react: 19.2.3
+      react: 19.2.4
 
   process-nextick-args@2.0.1: {}
 
@@ -8222,9 +8222,9 @@ snapshots:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
-  react-dom@19.2.3(react@19.2.3):
+  react-dom@19.2.4(react@19.2.4):
     dependencies:
-      react: 19.2.3
+      react: 19.2.4
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
@@ -8233,24 +8233,24 @@ snapshots:
 
   react-lifecycles-compat@3.0.4: {}
 
-  react-live@4.1.8(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  react-live@4.1.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
-      prism-react-renderer: 2.4.1(react@19.2.3)
-      react: 19.2.3
-      react-dom: 19.2.3(react@19.2.3)
+      prism-react-renderer: 2.4.1(react@19.2.4)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
       sucrase: 3.35.1
-      use-editable: 2.3.3(react@19.2.3)
+      use-editable: 2.3.3(react@19.2.4)
 
-  react-modal@3.16.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  react-modal@3.16.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       exenv: 1.2.2
       prop-types: 15.8.1
-      react: 19.2.3
-      react-dom: 19.2.3(react@19.2.3)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
       react-lifecycles-compat: 3.0.4
       warning: 4.0.3
 
-  react@19.2.3: {}
+  react@19.2.4: {}
 
   readable-stream@2.3.8:
     dependencies:
@@ -8876,9 +8876,9 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  use-editable@2.3.3(react@19.2.3):
+  use-editable@2.3.3(react@19.2.4):
     dependencies:
-      react: 19.2.3
+      react: 19.2.4
 
   util-deprecate@1.0.2: {}
 
