@@ -3,7 +3,8 @@
   "labels": ["dependencies"],
   "extends": [
     "config:base",
-    ":pinOnlyDevDependencies"
+    ":pinOnlyDevDependencies",
+    "helpers:pinGitHubActionDigests"
   ],
   "lockFileMaintenance": {
     "enabled": true,
