@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "labels": ["dependencies"],
   "extends": [
-    "config:base",
+    "config:recommended",
     ":pinOnlyDevDependencies",
     "helpers:pinGitHubActionDigests"
   ],
@@ -11,32 +11,23 @@
     "semanticCommitType": "chore",
     "automerge": true
   },
-  "postUpdateOptions": [
-    "pnpmDedupe"
-  ],
+  "postUpdateOptions": ["pnpmDedupe"],
   "semanticCommits": "enabled",
   "semanticCommitType": "fix",
   "automergeType": "branch",
   "packageRules": [
     {
-      "matchDepTypes": [
-        "devDependencies"
-      ],
+      "matchDepTypes": ["devDependencies"],
       "semanticCommitType": "chore"
     },
     {
       "matchPackageNames": ["pnpm"],
-      "updateTypes": ["minor", "patch"],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     },
     {
-      "matchDepTypes": [
-        "devDependencies"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     }
   ]
