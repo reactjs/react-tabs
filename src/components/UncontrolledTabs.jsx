@@ -373,27 +373,49 @@ const UncontrolledTabs = (props) => {
     return false;
   }
   const {
-    children, // unused
-    className,
-    disabledTabClassName, // unused
+    className: propClassName,
     domRef,
-    focus, // unused
-    forceRenderTabPanel, // unused
-    onSelect, // unused
-    selectedIndex, // unused
-    selectedTabClassName, // unused
-    selectedTabPanelClassName, // unused
-    environment, // unused
-    disableUpDownKeys, // unused
-    disableLeftRightKeys, // unused
-    ...attributes
-  } = {
-    ...defaultProps,
-    ...props,
-  };
+    children, // unused here
+    disabledTabClassName, // unused here
+    focus, // unused here
+    forceRenderTabPanel, // unused here
+    onSelect, // unused here
+    selectedIndex, // unused here
+    selectedTabClassName, // unused here
+    selectedTabPanelClassName, // unused here
+    environment, // unused here
+    disableUpDownKeys, // unused here
+    disableLeftRightKeys, // unused here
+    ...restProps
+  } = props;
+
+  // Only pass valid DOM attributes and data- attributes
+  const domAttributes = {};
+  Object.keys(restProps).forEach((key) => {
+    if (
+      key.startsWith('data-') ||
+      key === 'id' ||
+      key === 'style' ||
+      key === 'title' ||
+      key === 'role' ||
+      key === 'tabIndex' ||
+      key === 'aria-label' ||
+      key === 'aria-labelledby' ||
+      key === 'aria-describedby' ||
+      key === 'aria-controls' ||
+      key === 'aria-selected' ||
+      key === 'aria-disabled'
+    ) {
+      domAttributes[key] = restProps[key];
+    }
+  });
+
+  const className =
+    propClassName == null ? defaultProps.className : propClassName;
+
   return (
     <div
-      {...attributes}
+      {...domAttributes}
       className={cx(className)}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
