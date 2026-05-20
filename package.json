@@ -61,7 +61,7 @@
     "@vitest/coverage-v8": "4.1.6",
     "babel-loader": "10.1.1",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
-    "cross-env": "7.0.3",
+    "cross-env": "10.1.0",
     "css-loader": "7.1.4",
     "css-minimizer-webpack-plugin": "8.0.0",
     "eslint": "9.39.4",
