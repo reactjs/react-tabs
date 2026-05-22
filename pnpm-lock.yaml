@@ -97,8 +97,8 @@ importers:
         specifier: 4.6.4
         version: 4.6.4
       less-loader:
-        specifier: 12.3.2
-        version: 12.3.2(less@4.6.4)(webpack@5.106.2)
+        specifier: 12.3.3
+        version: 12.3.3(less@4.6.4)(webpack@5.106.2)
       mini-css-extract-plugin:
         specifier: 2.10.2
         version: 2.10.2(webpack@5.106.2)
@@ -2795,8 +2795,8 @@ packages:
   launch-editor@2.13.2:
     resolution: {integrity: sha512-4VVDnbOpLXy/s8rdRCSXb+zfMeFR0WlJWpET1iA9CQdlZDfwyLjUuGQzXU4VeOoey6AicSAluWan7Etga6Kcmg==}
 
-  less-loader@12.3.2:
-    resolution: {integrity: sha512-uLV5c702ff2jBvO7qewpkLRzkh/I9QW07ur2NKkv8TVTrtX2lrKjEbEU/LLXAn7cgpCIBbkfyUm4qYXCQs5/+w==}
+  less-loader@12.3.3:
+    resolution: {integrity: sha512-F0+ErFFDj3Pt+nVrCN6VlEGEzocv9s7x/aR9v2riI+WM83UAfTYBDBjGPJnT55lBLR6JSI4fmWblt+aA2JN6/w==}
     engines: {node: '>= 18.12.0'}
     peerDependencies:
       '@rspack/core': 0.x || ^1.0.0 || ^2.0.0-0
@@ -7436,7 +7436,7 @@ snapshots:
       picocolors: 1.1.1
       shell-quote: 1.8.3
 
-  less-loader@12.3.2(less@4.6.4)(webpack@5.106.2):
+  less-loader@12.3.3(less@4.6.4)(webpack@5.106.2):
     dependencies:
       less: 4.6.4
     optionalDependencies:

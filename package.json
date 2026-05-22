@@ -75,7 +75,7 @@
     "html-webpack-plugin": "5.6.7",
     "jsdom": "29.1.1",
     "less": "4.6.4",
-    "less-loader": "12.3.2",
+    "less-loader": "12.3.3",
     "mini-css-extract-plugin": "2.10.2",
     "prettier": "3.8.3",
     "prism-react-renderer": "2.4.1",
