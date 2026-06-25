@@ -94,11 +94,11 @@ importers:
         specifier: 29.1.1
         version: 29.1.1
       less:
-        specifier: 4.6.6
-        version: 4.6.6
+        specifier: 4.6.7
+        version: 4.6.7
       less-loader:
         specifier: 13.0.0
-        version: 13.0.0(less@4.6.6)(webpack@5.107.2)
+        version: 13.0.0(less@4.6.7)(webpack@5.107.2)
       mini-css-extract-plugin:
         specifier: 2.10.2
         version: 2.10.2(webpack@5.107.2)
@@ -122,7 +122,7 @@ importers:
         version: 3.16.3(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       vitest:
         specifier: 4.1.9
-        version: 4.1.9(@types/node@25.9.3)(@vitest/coverage-v8@4.1.9)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(less@4.6.6)(terser@5.48.0))
+        version: 4.1.9(@types/node@25.9.3)(@vitest/coverage-v8@4.1.9)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(less@4.6.7)(terser@5.48.0))
       webpack:
         specifier: 5.107.2
         version: 5.107.2(postcss@8.5.15)(webpack-cli@7.0.3)
@@ -2809,8 +2809,8 @@ packages:
       webpack:
         optional: true
 
-  less@4.6.6:
-    resolution: {integrity: sha512-ooPSwQGQ2sVe8Dh1jVsbKKsRR2gd8lFK72BDkeSzjnD1T5aIHL65hCMfO0GVmtriKgDKrQv6xp9UrihUsWuAzA==}
+  less@4.6.7:
+    resolution: {integrity: sha512-o3UxHBPPVY1HtCXx15/z1NlknQiWyafRNbtLEv+6xFaDRI2g2xPKIH43do9dSwt8bGLTsjNSaifa48N3d6odsQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -5715,7 +5715,7 @@ snapshots:
       obug: 2.1.3
       std-env: 4.1.0
       tinyrainbow: 3.1.0
-      vitest: 4.1.9(@types/node@25.9.3)(@vitest/coverage-v8@4.1.9)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(less@4.6.6)(terser@5.48.0))
+      vitest: 4.1.9(@types/node@25.9.3)(@vitest/coverage-v8@4.1.9)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(less@4.6.7)(terser@5.48.0))
 
   '@vitest/expect@4.1.9':
     dependencies:
@@ -5726,13 +5726,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.9(vite@8.0.16(@types/node@25.9.3)(less@4.6.6)(terser@5.48.0))':
+  '@vitest/mocker@4.1.9(vite@8.0.16(@types/node@25.9.3)(less@4.6.7)(terser@5.48.0))':
     dependencies:
       '@vitest/spy': 4.1.9
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.0.16(@types/node@25.9.3)(less@4.6.6)(terser@5.48.0)
+      vite: 8.0.16(@types/node@25.9.3)(less@4.6.7)(terser@5.48.0)
 
   '@vitest/pretty-format@4.1.9':
     dependencies:
@@ -7448,14 +7448,14 @@ snapshots:
       picocolors: 1.1.1
       shell-quote: 1.8.4
 
-  less-loader@13.0.0(less@4.6.6)(webpack@5.107.2):
+  less-loader@13.0.0(less@4.6.7)(webpack@5.107.2):
     dependencies:
       '@types/less': 3.0.8
-      less: 4.6.6
+      less: 4.6.7
     optionalDependencies:
       webpack: 5.107.2(postcss@8.5.15)(webpack-cli@7.0.3)
 
-  less@4.6.6:
+  less@4.6.7:
     dependencies:
       copy-anything: 3.0.5
       parse-node-version: 1.0.1
@@ -8777,7 +8777,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite@8.0.16(@types/node@25.9.3)(less@4.6.6)(terser@5.48.0):
+  vite@8.0.16(@types/node@25.9.3)(less@4.6.7)(terser@5.48.0):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
@@ -8787,13 +8787,13 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.9.3
       fsevents: 2.3.3
-      less: 4.6.6
+      less: 4.6.7
       terser: 5.48.0
 
-  vitest@4.1.9(@types/node@25.9.3)(@vitest/coverage-v8@4.1.9)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(less@4.6.6)(terser@5.48.0)):
+  vitest@4.1.9(@types/node@25.9.3)(@vitest/coverage-v8@4.1.9)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(less@4.6.7)(terser@5.48.0)):
     dependencies:
       '@vitest/expect': 4.1.9
-      '@vitest/mocker': 4.1.9(vite@8.0.16(@types/node@25.9.3)(less@4.6.6)(terser@5.48.0))
+      '@vitest/mocker': 4.1.9(vite@8.0.16(@types/node@25.9.3)(less@4.6.7)(terser@5.48.0))
       '@vitest/pretty-format': 4.1.9
       '@vitest/runner': 4.1.9
       '@vitest/snapshot': 4.1.9
@@ -8810,7 +8810,7 @@ snapshots:
       tinyexec: 1.2.4
       tinyglobby: 0.2.17
       tinyrainbow: 3.1.0
-      vite: 8.0.16(@types/node@25.9.3)(less@4.6.6)(terser@5.48.0)
+      vite: 8.0.16(@types/node@25.9.3)(less@4.6.7)(terser@5.48.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 25.9.3
