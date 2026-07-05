@@ -128,10 +128,10 @@ importers:
         version: 5.108.3(postcss@8.5.15)(webpack-cli@7.1.0)
       webpack-cli:
         specifier: 7.1.0
-        version: 7.1.0(js-yaml@4.2.0)(json5@2.2.3)(webpack-dev-server@5.2.5)(webpack@5.108.3)
+        version: 7.1.0(js-yaml@4.2.0)(json5@2.2.3)(webpack-dev-server@5.2.6)(webpack@5.108.3)
       webpack-dev-server:
-        specifier: 5.2.5
-        version: 5.2.5(tslib@2.8.1)(webpack-cli@7.1.0)(webpack@5.108.3)
+        specifier: 5.2.6
+        version: 5.2.6(tslib@2.8.1)(webpack-cli@7.1.0)(webpack@5.108.3)
 
 packages:
 
@@ -4230,8 +4230,8 @@ packages:
       webpack:
         optional: true
 
-  webpack-dev-server@5.2.5:
-    resolution: {integrity: sha512-4wZtCquSuv9CKX8oybo+mqxtxZqWz47uM1Ch94lxowBztOhWCbhqvRbfC/mODOwxgV2brY+JGZpHq58/SuVFYg==}
+  webpack-dev-server@5.2.6:
+    resolution: {integrity: sha512-HNLRmamRvVavZQ+avceZifmv8hmdUjg43t6MI4SqJDwFdW7RPQwH5vzGhDRZSX59SgfbeHhLnq3g+uooWo7pVw==}
     engines: {node: '>= 18.12.0'}
     hasBin: true
     peerDependencies:
@@ -8841,7 +8841,7 @@ snapshots:
 
   webidl-conversions@8.0.1: {}
 
-  webpack-cli@7.1.0(js-yaml@4.2.0)(json5@2.2.3)(webpack-dev-server@5.2.5)(webpack@5.108.3):
+  webpack-cli@7.1.0(js-yaml@4.2.0)(json5@2.2.3)(webpack-dev-server@5.2.6)(webpack@5.108.3):
     dependencies:
       '@discoveryjs/json-ext': 1.1.0
       commander: 14.0.3
@@ -8855,7 +8855,7 @@ snapshots:
     optionalDependencies:
       js-yaml: 4.2.0
       json5: 2.2.3
-      webpack-dev-server: 5.2.5(tslib@2.8.1)(webpack-cli@7.1.0)(webpack@5.108.3)
+      webpack-dev-server: 5.2.6(tslib@2.8.1)(webpack-cli@7.1.0)(webpack@5.108.3)
 
   webpack-dev-middleware@7.4.5(tslib@2.8.1)(webpack@5.108.3):
     dependencies:
@@ -8870,7 +8870,7 @@ snapshots:
     transitivePeerDependencies:
       - tslib
 
-  webpack-dev-server@5.2.5(tslib@2.8.1)(webpack-cli@7.1.0)(webpack@5.108.3):
+  webpack-dev-server@5.2.6(tslib@2.8.1)(webpack-cli@7.1.0)(webpack@5.108.3):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -8902,7 +8902,7 @@ snapshots:
       ws: 8.21.0
     optionalDependencies:
       webpack: 5.108.3(postcss@8.5.15)(webpack-cli@7.1.0)
-      webpack-cli: 7.1.0(js-yaml@4.2.0)(json5@2.2.3)(webpack-dev-server@5.2.5)(webpack@5.108.3)
+      webpack-cli: 7.1.0(js-yaml@4.2.0)(json5@2.2.3)(webpack-dev-server@5.2.6)(webpack@5.108.3)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -8943,7 +8943,7 @@ snapshots:
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:
-      webpack-cli: 7.1.0(js-yaml@4.2.0)(json5@2.2.3)(webpack-dev-server@5.2.5)(webpack@5.108.3)
+      webpack-cli: 7.1.0(js-yaml@4.2.0)(json5@2.2.3)(webpack-dev-server@5.2.6)(webpack@5.108.3)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'

@@ -86,7 +86,7 @@
     "vitest": "4.1.9",
     "webpack": "5.108.3",
     "webpack-cli": "7.1.0",
-    "webpack-dev-server": "5.2.5"
+    "webpack-dev-server": "5.2.6"
   },
   "dependencies": {
     "clsx": "^2.0.0",
