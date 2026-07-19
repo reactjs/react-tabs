@@ -36,7 +36,6 @@
 }
 
 .react-tabs__tab:focus:after {
-  content: '';
   position: absolute;
   height: 5px;
   left: -4px;
