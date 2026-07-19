@@ -1,10 +1,6 @@
 import React from 'react';
 import cx from 'clsx';
 
-const defaultProps = {
-  className: 'react-tabs__tab-list',
-};
-
 /*
 Left for TS migration
 const propTypes = {
@@ -15,12 +11,12 @@ const propTypes = {
     PropTypes.object,
   ]),
 };*/
-const TabList = (props) => {
-  const { children, className, ...attributes } = {
-    ...defaultProps,
-    ...props,
-  };
 
+const TabList = ({
+  children,
+  className = 'react-tabs__tab-list',
+  ...attributes
+}) => {
   return (
     <ul {...attributes} className={cx(className)} role="tablist">
       {children}
