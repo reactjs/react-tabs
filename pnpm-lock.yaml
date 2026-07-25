@@ -94,11 +94,11 @@ importers:
         specifier: 29.1.1
         version: 29.1.1
       less:
-        specifier: 4.7.0
-        version: 4.7.0(supports-color@8.1.1)
+        specifier: 4.8.0
+        version: 4.8.0(supports-color@8.1.1)
       less-loader:
         specifier: 13.0.0
-        version: 13.0.0(less@4.7.0(supports-color@8.1.1))(webpack@5.108.4)
+        version: 13.0.0(less@4.8.0(supports-color@8.1.1))(webpack@5.108.4)
       mini-css-extract-plugin:
         specifier: 2.10.2
         version: 2.10.2(webpack@5.108.4)
@@ -122,7 +122,7 @@ importers:
         version: 3.16.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       vitest:
         specifier: 4.1.10
-        version: 4.1.10(@types/node@26.1.1)(@vitest/coverage-v8@4.1.10)(jsdom@29.1.1)(vite@8.1.5(@types/node@26.1.1)(less@4.7.0(supports-color@8.1.1))(terser@5.49.0))
+        version: 4.1.10(@types/node@26.1.1)(@vitest/coverage-v8@4.1.10)(jsdom@29.1.1)(vite@8.1.5(@types/node@26.1.1)(less@4.8.0(supports-color@8.1.1))(terser@5.49.0))
       webpack:
         specifier: 5.108.4
         version: 5.108.4(clean-css@5.3.3)(cssnano@7.1.9(postcss@8.5.19))(csso@5.0.5)(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.19)(webpack-cli@7.2.1)
@@ -2757,8 +2757,8 @@ packages:
       webpack:
         optional: true
 
-  less@4.7.0:
-    resolution: {integrity: sha512-i7dAlT3+boO0mMh1G4cex0vz1lLAScmBbikm1VEDNv+cy0ore1CUo2UtX8m3N9QLE5WYDr4ISbiCRzHNGyFkrA==}
+  less@4.8.0:
+    resolution: {integrity: sha512-7Y7DJBMbsW29UGjOG6NGvxQEx71AaDcrryBwYCMaFwn0kj8FkSueKN9r9WexVOetKEhXh38kL++WJncfkEpS+g==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -5613,7 +5613,7 @@ snapshots:
       obug: 2.1.4
       std-env: 4.2.0
       tinyrainbow: 3.1.0
-      vitest: 4.1.10(@types/node@26.1.1)(@vitest/coverage-v8@4.1.10)(jsdom@29.1.1)(vite@8.1.5(@types/node@26.1.1)(less@4.7.0(supports-color@8.1.1))(terser@5.49.0))
+      vitest: 4.1.10(@types/node@26.1.1)(@vitest/coverage-v8@4.1.10)(jsdom@29.1.1)(vite@8.1.5(@types/node@26.1.1)(less@4.8.0(supports-color@8.1.1))(terser@5.49.0))
 
   '@vitest/expect@4.1.10':
     dependencies:
@@ -5624,13 +5624,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.10(vite@8.1.5(@types/node@26.1.1)(less@4.7.0(supports-color@8.1.1))(terser@5.49.0))':
+  '@vitest/mocker@4.1.10(vite@8.1.5(@types/node@26.1.1)(less@4.8.0(supports-color@8.1.1))(terser@5.49.0))':
     dependencies:
       '@vitest/spy': 4.1.10
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.1.5(@types/node@26.1.1)(less@4.7.0(supports-color@8.1.1))(terser@5.49.0)
+      vite: 8.1.5(@types/node@26.1.1)(less@4.8.0(supports-color@8.1.1))(terser@5.49.0)
 
   '@vitest/pretty-format@4.1.10':
     dependencies:
@@ -7327,14 +7327,14 @@ snapshots:
       picocolors: 1.1.1
       shell-quote: 1.10.0
 
-  less-loader@13.0.0(less@4.7.0(supports-color@8.1.1))(webpack@5.108.4):
+  less-loader@13.0.0(less@4.8.0(supports-color@8.1.1))(webpack@5.108.4):
     dependencies:
       '@types/less': 3.0.8
-      less: 4.7.0(supports-color@8.1.1)
+      less: 4.8.0(supports-color@8.1.1)
     optionalDependencies:
       webpack: 5.108.4(clean-css@5.3.3)(cssnano@7.1.9(postcss@8.5.19))(csso@5.0.5)(html-minifier-terser@7.2.0)(lightningcss@1.32.0)(postcss@8.5.19)(webpack-cli@7.2.1)
 
-  less@4.7.0(supports-color@8.1.1):
+  less@4.8.0(supports-color@8.1.1):
     dependencies:
       copy-anything: 3.0.5
       parse-node-version: 1.0.1
@@ -8636,7 +8636,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite@8.1.5(@types/node@26.1.1)(less@4.7.0(supports-color@8.1.1))(terser@5.49.0):
+  vite@8.1.5(@types/node@26.1.1)(less@4.8.0(supports-color@8.1.1))(terser@5.49.0):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.5
@@ -8646,13 +8646,13 @@ snapshots:
     optionalDependencies:
       '@types/node': 26.1.1
       fsevents: 2.3.3
-      less: 4.7.0(supports-color@8.1.1)
+      less: 4.8.0(supports-color@8.1.1)
       terser: 5.49.0
 
-  vitest@4.1.10(@types/node@26.1.1)(@vitest/coverage-v8@4.1.10)(jsdom@29.1.1)(vite@8.1.5(@types/node@26.1.1)(less@4.7.0(supports-color@8.1.1))(terser@5.49.0)):
+  vitest@4.1.10(@types/node@26.1.1)(@vitest/coverage-v8@4.1.10)(jsdom@29.1.1)(vite@8.1.5(@types/node@26.1.1)(less@4.8.0(supports-color@8.1.1))(terser@5.49.0)):
     dependencies:
       '@vitest/expect': 4.1.10
-      '@vitest/mocker': 4.1.10(vite@8.1.5(@types/node@26.1.1)(less@4.7.0(supports-color@8.1.1))(terser@5.49.0))
+      '@vitest/mocker': 4.1.10(vite@8.1.5(@types/node@26.1.1)(less@4.8.0(supports-color@8.1.1))(terser@5.49.0))
       '@vitest/pretty-format': 4.1.10
       '@vitest/runner': 4.1.10
       '@vitest/snapshot': 4.1.10
@@ -8669,7 +8669,7 @@ snapshots:
       tinyexec: 1.2.4
       tinyglobby: 0.2.17
       tinyrainbow: 3.1.0
-      vite: 8.1.5(@types/node@26.1.1)(less@4.7.0(supports-color@8.1.1))(terser@5.49.0)
+      vite: 8.1.5(@types/node@26.1.1)(less@4.8.0(supports-color@8.1.1))(terser@5.49.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 26.1.1
