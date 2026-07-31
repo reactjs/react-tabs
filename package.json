@@ -73,7 +73,7 @@
     "hoist-non-react-statics": "3.3.2",
     "html-loader": "5.1.0",
     "html-webpack-plugin": "5.6.8",
-    "jsdom": "29.1.1",
+    "jsdom": "30.0.0",
     "less": "4.8.1",
     "less-loader": "13.0.0",
     "mini-css-extract-plugin": "2.10.2",
