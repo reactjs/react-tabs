@@ -2,11 +2,6 @@ import React from 'react';
 import cx from 'clsx';
 
 const DEFAULT_CLASS = 'react-tabs__tab-panel';
-const defaultProps = {
-  className: DEFAULT_CLASS,
-  forceRender: false,
-  selectedClassName: `${DEFAULT_CLASS}--selected`,
-};
 
 /*
 Left for TS migration
@@ -23,20 +18,16 @@ const propTypes = {
   selectedClassName: PropTypes.string,
 };
 */
-const TabPanel = (props) => {
-  const {
-    children,
-    className,
-    forceRender,
-    id,
-    selected,
-    selectedClassName,
-    ...attributes
-  } = {
-    ...defaultProps,
-    ...props,
-  };
 
+const TabPanel = ({
+  children,
+  className = DEFAULT_CLASS,
+  forceRender = false,
+  selectedClassName = `${DEFAULT_CLASS}--selected`,
+  id,
+  selected,
+  ...attributes
+}) => {
   return (
     <div
       {...attributes}
