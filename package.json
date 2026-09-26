@@ -77,7 +77,7 @@
     "less": "4.9.1",
     "less-loader": "13.0.0",
     "mini-css-extract-plugin": "2.10.2",
-    "prettier": "3.9.8",
+    "prettier": "3.9.9",
     "prism-react-renderer": "2.4.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
