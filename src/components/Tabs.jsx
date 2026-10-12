@@ -10,39 +10,11 @@ import { getTabsCount } from '../helpers/count';
 
 const MODE_CONTROLLED = 0;
 const MODE_UNCONTROLLED = 1;
+
 const propTypes = {
   children: childrenPropType,
   onSelect: onSelectPropType,
   selectedIndex: selectedIndexPropType,
-  /*
-Left for TS migration
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  defaultFocus: PropTypes.bool,
-  defaultIndex: PropTypes.number,
-  direction: PropTypes.oneOf(['rtl', 'ltr']),
-  disabledTabClassName: PropTypes.string,
-  disableUpDownKeys: PropTypes.bool,
-  disableLeftRightKeys: PropTypes.bool,
-  domRef: PropTypes.func,
-  environment: PropTypes.object,
-  focusTabOnClick: PropTypes.bool,
-  forceRenderTabPanel: PropTypes.bool,
-  selectedTabClassName: PropTypes.string,
-  selectedTabPanelClassName: PropTypes.string,*/
-};
-const defaultProps = {
-  defaultFocus: false,
-  focusTabOnClick: true,
-  forceRenderTabPanel: false,
-  selectedIndex: null,
-  defaultIndex: null,
-  environment: null,
-  disableUpDownKeys: false,
-  disableLeftRightKeys: false,
 };
 
 const getModeFromProps = (props) => {
@@ -69,23 +41,32 @@ For more information about controlled and uncontrolled mode of react-tabs see ht
  *   focus: Because we never remove focus from the Tabs this state is only used to indicate that we should focus the current tab.
  *          It is initialized from the prop defaultFocus, and after the first render it is reset back to false. Later it can become true again when using keys to navigate the tabs.
  */
-const Tabs = (props) => {
-  checkPropTypes(propTypes, props, 'prop', 'Tabs');
-  const {
-    children,
-    defaultFocus,
-    defaultIndex,
-    focusTabOnClick,
-    onSelect,
-    ...attributes
-  } = {
-    ...defaultProps,
-    ...props,
-  };
+const Tabs = ({
+  children,
+  defaultFocus = false,
+  defaultIndex = null,
+  focusTabOnClick = true,
+  forceRenderTabPanel = false,
+  selectedIndex = null,
+  environment = null,
+  disableUpDownKeys = false,
+  disableLeftRightKeys = false,
+  onSelect,
+  ...attributes
+}) => {
+  checkPropTypes(propTypes, { children, onSelect, selectedIndex }, 'prop', 'Tabs');
+
+  // Check for conflicting props
+  if (process.env.NODE_ENV !== 'production' && selectedIndex !== null && defaultIndex !== null) {
+    console.error(
+      'The prop `selectedIndex` cannot be used together with `defaultIndex` in `Tabs`.\n' +
+      'Either remove `selectedIndex` to let `Tabs` handle the selected tab internally or remove `defaultIndex` to handle it yourself.'
+    );
+  }
 
   const [focus, setFocus] = useState(defaultFocus);
-  const [mode] = useState(getModeFromProps(attributes));
-  const [selectedIndex, setSelectedIndex] = useState(
+  const [mode] = useState(getModeFromProps({ selectedIndex }));
+  const [selectedIndexState, setSelectedIndexState] = useState(
     mode === MODE_UNCONTROLLED ? defaultIndex || 0 : null,
   );
 
@@ -98,14 +79,14 @@ const Tabs = (props) => {
     // Ensure that we handle removed tabs and don't let selectedIndex get out of bounds
     const tabsCount = getTabsCount(children);
     useEffect(() => {
-      if (selectedIndex != null) {
+      if (selectedIndexState != null) {
         const maxTabIndex = Math.max(0, tabsCount - 1);
-        setSelectedIndex(Math.min(selectedIndex, maxTabIndex));
+        setSelectedIndexState(Math.min(selectedIndexState, maxTabIndex));
       }
     }, [tabsCount]);
   }
 
-  checkForIllegalModeChange(attributes, mode);
+  checkForIllegalModeChange({ selectedIndex }, mode);
 
   const handleSelected = (index, last, event) => {
     // Call change event handler
@@ -121,21 +102,35 @@ const Tabs = (props) => {
 
     if (mode === MODE_UNCONTROLLED) {
       // Update selected index
-      setSelectedIndex(index);
+      setSelectedIndexState(index);
     }
   };
 
-  let subProps = { ...props, ...attributes };
+  let subProps = {
+    children,
+    defaultFocus,
+    defaultIndex,
+    focusTabOnClick,
+    forceRenderTabPanel,
+    selectedIndex,
+    environment,
+    disableUpDownKeys,
+    disableLeftRightKeys,
+    onSelect,
+    ...attributes
+  };
 
   subProps.focus = focus;
   subProps.onSelect = handleSelected;
 
-  if (selectedIndex != null) {
-    subProps.selectedIndex = selectedIndex;
+  if (selectedIndexState != null) {
+    subProps.selectedIndex = selectedIndexState;
   }
+  
   delete subProps.defaultFocus;
   delete subProps.defaultIndex;
   delete subProps.focusTabOnClick;
+  
   return <UncontrolledTabs {...subProps}>{children}</UncontrolledTabs>;
 };
 
