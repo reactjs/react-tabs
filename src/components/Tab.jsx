@@ -2,14 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import cx from 'clsx';
 
 const DEFAULT_CLASS = 'react-tabs__tab';
-const defaultProps = {
-  className: DEFAULT_CLASS,
-  disabledClassName: `${DEFAULT_CLASS}--disabled`,
-  focus: false,
-  id: null,
-  selected: false,
-  selectedClassName: `${DEFAULT_CLASS}--selected`,
-};
 
 /*
 Left for TS migration
@@ -34,24 +26,20 @@ const propTypes = {
   tabRef: PropTypes.func, // private
 };*/
 
-const Tab = (props) => {
+const Tab = ({
+  children,
+  className = DEFAULT_CLASS,
+  disabled,
+  disabledClassName = `${DEFAULT_CLASS}--disabled`,
+  focus = false,
+  id = null,
+  selected = false,
+  selectedClassName = `${DEFAULT_CLASS}--selected`,
+  tabIndex,
+  tabRef,
+  ...attributes
+}) => {
   let nodeRef = useRef();
-  const {
-    children,
-    className,
-    disabled,
-    disabledClassName,
-    focus,
-    id,
-    selected,
-    selectedClassName,
-    tabIndex,
-    tabRef,
-    ...attributes
-  } = {
-    ...defaultProps,
-    ...props,
-  };
 
   useEffect(() => {
     if (selected && focus) {
