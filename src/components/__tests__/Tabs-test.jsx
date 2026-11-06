@@ -3,6 +3,7 @@ import React from 'react';
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
+import UncontrolledTabs from '../UncontrolledTabs';
 import Tab from '../Tab';
 import TabList from '../TabList';
 import TabPanel from '../TabPanel';
@@ -650,4 +651,39 @@ describe('<Tabs />', () => {
 
     assertTabSelected(1);
   });
+});
+
+
+test('preserves default className when className is undefined', () => {
+  const { container } = render(
+    <UncontrolledTabs
+      className={undefined}
+      selectedIndex={0}
+      onSelect={() => {}}
+    >
+      <TabList>
+        <Tab>Tab</Tab>
+      </TabList>
+      <TabPanel>Panel</TabPanel>
+    </UncontrolledTabs>
+  );
+
+  expect(container.firstChild).toHaveClass('react-tabs');
+});
+
+test('preserves default className when className is null', () => {
+  const { container } = render(
+    <UncontrolledTabs
+      className={null}
+      selectedIndex={0}
+      onSelect={() => {}}
+    >
+      <TabList>
+        <Tab>Tab</Tab>
+      </TabList>
+      <TabPanel>Panel</TabPanel>
+    </UncontrolledTabs>
+  );
+
+  expect(container.firstChild).toHaveClass('react-tabs');
 });
