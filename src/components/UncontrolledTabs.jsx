@@ -4,7 +4,7 @@ import cx from 'clsx';
 import { childrenPropType } from '../helpers/propTypes';
 import { getTabsCount as getTabsCountHelper } from '../helpers/count';
 import { deepMap } from '../helpers/childrenDeepMap';
-import { isTabList, isTabPanel, isTab } from '../helpers/elementTypes';
+import { isTabList, isTabPanel } from '../helpers/elementTypes';
 
 function isNode(node) {
   return node && 'getAttribute' in node;
@@ -212,9 +212,9 @@ const UncontrolledTabs = (props) => {
         const env =
           environment || (typeof window !== 'undefined' ? window : undefined);
         if (canUseActiveElement && env) {
-          wasTabFocused = React.Children.toArray(child.props.children)
-            .filter(isTab)
-            .some((tab, i) => env.document.activeElement === getTab(i));
+          wasTabFocused = Object.keys(tabNodes.current).some(
+            (key) => env.document.activeElement === tabNodes.current[key],
+          );
         }
 
         result = cloneElement(child, {
