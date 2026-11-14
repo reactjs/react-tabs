@@ -235,7 +235,7 @@ importers:
         version: 6.10.2(eslint@9.39.5(supports-color@8.1.1))
       eslint-plugin-prettier:
         specifier: 5.5.7
-        version: 5.5.7(eslint-config-prettier@10.1.8(eslint@9.39.5(supports-color@8.1.1)))(eslint@9.39.5(supports-color@8.1.1))(prettier@3.9.10)
+        version: 5.5.7(eslint-config-prettier@10.1.8(eslint@9.39.5(supports-color@8.1.1)))(eslint@9.39.5(supports-color@8.1.1))(prettier@3.10.0)
       eslint-plugin-react:
         specifier: 7.37.5
         version: 7.37.5(eslint@9.39.5(supports-color@8.1.1))
@@ -261,8 +261,8 @@ importers:
         specifier: 2.10.2
         version: 2.10.2(webpack@5.112.2)
       prettier:
-        specifier: 3.9.10
-        version: 3.9.10
+        specifier: 3.10.0
+        version: 3.10.0
       prism-react-renderer:
         specifier: 2.4.1
         version: 2.4.1(react@19.3.1)
@@ -3463,8 +3463,8 @@ packages:
     resolution: {integrity: sha512-SxToR7P8Y2lWmv/kTzVLC1t/GDI2WGjMwNhLLE9qtH8Q13C+aEmuRlzDst4Up4s0Wc8sF2M+J57iB3cMLqftfg==}
     engines: {node: '>=6.0.0'}
 
-  prettier@3.9.10:
-    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
+  prettier@3.10.0:
+    resolution: {integrity: sha512-mBi4765LgjO1PFjlEs7pUeK0nb1bw71c+N4/ItfeUWNdY5cV2pRKaFpbbFRYmDJMO+5ZwzGxHRqHxFZna7iv5w==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -6444,10 +6444,10 @@ snapshots:
       safe-regex-test: 1.1.0
       string.prototype.includes: 2.0.1
 
-  eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@9.39.5(supports-color@8.1.1)))(eslint@9.39.5(supports-color@8.1.1))(prettier@3.9.10):
+  eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@9.39.5(supports-color@8.1.1)))(eslint@9.39.5(supports-color@8.1.1))(prettier@3.10.0):
     dependencies:
       eslint: 9.39.5(supports-color@8.1.1)
-      prettier: 3.9.10
+      prettier: 3.10.0
       prettier-linter-helpers: 1.0.1
       synckit: 0.12.3
     optionalDependencies:
@@ -7729,7 +7729,7 @@ snapshots:
     dependencies:
       fast-diff: 1.3.0
 
-  prettier@3.9.10: {}
+  prettier@3.10.0: {}
 
   pretty-error@4.0.0:
     dependencies:
