@@ -66,8 +66,7 @@ For more information about controlled and uncontrolled mode of react-tabs see ht
  * State:
  *   mode: Initialized only once from props and never changes
  *   selectedIndex: null if controlled mode, otherwise initialized with prop defaultIndex, changed on selection of tabs, has effect to ensure it never gets out of bound
- *   focus: Because we never remove focus from the Tabs this state is only used to indicate that we should focus the current tab.
- *          It is initialized from the prop defaultFocus, and after the first render it is reset back to false. Later it can become true again when using keys to navigate the tabs.
+ *   focus: Whether a tab interaction has requested focus on the selected tab.
  */
 const Tabs = (props) => {
   checkPropTypes(propTypes, props, 'prop', 'Tabs');
@@ -83,17 +82,11 @@ const Tabs = (props) => {
     ...props,
   };
 
-  const [focus, setFocus] = useState(defaultFocus);
+  const [focus, setFocus] = useState(false);
   const [mode] = useState(() => getModeFromProps(attributes));
   const [selectedIndex, setSelectedIndex] = useState(
     mode === MODE_UNCONTROLLED ? defaultIndex || 0 : null,
   );
-
-  useEffect(() => {
-    // The initial focus request applies only to the first render.
-    // eslint-disable-next-line @eslint-react/set-state-in-effect
-    setFocus(false);
-  }, []);
 
   const tabsCount = mode === MODE_UNCONTROLLED ? getTabsCount(children) : 0;
   useEffect(() => {
@@ -127,13 +120,13 @@ const Tabs = (props) => {
 
   let subProps = { ...props, ...attributes };
 
+  subProps.defaultFocus = defaultFocus;
   subProps.focus = focus;
   subProps.onSelect = handleSelected;
 
   if (selectedIndex != null) {
     subProps.selectedIndex = selectedIndex;
   }
-  delete subProps.defaultFocus;
   delete subProps.defaultIndex;
   delete subProps.focusTabOnClick;
   return <UncontrolledTabs {...subProps}>{children}</UncontrolledTabs>;

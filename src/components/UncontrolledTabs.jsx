@@ -1,5 +1,5 @@
 import { checkPropTypes } from 'prop-types';
-import { cloneElement, useRef, useId } from 'react';
+import { cloneElement, useEffect, useRef, useId } from 'react';
 import cx from 'clsx';
 import { childrenPropType } from '../helpers/propTypes';
 import { getTabsCount as getTabsCountHelper } from '../helpers/count';
@@ -77,6 +77,14 @@ const UncontrolledTabs = (props) => {
   const tabIdsRef = useRef([]);
   const ref = useRef();
   const id = useId();
+  const initialFocusIndexRef = useRef(
+    props.defaultFocus ? props.selectedIndex : null,
+  );
+
+  useEffect(() => {
+    const index = initialFocusIndexRef.current;
+    if (Number.isInteger(index)) tabNodesRef.current[index]?.focus();
+  }, []);
 
   function setSelected(index, event) {
     // Check index boundary
@@ -167,7 +175,7 @@ const UncontrolledTabs = (props) => {
   }
 
   function getTab(index) {
-    return tabNodesRef.current[`tabs-${index}`];
+    return tabNodesRef.current[index];
   }
 
   function getChildren() {
@@ -219,14 +227,14 @@ const UncontrolledTabs = (props) => {
 
         result = cloneElement(child, {
           children: deepMap(child.props.children, (tab) => {
-            const key = `tabs-${listIndex}`;
-            const selected = selectedIndex === listIndex;
+            const index = listIndex++;
+            const selected = selectedIndex === index;
 
             const props = {
               tabRef: (node) => {
-                tabNodesRef.current[key] = node;
+                tabNodesRef.current[index] = node;
               },
-              id: tabIdsRef.current[listIndex],
+              id: tabIdsRef.current[index],
               selected,
               focus: selected && (focus || wasTabFocused),
             };
@@ -235,8 +243,6 @@ const UncontrolledTabs = (props) => {
               props.selectedClassName = selectedTabClassName;
             if (disabledTabClassName)
               props.disabledClassName = disabledTabClassName;
-
-            listIndex++;
 
             return cloneElement(tab, props);
           }),
@@ -375,6 +381,7 @@ const UncontrolledTabs = (props) => {
   const {
     children, // unused
     className,
+    defaultFocus, // unused
     disabledTabClassName, // unused
     domRef,
     focus, // unused
