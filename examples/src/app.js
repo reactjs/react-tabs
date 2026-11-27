@@ -1,4 +1,3 @@
-import React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import './example.less';
 import SuperMario from './components/examples/SuperMario';

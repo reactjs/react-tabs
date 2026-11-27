@@ -1,5 +1,4 @@
 import { afterEach, beforeAll, describe, expect, test, vi } from 'vitest';
-import React from 'react';
 import { cleanup, render } from '@testing-library/react';
 import Tab from '../Tab';
 import TabList from '../TabList';
@@ -44,7 +43,7 @@ describe('<TabList />', () => {
   });
 
   test('should not allow overriding all default properties', () => {
-    // eslint-disable-next-line jsx-a11y/aria-role
+    // eslint-disable-next-line jsx-a11y-x/aria-role
     expectToMatchSnapshot(<TabList role="micro-tab" />);
   });
 

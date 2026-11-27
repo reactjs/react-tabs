@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'clsx';
 
 const DEFAULT_CLASS = 'react-tabs__tab-panel';

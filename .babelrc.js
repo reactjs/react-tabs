@@ -31,7 +31,7 @@ const options = {
         useBuiltIns: 'entry',
       },
     ],
-    ['@babel/react', { useBuiltIns: true }],
+    ['@babel/react', { runtime: 'automatic' }],
   ],
   plugins: [],
 };
