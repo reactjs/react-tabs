@@ -7,41 +7,42 @@ exports[`<Tabs /> > performance > should render all tabs if forceRenderTabPanel 
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
+      data-rttab="0"
       data-testid="tab1"
-      id="tab:r0:0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
       Tab1
     </li>
     <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
+      data-rttab="1"
       data-testid="tab2"
-      id="tab:r0:1"
+      id="tab:r0:-1"
       role="tab"
     >
       Tab2
     </li>
     <li
-      aria-controls="panel:r0:2"
+      aria-controls="panel:r0:-2"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
+      data-rttab="2"
       data-testid="tab3"
-      id="tab:r0:2"
+      id="tab:r0:-2"
       role="tab"
     >
       <a
@@ -51,50 +52,54 @@ exports[`<Tabs /> > performance > should render all tabs if forceRenderTabPanel 
       </a>
     </li>
     <li
-      aria-controls="panel:r0:3"
+      aria-controls="panel:r0:-3"
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
-      data-rttab="true"
+      data-rttab="3"
       data-testid="tab4"
-      id="tab:r0:3"
+      id="tab:r0:-3"
       role="tab"
     >
       Tab4
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    data-rttabpanel="0"
     data-testid="panel1"
-    id="panel:r0:0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Hello Tab1
   </div>
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
+    data-rttabpanel="1"
     data-testid="panel2"
-    id="panel:r0:1"
+    id="panel:r0:-1"
     role="tabpanel"
   >
     Hello Tab2
   </div>
   <div
-    aria-labelledby="tab:r0:2"
+    aria-labelledby="tab:r0:-2"
     class="react-tabs__tab-panel"
+    data-rttabpanel="2"
     data-testid="panel3"
-    id="panel:r0:2"
+    id="panel:r0:-2"
     role="tabpanel"
   >
     Hello Tab3
   </div>
   <div
-    aria-labelledby="tab:r0:3"
+    aria-labelledby="tab:r0:-3"
     class="react-tabs__tab-panel"
+    data-rttabpanel="3"
     data-testid="panel4"
-    id="panel:r0:3"
+    id="panel:r0:-3"
     role="tabpanel"
   >
     Hello Tab4
@@ -109,41 +114,42 @@ exports[`<Tabs /> > props > should accept className 1`] = `
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
+      data-rttab="0"
       data-testid="tab1"
-      id="tab:r0:0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
       Tab1
     </li>
     <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
+      data-rttab="1"
       data-testid="tab2"
-      id="tab:r0:1"
+      id="tab:r0:-1"
       role="tab"
     >
       Tab2
     </li>
     <li
-      aria-controls="panel:r0:2"
+      aria-controls="panel:r0:-2"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
+      data-rttab="2"
       data-testid="tab3"
-      id="tab:r0:2"
+      id="tab:r0:-2"
       role="tab"
     >
       <a
@@ -153,46 +159,50 @@ exports[`<Tabs /> > props > should accept className 1`] = `
       </a>
     </li>
     <li
-      aria-controls="panel:r0:3"
+      aria-controls="panel:r0:-3"
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
-      data-rttab="true"
+      data-rttab="3"
       data-testid="tab4"
-      id="tab:r0:3"
+      id="tab:r0:-3"
       role="tab"
     >
       Tab4
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    data-rttabpanel="0"
     data-testid="panel1"
-    id="panel:r0:0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Hello Tab1
   </div>
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
+    data-rttabpanel="1"
     data-testid="panel2"
-    id="panel:r0:1"
+    id="panel:r0:-1"
     role="tabpanel"
   />
   <div
-    aria-labelledby="tab:r0:2"
+    aria-labelledby="tab:r0:-2"
     class="react-tabs__tab-panel"
+    data-rttabpanel="2"
     data-testid="panel3"
-    id="panel:r0:2"
+    id="panel:r0:-2"
     role="tabpanel"
   />
   <div
-    aria-labelledby="tab:r0:3"
+    aria-labelledby="tab:r0:-3"
     class="react-tabs__tab-panel"
+    data-rttabpanel="3"
     data-testid="panel4"
-    id="panel:r0:3"
+    id="panel:r0:-3"
     role="tabpanel"
   />
 </div>
@@ -205,41 +215,42 @@ exports[`<Tabs /> > props > should have sane defaults 1`] = `
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
+      data-rttab="0"
       data-testid="tab1"
-      id="tab:r0:0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
       Tab1
     </li>
     <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
+      data-rttab="1"
       data-testid="tab2"
-      id="tab:r0:1"
+      id="tab:r0:-1"
       role="tab"
     >
       Tab2
     </li>
     <li
-      aria-controls="panel:r0:2"
+      aria-controls="panel:r0:-2"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
+      data-rttab="2"
       data-testid="tab3"
-      id="tab:r0:2"
+      id="tab:r0:-2"
       role="tab"
     >
       <a
@@ -249,186 +260,98 @@ exports[`<Tabs /> > props > should have sane defaults 1`] = `
       </a>
     </li>
     <li
-      aria-controls="panel:r0:3"
+      aria-controls="panel:r0:-3"
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
-      data-rttab="true"
+      data-rttab="3"
       data-testid="tab4"
-      id="tab:r0:3"
+      id="tab:r0:-3"
       role="tab"
     >
       Tab4
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    data-rttabpanel="0"
     data-testid="panel1"
-    id="panel:r0:0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Hello Tab1
   </div>
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
+    data-rttabpanel="1"
     data-testid="panel2"
-    id="panel:r0:1"
+    id="panel:r0:-1"
     role="tabpanel"
   />
   <div
-    aria-labelledby="tab:r0:2"
+    aria-labelledby="tab:r0:-2"
     class="react-tabs__tab-panel"
+    data-rttabpanel="2"
     data-testid="panel3"
-    id="panel:r0:2"
+    id="panel:r0:-2"
     role="tabpanel"
   />
   <div
-    aria-labelledby="tab:r0:3"
+    aria-labelledby="tab:r0:-3"
     class="react-tabs__tab-panel"
+    data-rttabpanel="3"
     data-testid="panel4"
-    id="panel:r0:3"
+    id="panel:r0:-3"
     role="tabpanel"
   />
 </div>
 `;
 
-exports[`<Tabs /> > props > should honor negative defaultIndex prop 1`] = `
+exports[`<Tabs /> > props > should honor positive defaultKey prop 1`] = `
 <div
   class="react-tabs"
   data-rttabs="true"
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
+      data-rttab="0"
       data-testid="tab1"
-      id="tab:r0:0"
+      id="tab:r0:-0"
       role="tab"
     >
       Tab1
     </li>
     <li
-      aria-controls="panel:r0:1"
-      aria-disabled="false"
-      aria-selected="false"
-      class="react-tabs__tab"
-      data-rttab="true"
-      data-testid="tab2"
-      id="tab:r0:1"
-      role="tab"
-    >
-      Tab2
-    </li>
-    <li
-      aria-controls="panel:r0:2"
-      aria-disabled="false"
-      aria-selected="false"
-      class="react-tabs__tab"
-      data-rttab="true"
-      data-testid="tab3"
-      id="tab:r0:2"
-      role="tab"
-    >
-      <a
-        href="a"
-      >
-        Tab3
-      </a>
-    </li>
-    <li
-      aria-controls="panel:r0:3"
-      aria-disabled="true"
-      aria-selected="false"
-      class="react-tabs__tab react-tabs__tab--disabled"
-      data-rttab="true"
-      data-testid="tab4"
-      id="tab:r0:3"
-      role="tab"
-    >
-      Tab4
-    </li>
-  </ul>
-  <div
-    aria-labelledby="tab:r0:0"
-    class="react-tabs__tab-panel"
-    data-testid="panel1"
-    id="panel:r0:0"
-    role="tabpanel"
-  />
-  <div
-    aria-labelledby="tab:r0:1"
-    class="react-tabs__tab-panel"
-    data-testid="panel2"
-    id="panel:r0:1"
-    role="tabpanel"
-  />
-  <div
-    aria-labelledby="tab:r0:2"
-    class="react-tabs__tab-panel"
-    data-testid="panel3"
-    id="panel:r0:2"
-    role="tabpanel"
-  />
-  <div
-    aria-labelledby="tab:r0:3"
-    class="react-tabs__tab-panel"
-    data-testid="panel4"
-    id="panel:r0:3"
-    role="tabpanel"
-  />
-</div>
-`;
-
-exports[`<Tabs /> > props > should honor positive defaultIndex prop 1`] = `
-<div
-  class="react-tabs"
-  data-rttabs="true"
->
-  <ul
-    class="react-tabs__tab-list"
-    role="tablist"
-  >
-    <li
-      aria-controls="panel:r0:0"
-      aria-disabled="false"
-      aria-selected="false"
-      class="react-tabs__tab"
-      data-rttab="true"
-      data-testid="tab1"
-      id="tab:r0:0"
-      role="tab"
-    >
-      Tab1
-    </li>
-    <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
+      data-rttab="1"
       data-testid="tab2"
-      id="tab:r0:1"
+      id="tab:r0:-1"
       role="tab"
       tabindex="0"
     >
       Tab2
     </li>
     <li
-      aria-controls="panel:r0:2"
+      aria-controls="panel:r0:-2"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
+      data-rttab="2"
       data-testid="tab3"
-      id="tab:r0:2"
+      id="tab:r0:-2"
       role="tab"
     >
       <a
@@ -438,46 +361,50 @@ exports[`<Tabs /> > props > should honor positive defaultIndex prop 1`] = `
       </a>
     </li>
     <li
-      aria-controls="panel:r0:3"
+      aria-controls="panel:r0:-3"
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
-      data-rttab="true"
+      data-rttab="3"
       data-testid="tab4"
-      id="tab:r0:3"
+      id="tab:r0:-3"
       role="tab"
     >
       Tab4
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel"
+    data-rttabpanel="0"
     data-testid="panel1"
-    id="panel:r0:0"
+    id="panel:r0:-0"
     role="tabpanel"
   />
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
+    data-rttabpanel="1"
     data-testid="panel2"
-    id="panel:r0:1"
+    id="panel:r0:-1"
     role="tabpanel"
   >
     Hello Tab2
   </div>
   <div
-    aria-labelledby="tab:r0:2"
+    aria-labelledby="tab:r0:-2"
     class="react-tabs__tab-panel"
+    data-rttabpanel="2"
     data-testid="panel3"
-    id="panel:r0:2"
+    id="panel:r0:-2"
     role="tabpanel"
   />
   <div
-    aria-labelledby="tab:r0:3"
+    aria-labelledby="tab:r0:-3"
     class="react-tabs__tab-panel"
+    data-rttabpanel="3"
     data-testid="panel4"
-    id="panel:r0:3"
+    id="panel:r0:-3"
     role="tabpanel"
   />
 </div>
@@ -490,44 +417,47 @@ exports[`<Tabs /> > should allow for higher order components 1`] = `
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
-      id="tab:r0:0"
+      data-rttab="0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
       Foo
     </li>
     <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
-      id="tab:r0:1"
+      data-rttab="1"
+      id="tab:r0:-1"
       role="tab"
     >
       Bar
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
-    id="panel:r0:0"
+    data-rttabpanel="0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Foo
   </div>
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
-    id="panel:r0:1"
+    data-rttabpanel="1"
+    id="panel:r0:-1"
     role="tabpanel"
   />
 </div>
@@ -541,16 +471,17 @@ exports[`<Tabs /> > should allow string children 1`] = `
   Foo
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     Foo
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
-      id="tab:r0:0"
+      data-rttab="0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
@@ -558,12 +489,12 @@ exports[`<Tabs /> > should allow string children 1`] = `
     </li>
     Foo
     <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
-      id="tab:r0:1"
+      data-rttab="1"
+      id="tab:r0:-1"
       role="tab"
     >
       Bar
@@ -571,17 +502,19 @@ exports[`<Tabs /> > should allow string children 1`] = `
     Foo
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
-    id="panel:r0:0"
+    data-rttabpanel="0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Bar
   </div>
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
-    id="panel:r0:1"
+    data-rttabpanel="1"
+    id="panel:r0:-1"
     role="tabpanel"
   />
   Foo
@@ -621,25 +554,26 @@ exports[`<Tabs /> > validation > should allow other DOM nodes 1`] = `
     >
       <ul
         class="react-tabs__tab-list"
+        data-rttablist="true"
         role="tablist"
       >
         <li
-          aria-controls="panel:r0:0"
+          aria-controls="panel:r0:-0"
           aria-disabled="false"
           aria-selected="true"
           class="react-tabs__tab react-tabs__tab--selected"
-          data-rttab="true"
-          id="tab:r0:0"
+          data-rttab="0"
+          id="tab:r0:-0"
           role="tab"
           tabindex="0"
         />
         <li
-          aria-controls="panel:r0:1"
+          aria-controls="panel:r0:-1"
           aria-disabled="false"
           aria-selected="false"
           class="react-tabs__tab"
-          data-rttab="true"
-          id="tab:r0:1"
+          data-rttab="1"
+          id="tab:r0:-1"
           role="tab"
         />
       </ul>
@@ -654,15 +588,17 @@ exports[`<Tabs /> > validation > should allow other DOM nodes 1`] = `
     class="tab-panels"
   >
     <div
-      aria-labelledby="tab:r0:0"
+      aria-labelledby="tab:r0:-0"
       class="react-tabs__tab-panel react-tabs__tab-panel--selected"
-      id="panel:r0:0"
+      data-rttabpanel="0"
+      id="panel:r0:-0"
       role="tabpanel"
     />
     <div
-      aria-labelledby="tab:r0:1"
+      aria-labelledby="tab:r0:-1"
       class="react-tabs__tab-panel"
-      id="panel:r0:1"
+      data-rttabpanel="1"
+      id="panel:r0:-1"
       role="tabpanel"
     />
   </div>
@@ -675,45 +611,48 @@ exports[`<Tabs /> > validation > should allow random order for elements 1`] = `
   data-rttabs="true"
 >
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
-    id="panel:r0:0"
+    data-rttabpanel="0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Hello Foo
   </div>
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
-      id="tab:r0:0"
+      data-rttab="0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
       Foo
     </li>
     <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
-      id="tab:r0:1"
+      data-rttab="1"
+      id="tab:r0:-1"
       role="tab"
     >
       Bar
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
-    id="panel:r0:1"
+    data-rttabpanel="1"
+    id="panel:r0:-1"
     role="tabpanel"
   >
     Hello Bar
@@ -728,6 +667,7 @@ exports[`<Tabs /> > validation > should be okay with rendering just TabList 1`] 
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   />
 </div>
@@ -747,15 +687,16 @@ exports[`<Tabs /> > validation > should gracefully render null 1`] = `
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
-      id="tab:r0:0"
+      data-rttab="0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
@@ -763,9 +704,10 @@ exports[`<Tabs /> > validation > should gracefully render null 1`] = `
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
-    id="panel:r0:0"
+    data-rttabpanel="0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Content A
@@ -780,24 +722,26 @@ exports[`<Tabs /> > validation > should not throw a warning when wrong element i
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
-      id="tab:r0:0"
+      data-rttab="0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     />
     <div />
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
-    id="panel:r0:0"
+    data-rttabpanel="0"
+    id="panel:r0:-0"
     role="tabpanel"
   />
 </div>

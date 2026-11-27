@@ -1,7 +1,7 @@
 import cx from 'clsx';
-import { useContext, type FunctionComponent } from 'react';
+import { useContext } from 'react';
 import type { TabPanelProps } from '../types';
-import { TabsItemContext } from './TabsItemContext';
+import { getItemIdentity, TabsContext } from './TabsContext';
 
 const DEFAULT_CLASS = 'react-tabs__tab-panel';
 const defaultProps = {
@@ -11,39 +11,36 @@ const defaultProps = {
 };
 
 const TabPanel = (props: TabPanelProps) => {
-  const item = useContext(TabsItemContext);
-  const panel = item?.kind === 'panel' ? item : null;
+  const group = useContext(TabsContext);
   const {
     children,
     className,
     forceRender,
     id: ownId,
+    itemKey,
     selectedClassName,
     ...attributes
   } = {
     ...defaultProps,
     ...props,
   };
-  const id = panel ? panel.id : ownId;
-  const selected = panel?.selected ?? false;
+  const { id, token } = getItemIdentity(group?.id, itemKey);
+  const selected = group?.selectedKey === itemKey;
 
   return (
     <div
       {...attributes}
       className={cx(className, {
-        [panel?.selectedClassName || selectedClassName]: selected,
+        [group?.selectedTabPanelClassName || selectedClassName]: selected,
       })}
       role="tabpanel"
-      id={`panel${id}`}
-      aria-labelledby={`tab${id}`}
+      id={id === undefined ? ownId : `panel${id}`}
+      aria-labelledby={id === undefined ? undefined : `tab${id}`}
+      data-rttabpanel={token}
     >
-      <TabsItemContext.Provider value={null}>
-        {panel?.forceRender || forceRender || selected ? children : null}
-      </TabsItemContext.Provider>
+      {group?.forceRenderTabPanel || forceRender || selected ? children : null}
     </div>
   );
 };
 
-TabPanel.tabsRole = 'TabPanel';
-
-export default TabPanel as FunctionComponent<TabPanelProps>;
+export default TabPanel;

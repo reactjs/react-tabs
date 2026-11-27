@@ -49,13 +49,15 @@ describe('<TabList />', () => {
 
   test('should retain the default classnames for active and disabled tab', () => {
     expectToMatchSnapshot(
-      <Tabs defaultIndex={0}>
+      <Tabs defaultKey={0}>
         <TabList>
-          <Tab>Foo</Tab>
-          <Tab disabled>Bar</Tab>
+          <Tab itemKey={0}>Foo</Tab>
+          <Tab itemKey={1} disabled>
+            Bar
+          </Tab>
         </TabList>
-        <TabPanel>Foo</TabPanel>
-        <TabPanel>Bar</TabPanel>
+        <TabPanel itemKey={0}>Foo</TabPanel>
+        <TabPanel itemKey={1}>Bar</TabPanel>
       </Tabs>,
     );
   });
@@ -63,46 +65,57 @@ describe('<TabList />', () => {
   test('should display the custom classnames for selected and disabled tab specified on tabs', () => {
     expectToMatchSnapshot(
       <Tabs
-        defaultIndex={0}
+        defaultKey={0}
         selectedTabClassName="active"
         disabledTabClassName="disabled"
       >
         <TabList>
-          <Tab>Foo</Tab>
-          <Tab disabled>Bar</Tab>
+          <Tab itemKey={0}>Foo</Tab>
+          <Tab itemKey={1} disabled>
+            Bar
+          </Tab>
         </TabList>
-        <TabPanel>Foo</TabPanel>
-        <TabPanel>Bar</TabPanel>
+        <TabPanel itemKey={0}>Foo</TabPanel>
+        <TabPanel itemKey={1}>Bar</TabPanel>
       </Tabs>,
     );
   });
 
   test('should display the custom classnames for selected and disabled tab', () => {
     expectToMatchSnapshot(
-      <Tabs defaultIndex={0}>
+      <Tabs defaultKey={0}>
         <TabList>
-          <Tab selectedClassName="active" disabledClassName="disabled">
+          <Tab
+            itemKey={0}
+            selectedClassName="active"
+            disabledClassName="disabled"
+          >
             Foo
           </Tab>
-          <Tab disabled selectedClassName="active" disabledClassName="disabled">
+          <Tab
+            itemKey={1}
+            disabled
+            selectedClassName="active"
+            disabledClassName="disabled"
+          >
             Bar
           </Tab>
         </TabList>
-        <TabPanel>Foo</TabPanel>
-        <TabPanel>Bar</TabPanel>
+        <TabPanel itemKey={0}>Foo</TabPanel>
+        <TabPanel itemKey={1}>Bar</TabPanel>
       </Tabs>,
     );
   });
 
   test('should allow for higher order components', () => {
     expectToMatchSnapshot(
-      <Tabs>
+      <Tabs defaultKey={0}>
         <TabListWrapper>
-          <TabWrapper>Foo</TabWrapper>
-          <TabWrapper>Bar</TabWrapper>
+          <TabWrapper itemKey={0}>Foo</TabWrapper>
+          <TabWrapper itemKey={1}>Bar</TabWrapper>
         </TabListWrapper>
-        <TabPanel>Foo</TabPanel>
-        <TabPanel>Bar</TabPanel>
+        <TabPanel itemKey={0}>Foo</TabPanel>
+        <TabPanel itemKey={1}>Bar</TabPanel>
       </Tabs>,
     );
   });

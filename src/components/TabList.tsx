@@ -1,5 +1,4 @@
 import cx from 'clsx';
-import type { FunctionComponent } from 'react';
 import type { TabListProps } from '../types';
 
 const defaultProps = {
@@ -13,12 +12,10 @@ const TabList = (props: TabListProps) => {
   };
 
   return (
-    <ul {...attributes} className={cx(className)} role="tablist">
+    <ul {...attributes} className={cx(className)} role="tablist" data-rttablist>
       {children}
     </ul>
   );
 };
 
-TabList.tabsRole = 'TabList';
-
-export default TabList as FunctionComponent<TabListProps>;
+export default TabList;

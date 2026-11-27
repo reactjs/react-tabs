@@ -188,9 +188,6 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.1.1
-      prop-types:
-        specifier: ^15.5.0
-        version: 15.8.1
     devDependencies:
       '@changesets/changelog-github':
         specifier: 1.0.1
@@ -219,9 +216,6 @@ importers:
       '@types/node':
         specifier: 24.19.2
         version: 24.19.2
-      '@types/prop-types':
-        specifier: 15.7.15
-        version: 15.7.15
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
@@ -246,9 +240,6 @@ importers:
       happy-dom:
         specifier: 21.0.4
         version: 21.0.4
-      hoist-non-react-statics:
-        specifier: 3.3.2
-        version: 3.3.2
       prettier:
         specifier: 3.10.1
         version: 3.10.1
@@ -1597,9 +1588,6 @@ packages:
   '@types/prismjs@1.26.6':
     resolution: {integrity: sha512-vqlvI7qlMvcCBbVe0AKAb4f97//Hy0EBTaiW8AalRnG/xAN5zOiWWyrNqNXeq8+KAuvRewjCVY1+IPxk4RdNYw==}
 
-  '@types/prop-types@15.7.15':
-    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
-
   '@types/qs@6.15.1':
     resolution: {integrity: sha512-GZHUBZR9hckSUhrxmp1nG6NwdpM9fCunJwyThLW1X3AyHgd9IlHb6VANpQQqDr2o/qQp6McZ3y/IA2rVzKzSbw==}
 
@@ -2880,9 +2868,6 @@ packages:
   he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
-
-  hoist-non-react-statics@3.3.2:
-    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
 
   hookified@1.15.1:
     resolution: {integrity: sha512-MvG/clsADq1GPM2KGo2nyfaWVyn9naPiXrqIe4jYjXNZQt238kWyOGrsyc/DmRAQ+Re6yeo6yX/yoNCG5KAEVg==}
@@ -6163,8 +6148,6 @@ snapshots:
 
   '@types/prismjs@1.26.6': {}
 
-  '@types/prop-types@15.7.15': {}
-
   '@types/qs@6.15.1': {}
 
   '@types/range-parser@1.2.7': {}
@@ -7648,10 +7631,6 @@ snapshots:
       function-bind: 1.1.2
 
   he@1.2.0: {}
-
-  hoist-non-react-statics@3.3.2:
-    dependencies:
-      react-is: 16.13.1
 
   hookified@1.15.1: {}
 

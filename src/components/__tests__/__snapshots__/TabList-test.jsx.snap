@@ -3,6 +3,7 @@
 exports[`<TabList /> > should accept className 1`] = `
 <ul
   class="foobar"
+  data-rttablist="true"
   role="tablist"
 />
 `;
@@ -14,44 +15,47 @@ exports[`<TabList /> > should allow for higher order components 1`] = `
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
-      id="tab:r0:0"
+      data-rttab="0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
       Foo
     </li>
     <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="false"
       aria-selected="false"
       class="react-tabs__tab"
-      data-rttab="true"
-      id="tab:r0:1"
+      data-rttab="1"
+      id="tab:r0:-1"
       role="tab"
     >
       Bar
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
-    id="panel:r0:0"
+    data-rttabpanel="0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Foo
   </div>
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
-    id="panel:r0:1"
+    data-rttabpanel="1"
+    id="panel:r0:-1"
     role="tabpanel"
   />
 </div>
@@ -64,44 +68,47 @@ exports[`<TabList /> > should display the custom classnames for selected and dis
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab active"
-      data-rttab="true"
-      id="tab:r0:0"
+      data-rttab="0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
       Foo
     </li>
     <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab disabled"
-      data-rttab="true"
-      id="tab:r0:1"
+      data-rttab="1"
+      id="tab:r0:-1"
       role="tab"
     >
       Bar
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
-    id="panel:r0:0"
+    data-rttabpanel="0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Foo
   </div>
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
-    id="panel:r0:1"
+    data-rttabpanel="1"
+    id="panel:r0:-1"
     role="tabpanel"
   />
 </div>
@@ -114,44 +121,47 @@ exports[`<TabList /> > should display the custom classnames for selected and dis
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab active"
-      data-rttab="true"
-      id="tab:r0:0"
+      data-rttab="0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
       Foo
     </li>
     <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab disabled"
-      data-rttab="true"
-      id="tab:r0:1"
+      data-rttab="1"
+      id="tab:r0:-1"
       role="tab"
     >
       Bar
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
-    id="panel:r0:0"
+    data-rttabpanel="0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Foo
   </div>
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
-    id="panel:r0:1"
+    data-rttabpanel="1"
+    id="panel:r0:-1"
     role="tabpanel"
   />
 </div>
@@ -160,6 +170,7 @@ exports[`<TabList /> > should display the custom classnames for selected and dis
 exports[`<TabList /> > should have sane defaults 1`] = `
 <ul
   class="react-tabs__tab-list"
+  data-rttablist="true"
   role="tablist"
 />
 `;
@@ -167,6 +178,7 @@ exports[`<TabList /> > should have sane defaults 1`] = `
 exports[`<TabList /> > should not allow overriding all default properties 1`] = `
 <ul
   class="react-tabs__tab-list"
+  data-rttablist="true"
   role="tablist"
 />
 `;
@@ -174,6 +186,7 @@ exports[`<TabList /> > should not allow overriding all default properties 1`] = 
 exports[`<TabList /> > should pass through custom properties 1`] = `
 <ul
   class="react-tabs__tab-list"
+  data-rttablist="true"
   data-tooltip="Tooltip contents"
   role="tablist"
 />
@@ -186,44 +199,47 @@ exports[`<TabList /> > should retain the default classnames for active and disab
 >
   <ul
     class="react-tabs__tab-list"
+    data-rttablist="true"
     role="tablist"
   >
     <li
-      aria-controls="panel:r0:0"
+      aria-controls="panel:r0:-0"
       aria-disabled="false"
       aria-selected="true"
       class="react-tabs__tab react-tabs__tab--selected"
-      data-rttab="true"
-      id="tab:r0:0"
+      data-rttab="0"
+      id="tab:r0:-0"
       role="tab"
       tabindex="0"
     >
       Foo
     </li>
     <li
-      aria-controls="panel:r0:1"
+      aria-controls="panel:r0:-1"
       aria-disabled="true"
       aria-selected="false"
       class="react-tabs__tab react-tabs__tab--disabled"
-      data-rttab="true"
-      id="tab:r0:1"
+      data-rttab="1"
+      id="tab:r0:-1"
       role="tab"
     >
       Bar
     </li>
   </ul>
   <div
-    aria-labelledby="tab:r0:0"
+    aria-labelledby="tab:r0:-0"
     class="react-tabs__tab-panel react-tabs__tab-panel--selected"
-    id="panel:r0:0"
+    data-rttabpanel="0"
+    id="panel:r0:-0"
     role="tabpanel"
   >
     Foo
   </div>
   <div
-    aria-labelledby="tab:r0:1"
+    aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
-    id="panel:r0:1"
+    data-rttabpanel="1"
+    id="panel:r0:-1"
     role="tabpanel"
   />
 </div>

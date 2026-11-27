@@ -1,26 +1,24 @@
-import { useContext, useEffect, useRef, type FunctionComponent } from 'react';
+import { useContext } from 'react';
 import type { TabProps } from '../types';
-import { TabsItemContext } from './TabsItemContext';
+import { getItemIdentity, TabsContext } from './TabsContext';
 import cx from 'clsx';
 
 const DEFAULT_CLASS = 'react-tabs__tab';
 const defaultProps = {
   className: DEFAULT_CLASS,
   disabledClassName: `${DEFAULT_CLASS}--disabled`,
-  id: null,
   selectedClassName: `${DEFAULT_CLASS}--selected`,
 };
 
 const Tab = (props: TabProps) => {
-  const item = useContext(TabsItemContext);
-  const tab = item?.kind === 'tab' ? item : null;
-  const nodeRef = useRef<HTMLLIElement | null>(null);
+  const group = useContext(TabsContext);
   const {
     children,
     className,
     disabled,
     disabledClassName,
     id: ownId,
+    itemKey,
     selectedClassName,
     tabIndex,
     ...attributes
@@ -28,42 +26,28 @@ const Tab = (props: TabProps) => {
     ...defaultProps,
     ...props,
   };
-  const id = tab ? tab.id : ownId;
-  const selected = tab?.selected ?? false;
-  const focus = tab?.focus ?? false;
-
-  useEffect(() => {
-    if (selected && focus) {
-      nodeRef.current?.focus();
-    }
-  }, [selected, focus]);
+  const { id, token } = getItemIdentity(group?.id, itemKey);
+  const selected = group?.selectedKey === itemKey;
+  const tabbable = selected || group?.fallbackKey === itemKey;
 
   return (
     <li
       {...attributes}
       className={cx(className, {
-        [tab?.selectedClassName || selectedClassName]: selected,
-        [tab?.disabledClassName || disabledClassName]: disabled,
+        [group?.selectedTabClassName || selectedClassName]: selected,
+        [group?.disabledTabClassName || disabledClassName]: disabled,
       })}
-      ref={(node) => {
-        nodeRef.current = node;
-        tab?.registerNode(node);
-      }}
       role="tab"
-      id={`tab${id}`}
+      id={id === undefined ? ownId : `tab${id}`}
       aria-selected={selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
-      aria-controls={`panel${id}`}
-      tabIndex={tabIndex ?? (selected ? 0 : undefined)}
-      data-rttab
+      aria-controls={id === undefined ? undefined : `panel${id}`}
+      tabIndex={tabIndex ?? (tabbable ? 0 : undefined)}
+      data-rttab={token}
     >
-      <TabsItemContext.Provider value={null}>
-        {children}
-      </TabsItemContext.Provider>
+      {children}
     </li>
   );
 };
 
-Tab.tabsRole = 'Tab';
-
-export default Tab as FunctionComponent<TabProps>;
+export default Tab;

@@ -13,13 +13,13 @@ afterEach(() => {
 
 test('hydrates server markup and keeps tabs linked to their panels', async () => {
   const tabs = (
-    <Tabs>
+    <Tabs defaultKey="overview">
       <TabList>
-        <Tab>Overview</Tab>
-        <Tab>Details</Tab>
+        <Tab itemKey="overview">Overview</Tab>
+        <Tab itemKey="details & history">Details</Tab>
       </TabList>
-      <TabPanel>Overview content</TabPanel>
-      <TabPanel>Details content</TabPanel>
+      <TabPanel itemKey="details & history">Details content</TabPanel>
+      <TabPanel itemKey="overview">Overview content</TabPanel>
     </Tabs>
   );
   const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
@@ -29,6 +29,11 @@ test('hydrates server markup and keeps tabs linked to their panels', async () =>
   const { getByRole } = within(container);
   const serverTab = getByRole('tab', { name: 'Details' });
   const serverPanel = getByRole('tabpanel', { name: 'Details' });
+  expect(getByRole('tabpanel', { name: 'Overview' })).toHaveTextContent(
+    'Overview content',
+  );
+  expect(serverTab).toHaveAttribute('aria-controls', serverPanel.id);
+  expect(serverPanel).toBeEmptyDOMElement();
 
   render(tabs, { container, hydrate: true, onRecoverableError });
 

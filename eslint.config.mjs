@@ -28,30 +28,8 @@ export default defineConfig([
     languageOptions: { globals: { process: 'readonly' } },
   },
   {
-    files: ['src/components/UncontrolledTabs.tsx'],
-    languageOptions: { globals: { window: 'readonly' } },
-  },
-  {
     files: ['src/**/__tests__/**/*.{js,jsx}'],
     languageOptions: { globals: { console: 'readonly' } },
-  },
-  {
-    files: [
-      'src/components/UncontrolledTabs.tsx',
-      'src/helpers/childrenDeepMap.ts',
-    ],
-    rules: {
-      // Preserve caller-provided wrappers while replacing their children.
-      '@eslint-react/no-clone-element': 'off',
-    },
-  },
-  {
-    files: ['src/helpers/childrenDeepMap.ts'],
-    rules: {
-      // React.Children handles the children shapes accepted by Tabs.
-      '@eslint-react/no-children-map': 'off',
-      '@eslint-react/no-children-for-each': 'off',
-    },
   },
   {
     settings: {

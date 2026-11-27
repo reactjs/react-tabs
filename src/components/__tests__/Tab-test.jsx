@@ -1,7 +1,7 @@
 import { afterEach, beforeAll, describe, expect, test } from 'vitest';
 import { cleanup, render } from '@testing-library/react';
 import Tab from '../Tab';
-import { TabsItemContext } from '../TabsItemContext';
+import { TabsContext } from '../TabsContext';
 import { TabWrapper } from './helpers/higherOrder';
 
 function expectToMatchSnapshot(component) {
@@ -11,13 +11,7 @@ function expectToMatchSnapshot(component) {
 
 afterEach(cleanup);
 
-const selectedTab = {
-  kind: 'tab',
-  id: 'abcd',
-  selected: true,
-  focus: false,
-  registerNode() {},
-};
+const selectedTab = { id: 'group', selectedKey: 0 };
 
 describe('<Tab />', () => {
   beforeAll(() => {
@@ -28,59 +22,67 @@ describe('<Tab />', () => {
   });
 
   test('should have sane defaults', () => {
-    expectToMatchSnapshot(<Tab />);
+    expectToMatchSnapshot(<Tab itemKey={0} />);
   });
 
   test('should accept className', () => {
-    expectToMatchSnapshot(<Tab className="foobar" />);
+    expectToMatchSnapshot(<Tab itemKey={0} className="foobar" />);
   });
 
   test('should support being selected', () => {
     expectToMatchSnapshot(
-      <TabsItemContext.Provider value={selectedTab}>
-        <Tab>Hello</Tab>
-      </TabsItemContext.Provider>,
+      <TabsContext.Provider value={selectedTab}>
+        <Tab itemKey={0}>Hello</Tab>
+      </TabsContext.Provider>,
     );
   });
 
   test('should support being selected with custom class', () => {
     expectToMatchSnapshot(
-      <TabsItemContext.Provider value={selectedTab}>
-        <Tab selectedClassName="cool" />
-      </TabsItemContext.Provider>,
+      <TabsContext.Provider value={selectedTab}>
+        <Tab itemKey={0} selectedClassName="cool" />
+      </TabsContext.Provider>,
     );
   });
 
   test('should support being disabled', () => {
-    expectToMatchSnapshot(<Tab disabled />);
+    expectToMatchSnapshot(<Tab itemKey={0} disabled />);
   });
 
   test('should support being disabled with custom class name', () => {
-    expectToMatchSnapshot(<Tab disabled disabledClassName="coolDisabled" />);
+    expectToMatchSnapshot(
+      <Tab itemKey={0} disabled disabledClassName="coolDisabled" />,
+    );
   });
 
   test('should pass through custom properties', () => {
-    expectToMatchSnapshot(<Tab data-tooltip="Tooltip contents" />);
+    expectToMatchSnapshot(<Tab itemKey={0} data-tooltip="Tooltip contents" />);
   });
 
   test('should not allow overriding all default properties', () => {
     // eslint-disable-next-line jsx-a11y-x/aria-role
-    expectToMatchSnapshot(<Tab role="micro-tab" />);
+    expectToMatchSnapshot(<Tab itemKey={0} role="micro-tab" />);
   });
 
   test('should allow to be wrapped in higher-order-component', () => {
-    expectToMatchSnapshot(<TabWrapper />);
+    expectToMatchSnapshot(<TabWrapper itemKey={0} />);
   });
 
   test('override the tabIndex if it was provided', () => {
-    expectToMatchSnapshot(<Tab tabIndex={0}>Hello</Tab>);
+    expectToMatchSnapshot(
+      <Tab itemKey={0} tabIndex={0}>
+        Hello
+      </Tab>,
+    );
   });
 
   test('should honor tabIndex -1 on a selected tab', () => {
     const { getByRole } = render(
-      <TabsItemContext.Provider value={selectedTab}>
-        <Tab tabIndex={-1}>Hello</Tab>
-      </TabsItemContext.Provider>,
+      <TabsContext.Provider value={selectedTab}>
+        <Tab itemKey={0} tabIndex={-1}>
+          Hello
+        </Tab>
+      </TabsContext.Provider>,
     );
 
     expect(getByRole('tab').getAttribute('tabindex')).toBe('-1');

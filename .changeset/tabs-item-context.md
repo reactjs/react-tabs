@@ -2,7 +2,7 @@
 'react-tabs': major
 ---
 
-Pass tab and panel state through React context. Tabs and panels are still paired by position. Custom wrappers should keep their `tabsRole` and render the built-in component. Wrappers that read private props such as `selected`, `focus`, or `tabRef` will no longer receive those props.
+Tab and panel state comes from React context. Custom wrappers render the built-in component and forward `itemKey`. Remove the old `tabsRole` assignment and use ordinary React component types in place of `ReactTabsFunctionComponent`.
 
 If your wrapper reads `selected` to apply a CSS class, move that class to the built-in `selectedClassName` prop.
 
@@ -27,13 +27,13 @@ CustomTab.tabsRole = 'Tab';
 
 ```tsx
 import { Tab } from 'react-tabs';
-import type { ReactTabsFunctionComponent, TabProps } from 'react-tabs';
+import type { TabProps } from 'react-tabs';
 
-const CustomTab: ReactTabsFunctionComponent<TabProps> = (props) => (
-  <Tab {...props} className="custom-tab" selectedClassName="is-active" />
-);
-
-CustomTab.tabsRole = 'Tab';
+function CustomTab(props: TabProps) {
+  return (
+    <Tab {...props} className="custom-tab" selectedClassName="is-active" />
+  );
+}
 ```
 
-The built-in `Tab` applies `is-active` when selected. If your custom UI needs the selection in JavaScript, control `<Tabs>` with `selectedIndex` and `onSelect` and read that state in your own component.
+The built-in `Tab` applies `is-active` when selected. If your custom UI needs the selection in JavaScript, control `<Tabs>` with `selectedKey` and `onSelect`.

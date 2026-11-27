@@ -4,7 +4,7 @@ export { default as Tab } from './components/Tab';
 export { default as TabPanel } from './components/TabPanel';
 
 export type {
-  ReactTabsFunctionComponent,
+  TabKey,
   TabListProps,
   TabPanelProps,
   TabProps,

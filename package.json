@@ -53,7 +53,6 @@
     "@testing-library/react": "16.3.3",
     "@testing-library/user-event": "14.6.13",
     "@types/node": "24.19.2",
-    "@types/prop-types": "15.7.15",
     "@types/react": "19.3.0",
     "@vitest/coverage-v8": "5.1.1",
     "eslint": "10.15.0",
@@ -62,7 +61,6 @@
     "eslint-plugin-jsx-a11y-x": "0.2.0",
     "eslint-plugin-prettier": "5.5.7",
     "happy-dom": "21.0.4",
-    "hoist-non-react-statics": "3.3.2",
     "prettier": "3.10.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
@@ -71,7 +69,6 @@
     "vitest": "5.1.1"
   },
   "dependencies": {
-    "clsx": "^2.0.0",
-    "prop-types": "^15.5.0"
+    "clsx": "^2.0.0"
   }
 }
