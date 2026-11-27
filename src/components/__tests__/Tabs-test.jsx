@@ -525,6 +525,34 @@ describe('<Tabs />', () => {
     );
   });
 
+  test('should focus the initially selected uncontrolled tab', () => {
+    render(createTabs({ defaultFocus: true, defaultIndex: 1 }));
+
+    expect(screen.getByTestId('tab2')).toHaveFocus();
+  });
+
+  test('should focus the initially selected controlled tab only on mount', () => {
+    const onSelect = vi.fn();
+    const renderTabs = (selectedIndex, defaultFocus) => (
+      <>
+        <input aria-label="Outside" />
+        {createTabs({ defaultFocus, selectedIndex, onSelect })}
+      </>
+    );
+    const { rerender } = render(renderTabs(1, true));
+    expect(screen.getByTestId('tab2')).toHaveFocus();
+
+    const outside = screen.getByRole('textbox', { name: 'Outside' });
+    outside.focus();
+    rerender(renderTabs(0, true));
+    assertTabSelected(1);
+    expect(outside).toHaveFocus();
+
+    rerender(renderTabs(0, false));
+    rerender(renderTabs(0, true));
+    expect(outside).toHaveFocus();
+  });
+
   test('should change tabs when arrow up/down is pressed', async () => {
     render(createTabs());
     const firstTab = screen.getByTestId('tab1');
