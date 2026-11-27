@@ -592,6 +592,52 @@ describe('<Tabs />', () => {
     expect(inputField).toHaveFocus();
   });
 
+  test('should retain tab focus when controlled tabs are inside a fragment', () => {
+    const renderTabs = (selectedIndex) => (
+      <Tabs selectedIndex={selectedIndex} onSelect={() => {}}>
+        <TabList>
+          <>
+            <Tab>First</Tab>
+            <Tab>Second</Tab>
+          </>
+        </TabList>
+        <TabPanel>First panel</TabPanel>
+        <TabPanel>Second panel</TabPanel>
+      </Tabs>
+    );
+    const { rerender } = render(renderTabs(0));
+    screen.getByRole('tab', { name: 'First' }).focus();
+
+    rerender(renderTabs(1));
+
+    expect(screen.getByRole('tab', { name: 'Second' })).toHaveFocus();
+  });
+
+  test('should preserve outside focus when controlled tabs are inside a fragment', () => {
+    const renderTabs = (selectedIndex) => (
+      <>
+        <input aria-label="Outside" />
+        <Tabs selectedIndex={selectedIndex} onSelect={() => {}}>
+          <TabList>
+            <>
+              <Tab>First</Tab>
+              <Tab>Second</Tab>
+            </>
+          </TabList>
+          <TabPanel>First panel</TabPanel>
+          <TabPanel>Second panel</TabPanel>
+        </Tabs>
+      </>
+    );
+    const { rerender } = render(renderTabs(0));
+    const input = screen.getByRole('textbox', { name: 'Outside' });
+    input.focus();
+
+    rerender(renderTabs(1));
+
+    expect(input).toHaveFocus();
+  });
+
   test('should not change tabs when arrow up/down is pressed and disableUpDownKeys is passed', async () => {
     render(
       createTabs({
