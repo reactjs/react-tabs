@@ -20,6 +20,7 @@ test.each([
     'instead of selectedIndex or defaultIndex',
   ],
   [{ selectedKey: 1 }, 'requires onSelect'],
+  [{ defaultKey: 1, onSelect: true }, 'onSelect must be a function'],
 ])('rejects invalid selection props %j', (props, message) => {
   expect(() => render(<Tabs {...props} />)).toThrow(message);
 });
@@ -91,5 +92,42 @@ test('diagnoses tabs outside a TabList and multiple owned lists', () => {
   );
   expect(report).toHaveBeenCalledWith(
     'Every Tab must be inside its group’s TabList.',
+  );
+});
+
+test('skips DOM entries whose keys cannot identify a tab', async () => {
+  const onSelect = vi.fn();
+  render(
+    <Tabs defaultKey="first" onSelect={onSelect}>
+      <TabList>
+        <Tab itemKey="first">First</Tab>
+        <li role="tab" data-rttab="{">
+          Malformed JSON
+        </li>
+        <li role="tab" data-rttab="false">
+          Boolean key
+        </li>
+        <Tab itemKey="second">Second</Tab>
+      </TabList>
+      <div data-rttabpanel="{" />
+      <div data-rttabpanel="false" />
+      <TabPanel itemKey="first">First panel</TabPanel>
+      <TabPanel itemKey="second">Second panel</TabPanel>
+    </Tabs>,
+  );
+
+  await userEvent.click(screen.getByRole('tab', { name: 'Malformed JSON' }));
+  await userEvent.click(screen.getByRole('tab', { name: 'Boolean key' }));
+  expect(onSelect).not.toHaveBeenCalled();
+
+  await userEvent.tab();
+  await userEvent.keyboard('[ArrowRight]');
+  expect(onSelect).toHaveBeenCalledWith(
+    'second',
+    'first',
+    expect.objectContaining({ type: 'keydown' }),
+  );
+  expect(screen.getByRole('tab', { selected: true })).toBe(
+    screen.getByRole('tab', { name: 'Second' }),
   );
 });

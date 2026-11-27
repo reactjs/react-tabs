@@ -213,3 +213,27 @@ test('scopes identical keys and ARIA IDs to their nearest group', () => {
     inner.getByRole('tabpanel').id,
   );
 });
+
+test('updates controlled selection when the supplied environment blocks focus inspection', () => {
+  const readActiveElement = vi.fn(() => {
+    throw new Error('Frame is no longer accessible');
+  });
+  const environment = {
+    document: Object.defineProperty({}, 'activeElement', {
+      get: readActiveElement,
+    }),
+  };
+  const props = { selectedKey: 'first', environment, onSelect: vi.fn() };
+  const { rerender } = render(group(['first', 'second'], props));
+  const first = screen.getByRole('tab', { name: 'first' });
+  first.focus();
+  readActiveElement.mockClear();
+
+  rerender(group(['first', 'second'], { ...props, selectedKey: 'second' }));
+
+  expect(readActiveElement).toHaveBeenCalledOnce();
+  expect(
+    screen.getByRole('tab', { name: 'second', selected: true }),
+  ).toBeVisible();
+  expect(first).toHaveFocus();
+});
