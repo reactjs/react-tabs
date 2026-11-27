@@ -6,4 +6,4 @@ When changesets reach `main`, the release workflow opens or updates a release pu
 
 The release workflow supplies the GitHub token for changelog links and contributor credits. Set `GITHUB_TOKEN` if you run `pnpm changeset version` locally.
 
-The repository's Actions settings must allow GitHub Actions to create pull requests. A maintainer with write access can approve CI runs on the generated release pull request. When using npm trusted publishing, configure `release.yml` as the trusted workflow for react-tabs.
+The repository's Actions settings must allow GitHub Actions to create pull requests. A maintainer with write access can approve CI runs on the generated release pull request. Publishing uses npm trusted publishing, which must authorize `release.yml` for react-tabs.
