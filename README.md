@@ -369,6 +369,10 @@ const App = () => (
 );
 ```
 
+## Contributing
+
+Include a [changeset](.changeset/README.md) with changes that should ship in a new release.
+
 ## License
 
 MIT
