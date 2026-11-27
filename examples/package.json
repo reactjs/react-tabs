@@ -1,0 +1,33 @@
+{
+  "name": "react-tabs-examples",
+  "private": true,
+  "scripts": {
+    "start": "webpack serve",
+    "build": "rm -rf dist && cross-env NODE_ENV=production webpack && cp -R src/example dist"
+  },
+  "dependencies": {
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "2.4.1",
+    "prop-types": "^15.5.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-live": "4.1.8",
+    "react-tabs": "workspace:*"
+  },
+  "devDependencies": {
+    "@babel/core": "7.29.13",
+    "babel-loader": "10.1.1",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "cross-env": "10.1.0",
+    "css-loader": "7.1.5",
+    "css-minimizer-webpack-plugin": "8.0.0",
+    "html-loader": "5.1.0",
+    "html-webpack-plugin": "5.6.8",
+    "less": "4.9.1",
+    "less-loader": "13.1.1",
+    "mini-css-extract-plugin": "2.10.2",
+    "webpack": "5.113.0",
+    "webpack-cli": "7.3.1",
+    "webpack-dev-server": "6.1.0"
+  }
+}
