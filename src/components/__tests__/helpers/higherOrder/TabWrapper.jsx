@@ -1,4 +1,3 @@
-import React from 'react';
 import hoist from 'hoist-non-react-statics';
 import Tab from '../../../Tab';
 

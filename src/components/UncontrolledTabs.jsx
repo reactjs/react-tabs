@@ -1,5 +1,5 @@
 import { checkPropTypes } from 'prop-types';
-import React, { cloneElement, useRef, useId } from 'react';
+import { cloneElement, useRef, useId } from 'react';
 import cx from 'clsx';
 import { childrenPropType } from '../helpers/propTypes';
 import { getTabsCount as getTabsCountHelper } from '../helpers/count';
@@ -73,9 +73,10 @@ const propTypes = {
 
 const UncontrolledTabs = (props) => {
   checkPropTypes(propTypes, props, 'prop', 'UncontrolledTabs');
-  let tabNodes = useRef([]);
-  let tabIds = useRef([]);
+  const tabNodesRef = useRef([]);
+  const tabIdsRef = useRef([]);
   const ref = useRef();
+  const id = useId();
 
   function setSelected(index, event) {
     // Check index boundary
@@ -166,7 +167,7 @@ const UncontrolledTabs = (props) => {
   }
 
   function getTab(index) {
-    return tabNodes.current[`tabs-${index}`];
+    return tabNodesRef.current[`tabs-${index}`];
   }
 
   function getChildren() {
@@ -182,15 +183,14 @@ const UncontrolledTabs = (props) => {
       environment,
     } = props;
 
-    tabIds.current = tabIds.current || [];
-    let diff = tabIds.current.length - getTabsCount();
+    tabIdsRef.current = tabIdsRef.current || [];
+    let diff = tabIdsRef.current.length - getTabsCount();
 
     // Add ids if new tabs have been added
     // Don't bother removing ids, just keep them in case they are added again
     // This is more efficient, and keeps the uuid counter under control
-    const id = useId();
     while (diff++ < 0) {
-      tabIds.current.push(`${id}${tabIds.current.length}`);
+      tabIdsRef.current.push(`${id}${tabIdsRef.current.length}`);
     }
 
     // Map children to dynamically setup refs
@@ -212,8 +212,8 @@ const UncontrolledTabs = (props) => {
         const env =
           environment || (typeof window !== 'undefined' ? window : undefined);
         if (canUseActiveElement && env) {
-          wasTabFocused = Object.keys(tabNodes.current).some(
-            (key) => env.document.activeElement === tabNodes.current[key],
+          wasTabFocused = Object.keys(tabNodesRef.current).some(
+            (key) => env.document.activeElement === tabNodesRef.current[key],
           );
         }
 
@@ -224,9 +224,9 @@ const UncontrolledTabs = (props) => {
 
             const props = {
               tabRef: (node) => {
-                tabNodes.current[key] = node;
+                tabNodesRef.current[key] = node;
               },
-              id: tabIds.current[listIndex],
+              id: tabIdsRef.current[listIndex],
               selected,
               focus: selected && (focus || wasTabFocused),
             };
@@ -243,7 +243,7 @@ const UncontrolledTabs = (props) => {
         });
       } else if (isTabPanel(child)) {
         const props = {
-          id: tabIds.current[index],
+          id: tabIdsRef.current[index],
           selected: selectedIndex === index,
         };
 

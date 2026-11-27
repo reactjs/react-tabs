@@ -1,4 +1,3 @@
-import React from 'react';
 import ExampleItem from '../ExampleItem';
 import antMan from '../../images/ant_man.png';
 import blackWidow from '../../images/black_widow.png';

@@ -1,4 +1,3 @@
-import React from 'react';
 import ExampleItem from '../ExampleItem';
 
 const code = `const Component = (

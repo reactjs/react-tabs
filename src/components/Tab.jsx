@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import cx from 'clsx';
 
 const DEFAULT_CLASS = 'react-tabs__tab';

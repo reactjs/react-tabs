@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import T from 'prop-types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'; // eslint-disable-line
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';

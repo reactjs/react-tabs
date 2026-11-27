@@ -1,5 +1,5 @@
 import { checkPropTypes } from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   childrenPropType,
   onSelectPropType,
@@ -84,26 +84,26 @@ const Tabs = (props) => {
   };
 
   const [focus, setFocus] = useState(defaultFocus);
-  const [mode] = useState(getModeFromProps(attributes));
+  const [mode] = useState(() => getModeFromProps(attributes));
   const [selectedIndex, setSelectedIndex] = useState(
     mode === MODE_UNCONTROLLED ? defaultIndex || 0 : null,
   );
 
   useEffect(() => {
-    // Reset focus after initial render, see comment above
+    // The initial focus request applies only to the first render.
+    // eslint-disable-next-line @eslint-react/set-state-in-effect
     setFocus(false);
   }, []);
 
-  if (mode === MODE_UNCONTROLLED) {
-    // Ensure that we handle removed tabs and don't let selectedIndex get out of bounds
-    const tabsCount = getTabsCount(children);
-    useEffect(() => {
-      if (selectedIndex != null) {
-        const maxTabIndex = Math.max(0, tabsCount - 1);
-        setSelectedIndex(Math.min(selectedIndex, maxTabIndex));
-      }
-    }, [tabsCount]);
-  }
+  const tabsCount = mode === MODE_UNCONTROLLED ? getTabsCount(children) : 0;
+  useEffect(() => {
+    if (mode === MODE_UNCONTROLLED) {
+      // Removing tabs can move the current selection past the last tab.
+      const maxTabIndex = Math.max(0, tabsCount - 1);
+      // eslint-disable-next-line @eslint-react/set-state-in-effect
+      setSelectedIndex((index) => Math.min(index, maxTabIndex));
+    }
+  }, [mode, tabsCount]);
 
   checkForIllegalModeChange(attributes, mode);
 

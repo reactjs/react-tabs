@@ -1,5 +1,4 @@
 import { afterEach, beforeAll, describe, expect, test } from 'vitest';
-import React from 'react';
 import { cleanup, render } from '@testing-library/react';
 import TabPanel from '../TabPanel';
 import { TabPanelWrapper } from './helpers/higherOrder';
@@ -56,7 +55,7 @@ describe('<TabPanel />', () => {
   });
 
   test('should not allow overriding all default properties', () => {
-    // eslint-disable-next-line jsx-a11y/aria-role
+    // eslint-disable-next-line jsx-a11y-x/aria-role
     expectToMatchSnapshot(<TabPanel role="micro-tab" />);
   });
 
