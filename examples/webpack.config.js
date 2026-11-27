@@ -4,8 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-const sourceDirectory = path.resolve(__dirname, 'examples/src');
-const targetDirectory = path.resolve(__dirname, 'examples/dist');
+const sourceDirectory = path.resolve(__dirname, 'src');
+const targetDirectory = path.resolve(__dirname, 'dist');
+const libraryDirectory = path.dirname(
+  require.resolve('react-tabs/package.json'),
+);
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -40,10 +43,7 @@ module.exports = {
     app: './app.js',
   },
   optimization: {
-    minimizer: [
-      `...`,
-      new CssMinimizerPlugin(),
-    ],
+    minimizer: [`...`, new CssMinimizerPlugin()],
   },
   target: 'web',
   output: {
@@ -68,6 +68,18 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              extends: path.join(libraryDirectory, '.babelrc.js'),
+              plugins: isDev
+                ? []
+                : [
+                    [
+                      'transform-react-remove-prop-types',
+                      { removeImport: true },
+                    ],
+                  ],
+            },
           },
         ],
       },
@@ -94,7 +106,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.wasm'],
     alias: {
-      'react-tabs': path.resolve(__dirname, 'src/index'),
+      'react-tabs$': path.join(libraryDirectory, 'src/index'),
     },
   },
   plugins,

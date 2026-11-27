@@ -1,1 +1,5 @@
+packages:
+  - '.' # Include the publishable root package in Changesets.
+  - examples
+
 minimumReleaseAge: 4320

@@ -15,10 +15,7 @@
     "lint": "eslint src --report-unused-disable-directives",
     "prepublishOnly": "pnpm run build",
     "test": "vitest run",
-    "start": "webpack serve",
-    "website:clean": "rm -rf examples/dist",
-    "website:build": "cross-env BABEL_TARGET=examples NODE_ENV=production webpack",
-    "website:redirect": "cp -R examples/src/example examples/dist"
+    "start": "pnpm --filter react-tabs-examples start"
   },
   "packageManager": "pnpm@12.23.0",
   "repository": {
@@ -60,11 +57,8 @@
     "@testing-library/react": "16.3.3",
     "@testing-library/user-event": "14.6.13",
     "@vitest/coverage-v8": "5.1.1",
-    "babel-loader": "10.1.1",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "cross-env": "10.1.0",
-    "css-loader": "7.1.5",
-    "css-minimizer-webpack-plugin": "8.0.0",
     "eslint": "10.15.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-import-x": "4.18.1",
@@ -72,21 +66,10 @@
     "eslint-plugin-prettier": "5.5.7",
     "happy-dom": "21.0.4",
     "hoist-non-react-statics": "3.3.2",
-    "html-loader": "5.1.0",
-    "html-webpack-plugin": "5.6.8",
-    "less": "4.9.1",
-    "less-loader": "13.1.1",
-    "mini-css-extract-plugin": "2.10.2",
     "prettier": "3.10.1",
-    "prism-react-renderer": "2.4.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "react-live": "4.1.8",
-    "react-modal": "3.16.3",
-    "vitest": "5.1.1",
-    "webpack": "5.113.0",
-    "webpack-cli": "7.3.1",
-    "webpack-dev-server": "6.1.0"
+    "vitest": "5.1.1"
   },
   "dependencies": {
     "clsx": "^2.0.0",

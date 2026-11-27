@@ -231,21 +231,12 @@ importers:
       '@vitest/coverage-v8':
         specifier: 5.1.1
         version: 5.1.1(vitest@5.1.1)
-      babel-loader:
-        specifier: 10.1.1
-        version: 10.1.1(@babel/core@7.29.13(supports-color@8.1.1))(webpack@5.113.0)
       babel-plugin-transform-react-remove-prop-types:
         specifier: 0.4.24
         version: 0.4.24
       cross-env:
         specifier: 10.1.0
         version: 10.1.0
-      css-loader:
-        specifier: 7.1.5
-        version: 7.1.5(webpack@5.113.0)
-      css-minimizer-webpack-plugin:
-        specifier: 8.0.0
-        version: 8.0.0(clean-css@5.3.3)(csso@5.0.5)(lightningcss@1.33.0)(webpack@5.113.0)
       eslint:
         specifier: 10.15.0
         version: 10.15.0(supports-color@8.1.1)
@@ -267,6 +258,61 @@ importers:
       hoist-non-react-statics:
         specifier: 3.3.2
         version: 3.3.2
+      prettier:
+        specifier: 3.10.1
+        version: 3.10.1
+      react:
+        specifier: 19.3.1
+        version: 19.3.1
+      react-dom:
+        specifier: 19.3.1
+        version: 19.3.1(react@19.3.1)
+      vitest:
+        specifier: 5.1.1
+        version: 5.1.1(@types/node@26.6.6)(@vitest/coverage-v8@5.1.1)(happy-dom@21.0.4)(vite@8.3.8(@types/node@26.6.6)(less@4.9.1(supports-color@8.1.1))(terser@5.51.2)(yaml@2.9.1))
+
+  examples:
+    dependencies:
+      clsx:
+        specifier: ^2.0.0
+        version: 2.1.1
+      prism-react-renderer:
+        specifier: 2.4.1
+        version: 2.4.1(react@19.3.1)
+      prop-types:
+        specifier: ^15.5.0
+        version: 15.8.1
+      react:
+        specifier: 19.3.1
+        version: 19.3.1
+      react-dom:
+        specifier: 19.3.1
+        version: 19.3.1(react@19.3.1)
+      react-live:
+        specifier: 4.1.8
+        version: 4.1.8(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      react-tabs:
+        specifier: workspace:*
+        version: link:..
+    devDependencies:
+      '@babel/core':
+        specifier: 7.29.13
+        version: 7.29.13(supports-color@8.1.1)
+      babel-loader:
+        specifier: 10.1.1
+        version: 10.1.1(@babel/core@7.29.13(supports-color@8.1.1))(webpack@5.113.0)
+      babel-plugin-transform-react-remove-prop-types:
+        specifier: 0.4.24
+        version: 0.4.24
+      cross-env:
+        specifier: 10.1.0
+        version: 10.1.0
+      css-loader:
+        specifier: 7.1.5
+        version: 7.1.5(webpack@5.113.0)
+      css-minimizer-webpack-plugin:
+        specifier: 8.0.0
+        version: 8.0.0(clean-css@5.3.3)(csso@5.0.5)(lightningcss@1.33.0)(webpack@5.113.0)
       html-loader:
         specifier: 5.1.0
         version: 5.1.0(webpack@5.113.0)
@@ -282,27 +328,6 @@ importers:
       mini-css-extract-plugin:
         specifier: 2.10.2
         version: 2.10.2(webpack@5.113.0)
-      prettier:
-        specifier: 3.10.1
-        version: 3.10.1
-      prism-react-renderer:
-        specifier: 2.4.1
-        version: 2.4.1(react@19.3.1)
-      react:
-        specifier: 19.3.1
-        version: 19.3.1
-      react-dom:
-        specifier: 19.3.1
-        version: 19.3.1(react@19.3.1)
-      react-live:
-        specifier: 4.1.8
-        version: 4.1.8(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      react-modal:
-        specifier: 3.16.3
-        version: 3.16.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      vitest:
-        specifier: 5.1.1
-        version: 5.1.1(@types/node@26.6.6)(@vitest/coverage-v8@5.1.1)(happy-dom@21.0.4)(vite@8.3.8(@types/node@26.6.6)(less@4.9.1(supports-color@8.1.1))(terser@5.51.2)(yaml@2.9.1))
       webpack:
         specifier: 5.113.0
         version: 5.113.0(clean-css@5.3.3)(cssnano@7.1.9(postcss@8.5.33))(csso@5.0.5)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.33)(svgo@4.1.0)(webpack-cli@7.3.1)
@@ -2657,9 +2682,6 @@ packages:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
 
-  exenv@1.2.2:
-    resolution: {integrity: sha512-Z+ktTxTwv9ILfgKCk32OX3n/doe+OcLTRtqK9pcL+JsP3J1/VW8Uvl4ZjLlKqeW4rzK4oesDOGMEMRIZqtP4Iw==}
-
   expect-type@1.4.0:
     resolution: {integrity: sha512-KfYbmpRm0VbLjEvVa9yGwCi9GI34xvi7A/HXYWQO65CSD2u3MczUJSuwXKFIxlGsgBQizV9q5J9NHj4VG0n+pA==}
     engines: {node: '>=12.0.0'}
@@ -3938,21 +3960,12 @@ packages:
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
 
-  react-lifecycles-compat@3.0.4:
-    resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
-
   react-live@4.1.8:
     resolution: {integrity: sha512-B2SgNqwPuS2ekqj4lcxi5TibEcjWkdVyYykBEUBshPAPDQ527x2zPEZg560n8egNtAjUpwXFQm7pcXV65aAYmg==}
     engines: {node: '>= 0.12.0', npm: '>= 2.0.0'}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
-
-  react-modal@3.16.3:
-    resolution: {integrity: sha512-yCYRJB5YkeQDQlTt17WGAgFJ7jr2QYcWa1SHqZ3PluDmnKJ/7+tVU+E6uKyZ0nODaeEj+xCpK4LcSnKXLMC0Nw==}
-    peerDependencies:
-      react: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18 || ^19
-      react-dom: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18 || ^19
 
   react@19.3.1:
     resolution: {integrity: sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw==}
@@ -4491,9 +4504,6 @@ packages:
         optional: true
       jsdom:
         optional: true
-
-  warning@4.0.3:
-    resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
 
   watchpack@2.6.4:
     resolution: {integrity: sha512-5H3Tce2GfzWbcr9VnSqyak2whFaONw4BdmI5BDnMXold4qSlCFd64XaMQESRh2vkDKmdUkv6rUo17UvZ9f9nXw==}
@@ -7401,8 +7411,6 @@ snapshots:
 
   events@3.3.0: {}
 
-  exenv@1.2.2: {}
-
   expect-type@1.4.0: {}
 
   express@5.3.0(supports-color@8.1.1):
@@ -8680,8 +8688,6 @@ snapshots:
 
   react-is@17.0.2: {}
 
-  react-lifecycles-compat@3.0.4: {}
-
   react-live@4.1.8(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
       prism-react-renderer: 2.4.1(react@19.3.1)
@@ -8689,15 +8695,6 @@ snapshots:
       react-dom: 19.3.1(react@19.3.1)
       sucrase: 3.35.1
       use-editable: 2.3.3(react@19.3.1)
-
-  react-modal@3.16.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
-    dependencies:
-      exenv: 1.2.2
-      prop-types: 15.8.1
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-      react-lifecycles-compat: 3.0.4
-      warning: 4.0.3
 
   react@19.3.1: {}
 
@@ -9299,10 +9296,6 @@ snapshots:
       happy-dom: 21.0.4
     transitivePeerDependencies:
       - msw
-
-  warning@4.0.3:
-    dependencies:
-      loose-envify: 1.4.0
 
   watchpack@2.6.4:
     dependencies:
