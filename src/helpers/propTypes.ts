@@ -1,13 +1,18 @@
-import { deepForEach } from './childrenDeepMap';
+import type { ReactNode } from 'react';
+import { deepForEach, type ChildElement } from './childrenDeepMap';
 import { isTab, isTabList, isTabPanel } from './elementTypes';
 
-export function childrenPropType(props, propName, componentName) {
+export function childrenPropType(
+  props: Record<string, unknown>,
+  propName: string,
+  componentName: string,
+) {
   let error;
   let tabsCount = 0;
   let panelsCount = 0;
   let tabListFound = false;
-  const listTabs = [];
-  const children = props[propName];
+  const listTabs: ChildElement[] = [];
+  const children = props[propName] as ReactNode;
 
   deepForEach(children, (child) => {
     if (isTabList(child)) {
@@ -52,11 +57,11 @@ export function childrenPropType(props, propName, componentName) {
 }
 
 export function onSelectPropType(
-  props,
-  propName,
-  componentName,
-  location,
-  propFullName,
+  props: Record<string, unknown>,
+  propName: string,
+  componentName: string,
+  location: string,
+  propFullName: string,
 ) {
   const prop = props[propName];
   const name = propFullName || propName;
@@ -82,11 +87,11 @@ export function onSelectPropType(
 }
 
 export function selectedIndexPropType(
-  props,
-  propName,
-  componentName,
-  location,
-  propFullName,
+  props: Record<string, unknown>,
+  propName: string,
+  componentName: string,
+  location: string,
+  propFullName: string,
 ) {
   const prop = props[propName];
   const name = propFullName || propName;

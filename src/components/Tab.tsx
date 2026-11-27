@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type FunctionComponent } from 'react';
+import type { TabProps } from '../types';
 import cx from 'clsx';
 
 const DEFAULT_CLASS = 'react-tabs__tab';
@@ -11,31 +12,18 @@ const defaultProps = {
   selectedClassName: `${DEFAULT_CLASS}--selected`,
 };
 
-/*
-Left for TS migration
-const propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  disabled: PropTypes.bool,
-  disabledClassName: PropTypes.string,
-  focus: PropTypes.bool, // private
-  id: PropTypes.string, // private
-  selected: PropTypes.bool, // private
-  selectedClassName: PropTypes.string,
-  tabIndex: PropTypes.string,
-  tabRef: PropTypes.func, // private
-};*/
+export interface TabInjectedProps extends Pick<
+  TabProps,
+  'disabledClassName' | 'selectedClassName'
+> {
+  id: string;
+  focus: boolean;
+  selected: boolean;
+  tabRef: (node: HTMLLIElement | null) => void;
+}
 
-const Tab = (props) => {
-  let nodeRef = useRef();
+const Tab = (props: TabProps & Partial<TabInjectedProps>) => {
+  const nodeRef = useRef<HTMLLIElement | null>(null);
   const {
     children,
     className,
@@ -55,7 +43,7 @@ const Tab = (props) => {
 
   useEffect(() => {
     if (selected && focus) {
-      nodeRef.current.focus();
+      nodeRef.current?.focus();
     }
   }, [selected, focus]);
 
@@ -75,7 +63,8 @@ const Tab = (props) => {
       aria-selected={selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
       aria-controls={`panel${id}`}
-      tabIndex={tabIndex || (selected ? '0' : null)}
+      // The public API accepts a string and React forwards it to the DOM.
+      tabIndex={(tabIndex || (selected ? '0' : null)) as unknown as number}
       data-rttab
     >
       {children}
@@ -85,4 +74,4 @@ const Tab = (props) => {
 
 Tab.tabsRole = 'Tab';
 
-export default Tab;
+export default Tab as FunctionComponent<TabProps>;

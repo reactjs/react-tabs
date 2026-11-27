@@ -71,39 +71,46 @@ describe('<Tabs />', () => {
       expectToMatchSnapshot(createTabs({ defaultIndex: -1 }));
     });
 
-    test('should call onSelect when selection changes', async () => {
-      const called = { index: -1, last: -1 };
-      render(
-        createTabs({
-          onSelect(index, last) {
-            called.index = index;
-            called.last = last;
-          },
-        }),
-      );
+    test('should call onSelect with the React event when selection changes', async () => {
+      const onSelect = vi.fn();
+      render(createTabs({ onSelect }));
 
       await userEvent.click(screen.getByTestId('tab2'));
 
-      expect(called.index).toBe(1);
-      expect(called.last).toBe(0);
+      expect(onSelect).toHaveBeenLastCalledWith(
+        1,
+        0,
+        expect.objectContaining({
+          type: 'click',
+          nativeEvent: expect.objectContaining({ type: 'click' }),
+        }),
+      );
+
+      await userEvent.keyboard('[ArrowRight]');
+
+      expect(onSelect).toHaveBeenLastCalledWith(
+        2,
+        1,
+        expect.objectContaining({
+          key: 'ArrowRight',
+          nativeEvent: expect.objectContaining({ type: 'keydown' }),
+        }),
+      );
     });
 
     test('should accept className', () => {
       expectToMatchSnapshot(createTabs({ className: 'foobar' }));
     });
 
-    test('should accept domRef', () => {
-      let domNode;
-      render(
-        createTabs({
-          domRef: (node) => {
-            domNode = node;
-          },
-        }),
-      );
+    test('should call domRef with the root on mount and null on unmount', () => {
+      const domRef = vi.fn();
+      const { container, unmount } = render(createTabs({ domRef }));
 
-      expect(domNode).not.toBeUndefined();
-      expect(domNode.className).toBe('react-tabs');
+      expect(domRef).toHaveBeenLastCalledWith(container.firstElementChild);
+
+      unmount();
+
+      expect(domRef).toHaveBeenLastCalledWith(null);
     });
   });
 
@@ -251,6 +258,31 @@ describe('<Tabs />', () => {
 
         assertTabSelected(3);
       });
+
+      test.each(['Home', 'End'])(
+        'should keep selection on %s when every tab is disabled',
+        async (key) => {
+          const onSelect = vi.fn();
+          render(
+            <Tabs defaultFocus onSelect={onSelect}>
+              <TabList>
+                <Tab data-testid="tab1" disabled>
+                  Tab1
+                </Tab>
+                <Tab disabled>Tab2</Tab>
+              </TabList>
+              <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
+              <TabPanel>Hello Tab2</TabPanel>
+            </Tabs>,
+          );
+
+          expect(screen.getByTestId('tab1')).toHaveFocus();
+          await userEvent.keyboard(`[${key}]`);
+
+          expect(onSelect).not.toHaveBeenCalled();
+          assertTabSelected(1);
+        },
+      );
 
       test('should update selectedIndex when arrow left key pressed (RTL)', async () => {
         render(createTabs({ direction: 'rtl' }));

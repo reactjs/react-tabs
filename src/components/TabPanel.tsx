@@ -1,4 +1,6 @@
 import cx from 'clsx';
+import type { FunctionComponent } from 'react';
+import type { TabPanelProps } from '../types';
 
 const DEFAULT_CLASS = 'react-tabs__tab-panel';
 const defaultProps = {
@@ -7,22 +9,15 @@ const defaultProps = {
   selectedClassName: `${DEFAULT_CLASS}--selected`,
 };
 
-/*
-Left for TS migration
-const propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  forceRender: PropTypes.bool,
-  id: PropTypes.string, // private
-  selected: PropTypes.bool, // private
-  selectedClassName: PropTypes.string,
-};
-*/
-const TabPanel = (props) => {
+export interface TabPanelInjectedProps extends Pick<
+  TabPanelProps,
+  'forceRender' | 'selectedClassName'
+> {
+  id: string;
+  selected: boolean;
+}
+
+const TabPanel = (props: TabPanelProps & Partial<TabPanelInjectedProps>) => {
   const {
     children,
     className,
@@ -53,4 +48,4 @@ const TabPanel = (props) => {
 
 TabPanel.tabsRole = 'TabPanel';
 
-export default TabPanel;
+export default TabPanel as FunctionComponent<TabPanelProps>;

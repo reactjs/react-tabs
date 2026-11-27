@@ -1,28 +1,37 @@
 import { checkPropTypes } from 'prop-types';
-import { cloneElement, useEffect, useRef, useId } from 'react';
+import {
+  cloneElement,
+  useEffect,
+  useRef,
+  useId,
+  type KeyboardEvent,
+} from 'react';
+import type { TabEvent, TabsProps } from '../types';
+import type { TabInjectedProps } from './Tab';
+import type { TabPanelInjectedProps } from './TabPanel';
 import cx from 'clsx';
 import { childrenPropType } from '../helpers/propTypes';
 import { getTabsCount as getTabsCountHelper } from '../helpers/count';
 import { deepMap } from '../helpers/childrenDeepMap';
 import { isTabList, isTabPanel } from '../helpers/elementTypes';
 
-function isNode(node) {
-  return node && 'getAttribute' in node;
+function isNode(node: Node | null | undefined): node is Element {
+  return !!node && 'getAttribute' in node;
 }
 
 // Determine if a node from event.target is a Tab element
-function isTabNode(node) {
-  return isNode(node) && node.getAttribute('data-rttab');
+function isTabNode(node: Node | null): node is Element {
+  return isNode(node) && !!node.getAttribute('data-rttab');
 }
 
 // Determine if a tab node is disabled
-function isTabDisabled(node) {
+function isTabDisabled(node: Node | null | undefined) {
   return isNode(node) && node.getAttribute('aria-disabled') === 'true';
 }
 
-let canUseActiveElement;
+let canUseActiveElement: boolean | undefined;
 
-function determineCanUseActiveElement(environment) {
+function determineCanUseActiveElement(environment: Window | null | undefined) {
   const env =
     environment || (typeof window !== 'undefined' ? window : undefined);
 
@@ -32,8 +41,7 @@ function determineCanUseActiveElement(environment) {
       env.document &&
       env.document.activeElement
     );
-    // eslint-disable-next-line no-unused-vars
-  } catch (e) {
+  } catch {
     // Work around for IE bug when accessing document.activeElement in an iframe
     // Refer to the following resources:
     // http://stackoverflow.com/a/10982960/369687
@@ -50,32 +58,23 @@ const defaultProps = {
 
 const propTypes = {
   children: childrenPropType,
-  /*
-  Left for TS migration
-  direction: PropTypes.oneOf(['rtl', 'ltr']),
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  disabledTabClassName: PropTypes.string,
-  disableUpDownKeys: PropTypes.bool,
-  disableLeftRightKeys: PropTypes.bool,
-  domRef: PropTypes.func,
-  focus: PropTypes.bool,
-  forceRenderTabPanel: PropTypes.bool,
-  onSelect: PropTypes.func.isRequired,
-  selectedIndex: PropTypes.number.isRequired,
-  selectedTabClassName: PropTypes.string,
-  selectedTabPanelClassName: PropTypes.string,
-  environment: PropTypes.object,*/
 };
 
-const UncontrolledTabs = (props) => {
+export interface UncontrolledTabsProps extends Omit<
+  TabsProps,
+  'environment' | 'onSelect'
+> {
+  environment?: Window | null;
+  focus?: boolean;
+  onSelect: (index: number, last: number, event: TabEvent) => void;
+  selectedIndex: number;
+}
+
+const UncontrolledTabs = (props: UncontrolledTabsProps) => {
   checkPropTypes(propTypes, props, 'prop', 'UncontrolledTabs');
-  const tabNodesRef = useRef([]);
-  const tabIdsRef = useRef([]);
-  const ref = useRef();
+  const tabNodesRef = useRef<(HTMLLIElement | null)[]>([]);
+  const tabIdsRef = useRef<string[]>([]);
+  const ref = useRef<HTMLDivElement | null>(null);
   const id = useId();
   const initialFocusIndexRef = useRef(
     props.defaultFocus ? props.selectedIndex : null,
@@ -83,10 +82,12 @@ const UncontrolledTabs = (props) => {
 
   useEffect(() => {
     const index = initialFocusIndexRef.current;
-    if (Number.isInteger(index)) tabNodesRef.current[index]?.focus();
+    if (index !== null && Number.isInteger(index)) {
+      tabNodesRef.current[index]?.focus();
+    }
   }, []);
 
-  function setSelected(index, event) {
+  function setSelected(index: number, event: TabEvent) {
     // Check index boundary
     if (index < 0 || index >= getTabsCount()) return;
 
@@ -96,7 +97,7 @@ const UncontrolledTabs = (props) => {
     onSelect(index, selectedIndex, event);
   }
 
-  function getNextTab(index) {
+  function getNextTab(index: number) {
     const count = getTabsCount();
 
     // Look for non-disabled tab from index to the last tab on the right
@@ -118,7 +119,7 @@ const UncontrolledTabs = (props) => {
     return index;
   }
 
-  function getPrevTab(index) {
+  function getPrevTab(index: number) {
     let i = index;
 
     // Look for non-disabled tab from index to first tab on the left
@@ -151,7 +152,6 @@ const UncontrolledTabs = (props) => {
       }
     }
 
-    /* istanbul ignore next */
     return null;
   }
 
@@ -165,7 +165,6 @@ const UncontrolledTabs = (props) => {
       }
     }
 
-    /* istanbul ignore next */
     return null;
   }
 
@@ -174,7 +173,7 @@ const UncontrolledTabs = (props) => {
     return getTabsCountHelper(children);
   }
 
-  function getTab(index) {
+  function getTab(index: number) {
     return tabNodesRef.current[index];
   }
 
@@ -221,7 +220,8 @@ const UncontrolledTabs = (props) => {
           environment || (typeof window !== 'undefined' ? window : undefined);
         if (canUseActiveElement && env) {
           wasTabFocused = Object.keys(tabNodesRef.current).some(
-            (key) => env.document.activeElement === tabNodesRef.current[key],
+            (key) =>
+              env.document.activeElement === tabNodesRef.current[Number(key)],
           );
         }
 
@@ -230,7 +230,7 @@ const UncontrolledTabs = (props) => {
             const index = listIndex++;
             const selected = selectedIndex === index;
 
-            const props = {
+            const props: TabInjectedProps = {
               tabRef: (node) => {
                 tabNodesRef.current[index] = node;
               },
@@ -244,11 +244,14 @@ const UncontrolledTabs = (props) => {
             if (disabledTabClassName)
               props.disabledClassName = disabledTabClassName;
 
-            return cloneElement(tab, props);
+            return cloneElement<typeof tab.props & Partial<TabInjectedProps>>(
+              tab,
+              props,
+            );
           }),
         });
       } else if (isTabPanel(child)) {
-        const props = {
+        const props: TabPanelInjectedProps = {
           id: tabIdsRef.current[index],
           selected: selectedIndex === index,
         };
@@ -259,17 +262,19 @@ const UncontrolledTabs = (props) => {
 
         index++;
 
-        result = cloneElement(child, props);
+        result = cloneElement<
+          typeof child.props & Partial<TabPanelInjectedProps>
+        >(child, props);
       }
 
       return result;
     });
   }
 
-  function handleKeyDown(e) {
+  function handleKeyDown(e: KeyboardEvent<HTMLDivElement>) {
     const { direction, disableUpDownKeys, disableLeftRightKeys } = props;
-    if (isTabFromContainer(e.target)) {
-      let { selectedIndex: index } = props;
+    if (isTabFromContainer(e.target as Node)) {
+      let index: number | null = props.selectedIndex;
       let preventDefault = false;
       let useSelectedIndex = false;
 
@@ -332,22 +337,21 @@ const UncontrolledTabs = (props) => {
       }
 
       // Only use the selected index in the state if we're not using the tabbed index
-      if (useSelectedIndex) {
+      if (useSelectedIndex && index !== null) {
         setSelected(index, e);
       }
     }
   }
 
-  function handleClick(e) {
-    let node = e.target;
+  function handleClick(e: TabEvent) {
+    let node: Node | null = e.target as Node;
     do {
       if (isTabFromContainer(node)) {
         if (isTabDisabled(node)) {
           return;
         }
 
-        const index = [].slice
-          .call(node.parentNode.children)
+        const index = Array.from(node.parentElement!.children)
           .filter(isTabNode)
           .indexOf(node);
         setSelected(index, e);
@@ -361,7 +365,7 @@ const UncontrolledTabs = (props) => {
    * If the clicked element is not a Tab, it returns false.
    * If it finds another Tabs container between the Tab and `this`, it returns false.
    */
-  function isTabFromContainer(node) {
+  function isTabFromContainer(node: Node): node is Element {
     // return immediately if the clicked element is not a Tab.
     if (!isTabNode(node)) {
       return false;
@@ -371,9 +375,9 @@ const UncontrolledTabs = (props) => {
     let nodeAncestor = node.parentElement;
     do {
       if (nodeAncestor === ref.current) return true;
-      if (nodeAncestor.getAttribute('data-rttabs')) break;
+      if (nodeAncestor?.getAttribute('data-rttabs')) break;
 
-      nodeAncestor = nodeAncestor.parentElement;
+      nodeAncestor = nodeAncestor?.parentElement ?? null;
     } while (nodeAncestor);
 
     return false;

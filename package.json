@@ -4,18 +4,19 @@
   "description": "An accessible and easy tab component for ReactJS",
   "main": "lib/index.js",
   "module": "esm/index.js",
-  "typings": "index.d.ts",
+  "types": "lib/index.d.ts",
   "scripts": {
     "clean:commonjs": "rm -rf lib",
     "clean:esm": "rm -rf esm",
-    "build:commonjs": "cross-env BABEL_OUTPUT=commonjs babel src/ --out-dir lib/ --ignore **/__tests__,**/__mocks__",
-    "build:esm": "babel src/ --out-dir esm/ --ignore **/__tests__,**/__mocks__",
+    "build:commonjs": "tsc --module commonjs --outDir lib --declaration",
+    "build:esm": "tsc --outDir esm",
     "build": "pnpm run --sequential '/clean:.*|build:.*/'",
     "format": "eslint src --fix --report-unused-disable-directives",
     "lint": "eslint src --report-unused-disable-directives",
     "prepublishOnly": "pnpm run build",
     "test": "vitest run",
-    "start": "pnpm --filter react-tabs-examples start"
+    "start": "pnpm --filter react-tabs-examples start",
+    "typecheck": "tsc --noEmit"
   },
   "packageManager": "pnpm@12.23.0",
   "repository": {
@@ -30,8 +31,7 @@
   "files": [
     "esm",
     "lib",
-    "style",
-    "index.d.ts"
+    "style"
   ],
   "homepage": "https://github.com/reactjs/react-tabs",
   "keywords": [
@@ -44,10 +44,6 @@
     "react": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.29.7",
-    "@babel/core": "7.29.13",
-    "@babel/preset-env": "7.29.14",
-    "@babel/preset-react": "7.29.7",
     "@changesets/changelog-github": "1.0.1",
     "@changesets/cli": "3.0.3",
     "@eslint-react/eslint-plugin": "5.30.6",
@@ -56,9 +52,10 @@
     "@testing-library/jest-dom": "8.0.0",
     "@testing-library/react": "16.3.3",
     "@testing-library/user-event": "14.6.13",
+    "@types/node": "24.19.2",
+    "@types/prop-types": "15.7.15",
+    "@types/react": "19.3.0",
     "@vitest/coverage-v8": "5.1.1",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
-    "cross-env": "10.1.0",
     "eslint": "10.15.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-import-x": "4.18.1",
@@ -69,6 +66,8 @@
     "prettier": "3.10.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.74.0",
     "vitest": "5.1.1"
   },
   "dependencies": {

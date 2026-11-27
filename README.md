@@ -100,7 +100,7 @@ Provide a custom class name for disabled tabs.
 
 Disable up & down arrow keys to change tabs.
 
-#### domRef: `(node: ?HTMLElement) => void`
+#### domRef: `(node: HTMLDivElement | null) => void`
 
 > default: `null`
 
@@ -126,11 +126,11 @@ By default only the current active tab will be rendered to DOM. If set to `true`
 
 > This can also be enabled for each individual `<TabPanel />` component with its prop `forceRender`.
 
-#### onSelect: `(index: number, lastIndex: number, event: Event) => ?boolean`
+#### onSelect: `(index: number, lastIndex: number, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => boolean | void`
 
 > default: `undefined`
 
-This event handler is called every time a tab is about to change. It will be called with the `index` that it will be changed to, the `lastIndex` which was selected before and the underlying `event` which is usually either a `keydown` or `click` event. When `index` and `lastIndex` are equal it means the user clicked on the currently active tab.
+This event handler is called every time a tab is about to change. It receives the new `index`, the previously selected `lastIndex`, and the React keyboard or mouse `event` that triggered the selection. When `index` and `lastIndex` are equal it means the user selected the currently active tab.
 
 The callback can optionally return `false` to cancel the change to the new tab.
 

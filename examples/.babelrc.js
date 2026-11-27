@@ -1,8 +1,6 @@
 'use strict';
 
-const output = process.env.BABEL_OUTPUT;
 const env = process.env.NODE_ENV;
-const modules = output == null ? false : output;
 
 const targets = env === 'test' ? { node: 'current' } : undefined;
 
@@ -24,13 +22,14 @@ const options = {
       {
         bugfixes: true,
         loose: true,
-        modules,
+        modules: false,
         targets,
         corejs: '3',
         useBuiltIns: 'entry',
       },
     ],
     ['@babel/react', { runtime: 'automatic' }],
+    '@babel/typescript',
   ],
   plugins: [],
 };

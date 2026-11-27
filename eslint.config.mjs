@@ -3,8 +3,10 @@ import js from '@eslint/js';
 import importPlugin, { createNodeResolver } from 'eslint-plugin-import-x';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y-x';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
+import { defineConfig } from 'eslint/config';
+import tseslint from 'typescript-eslint';
 
-export default [
+export default defineConfig([
   js.configs.recommended,
   reactPlugin.configs.recommended,
   importPlugin.flatConfigs.recommended,
@@ -22,11 +24,11 @@ export default [
     },
   },
   {
-    files: ['src/components/Tabs.jsx'],
+    files: ['src/components/Tabs.tsx'],
     languageOptions: { globals: { process: 'readonly' } },
   },
   {
-    files: ['src/components/UncontrolledTabs.jsx'],
+    files: ['src/components/UncontrolledTabs.tsx'],
     languageOptions: { globals: { window: 'readonly' } },
   },
   {
@@ -35,8 +37,8 @@ export default [
   },
   {
     files: [
-      'src/components/UncontrolledTabs.jsx',
-      'src/helpers/childrenDeepMap.js',
+      'src/components/UncontrolledTabs.tsx',
+      'src/helpers/childrenDeepMap.ts',
     ],
     rules: {
       // Tab selection and focus are passed through to caller-provided elements.
@@ -44,7 +46,7 @@ export default [
     },
   },
   {
-    files: ['src/helpers/childrenDeepMap.js'],
+    files: ['src/helpers/childrenDeepMap.ts'],
     rules: {
       // React.Children handles the children shapes accepted by Tabs.
       '@eslint-react/no-children-map': 'off',
@@ -54,7 +56,7 @@ export default [
   {
     settings: {
       'import-x/resolver-next': [
-        createNodeResolver({ extensions: ['.js', '.jsx'] }),
+        createNodeResolver({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
       ],
     },
 
@@ -62,6 +64,8 @@ export default [
       '@eslint-react/dom-no-unsafe-target-blank': 'error',
 
       'jsx-a11y-x/no-static-element-interactions': 'off',
+
+      'import-x/no-duplicates': ['error', { 'prefer-inline': true }],
 
       'import-x/no-extraneous-dependencies': [
         'error',
@@ -87,5 +91,22 @@ export default [
       'no-console': 'error',
     },
   },
+  {
+    files: ['src/**/*.{ts,tsx}'],
+    extends: [
+      importPlugin.flatConfigs.typescript,
+      tseslint.configs.recommended,
+    ],
+    rules: {
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
+      ],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { ignoreRestSiblings: true },
+      ],
+    },
+  },
   prettierRecommended,
-];
+]);

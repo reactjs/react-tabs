@@ -1,20 +1,12 @@
 import cx from 'clsx';
+import type { FunctionComponent } from 'react';
+import type { TabListProps } from '../types';
 
 const defaultProps = {
   className: 'react-tabs__tab-list',
 };
 
-/*
-Left for TS migration
-const propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-};*/
-const TabList = (props) => {
+const TabList = (props: TabListProps) => {
   const { children, className, ...attributes } = {
     ...defaultProps,
     ...props,
@@ -29,4 +21,4 @@ const TabList = (props) => {
 
 TabList.tabsRole = 'TabList';
 
-export default TabList;
+export default TabList as FunctionComponent<TabListProps>;
