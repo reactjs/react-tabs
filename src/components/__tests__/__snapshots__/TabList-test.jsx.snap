@@ -55,6 +55,7 @@ exports[`<TabList /> > should allow for higher order components 1`] = `
     aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
     data-rttabpanel="1"
+    hidden=""
     id="panel:r0:-1"
     role="tabpanel"
   />
@@ -108,6 +109,7 @@ exports[`<TabList /> > should display the custom classnames for selected and dis
     aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
     data-rttabpanel="1"
+    hidden=""
     id="panel:r0:-1"
     role="tabpanel"
   />
@@ -161,6 +163,7 @@ exports[`<TabList /> > should display the custom classnames for selected and dis
     aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
     data-rttabpanel="1"
+    hidden=""
     id="panel:r0:-1"
     role="tabpanel"
   />
@@ -239,6 +242,7 @@ exports[`<TabList /> > should retain the default classnames for active and disab
     aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
     data-rttabpanel="1"
+    hidden=""
     id="panel:r0:-1"
     role="tabpanel"
   />

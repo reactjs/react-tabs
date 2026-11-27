@@ -79,6 +79,7 @@ exports[`<Tabs /> > performance > should render all tabs if forceRenderTabPanel 
     class="react-tabs__tab-panel"
     data-rttabpanel="1"
     data-testid="panel2"
+    hidden=""
     id="panel:r0:-1"
     role="tabpanel"
   >
@@ -89,6 +90,7 @@ exports[`<Tabs /> > performance > should render all tabs if forceRenderTabPanel 
     class="react-tabs__tab-panel"
     data-rttabpanel="2"
     data-testid="panel3"
+    hidden=""
     id="panel:r0:-2"
     role="tabpanel"
   >
@@ -99,6 +101,7 @@ exports[`<Tabs /> > performance > should render all tabs if forceRenderTabPanel 
     class="react-tabs__tab-panel"
     data-rttabpanel="3"
     data-testid="panel4"
+    hidden=""
     id="panel:r0:-3"
     role="tabpanel"
   >
@@ -186,6 +189,7 @@ exports[`<Tabs /> > props > should accept className 1`] = `
     class="react-tabs__tab-panel"
     data-rttabpanel="1"
     data-testid="panel2"
+    hidden=""
     id="panel:r0:-1"
     role="tabpanel"
   />
@@ -194,6 +198,7 @@ exports[`<Tabs /> > props > should accept className 1`] = `
     class="react-tabs__tab-panel"
     data-rttabpanel="2"
     data-testid="panel3"
+    hidden=""
     id="panel:r0:-2"
     role="tabpanel"
   />
@@ -202,6 +207,7 @@ exports[`<Tabs /> > props > should accept className 1`] = `
     class="react-tabs__tab-panel"
     data-rttabpanel="3"
     data-testid="panel4"
+    hidden=""
     id="panel:r0:-3"
     role="tabpanel"
   />
@@ -287,6 +293,7 @@ exports[`<Tabs /> > props > should have sane defaults 1`] = `
     class="react-tabs__tab-panel"
     data-rttabpanel="1"
     data-testid="panel2"
+    hidden=""
     id="panel:r0:-1"
     role="tabpanel"
   />
@@ -295,6 +302,7 @@ exports[`<Tabs /> > props > should have sane defaults 1`] = `
     class="react-tabs__tab-panel"
     data-rttabpanel="2"
     data-testid="panel3"
+    hidden=""
     id="panel:r0:-2"
     role="tabpanel"
   />
@@ -303,6 +311,7 @@ exports[`<Tabs /> > props > should have sane defaults 1`] = `
     class="react-tabs__tab-panel"
     data-rttabpanel="3"
     data-testid="panel4"
+    hidden=""
     id="panel:r0:-3"
     role="tabpanel"
   />
@@ -378,6 +387,7 @@ exports[`<Tabs /> > props > should honor positive defaultKey prop 1`] = `
     class="react-tabs__tab-panel"
     data-rttabpanel="0"
     data-testid="panel1"
+    hidden=""
     id="panel:r0:-0"
     role="tabpanel"
   />
@@ -396,6 +406,7 @@ exports[`<Tabs /> > props > should honor positive defaultKey prop 1`] = `
     class="react-tabs__tab-panel"
     data-rttabpanel="2"
     data-testid="panel3"
+    hidden=""
     id="panel:r0:-2"
     role="tabpanel"
   />
@@ -404,6 +415,7 @@ exports[`<Tabs /> > props > should honor positive defaultKey prop 1`] = `
     class="react-tabs__tab-panel"
     data-rttabpanel="3"
     data-testid="panel4"
+    hidden=""
     id="panel:r0:-3"
     role="tabpanel"
   />
@@ -457,6 +469,7 @@ exports[`<Tabs /> > should allow for higher order components 1`] = `
     aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
     data-rttabpanel="1"
+    hidden=""
     id="panel:r0:-1"
     role="tabpanel"
   />
@@ -514,6 +527,7 @@ exports[`<Tabs /> > should allow string children 1`] = `
     aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
     data-rttabpanel="1"
+    hidden=""
     id="panel:r0:-1"
     role="tabpanel"
   />
@@ -598,6 +612,7 @@ exports[`<Tabs /> > validation > should allow other DOM nodes 1`] = `
       aria-labelledby="tab:r0:-1"
       class="react-tabs__tab-panel"
       data-rttabpanel="1"
+      hidden=""
       id="panel:r0:-1"
       role="tabpanel"
     />
@@ -652,6 +667,7 @@ exports[`<Tabs /> > validation > should allow random order for elements 1`] = `
     aria-labelledby="tab:r0:-1"
     class="react-tabs__tab-panel"
     data-rttabpanel="1"
+    hidden=""
     id="panel:r0:-1"
     role="tabpanel"
   >

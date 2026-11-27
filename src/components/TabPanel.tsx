@@ -16,6 +16,7 @@ const TabPanel = (props: TabPanelProps) => {
     children,
     className,
     forceRender,
+    hidden,
     id: ownId,
     itemKey,
     selectedClassName,
@@ -34,6 +35,7 @@ const TabPanel = (props: TabPanelProps) => {
         [group?.selectedTabPanelClassName || selectedClassName]: selected,
       })}
       role="tabpanel"
+      hidden={!selected || hidden}
       id={id === undefined ? ownId : `panel${id}`}
       aria-labelledby={id === undefined ? undefined : `tab${id}`}
       data-rttabpanel={token}

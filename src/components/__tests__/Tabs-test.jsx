@@ -354,7 +354,7 @@ describe('<Tabs />', () => {
   describe('performance', () => {
     test('should only render the selected tab panel', async () => {
       render(createTabs());
-      const tabPanels = screen.getAllByRole('tabpanel');
+      const tabPanels = screen.getAllByRole('tabpanel', { hidden: true });
 
       expect(tabPanels[0]).toHaveTextContent('Hello Tab1');
       expect(tabPanels[1]).toHaveTextContent('');
@@ -532,8 +532,8 @@ describe('<Tabs />', () => {
       );
 
       const details = screen.getByRole('tab', { name: 'Details' });
-      const panel = screen.getByRole('tabpanel', { name: 'Details' });
-      expect(panel).toHaveTextContent('Details content');
+      const panel = screen.getByText('Details content');
+      expect(panel).not.toBeVisible();
       expect(panel).not.toHaveClass('active-panel');
 
       await userEvent.click(details);
@@ -541,6 +541,7 @@ describe('<Tabs />', () => {
       expect(details).toHaveFocus();
       expect(details).toHaveClass('active-tab');
       expect(details).toHaveAttribute('aria-controls', panel.id);
+      expect(panel).toBeVisible();
       expect(panel).toHaveClass('active-panel');
       expect(panel).not.toHaveClass('local-panel');
     });

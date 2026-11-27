@@ -4,6 +4,7 @@ exports[`<TabPanel /> > should accept className 1`] = `
 <div
   class="foobar"
   data-rttabpanel="0"
+  hidden=""
   role="tabpanel"
 />
 `;
@@ -12,6 +13,7 @@ exports[`<TabPanel /> > should allow for higher-order components 1`] = `
 <div
   class="react-tabs__tab-panel"
   data-rttabpanel="0"
+  hidden=""
   role="tabpanel"
 />
 `;
@@ -20,6 +22,7 @@ exports[`<TabPanel /> > should have sane defaults 1`] = `
 <div
   class="react-tabs__tab-panel"
   data-rttabpanel="0"
+  hidden=""
   role="tabpanel"
 />
 `;
@@ -28,6 +31,7 @@ exports[`<TabPanel /> > should not allow overriding all default properties 1`] =
 <div
   class="react-tabs__tab-panel"
   data-rttabpanel="0"
+  hidden=""
   role="tabpanel"
 />
 `;
@@ -37,18 +41,9 @@ exports[`<TabPanel /> > should pass through custom properties 1`] = `
   class="react-tabs__tab-panel"
   data-rttabpanel="0"
   data-tooltip="Tooltip contents"
+  hidden=""
   role="tabpanel"
 />
-`;
-
-exports[`<TabPanel /> > should render when forced 1`] = `
-<div
-  class="react-tabs__tab-panel"
-  data-rttabpanel="0"
-  role="tabpanel"
->
-  Hola
-</div>
 `;
 
 exports[`<TabPanel /> > should render when selected 1`] = `

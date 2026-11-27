@@ -150,7 +150,7 @@ By default the tab that is clicked will also be focused in the DOM. If set to `f
 
 > default: `false`
 
-Panel elements stay mounted. By default only the selected panel renders its contents. Set this to `true` to keep all panel contents mounted.
+Panel elements stay mounted. By default only the selected panel renders its contents. Set this to `true` to keep all panel contents mounted, including in hidden panels.
 
 > This can also be enabled for each individual `<TabPanel />` component with its prop `forceRender`.
 
@@ -239,6 +239,8 @@ Overrides the tab's position in the keyboard tab order. Use `tabIndex={0}` to in
 ### &lt;TabPanel /&gt;
 
 If you specify additional props on the `<TabPanel />` component they will be forwarded to the rendered `<div />`.
+
+Inactive panels get the HTML `hidden` attribute and are hidden without the default stylesheet. See the [migration guide](MIGRATION.md#account-for-hidden-panels-in-exit-animations) if you animate panels when they become inactive.
 
 #### itemKey: `TabKey`
 

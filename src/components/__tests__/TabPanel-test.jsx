@@ -1,5 +1,6 @@
 import { afterEach, beforeAll, describe, expect, test } from 'vitest';
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/vitest';
 import TabPanel from '../TabPanel';
 import { TabsContext } from '../TabsContext';
 import { TabPanelWrapper } from './helpers/higherOrder';
@@ -31,12 +32,28 @@ describe('<TabPanel />', () => {
     );
   });
 
-  test('should render when forced', () => {
-    expectToMatchSnapshot(
-      <TabPanel itemKey={0} forceRender>
-        Hola
-      </TabPanel>,
+  test('keeps forced contents mounted when the panel becomes hidden', () => {
+    function panel(selectedKey) {
+      return (
+        <TabsContext.Provider value={{ id: 'group', selectedKey }}>
+          <TabPanel itemKey={0} forceRender hidden={false}>
+            <button type="button">Hola</button>
+          </TabPanel>
+        </TabsContext.Provider>
+      );
+    }
+
+    const { rerender } = render(panel(0));
+    const button = screen.getByRole('button', { name: 'Hola' });
+    expect(button).toBeVisible();
+
+    rerender(panel(1));
+
+    expect(screen.getByRole('tabpanel', { hidden: true })).toHaveAttribute(
+      'hidden',
     );
+    expect(screen.getByText('Hola')).toBe(button);
+    expect(button).not.toBeVisible();
   });
 
   test('should accept className', () => {

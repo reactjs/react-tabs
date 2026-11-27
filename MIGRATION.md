@@ -31,6 +31,18 @@ function AccountTabs() {
 
 Keys can be nonempty strings or finite numbers. Match the type on both sides, since `1` and `'1'` are different keys. Keep the panel element mounted even if its contents load on demand.
 
+### Account for hidden panels in exit animations
+
+**What changed**
+
+In v6, CSS controlled whether an inactive panel was visible. Inactive panels now get the HTML `hidden` attribute as soon as selection changes, even with `forceRender` or `forceRenderTabPanel`. The default stylesheet no longer sets panel visibility.
+
+**How to migrate**
+
+Check custom panel styles that set `display` so they respect `[hidden]`. For example, apply `display: grid` only to `.my-panel:not([hidden])`.
+
+If you animate an outgoing panel, keep `forceRender` or `forceRenderTabPanel` enabled for its contents and override `display` on that panel's `[hidden]` element only while its exit animation runs. Mark the outgoing panel `inert` during that interval to keep it out of keyboard navigation and the accessibility tree. Remove the display override when the animation ends.
+
 ### Replace `defaultIndex` with `defaultKey`
 
 **What changed**
