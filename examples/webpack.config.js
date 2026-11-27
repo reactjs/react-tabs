@@ -105,6 +105,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.wasm'],
+    extensionAlias: { '.js': ['.js', '.ts', '.tsx'] },
     alias: {
       'react-tabs$': path.join(libraryDirectory, 'src/index'),
     },

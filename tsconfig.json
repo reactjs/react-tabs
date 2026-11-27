@@ -2,13 +2,14 @@
   "compilerOptions": {
     "target": "ES2020",
     "lib": ["ES2020", "DOM"],
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "NodeNext",
     "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
     "noEmitOnError": true,
     "rootDir": "src",
+    "outDir": "esm",
+    "declaration": true,
     "types": ["node"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],

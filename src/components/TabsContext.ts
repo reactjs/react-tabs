@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { TabKey } from '../types';
+import type { TabKey } from '../types.js';
 
 export const TabsContext = createContext<{
   id: string;

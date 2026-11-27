@@ -1,5 +1,5 @@
-import { isTabKey } from '../components/TabsContext';
-import type { TabKey } from '../types';
+import { isTabKey } from '../components/TabsContext.js';
+import type { TabKey } from '../types.js';
 
 export interface TabEntry {
   key: TabKey;

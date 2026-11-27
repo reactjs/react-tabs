@@ -2,18 +2,21 @@
   "name": "react-tabs",
   "version": "6.1.2",
   "description": "An accessible and easy tab component for ReactJS",
-  "main": "lib/index.js",
-  "module": "esm/index.js",
-  "types": "lib/index.d.ts",
+  "type": "module",
+  "types": "./esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./esm/index.d.ts",
+      "default": "./esm/index.js"
+    },
+    "./style/*": "./style/*",
+    "./package.json": "./package.json"
+  },
   "scripts": {
-    "clean:commonjs": "rm -rf lib",
-    "clean:esm": "rm -rf esm",
-    "build:commonjs": "tsc --module commonjs --outDir lib --declaration",
-    "build:esm": "tsc --outDir esm",
-    "build": "pnpm run --sequential '/clean:.*|build:.*/'",
+    "build": "rm -rf esm && tsc",
     "format": "eslint src --fix --report-unused-disable-directives",
     "lint": "eslint src --report-unused-disable-directives",
-    "prepublishOnly": "pnpm run build",
+    "prepack": "pnpm run build",
     "test": "vitest run",
     "start": "pnpm --filter react-tabs-examples start",
     "typecheck": "tsc --noEmit"
@@ -30,7 +33,6 @@
   },
   "files": [
     "esm",
-    "lib",
     "style"
   ],
   "homepage": "https://github.com/reactjs/react-tabs",

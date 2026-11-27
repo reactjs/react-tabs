@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import type { TabProps } from '../types';
-import { getItemIdentity, TabsContext } from './TabsContext';
+import type { TabProps } from '../types.js';
+import { getItemIdentity, TabsContext } from './TabsContext.js';
 import cx from 'clsx';
 
 const DEFAULT_CLASS = 'react-tabs__tab';

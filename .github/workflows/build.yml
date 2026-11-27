@@ -65,3 +65,8 @@ jobs:
 
       - name: Build library
         run: pnpm run build
+
+      - name: Check native Node entry points
+        run: |
+          node --input-type=module -e "import { Tabs } from 'react-tabs'; if (typeof Tabs !== 'function') process.exit(1)"
+          node --input-type=commonjs -e "if (typeof require('react-tabs').Tabs !== 'function') process.exit(1)"

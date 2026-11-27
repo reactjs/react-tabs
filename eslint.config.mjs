@@ -36,7 +36,10 @@ export default defineConfig([
       // Lint against the oldest supported React version.
       'react-x': { version: '18.0.0' },
       'import-x/resolver-next': [
-        createNodeResolver({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
+        createNodeResolver({
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+          extensionAlias: { '.js': ['.js', '.ts', '.tsx'] },
+        }),
       ],
     },
 

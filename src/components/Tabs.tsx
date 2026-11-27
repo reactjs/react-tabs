@@ -7,9 +7,9 @@ import {
   useState,
   type KeyboardEvent,
 } from 'react';
-import { findTabTarget, getTabCollection } from '../helpers/tabCollection';
-import type { TabEvent, TabKey, TabsProps } from '../types';
-import { isTabKey, TabsContext } from './TabsContext';
+import { findTabTarget, getTabCollection } from '../helpers/tabCollection.js';
+import type { TabEvent, TabKey, TabsProps } from '../types.js';
+import { isTabKey, TabsContext } from './TabsContext.js';
 
 const keyCodes: Record<number, string> = {
   13: 'Enter',

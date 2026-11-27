@@ -1,5 +1,5 @@
 import cx from 'clsx';
-import type { TabListProps } from '../types';
+import type { TabListProps } from '../types.js';
 
 const defaultProps = {
   className: 'react-tabs__tab-list',

@@ -171,11 +171,23 @@ import type { TabsProps } from 'react-tabs';
 type TrackedTabsProps = TabsProps & { analyticsName: string };
 ```
 
+### Switch to the ESM package entry point
+
+**What changed**
+
+v6 shipped a CommonJS build and an ESM build for bundlers. v7 ships a single native ES module build and declares its public entry points with `exports`.
+
+**How to migrate**
+
+Import components from `react-tabs`. If you used a deep import from `react-tabs/lib/` or `react-tabs/esm/`, switch to the package root. The documented stylesheet paths, such as `react-tabs/style/react-tabs.css`, still work.
+
+If your CommonJS app calls `require('react-tabs')`, use a Node version with synchronous ESM support, such as Node 22.12 or newer. On older versions, load the package with dynamic `import('react-tabs')`.
+
 ### Import types from the package root
 
 **What changed**
 
-v6 shipped an `index.d.ts` at the package root. v7 generates its declarations in `lib/` and points TypeScript to them through the package metadata.
+v6 shipped an `index.d.ts` at the package root. v7 generates its declarations alongside the ESM build and points TypeScript to them through the package metadata.
 
 **How to migrate**
 

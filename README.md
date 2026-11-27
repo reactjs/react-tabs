@@ -25,7 +25,39 @@ or
 npm install --save react-tabs
 ```
 
+## Compatibility (December 2026)
+
+`react-tabs` supports React 18 and 19.
+
+### Browsers
+
+`react-tabs` targets the current and previous stable releases of Chrome, Edge, Firefox, and Safari on desktop, Chrome on Android, and Safari on iOS. Firefox ESR is also supported.
+
+The npm package ships ES2020 JavaScript as native ESM. The table shows the earliest versions that can parse the optional chaining (`?.`) and nullish coalescing (`??`) used in the published code. [Optional chaining support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining#browser_compatibility) · [Nullish coalescing support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing#browser_compatibility)
+
+| Browser                       | Earliest version that parses the published syntax | Released                                                                                                       |
+| ----------------------------- | ------------------------------------------------: | -------------------------------------------------------------------------------------------------------------- |
+| Chrome on desktop and Android |                                                80 | [February 2020](https://chromereleases.googleblog.com/2020/02/stable-channel-update-for-desktop.html)          |
+| Edge                          |                                                80 | [February 2020](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnotes-security#february-7-2020) |
+| Firefox                       |                                                74 | [March 2020](https://www.firefox.com/en-US/firefox/74.0/releasenotes/)                                         |
+| Safari on macOS               |                                              13.1 | [March 2020](https://developer.apple.com/documentation/safari-release-notes)                                   |
+| Safari on iOS                 |                                              13.4 | [March 2020](https://support.apple.com/en-ca/103828)                                                           |
+
+These browser versions are roughly seven years old as of December 2026.
+
+The library also uses `Element.closest()` for tab navigation and `MutationObserver` to track changes to tabs and panels. Both are available in the versions above, and the default CSS adds no newer browser requirement. [Element.closest() support](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#browser_compatibility) · [MutationObserver support](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver#browser_compatibility)
+
+These versions describe the package's feature requirements. Your React renderer and application build can set a higher minimum. A browser build tool also needs to resolve the package's React and `clsx` imports and handle `process.env.NODE_ENV`.
+
+### Server-side rendering
+
+Use the latest patch of Node.js **22.x**, **24.x**, or **26.x**. These are the supported [Node.js LTS release lines](https://nodejs.org/en/about/previous-releases) as of December 2026.
+
+Load the package with `import`. CommonJS servers can use `require('react-tabs')` on Node.js 22.12 and later, which can load [synchronous ES modules](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require).
+
 ## Basic Example
+
+`react-tabs` ships as native ESM. Import components from `react-tabs` and stylesheets from `react-tabs/style/`. See the [migration guide](MIGRATION.md#switch-to-the-esm-package-entry-point) for CommonJS consumers.
 
 ```js
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';

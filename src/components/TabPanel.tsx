@@ -1,7 +1,7 @@
 import cx from 'clsx';
 import { useContext } from 'react';
-import type { TabPanelProps } from '../types';
-import { getItemIdentity, TabsContext } from './TabsContext';
+import type { TabPanelProps } from '../types.js';
+import { getItemIdentity, TabsContext } from './TabsContext.js';
 
 const DEFAULT_CLASS = 'react-tabs__tab-panel';
 const defaultProps = {
