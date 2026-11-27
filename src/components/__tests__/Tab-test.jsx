@@ -73,6 +73,16 @@ describe('<Tab />', () => {
   });
 
   test('override the tabIndex if it was provided', () => {
-    expectToMatchSnapshot(<Tab tabIndex="0">Hello</Tab>);
+    expectToMatchSnapshot(<Tab tabIndex={0}>Hello</Tab>);
+  });
+
+  test('should honor tabIndex -1 on a selected tab', () => {
+    const { getByRole } = render(
+      <TabsItemContext.Provider value={selectedTab}>
+        <Tab tabIndex={-1}>Hello</Tab>
+      </TabsItemContext.Provider>,
+    );
+
+    expect(getByRole('tab').getAttribute('tabindex')).toBe('-1');
   });
 });

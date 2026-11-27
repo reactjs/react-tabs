@@ -143,13 +143,13 @@ describe('<Tabs />', () => {
         render(
           <Tabs>
             <TabList>
-              <Tab data-testid="tab1" tabIndex="0">
+              <Tab data-testid="tab1" tabIndex={0}>
                 Tab1
               </Tab>
-              <Tab data-testid="tab2" tabIndex="0">
+              <Tab data-testid="tab2" tabIndex={0}>
                 Tab2
               </Tab>
-              <Tab data-testid="tab3" tabIndex="0">
+              <Tab data-testid="tab3" tabIndex={0}>
                 Tab3
               </Tab>
             </TabList>

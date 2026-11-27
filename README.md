@@ -208,11 +208,11 @@ Provide a custom class name for the active tab.
 
 > This option can also be set for all `<Tab />` components with the prop `selectedTabClassName` on `<Tabs />`.
 
-#### tabIndex: `string`
+#### tabIndex: `number`
 
-> default: if selected `"0"` otherwise `null`
+> default: `0` for the selected tab. Inactive tabs omit the attribute.
 
-Overrides the tabIndex to enabled tabbing between tabs.
+Overrides the tab's position in the keyboard tab order. Use `tabIndex={0}` to include a tab in the tab order or `tabIndex={-1}` to leave it out while keeping it programmatically focusable.
 
 ### &lt;TabPanel /&gt;
 

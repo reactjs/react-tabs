@@ -54,8 +54,7 @@ const Tab = (props: TabProps) => {
       aria-selected={selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
       aria-controls={`panel${id}`}
-      // The public API accepts a string and React forwards it to the DOM.
-      tabIndex={(tabIndex || (selected ? '0' : null)) as unknown as number}
+      tabIndex={tabIndex ?? (selected ? 0 : undefined)}
       data-rttab
     >
       <TabsItemContext.Provider value={null}>

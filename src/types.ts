@@ -39,15 +39,11 @@ export interface TabListProps extends Omit<
   className?: ClassName | undefined;
 }
 
-export interface TabProps extends Omit<
-  HTMLProps<HTMLLIElement>,
-  'className' | 'tabIndex'
-> {
+export interface TabProps extends Omit<HTMLProps<HTMLLIElement>, 'className'> {
   className?: ClassName | undefined;
   disabled?: boolean | undefined;
   disabledClassName?: string | undefined;
   selectedClassName?: string | undefined;
-  tabIndex?: string | undefined;
 }
 
 export interface TabPanelProps extends Omit<
