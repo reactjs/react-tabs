@@ -13,22 +13,29 @@ afterEach(() => {
 
 test('hydrates server markup and keeps tabs linked to their panels', async () => {
   const tabs = (
-    <Tabs>
+    <Tabs defaultKey="overview">
       <TabList>
-        <Tab>Overview</Tab>
-        <Tab>Details</Tab>
+        <Tab itemKey="overview">Overview</Tab>
+        <Tab itemKey="details & history">Details</Tab>
       </TabList>
-      <TabPanel>Overview content</TabPanel>
-      <TabPanel>Details content</TabPanel>
+      <TabPanel itemKey="details & history">Details content</TabPanel>
+      <TabPanel itemKey="overview">Overview content</TabPanel>
     </Tabs>
   );
   const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
   const onRecoverableError = vi.fn();
   const container = document.body.appendChild(document.createElement('div'));
   container.innerHTML = renderToString(tabs);
-  const { getByRole } = within(container);
+  const { getAllByRole, getByRole } = within(container);
   const serverTab = getByRole('tab', { name: 'Details' });
-  const serverPanel = getByRole('tabpanel', { name: 'Details' });
+  const serverPanel = getAllByRole('tabpanel', { hidden: true }).find(
+    (panel) => panel.id === serverTab.getAttribute('aria-controls'),
+  );
+  expect(getByRole('tabpanel', { name: 'Overview' })).toHaveTextContent(
+    'Overview content',
+  );
+  expect(serverPanel).toHaveAttribute('hidden');
+  expect(serverPanel).toBeEmptyDOMElement();
 
   render(tabs, { container, hydrate: true, onRecoverableError });
 

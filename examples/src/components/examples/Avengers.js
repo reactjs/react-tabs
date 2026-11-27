@@ -35,20 +35,22 @@ const code = `class Component extends React.Component {
       "Iron Man": true,
       Thor: true,
       "War Machine": true,
-      selectedIndex: 0
+      selectedKey: "Ant-Man"
     };
 
     this.handleCheckClicked = this.handleCheckClicked.bind(this);
   }
 
   handleCheckClicked(e) {
-    const state = {
-      [e.target.name]: e.target.checked
-    };
-    if (this.characters.findIndex(({name}) => name === e.target.name) <= this.state.selectedIndex) {
-      state.selectedIndex = this.state.selectedIndex + (e.target.checked ? 1 : -1);
-    }
-    this.setState(state);
+    const { name, checked } = e.target;
+    this.setState((state) => {
+      const next = { ...state, [name]: checked };
+      if (!next[state.selectedKey]) {
+        const first = this.characters.find(({ name }) => next[name]);
+        if (first) next.selectedKey = first.name;
+      }
+      return next;
+    });
   }
 
   render() {
@@ -72,13 +74,13 @@ const code = `class Component extends React.Component {
       if (!this.state[name]) return;
 
       tabs.push(
-        <Tab style={{ backgroundColor }} className="avengers-tab" key={name}>
+        <Tab style={{ backgroundColor }} className="avengers-tab" key={name} itemKey={name}>
           <img src={img} alt={name} height="32" width="32" />
         </Tab>
       );
 
       tabPanels.push(
-        <TabPanel style={{ backgroundColor, color }} className="avengers-tab-panel" key={name}>
+        <TabPanel style={{ backgroundColor, color }} className="avengers-tab-panel" key={name} itemKey={name}>
           {desc}
         </TabPanel>
       );
@@ -88,8 +90,8 @@ const code = `class Component extends React.Component {
       <div>
         <p>{links}</p>
         <Tabs
-          selectedIndex={this.state.selectedIndex}
-          onSelect={(selectedIndex) => this.setState({ selectedIndex })}
+          selectedKey={this.state.selectedKey}
+          onSelect={(selectedKey) => this.setState({ selectedKey })}
           selectedTabClassName="avengers-tab--selected"
           selectedTabPanelClassName="avengers-tab-panel--selected"
         >

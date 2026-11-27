@@ -28,21 +28,36 @@ function expectToMatchSnapshot(component) {
 
 function createTabs(props = {}) {
   return (
-    <Tabs {...props}>
+    <Tabs
+      {...(props.selectedKey === undefined ? { defaultKey: 0 } : {})}
+      {...props}
+    >
       <TabList>
-        <Tab data-testid="tab1">Tab1</Tab>
-        <Tab data-testid="tab2">Tab2</Tab>
-        <Tab data-testid="tab3">
+        <Tab itemKey={0} data-testid="tab1">
+          Tab1
+        </Tab>
+        <Tab itemKey={1} data-testid="tab2">
+          Tab2
+        </Tab>
+        <Tab itemKey={2} data-testid="tab3">
           <a href="a">Tab3</a>
         </Tab>
-        <Tab data-testid="tab4" disabled>
+        <Tab itemKey={3} data-testid="tab4" disabled>
           Tab4
         </Tab>
       </TabList>
-      <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
-      <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
-      <TabPanel data-testid="panel3">Hello Tab3</TabPanel>
-      <TabPanel data-testid="panel4">Hello Tab4</TabPanel>
+      <TabPanel itemKey={0} data-testid="panel1">
+        Hello Tab1
+      </TabPanel>
+      <TabPanel itemKey={1} data-testid="panel2">
+        Hello Tab2
+      </TabPanel>
+      <TabPanel itemKey={2} data-testid="panel3">
+        Hello Tab3
+      </TabPanel>
+      <TabPanel itemKey={3} data-testid="panel4">
+        Hello Tab4
+      </TabPanel>
     </Tabs>
   );
 }
@@ -63,68 +78,76 @@ describe('<Tabs />', () => {
       expectToMatchSnapshot(createTabs());
     });
 
-    test('should honor positive defaultIndex prop', () => {
-      expectToMatchSnapshot(createTabs({ defaultIndex: 1 }));
+    test('should honor positive defaultKey prop', () => {
+      expectToMatchSnapshot(createTabs({ defaultKey: 1 }));
     });
 
-    test('should honor negative defaultIndex prop', () => {
-      expectToMatchSnapshot(createTabs({ defaultIndex: -1 }));
+    test('should select the first enabled tab when the default key is missing', () => {
+      render(createTabs({ defaultKey: -1 }));
+      assertTabSelected(1);
     });
 
-    test('should call onSelect when selection changes', async () => {
-      const called = { index: -1, last: -1 };
-      render(
-        createTabs({
-          onSelect(index, last) {
-            called.index = index;
-            called.last = last;
-          },
-        }),
-      );
+    test('should call onSelect with the React event when selection changes', async () => {
+      const onSelect = vi.fn();
+      render(createTabs({ onSelect }));
 
       await userEvent.click(screen.getByTestId('tab2'));
 
-      expect(called.index).toBe(1);
-      expect(called.last).toBe(0);
+      expect(onSelect).toHaveBeenLastCalledWith(
+        1,
+        0,
+        expect.objectContaining({
+          type: 'click',
+          nativeEvent: expect.objectContaining({ type: 'click' }),
+        }),
+      );
+
+      await userEvent.keyboard('[ArrowRight]');
+
+      expect(onSelect).toHaveBeenLastCalledWith(
+        2,
+        1,
+        expect.objectContaining({
+          key: 'ArrowRight',
+          nativeEvent: expect.objectContaining({ type: 'keydown' }),
+        }),
+      );
     });
 
     test('should accept className', () => {
       expectToMatchSnapshot(createTabs({ className: 'foobar' }));
     });
 
-    test('should accept domRef', () => {
-      let domNode;
-      render(
-        createTabs({
-          domRef: (node) => {
-            domNode = node;
-          },
-        }),
-      );
+    test('should call domRef with the root on mount and null on unmount', () => {
+      const domRef = vi.fn();
+      const { container, unmount } = render(createTabs({ domRef }));
 
-      expect(domNode).not.toBeUndefined();
-      expect(domNode.className).toBe('react-tabs');
+      expect(domRef).toHaveBeenLastCalledWith(container.firstElementChild);
+
+      unmount();
+
+      expect(domRef).toHaveBeenLastCalledWith(null);
     });
   });
 
   describe('interaction', () => {
     describe('mouse', () => {
-      test('should update selectedIndex when clicked', async () => {
+      test('should update selectedKey when clicked', async () => {
         render(createTabs());
         await userEvent.click(screen.getByTestId('tab2'));
 
         assertTabSelected(2);
       });
 
-      test('should update selectedIndex when tab child is clicked', async () => {
+      test('should update selectedKey when tab child is clicked', async () => {
         render(createTabs());
         await userEvent.click(screen.getByTestId('tab3'));
 
         assertTabSelected(3);
       });
 
-      test('should not change selectedIndex when clicking a disabled tab', async () => {
-        render(createTabs({ defaultIndex: 0 }));
+      test('should not change selectedKey when clicking a disabled tab', async () => {
+        render(createTabs({ defaultKey: 0 }));
         await userEvent.click(screen.getByTestId('tab4'));
 
         assertTabSelected(1);
@@ -134,21 +157,27 @@ describe('<Tabs />', () => {
     describe('keyboard', () => {
       test('should change focus on tab and tabindex set', async () => {
         render(
-          <Tabs>
+          <Tabs defaultKey={0}>
             <TabList>
-              <Tab data-testid="tab1" tabIndex="0">
+              <Tab itemKey={0} data-testid="tab1" tabIndex={0}>
                 Tab1
               </Tab>
-              <Tab data-testid="tab2" tabIndex="0">
+              <Tab itemKey={1} data-testid="tab2" tabIndex={0}>
                 Tab2
               </Tab>
-              <Tab data-testid="tab3" tabIndex="0">
+              <Tab itemKey={2} data-testid="tab3" tabIndex={0}>
                 Tab3
               </Tab>
             </TabList>
-            <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
-            <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
-            <TabPanel data-testid="panel3">Hello Tab3</TabPanel>
+            <TabPanel itemKey={0} data-testid="panel1">
+              Hello Tab1
+            </TabPanel>
+            <TabPanel itemKey={1} data-testid="panel2">
+              Hello Tab2
+            </TabPanel>
+            <TabPanel itemKey={2} data-testid="panel3">
+              Hello Tab3
+            </TabPanel>
           </Tabs>,
         );
         const element = screen.getByTestId('tab1');
@@ -167,7 +196,7 @@ describe('<Tabs />', () => {
         assertTabSelected(3);
       });
 
-      test('should update selectedIndex when arrow right key pressed', async () => {
+      test('should update selectedKey when arrow right key pressed', async () => {
         render(createTabs());
         const element = screen.getByTestId('tab1');
         await userEvent.click(element);
@@ -187,15 +216,21 @@ describe('<Tabs />', () => {
 
       test('should not do anything when arrow right key pressed and no other tab available', async () => {
         render(
-          <Tabs>
+          <Tabs defaultKey={0}>
             <TabList>
-              <Tab data-testid="tab1">Tab1</Tab>
-              <Tab data-testid="tab2" disabled>
+              <Tab itemKey={0} data-testid="tab1">
+                Tab1
+              </Tab>
+              <Tab itemKey={1} data-testid="tab2" disabled>
                 Tab2
               </Tab>
             </TabList>
-            <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
-            <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
+            <TabPanel itemKey={0} data-testid="panel1">
+              Hello Tab1
+            </TabPanel>
+            <TabPanel itemKey={1} data-testid="panel2">
+              Hello Tab2
+            </TabPanel>
           </Tabs>,
         );
         const element = screen.getByTestId('tab1');
@@ -216,15 +251,21 @@ describe('<Tabs />', () => {
 
       test('should not do anything when arrow left key pressed and no other tab available', async () => {
         render(
-          <Tabs>
+          <Tabs defaultKey={0}>
             <TabList>
-              <Tab data-testid="tab1" disabled>
+              <Tab itemKey={0} data-testid="tab1" disabled>
                 Tab1
               </Tab>
-              <Tab data-testid="tab2">Tab2</Tab>
+              <Tab itemKey={1} data-testid="tab2">
+                Tab2
+              </Tab>
             </TabList>
-            <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
-            <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
+            <TabPanel itemKey={0} data-testid="panel1">
+              Hello Tab1
+            </TabPanel>
+            <TabPanel itemKey={1} data-testid="panel2">
+              Hello Tab2
+            </TabPanel>
           </Tabs>,
         );
         const element = screen.getByTestId('tab2');
@@ -252,7 +293,36 @@ describe('<Tabs />', () => {
         assertTabSelected(3);
       });
 
-      test('should update selectedIndex when arrow left key pressed (RTL)', async () => {
+      test.each(['Home', 'End'])(
+        'should keep selection on %s when every tab is disabled',
+        async (key) => {
+          const onSelect = vi.fn();
+          render(
+            <Tabs defaultKey={0} defaultFocus onSelect={onSelect}>
+              <TabList>
+                <Tab itemKey={0} data-testid="tab1" disabled>
+                  Tab1
+                </Tab>
+                <Tab itemKey={1} disabled>
+                  Tab2
+                </Tab>
+              </TabList>
+              <TabPanel itemKey={0} data-testid="panel1">
+                Hello Tab1
+              </TabPanel>
+              <TabPanel itemKey={1}>Hello Tab2</TabPanel>
+            </Tabs>,
+          );
+
+          expect(screen.getByTestId('tab1')).toHaveFocus();
+          await userEvent.keyboard(`[${key}]`);
+
+          expect(onSelect).not.toHaveBeenCalled();
+          assertTabSelected(1);
+        },
+      );
+
+      test('should update selectedKey when arrow left key pressed (RTL)', async () => {
         render(createTabs({ direction: 'rtl' }));
         const element = screen.getByTestId('tab1');
         await userEvent.click(element);
@@ -261,7 +331,7 @@ describe('<Tabs />', () => {
         assertTabSelected(2);
       });
 
-      test('should update selectedIndex when arrow right key pressed (RTL)', async () => {
+      test('should update selectedKey when arrow right key pressed (RTL)', async () => {
         render(createTabs({ direction: 'rtl' }));
         const element = screen.getByTestId('tab2');
         await userEvent.click(element);
@@ -270,7 +340,7 @@ describe('<Tabs />', () => {
         assertTabSelected(1);
       });
 
-      test('should not change selectedIndex when arrow left key pressed on a disabled tab', async () => {
+      test('should not change selectedKey when arrow left key pressed on a disabled tab', async () => {
         render(createTabs());
         const element = screen.getByTestId('tab4');
         await userEvent.click(element);
@@ -284,7 +354,7 @@ describe('<Tabs />', () => {
   describe('performance', () => {
     test('should only render the selected tab panel', async () => {
       render(createTabs());
-      const tabPanels = screen.getAllByRole('tabpanel');
+      const tabPanels = screen.getAllByRole('tabpanel', { hidden: true });
 
       expect(tabPanels[0]).toHaveTextContent('Hello Tab1');
       expect(tabPanels[1]).toHaveTextContent('');
@@ -314,36 +384,36 @@ describe('<Tabs />', () => {
   describe('validation', () => {
     test('should allow random order for elements', () => {
       expectToMatchSnapshot(
-        <Tabs forceRenderTabPanel>
-          <TabPanel>Hello Foo</TabPanel>
+        <Tabs defaultKey={0} forceRenderTabPanel>
+          <TabPanel itemKey={0}>Hello Foo</TabPanel>
           <TabList>
-            <Tab>Foo</Tab>
-            <Tab>Bar</Tab>
+            <Tab itemKey={0}>Foo</Tab>
+            <Tab itemKey={1}>Bar</Tab>
           </TabList>
-          <TabPanel>Hello Bar</TabPanel>
+          <TabPanel itemKey={1}>Hello Bar</TabPanel>
         </Tabs>,
       );
     });
 
     test('should not throw a warning when wrong element is found', () => {
       expectToMatchSnapshot(
-        <Tabs>
+        <Tabs defaultKey={0}>
           <TabList>
-            <Tab />
+            <Tab itemKey={0} />
             <div />
           </TabList>
-          <TabPanel />
+          <TabPanel itemKey={0} />
         </Tabs>,
       );
     });
 
     test('should be okay with rendering without any children', () => {
-      expectToMatchSnapshot(<Tabs />);
+      expectToMatchSnapshot(<Tabs defaultKey={0} />);
     });
 
     test('should be okay with rendering just TabList', () => {
       expectToMatchSnapshot(
-        <Tabs>
+        <Tabs defaultKey={0}>
           <TabList />
         </Tabs>,
       );
@@ -351,38 +421,40 @@ describe('<Tabs />', () => {
 
     test('should gracefully render null', () => {
       expectToMatchSnapshot(
-        <Tabs>
+        <Tabs defaultKey={0}>
           <TabList>
-            <Tab>Tab A</Tab>
+            <Tab itemKey={0}>Tab A</Tab>
             {/* eslint-disable-next-line no-constant-binary-expression*/}
-            {false && <Tab>Tab B</Tab>}
+            {false && <Tab itemKey={1}>Tab B</Tab>}
           </TabList>
-          <TabPanel>Content A</TabPanel>
+          <TabPanel itemKey={0}>Content A</TabPanel>
           {/* eslint-disable-next-line no-constant-binary-expression*/}
-          {false && <TabPanel>Content B</TabPanel>}
+          {false && <TabPanel itemKey={1}>Content B</TabPanel>}
         </Tabs>,
       );
     });
 
     test('should support nested tabs', async () => {
       render(
-        <Tabs data-testid="first">
+        <Tabs defaultKey={0} data-testid="first">
           <TabList>
-            <Tab data-testid="tab1" />
-            <Tab />
+            <Tab itemKey={0} data-testid="tab1" />
+            <Tab itemKey={1} />
           </TabList>
-          <TabPanel data-testid="panel1">
+          <TabPanel itemKey={0} data-testid="panel1">
             Hello Tab1
-            <Tabs data-testid="second">
+            <Tabs defaultKey={0} data-testid="second">
               <TabList>
-                <Tab />
-                <Tab data-testid="tab2" />
+                <Tab itemKey={0} />
+                <Tab itemKey={1} data-testid="tab2" />
               </TabList>
-              <TabPanel />
-              <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
+              <TabPanel itemKey={0} />
+              <TabPanel itemKey={1} data-testid="panel2">
+                Hello Tab2
+              </TabPanel>
             </Tabs>
           </TabPanel>
-          <TabPanel />
+          <TabPanel itemKey={1} />
         </Tabs>,
       );
 
@@ -394,22 +466,102 @@ describe('<Tabs />', () => {
       assertTabSelected(2, within(screen.getByTestId('second')));
     });
 
+    test('should preserve the selected key and pairing when tabs reorder independently', async () => {
+      function renderTabs(labels) {
+        return (
+          <Tabs defaultKey="Overview">
+            <TabList>
+              {labels.map((label) => (
+                <Tab itemKey={label} key={label}>
+                  {label}
+                </Tab>
+              ))}
+            </TabList>
+            <TabPanel itemKey="Overview">Overview content</TabPanel>
+            <TabPanel itemKey="Details">Details content</TabPanel>
+          </Tabs>
+        );
+      }
+
+      const { rerender } = render(renderTabs(['Overview', 'Details']));
+      const details = screen.getByRole('tab', { name: 'Details' });
+      await userEvent.click(details);
+      const detailsId = details.id;
+
+      rerender(renderTabs(['Details', 'Overview']));
+
+      const panel = screen.getByRole('tabpanel', { name: 'Details' });
+      expect(screen.getByRole('tab', { name: 'Details' })).toBe(details);
+      expect(details).toHaveAttribute('id', detailsId);
+      expect(details).toHaveAttribute('aria-selected', 'true');
+      expect(details).toHaveAttribute('aria-controls', panel.id);
+      expect(panel).toHaveTextContent('Details content');
+    });
+
+    test('should give wrapped tabs and panels their state without forwarding hidden props', async () => {
+      function WrappedTab({ children, itemKey }) {
+        return (
+          <Tab itemKey={itemKey} selectedClassName="local-tab">
+            {children}
+          </Tab>
+        );
+      }
+
+      function WrappedPanel({ children, itemKey }) {
+        return (
+          <TabPanel itemKey={itemKey} selectedClassName="local-panel">
+            {children}
+          </TabPanel>
+        );
+      }
+
+      render(
+        <Tabs
+          defaultKey={0}
+          selectedTabClassName="active-tab"
+          selectedTabPanelClassName="active-panel"
+          forceRenderTabPanel
+        >
+          <TabList>
+            <WrappedTab itemKey={0}>Overview</WrappedTab>
+            <WrappedTab itemKey={1}>Details</WrappedTab>
+          </TabList>
+          <WrappedPanel itemKey={0}>Overview content</WrappedPanel>
+          <WrappedPanel itemKey={1}>Details content</WrappedPanel>
+        </Tabs>,
+      );
+
+      const details = screen.getByRole('tab', { name: 'Details' });
+      const panel = screen.getByText('Details content');
+      expect(panel).not.toBeVisible();
+      expect(panel).not.toHaveClass('active-panel');
+
+      await userEvent.click(details);
+
+      expect(details).toHaveFocus();
+      expect(details).toHaveClass('active-tab');
+      expect(details).toHaveAttribute('aria-controls', panel.id);
+      expect(panel).toBeVisible();
+      expect(panel).toHaveClass('active-panel');
+      expect(panel).not.toHaveClass('local-panel');
+    });
+
     test('should allow other DOM nodes', () => {
       expectToMatchSnapshot(
-        <Tabs>
+        <Tabs defaultKey={0}>
           <div id="tabs-nav-wrapper">
             <button type="button">Left</button>
             <div className="tabs-container">
               <TabList>
-                <Tab />
-                <Tab />
+                <Tab itemKey={0} />
+                <Tab itemKey={1} />
               </TabList>
             </div>
             <button type="button">Right</button>
           </div>
           <div className="tab-panels">
-            <TabPanel />
-            <TabPanel />
+            <TabPanel itemKey={0} />
+            <TabPanel itemKey={1} />
           </div>
         </Tabs>,
       );
@@ -417,11 +569,13 @@ describe('<Tabs />', () => {
   });
 
   test('should pass through custom properties', () => {
-    expectToMatchSnapshot(<Tabs data-tooltip="Tooltip contents" />);
+    expectToMatchSnapshot(
+      <Tabs defaultKey={0} data-tooltip="Tooltip contents" />,
+    );
   });
 
   test('should not add known props to dom', () => {
-    expectToMatchSnapshot(<Tabs defaultIndex={3} />);
+    expectToMatchSnapshot(<Tabs defaultKey={3} />);
   });
 
   test('should cancel if event handler returns false', async () => {
@@ -496,47 +650,47 @@ describe('<Tabs />', () => {
 
   test('should allow for higher order components', () => {
     expectToMatchSnapshot(
-      <Tabs>
+      <Tabs defaultKey={0}>
         <TabListWrapper>
-          <TabWrapper>Foo</TabWrapper>
-          <TabWrapper>Bar</TabWrapper>
+          <TabWrapper itemKey={0}>Foo</TabWrapper>
+          <TabWrapper itemKey={1}>Bar</TabWrapper>
         </TabListWrapper>
-        <TabPanelWrapper>Foo</TabPanelWrapper>
-        <TabPanelWrapper>Bar</TabPanelWrapper>
+        <TabPanelWrapper itemKey={0}>Foo</TabPanelWrapper>
+        <TabPanelWrapper itemKey={1}>Bar</TabPanelWrapper>
       </Tabs>,
     );
   });
 
   test('should allow string children', () => {
     expectToMatchSnapshot(
-      <Tabs>
+      <Tabs defaultKey={0}>
         Foo
         <TabList>
           Foo
-          <Tab>Foo</Tab>
+          <Tab itemKey={0}>Foo</Tab>
           Foo
-          <Tab>Bar</Tab>
+          <Tab itemKey={1}>Bar</Tab>
           Foo
         </TabList>
-        <TabPanel>Bar</TabPanel>
-        <TabPanel>Foo</TabPanel>
+        <TabPanel itemKey={0}>Bar</TabPanel>
+        <TabPanel itemKey={1}>Foo</TabPanel>
         Foo
       </Tabs>,
     );
   });
 
   test('should focus the initially selected uncontrolled tab', () => {
-    render(createTabs({ defaultFocus: true, defaultIndex: 1 }));
+    render(createTabs({ defaultFocus: true, defaultKey: 1 }));
 
     expect(screen.getByTestId('tab2')).toHaveFocus();
   });
 
   test('should focus the initially selected controlled tab only on mount', () => {
     const onSelect = vi.fn();
-    const renderTabs = (selectedIndex, defaultFocus) => (
+    const renderTabs = (selectedKey, defaultFocus) => (
       <>
         <input aria-label="Outside" />
-        {createTabs({ defaultFocus, selectedIndex, onSelect })}
+        {createTabs({ defaultFocus, selectedKey, onSelect })}
       </>
     );
     const { rerender } = render(renderTabs(1, true));
@@ -621,16 +775,16 @@ describe('<Tabs />', () => {
   });
 
   test('should retain tab focus when controlled tabs are inside a fragment', () => {
-    const renderTabs = (selectedIndex) => (
-      <Tabs selectedIndex={selectedIndex} onSelect={() => {}}>
+    const renderTabs = (selectedKey) => (
+      <Tabs selectedKey={selectedKey} onSelect={() => {}}>
         <TabList>
           <>
-            <Tab>First</Tab>
-            <Tab>Second</Tab>
+            <Tab itemKey={0}>First</Tab>
+            <Tab itemKey={1}>Second</Tab>
           </>
         </TabList>
-        <TabPanel>First panel</TabPanel>
-        <TabPanel>Second panel</TabPanel>
+        <TabPanel itemKey={0}>First panel</TabPanel>
+        <TabPanel itemKey={1}>Second panel</TabPanel>
       </Tabs>
     );
     const { rerender } = render(renderTabs(0));
@@ -642,18 +796,18 @@ describe('<Tabs />', () => {
   });
 
   test('should preserve outside focus when controlled tabs are inside a fragment', () => {
-    const renderTabs = (selectedIndex) => (
+    const renderTabs = (selectedKey) => (
       <>
         <input aria-label="Outside" />
-        <Tabs selectedIndex={selectedIndex} onSelect={() => {}}>
+        <Tabs selectedKey={selectedKey} onSelect={() => {}}>
           <TabList>
             <>
-              <Tab>First</Tab>
-              <Tab>Second</Tab>
+              <Tab itemKey={0}>First</Tab>
+              <Tab itemKey={1}>Second</Tab>
             </>
           </TabList>
-          <TabPanel>First panel</TabPanel>
-          <TabPanel>Second panel</TabPanel>
+          <TabPanel itemKey={0}>First panel</TabPanel>
+          <TabPanel itemKey={1}>Second panel</TabPanel>
         </Tabs>
       </>
     );
@@ -709,16 +863,24 @@ describe('<Tabs />', () => {
   });
 
   test('should render first tab once tabs are available', () => {
-    const { rerender } = render(<Tabs></Tabs>);
+    const { rerender } = render(<Tabs defaultKey={0}></Tabs>);
 
     rerender(
-      <Tabs>
+      <Tabs defaultKey={0}>
         <TabList>
-          <Tab data-testid="tab1">Tab1</Tab>
-          <Tab data-testid="tab2">Tab2</Tab>
+          <Tab itemKey={0} data-testid="tab1">
+            Tab1
+          </Tab>
+          <Tab itemKey={1} data-testid="tab2">
+            Tab2
+          </Tab>
         </TabList>
-        <TabPanel data-testid="panel1">Hello Tab1</TabPanel>
-        <TabPanel data-testid="panel2">Hello Tab2</TabPanel>
+        <TabPanel itemKey={0} data-testid="panel1">
+          Hello Tab1
+        </TabPanel>
+        <TabPanel itemKey={1} data-testid="panel2">
+          Hello Tab2
+        </TabPanel>
       </Tabs>,
     );
 

@@ -1,16 +1,16 @@
 import ExampleItem from '../ExampleItem';
 
 const code = `const Component = (
-  <Tabs>
+  <Tabs defaultKey={0}>
     <TabList>
-      <Tab>Mario</Tab>
-      <Tab disabled>Luigi</Tab>
-      <Tab>Peach</Tab>
-      <Tab>Yoshi</Tab>
-      <Tab>Toad</Tab>
+      <Tab itemKey={0}>Mario</Tab>
+      <Tab itemKey={1} disabled>Luigi</Tab>
+      <Tab itemKey={2}>Peach</Tab>
+      <Tab itemKey={3}>Yoshi</Tab>
+      <Tab itemKey={4}>Toad</Tab>
     </TabList>
 
-    <TabPanel>
+    <TabPanel itemKey={0}>
       <p>
         <b>Mario</b> (<i>Japanese: マリオ Hepburn: Mario, [ma.ɾʲi.o]</i>) (<i>English:
         /ˈmɑːrioʊ/; Italian: [ˈmaːrjo]</i>) is a fictional character in the Mario video
@@ -28,7 +28,7 @@ const code = `const Component = (
         </a>
       </p>
     </TabPanel>
-    <TabPanel>
+    <TabPanel itemKey={1}>
       <p>
         <b>Luigi</b> (<i>Japanese: ルイージ Hepburn: Ruīji, [ɾɯ.iː.dʑi̥]</i>) (<i>English: /luˈiːdʒi/;
         Italian: [luˈiːdʒi]</i>) is a fictional character featured in video games and related media
@@ -43,7 +43,7 @@ const code = `const Component = (
         </a>
       </p>
     </TabPanel>
-    <TabPanel>
+    <TabPanel itemKey={2}>
       <p>
         <b>Princess Peach</b> (<i>Japanese: ピーチ姫 Hepburn: Pīchi-hime, [piː.tɕi̥ çi̥.me]</i>)
         is a character in Nintendo's Mario franchise. Originally created by Shigeru Miyamoto,
@@ -59,7 +59,7 @@ const code = `const Component = (
         </a>
       </p>
     </TabPanel>
-    <TabPanel>
+    <TabPanel itemKey={3}>
       <p>
         <b>Yoshi</b> (<i>ヨッシー Yosshī, [joɕ.ɕiː]</i>) (<i>English: /ˈjoʊʃi/ or /ˈjɒʃi/</i>), once
         romanized as Yossy, is a fictional anthropomorphic dinosaur who appears in
@@ -78,7 +78,7 @@ const code = `const Component = (
         </a>
       </p>
     </TabPanel>
-    <TabPanel>
+    <TabPanel itemKey={4}>
       <p>
         <b>Toad</b> (<i>Japanese: キノピオ Hepburn: Kinopio</i>) is a fictional character who primarily
         appears in Nintendo's Mario franchise. Created by Japanese video game designer Shigeru Miyamoto,

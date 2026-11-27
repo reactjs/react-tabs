@@ -7,13 +7,13 @@ import { Tab, TabList, TabPanel, Tabs } from '../../index';
 
 test('server renders the selected panel without a DOM', () => {
   const html = renderToString(
-    <Tabs defaultIndex={1}>
+    <Tabs defaultKey={1}>
       <TabList>
-        <Tab>Overview</Tab>
-        <Tab>Details</Tab>
+        <Tab itemKey={0}>Overview</Tab>
+        <Tab itemKey={1}>Details</Tab>
       </TabList>
-      <TabPanel>Overview content</TabPanel>
-      <TabPanel>Details content</TabPanel>
+      <TabPanel itemKey={0}>Overview content</TabPanel>
+      <TabPanel itemKey={1}>Details content</TabPanel>
     </Tabs>,
   );
 

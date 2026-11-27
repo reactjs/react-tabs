@@ -63,14 +63,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.[jt]sx?$/,
         exclude: [/node_modules/],
         use: [
           {
             loader: 'babel-loader',
             options: {
               babelrc: false,
-              extends: path.join(libraryDirectory, '.babelrc.js'),
+              extends: path.join(__dirname, '.babelrc.js'),
               plugins: isDev
                 ? []
                 : [
@@ -104,7 +104,8 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.wasm'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.wasm'],
+    extensionAlias: { '.js': ['.js', '.ts', '.tsx'] },
     alias: {
       'react-tabs$': path.join(libraryDirectory, 'src/index'),
     },

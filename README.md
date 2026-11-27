@@ -25,23 +25,55 @@ or
 npm install --save react-tabs
 ```
 
+## Compatibility (December 2026)
+
+`react-tabs` supports React 18 and 19.
+
+### Browsers
+
+`react-tabs` targets the current and previous stable releases of Chrome, Edge, Firefox, and Safari on desktop, Chrome on Android, and Safari on iOS. Firefox ESR is also supported.
+
+The npm package ships ES2020 JavaScript as native ESM. The table shows the earliest versions that can parse the optional chaining (`?.`) and nullish coalescing (`??`) used in the published code. [Optional chaining support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining#browser_compatibility) · [Nullish coalescing support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing#browser_compatibility)
+
+| Browser                       | Earliest version that parses the published syntax | Released                                                                                                       |
+| ----------------------------- | ------------------------------------------------: | -------------------------------------------------------------------------------------------------------------- |
+| Chrome on desktop and Android |                                                80 | [February 2020](https://chromereleases.googleblog.com/2020/02/stable-channel-update-for-desktop.html)          |
+| Edge                          |                                                80 | [February 2020](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnotes-security#february-7-2020) |
+| Firefox                       |                                                74 | [March 2020](https://www.firefox.com/en-US/firefox/74.0/releasenotes/)                                         |
+| Safari on macOS               |                                              13.1 | [March 2020](https://developer.apple.com/documentation/safari-release-notes)                                   |
+| Safari on iOS                 |                                              13.4 | [March 2020](https://support.apple.com/en-ca/103828)                                                           |
+
+These browser versions are roughly seven years old as of December 2026.
+
+The library also uses `Element.closest()` for tab navigation and `MutationObserver` to track changes to tabs and panels. Both are available in the versions above, and the default CSS adds no newer browser requirement. [Element.closest() support](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#browser_compatibility) · [MutationObserver support](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver#browser_compatibility)
+
+These versions describe the package's feature requirements. Your React renderer and application build can set a higher minimum. A browser build tool also needs to resolve the package's React and `clsx` imports and handle `process.env.NODE_ENV`.
+
+### Server-side rendering
+
+Use the latest patch of Node.js **22.x**, **24.x**, or **26.x**. These are the supported [Node.js LTS release lines](https://nodejs.org/en/about/previous-releases) as of December 2026.
+
+Load the package with `import`. CommonJS servers can use `require('react-tabs')` on Node.js 22.12 and later, which can load [synchronous ES modules](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require).
+
 ## Basic Example
+
+`react-tabs` ships as native ESM. Import components from `react-tabs` and stylesheets from `react-tabs/style/`. See the [migration guide](MIGRATION.md#switch-to-the-esm-package-entry-point) for CommonJS consumers.
 
 ```js
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 export default () => (
-  <Tabs>
+  <Tabs defaultKey="overview">
     <TabList>
-      <Tab>Title 1</Tab>
-      <Tab>Title 2</Tab>
+      <Tab itemKey="overview">Overview</Tab>
+      <Tab itemKey="details">Details</Tab>
     </TabList>
 
-    <TabPanel>
+    <TabPanel itemKey="overview">
       <h2>Any content 1</h2>
     </TabPanel>
-    <TabPanel>
+    <TabPanel itemKey="details">
       <h2>Any content 2</h2>
     </TabPanel>
   </Tabs>
@@ -52,7 +84,7 @@ export default () => (
 
 ## Components
 
-react-tabs consists of 4 components which all need to be used together.
+Each group uses one `TabList`. Every `Tab` in the list needs a `TabPanel` with the same `itemKey`. Panels can be rendered in a different order from the tabs.
 
 ### &lt;Tabs /&gt;
 
@@ -72,13 +104,9 @@ Provide a custom class name for the outer `<div />` of the tabs.
 
 If set to `true` the tabs will be focused on initial render. This allows immediate use of keyboard keys to switch tabs after the first render.
 
-#### defaultIndex: `number`
+#### defaultKey: `TabKey`
 
-> default: `0`
-
-This allows changing the tab that should be open on initial render. This is a zero-based index, so first tab is `0`, second tab is `1`, ...
-
-> This can only be used in uncontrolled mode when react-tabs handles the current selected tab internally and for this reason cannot be used together with `selectedIndex`. See [here](#controlled-vs-uncontrolled-mode) for more info on modes.
+Required in uncontrolled mode. Use the key of the tab to select on the initial render. Set either `defaultKey` or `selectedKey` for each group.
 
 #### direction: `string`
 
@@ -100,7 +128,7 @@ Provide a custom class name for disabled tabs.
 
 Disable up & down arrow keys to change tabs.
 
-#### domRef: `(node: ?HTMLElement) => void`
+#### domRef: `(node: HTMLDivElement | null) => void`
 
 > default: `null`
 
@@ -122,29 +150,19 @@ By default the tab that is clicked will also be focused in the DOM. If set to `f
 
 > default: `false`
 
-By default only the current active tab will be rendered to DOM. If set to `true` all tabs will be rendered to the DOM always.
+Panel elements stay mounted. By default only the selected panel renders its contents. Set this to `true` to keep all panel contents mounted, including in hidden panels.
 
 > This can also be enabled for each individual `<TabPanel />` component with its prop `forceRender`.
 
-#### onSelect: `(index: number, lastIndex: number, event: Event) => ?boolean`
+#### onSelect: `(nextKey: TabKey, previousKey: TabKey, event: TabEvent | undefined) => boolean | void`
 
-> default: `undefined`
+Called before a mouse or keyboard selection, including when a user activates the current tab. Return `false` to cancel the selection. The event is a React mouse or keyboard event.
 
-This event handler is called every time a tab is about to change. It will be called with the `index` that it will be changed to, the `lastIndex` which was selected before and the underlying `event` which is usually either a `keydown` or `click` event. When `index` and `lastIndex` are equal it means the user clicked on the currently active tab.
+If an uncontrolled group loses the selected tab, the first enabled tab with a matching panel becomes selected. The callback fires once after that selection is applied, with `event` set to `undefined`. The return value has no effect on automatic recovery. If no replacement is available, the group waits until one appears.
 
-The callback can optionally return `false` to cancel the change to the new tab.
+#### selectedKey: `TabKey`
 
-> Returning `false` when the change to the new tab should be canceled is also important in controlled mode, as react-tabs still internally handles the focus of the tabs.
-
-> In controlled mode the `onSelect` handler is a required prop.
-
-#### selectedIndex: `number`
-
-> default: `null`
-
-Set the currently selected tab. This is a zero-based index, so first tab is `0`, second tab is `1`, ...
-
-This enables controlled mode, which also requires `onSelect` to be set. See [here](#controlled-vs-uncontrolled-mode) for more info on modes.
+Required in controlled mode along with `onSelect`. Set this to the key of the selected tab. If the key has no matching pair, the group shows no selection and gives the first enabled pair the default keyboard entry point.
 
 #### selectedTabClassName: `string`
 
@@ -178,6 +196,10 @@ Provide a custom class name for the `<ul />`.
 
 If you specify additional props on the `<Tab />` component they will be forwarded to the rendered `<li />`.
 
+#### itemKey: `TabKey`
+
+Required. Use a nonempty string or finite number that identifies this tab within its group. Give the corresponding panel the same key. For dynamic lists, keep the key attached to the item when it moves. The number `1` and the string `'1'` are distinct keys.
+
 #### className: `string | Array<string> | { [string]: boolean }`
 
 > default: `"react-tabs__tab"`
@@ -208,15 +230,21 @@ Provide a custom class name for the active tab.
 
 > This option can also be set for all `<Tab />` components with the prop `selectedTabClassName` on `<Tabs />`.
 
-#### tabIndex: `string`
+#### tabIndex: `number`
 
-> default: if selected `"0"` otherwise `null`
+> default: `0` for the selected tab. If there is no selection, the first enabled tab with a matching panel gets `0`. Other tabs omit the attribute.
 
-Overrides the tabIndex to enabled tabbing between tabs.
+Overrides the tab's position in the keyboard tab order. Use `tabIndex={0}` to include a tab in the tab order or `tabIndex={-1}` to leave it out while keeping it programmatically focusable.
 
 ### &lt;TabPanel /&gt;
 
 If you specify additional props on the `<TabPanel />` component they will be forwarded to the rendered `<div />`.
+
+Inactive panels get the HTML `hidden` attribute and are hidden without the default stylesheet. See the [migration guide](MIGRATION.md#account-for-hidden-panels-in-exit-animations) if you animate panels when they become inactive.
+
+#### itemKey: `TabKey`
+
+Required. Use the same key as exactly one `Tab` in the same group. Keep the panel element mounted when its contents load on demand so the tab's ARIA link has a target.
 
 #### className: `string | Array<string> | { [string]: boolean }`
 
@@ -230,7 +258,7 @@ Provide a custom class name for the `<div />` containing the tab content.
 
 > default: `false`
 
-By default the tab content will only be rendered when the tab is active. If set to `true` the tab will also be rendered if inactive.
+By default the panel renders its contents when selected. Set this to `true` to keep the contents mounted while inactive.
 
 > This can also be enabled for all `<TabPanel />` components with the prop `forceRenderTabPanel` on `<Tabs />`.
 
@@ -244,48 +272,32 @@ Provide a custom class name for the active tab panel.
 
 ## Controlled vs Uncontrolled mode
 
-React tabs has two different modes it can operate in, which change the way how much you need to take care about the state yourself.
-
 ### Uncontrolled mode
 
-This is the default mode of react-tabs and makes the react-tabs components handle its state internally. You can change the starting tab with `defaultIndex` and you can listen for changes with `onSelect`.
-
-In this mode you cannot force a tab change during runtime.
-
-```js
-<Tabs defaultIndex={1} onSelect={(index) => console.log(index)}>
-  <TabList>
-    <Tab>Title 1</Tab>
-    <Tab>Title 2</Tab>
-  </TabList>
-  <TabPanel></TabPanel>
-  <TabPanel></TabPanel>
-</Tabs>
-```
+Set `defaultKey` to the initial selection. The group manages selection after that. You can listen for changes with `onSelect`. See the [basic example](#basic-example).
 
 ### Controlled mode
 
-This mode has to be enabled by supplying `selectedIndex` to the `<Tabs />` component.
+Set `selectedKey` and update it from `onSelect`. Use controlled mode when other parts of your app need to set the selection, such as routing or removing the currently selected item.
 
-In this mode react-tabs does not handle any tab selection state internally and leaves all the state management up to the outer application.
+```jsx
+import { useState } from 'react';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
-This mode also enforces you to set a handler for `onSelect`. `defaultIndex` does not have any effect and will therefore throw an error.
-
-```js
-const App = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+function AccountTabs() {
+  const [selectedKey, setSelectedKey] = useState('overview');
 
   return (
-    <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+    <Tabs selectedKey={selectedKey} onSelect={setSelectedKey}>
       <TabList>
-        <Tab>Title 1</Tab>
-        <Tab>Title 2</Tab>
+        <Tab itemKey="overview">Overview</Tab>
+        <Tab itemKey="billing">Billing</Tab>
       </TabList>
-      <TabPanel></TabPanel>
-      <TabPanel></TabPanel>
+      <TabPanel itemKey="overview">Account overview</TabPanel>
+      <TabPanel itemKey="billing">Billing settings</TabPanel>
     </Tabs>
   );
-};
+}
 ```
 
 ## Styling
@@ -326,47 +338,19 @@ You can also always just simply copy the default style to your own css/scss/less
 
 ### Custom Components
 
-#### Set `tabsRole`
-
-In case you want to create your own component wrapping the ones that the library provides, you have to set its `tabsRole`. This value is used inside react-tabs to check the role of a component inside `<Tabs />`.
-
-Possible values for tabsRole are:
-
-- Tab
-- TabPanel
-- TabList
-- Tabs
-
-#### Pass through properties
-
-Note: Because of how react-tabs works internally (it uses cloning to opaquely control various parts of the tab state), you need to pass any incoming props to the component you're wrapping. The easiest way to do this is to use the rest and spread operators, e.g. see `{...otherProps}` below.
+Render the built-in component in your wrapper, forwarding `itemKey` and the other public props your wrapper accepts.
 
 ```tsx
-import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
-import type { ReactTabsFunctionComponent, TabProps } from 'react-tabs';
+import { Tab } from 'react-tabs';
+import type { TabProps } from 'react-tabs';
 
-// All custom elements should pass through other props
-const CustomTab: ReactTabsFunctionComponent<TabProps> = ({
-  children,
-  ...otherProps
-}) => (
-  <Tab {...otherProps}>
-    <h1>{children}</h1>
-  </Tab>
-);
-
-CustomTab.tabsRole = 'Tab'; // Required field to use your custom Tab
-
-const App = () => (
-  <Tabs>
-    <TabList>
-      <CustomTab>Custom Tab 1</CustomTab>
-      <CustomTab>Custom Tab 2</CustomTab>
-    </TabList>
-    <TabPanel>Panel 1</TabPanel>
-    <TabPanel>Panel 2</TabPanel>
-  </Tabs>
-);
+function CustomTab({ children, ...props }: TabProps) {
+  return (
+    <Tab {...props}>
+      <strong>{children}</strong>
+    </Tab>
+  );
+}
 ```
 
 ## Contributing

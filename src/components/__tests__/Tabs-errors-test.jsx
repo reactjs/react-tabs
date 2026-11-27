@@ -1,181 +1,133 @@
-import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import { cleanup, render } from '@testing-library/react';
-import '@testing-library/jest-dom/vitest';
-import Tab from '../Tab';
-import TabList from '../TabList';
-import TabPanel from '../TabPanel';
-import Tabs from '../Tabs';
+import { afterEach, expect, test, vi } from 'vitest';
+import { cleanup, render, screen } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+import { Tab, TabList, TabPanel, Tabs } from '../../index';
 
-vi.mock('react', async (importOriginal) => {
-  const originalModule = await importOriginal('react');
-
-  return {
-    ...originalModule,
-    useId: () => ':r0:',
-  };
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
 });
 
-afterEach(cleanup);
+test.each([
+  [{}, 'requires either selectedKey or defaultKey'],
+  [{ defaultKey: '' }, 'requires either selectedKey or defaultKey'],
+  [
+    { defaultKey: 1, selectedKey: 1 },
+    'requires either selectedKey or defaultKey',
+  ],
+  [
+    { defaultKey: 1, selectedIndex: 1 },
+    'instead of selectedIndex or defaultIndex',
+  ],
+  [{ selectedKey: 1 }, 'requires onSelect'],
+  [{ defaultKey: 1, onSelect: true }, 'onSelect must be a function'],
+])('rejects invalid selection props %j', (props, message) => {
+  expect(() => render(<Tabs {...props} />)).toThrow(message);
+});
 
-describe('<Tabs />', () => {
-  let consoleErrorMock;
+test('rejects switching between controlled and uncontrolled mode', () => {
+  const { rerender } = render(<Tabs defaultKey={1} />);
+  expect(() => rerender(<Tabs selectedKey={1} onSelect={() => {}} />)).toThrow(
+    'cannot switch between controlled and uncontrolled mode',
+  );
+});
 
-  function assertPropTypeWarning(message, nth = 1) {
-    expect(consoleErrorMock).toHaveBeenNthCalledWith(
-      nth,
-      expect.stringMatching(message),
+test.each([undefined, '', NaN, Infinity])(
+  'rejects an invalid item key %s',
+  (itemKey) => {
+    expect(() => render(<Tab itemKey={itemKey} />)).toThrow(
+      'require a nonempty string or finite numeric itemKey',
     );
-  }
+    expect(() => render(<TabPanel itemKey={itemKey} />)).toThrow(
+      'require a nonempty string or finite numeric itemKey',
+    );
+  },
+);
 
-  beforeEach(() => {
-    consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => {});
-  });
+test('diagnoses duplicate and unmatched pairs and skips them during activation', async () => {
+  const report = vi.spyOn(console, 'error').mockImplementation(() => {});
+  const onSelect = vi.fn();
+  render(
+    <Tabs defaultKey="valid" onSelect={onSelect}>
+      <TabList>
+        <div>Extra content</div>
+        <Tab itemKey="duplicate">Duplicate A</Tab>
+        <Tab itemKey="duplicate">Duplicate B</Tab>
+        <Tab itemKey="missing">Unpaired</Tab>
+        <Tab itemKey="multi-panel">Multiple panels</Tab>
+        <Tab itemKey="valid">Valid tab</Tab>
+      </TabList>
+      <TabPanel itemKey="duplicate" />
+      <TabPanel itemKey="orphan" />
+      <TabPanel itemKey="multi-panel" />
+      <TabPanel itemKey="multi-panel" />
+      <TabPanel itemKey="valid" />
+    </Tabs>,
+  );
 
-  afterEach(() => {
-    consoleErrorMock.mockRestore();
-  });
+  expect(report.mock.calls).toEqual([
+    ['Duplicate Tab key "duplicate".'],
+    ['Tab key "missing" has no matching TabPanel.'],
+    ['TabPanel key "orphan" has no matching Tab.'],
+    ['Duplicate TabPanel key "multi-panel".'],
+  ]);
+  await userEvent.click(screen.getByRole('tab', { name: 'Duplicate A' }));
+  await userEvent.click(screen.getByRole('tab', { name: 'Unpaired' }));
+  await userEvent.click(screen.getByRole('tab', { name: 'Multiple panels' }));
+  expect(onSelect).not.toHaveBeenCalled();
+});
 
-  describe('errors', () => {
-    test('should result with warning when tabs/panels are imbalanced and it should ignore non tab children', () => {
-      render(
-        <Tabs>
-          <TabList>
-            <Tab>Foo</Tab>
-            <div>+</div>
-          </TabList>
+test('diagnoses tabs outside a TabList and multiple owned lists', () => {
+  const report = vi.spyOn(console, 'error').mockImplementation(() => {});
+  render(
+    <Tabs defaultKey={1}>
+      <TabList />
+      <TabList />
+      <Tab itemKey={1} />
+      <TabPanel itemKey={1} />
+    </Tabs>,
+  );
+  expect(report).toHaveBeenCalledWith(
+    'Only one TabList is allowed in a Tabs group.',
+  );
+  expect(report).toHaveBeenCalledWith(
+    'Every Tab must be inside its group’s TabList.',
+  );
+});
 
-          <TabPanel>Hello Foo</TabPanel>
-          <TabPanel>Hello Bar</TabPanel>
-        </Tabs>,
-      );
+test('skips DOM entries whose keys cannot identify a tab', async () => {
+  const onSelect = vi.fn();
+  render(
+    <Tabs defaultKey="first" onSelect={onSelect}>
+      <TabList>
+        <Tab itemKey="first">First</Tab>
+        <li role="tab" data-rttab="{">
+          Malformed JSON
+        </li>
+        <li role="tab" data-rttab="false">
+          Boolean key
+        </li>
+        <Tab itemKey="second">Second</Tab>
+      </TabList>
+      <div data-rttabpanel="{" />
+      <div data-rttabpanel="false" />
+      <TabPanel itemKey="first">First panel</TabPanel>
+      <TabPanel itemKey="second">Second panel</TabPanel>
+    </Tabs>,
+  );
 
-      assertPropTypeWarning(
-        "There should be an equal number of 'Tab' and 'TabPanel' in `Tabs`. Received 1 'Tab' and 2 'TabPanel'.",
-        1,
-      );
-      assertPropTypeWarning(
-        "There should be an equal number of 'Tab' and 'TabPanel' in `UncontrolledTabs`. Received 1 'Tab' and 2 'TabPanel'.",
-        2,
-      );
-    });
+  await userEvent.click(screen.getByRole('tab', { name: 'Malformed JSON' }));
+  await userEvent.click(screen.getByRole('tab', { name: 'Boolean key' }));
+  expect(onSelect).not.toHaveBeenCalled();
 
-    test('should result with warning when multiple tablist components exist', () => {
-      render(
-        <Tabs>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-          <TabPanel />
-          <TabPanel />
-        </Tabs>,
-      );
-
-      assertPropTypeWarning(
-        "Found multiple 'TabList' components inside 'Tabs'. Only one is allowed.",
-      );
-    });
-
-    test('should result with warning when tab outside of tablist', () => {
-      render(
-        <Tabs>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-          <Tab>Foo</Tab>
-          <TabPanel />
-          <TabPanel />
-        </Tabs>,
-      );
-
-      assertPropTypeWarning(
-        "Found a 'Tab' component outside of the 'TabList' component. 'Tab' components have to be inside the 'TabList' component.",
-      );
-    });
-
-    test('should result with warning when defaultIndex and selectedIndex set', () => {
-      render(
-        <Tabs selectedIndex={1} defaultIndex={1} onSelect={() => {}}>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-          <TabPanel>Foo</TabPanel>
-        </Tabs>,
-      );
-
-      assertPropTypeWarning(
-        'The prop `selectedIndex` cannot be used together with `defaultIndex` in `Tabs`.\nEither remove `selectedIndex` to let `Tabs` handle the selected tab internally or remove `defaultIndex` to handle it yourself.',
-      );
-    });
-
-    test('should throw when mode of component changes', () => {
-      const onSelect = () => {};
-      const { rerender } = render(
-        <Tabs defaultIndex={1} onSelect={onSelect}>
-          <TabList>
-            <Tab>Foo</Tab>
-            <Tab>Foo2</Tab>
-          </TabList>
-          <TabPanel>Foo</TabPanel>
-          <TabPanel>Foo2</TabPanel>
-        </Tabs>,
-      );
-
-      const consoleLogMock = vi.spyOn(console, 'log').mockImplementation();
-      try {
-        rerender(
-          <Tabs selectedIndex={0} onSelect={onSelect}>
-            <TabList>
-              <Tab>Foo</Tab>
-              <Tab>Foo2</Tab>
-            </TabList>
-            <TabPanel>Foo</TabPanel>
-            <TabPanel>Foo2</TabPanel>
-          </Tabs>,
-        );
-      } catch (e) {
-        expect(e.message).toContain(
-          'Switching between controlled mode (by using `selectedIndex`) and uncontrolled mode is not supported in `Tabs`.',
-        );
-      } finally {
-        consoleLogMock.mockRestore();
-      }
-    });
-
-    test('should result with warning when tabs/panels are imbalanced', () => {
-      render(
-        <Tabs>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-        </Tabs>,
-      );
-
-      assertPropTypeWarning(
-        "There should be an equal number of 'Tab' and 'TabPanel' in `Tabs`. Received 1 'Tab' and 0 'TabPanel'.",
-        1,
-      );
-      assertPropTypeWarning(
-        "There should be an equal number of 'Tab' and 'TabPanel' in `UncontrolledTabs`. Received 1 'Tab' and 0 'TabPanel'.",
-        2,
-      );
-    });
-
-    test('should result with warning when onSelect missing when selectedIndex set', () => {
-      render(
-        <Tabs selectedIndex={1}>
-          <TabList>
-            <Tab>Foo</Tab>
-          </TabList>
-          <TabPanel>Foo</TabPanel>
-        </Tabs>,
-      );
-
-      assertPropTypeWarning(
-        'The prop `onSelect` is marked as required in `Tabs`, but its value is `undefined` or `null`.\n`onSelect` is required when `selectedIndex` is also set. Not doing so will make the tabs not do anything, as `selectedIndex` indicates that you want to handle the selected tab yourself.\nIf you only want to set the inital tab replace `selectedIndex` with `defaultIndex`.',
-      );
-    });
-  });
+  await userEvent.tab();
+  await userEvent.keyboard('[ArrowRight]');
+  expect(onSelect).toHaveBeenCalledWith(
+    'second',
+    'first',
+    expect.objectContaining({ type: 'keydown' }),
+  );
+  expect(screen.getByRole('tab', { selected: true })).toBe(
+    screen.getByRole('tab', { name: 'Second' }),
+  );
 });
