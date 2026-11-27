@@ -426,6 +426,96 @@ describe('<Tabs />', () => {
       assertTabSelected(2, within(screen.getByTestId('second')));
     });
 
+    test('should keep keyed items mounted and paired by position when reordered', async () => {
+      function renderTabs(labels) {
+        return (
+          <Tabs>
+            <TabList>
+              {labels.map((label) => (
+                <Tab key={label}>{label}</Tab>
+              ))}
+            </TabList>
+            {labels.map((label) => (
+              <TabPanel key={label}>{label} content</TabPanel>
+            ))}
+          </Tabs>
+        );
+      }
+
+      const { rerender } = render(renderTabs(['Overview', 'Details']));
+      const details = screen.getByRole('tab', { name: 'Details' });
+      await userEvent.click(details);
+
+      rerender(renderTabs(['Details', 'Overview']));
+
+      const overview = screen.getByRole('tab', { name: 'Overview' });
+      const panel = screen.getByRole('tabpanel', { name: 'Overview' });
+      expect(screen.getByRole('tab', { name: 'Details' })).toBe(details);
+      expect(overview).toHaveAttribute('aria-selected', 'true');
+      expect(overview).toHaveAttribute('aria-controls', panel.id);
+      expect(overview).toHaveFocus();
+      expect(panel).toHaveTextContent('Overview content');
+    });
+
+    test('should leave a standalone panel inside selected panel content unselected', () => {
+      render(
+        <Tabs>
+          <TabList>
+            <Tab>Outer tab</Tab>
+          </TabList>
+          <TabPanel>
+            <TabPanel id="standalone" data-testid="standalone">
+              Standalone content
+            </TabPanel>
+          </TabPanel>
+        </Tabs>,
+      );
+
+      const standalone = screen.getByTestId('standalone');
+      expect(standalone).toHaveAttribute('id', 'panelstandalone');
+      expect(standalone).toBeEmptyDOMElement();
+    });
+
+    test('should give wrapped tabs and panels their state without forwarding hidden props', async () => {
+      function WrappedTab({ children }) {
+        return <Tab selectedClassName="local-tab">{children}</Tab>;
+      }
+      WrappedTab.tabsRole = 'Tab';
+
+      function WrappedPanel({ children }) {
+        return <TabPanel selectedClassName="local-panel">{children}</TabPanel>;
+      }
+      WrappedPanel.tabsRole = 'TabPanel';
+
+      render(
+        <Tabs
+          selectedTabClassName="active-tab"
+          selectedTabPanelClassName="active-panel"
+          forceRenderTabPanel
+        >
+          <TabList>
+            <WrappedTab>Overview</WrappedTab>
+            <WrappedTab>Details</WrappedTab>
+          </TabList>
+          <WrappedPanel>Overview content</WrappedPanel>
+          <WrappedPanel>Details content</WrappedPanel>
+        </Tabs>,
+      );
+
+      const details = screen.getByRole('tab', { name: 'Details' });
+      const panel = screen.getByRole('tabpanel', { name: 'Details' });
+      expect(panel).toHaveTextContent('Details content');
+      expect(panel).not.toHaveClass('active-panel');
+
+      await userEvent.click(details);
+
+      expect(details).toHaveFocus();
+      expect(details).toHaveClass('active-tab');
+      expect(details).toHaveAttribute('aria-controls', panel.id);
+      expect(panel).toHaveClass('active-panel');
+      expect(panel).not.toHaveClass('local-panel');
+    });
+
     test('should allow other DOM nodes', () => {
       expectToMatchSnapshot(
         <Tabs>

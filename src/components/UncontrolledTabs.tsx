@@ -7,8 +7,7 @@ import {
   type KeyboardEvent,
 } from 'react';
 import type { TabEvent, TabsProps } from '../types';
-import type { TabInjectedProps } from './Tab';
-import type { TabPanelInjectedProps } from './TabPanel';
+import { TabsItemContext } from './TabsItemContext';
 import cx from 'clsx';
 import { childrenPropType } from '../helpers/propTypes';
 import { getTabsCount as getTabsCountHelper } from '../helpers/count';
@@ -204,7 +203,7 @@ const UncontrolledTabs = (props: UncontrolledTabsProps) => {
     return deepMap(children, (child) => {
       let result = child;
 
-      // Clone TabList and Tab components to have refs
+      // Replace the list's children with their context providers.
       if (isTabList(child)) {
         let listIndex = 0;
 
@@ -230,41 +229,42 @@ const UncontrolledTabs = (props: UncontrolledTabsProps) => {
             const index = listIndex++;
             const selected = selectedIndex === index;
 
-            const props: TabInjectedProps = {
-              tabRef: (node) => {
-                tabNodesRef.current[index] = node;
-              },
-              id: tabIdsRef.current[index],
-              selected,
-              focus: selected && (focus || wasTabFocused),
-            };
-
-            if (selectedTabClassName)
-              props.selectedClassName = selectedTabClassName;
-            if (disabledTabClassName)
-              props.disabledClassName = disabledTabClassName;
-
-            return cloneElement<typeof tab.props & Partial<TabInjectedProps>>(
-              tab,
-              props,
+            return (
+              <TabsItemContext.Provider
+                key={tab.key}
+                value={{
+                  kind: 'tab',
+                  id: tabIdsRef.current[index],
+                  selected,
+                  focus: selected && (focus || wasTabFocused),
+                  disabledClassName: disabledTabClassName,
+                  selectedClassName: selectedTabClassName,
+                  registerNode: (node) => {
+                    tabNodesRef.current[index] = node;
+                  },
+                }}
+              >
+                {tab}
+              </TabsItemContext.Provider>
             );
           }),
         });
       } else if (isTabPanel(child)) {
-        const props: TabPanelInjectedProps = {
-          id: tabIdsRef.current[index],
-          selected: selectedIndex === index,
-        };
-
-        if (forceRenderTabPanel) props.forceRender = forceRenderTabPanel;
-        if (selectedTabPanelClassName)
-          props.selectedClassName = selectedTabPanelClassName;
-
-        index++;
-
-        result = cloneElement<
-          typeof child.props & Partial<TabPanelInjectedProps>
-        >(child, props);
+        const panelIndex = index++;
+        result = (
+          <TabsItemContext.Provider
+            key={child.key}
+            value={{
+              kind: 'panel',
+              id: tabIdsRef.current[panelIndex],
+              selected: selectedIndex === panelIndex,
+              forceRender: forceRenderTabPanel,
+              selectedClassName: selectedTabPanelClassName,
+            }}
+          >
+            {child}
+          </TabsItemContext.Provider>
+        );
       }
 
       return result;
@@ -414,7 +414,9 @@ const UncontrolledTabs = (props: UncontrolledTabsProps) => {
       }}
       data-rttabs
     >
-      {getChildren()}
+      <TabsItemContext.Provider value={null}>
+        {getChildren()}
+      </TabsItemContext.Provider>
     </div>
   );
 };

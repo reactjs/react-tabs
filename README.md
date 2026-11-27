@@ -337,15 +337,15 @@ Possible values for tabsRole are:
 - TabList
 - Tabs
 
-#### Pass through properties
+#### Forward public props
 
-Note: Because of how react-tabs works internally (it uses cloning to opaquely control various parts of the tab state), you need to pass any incoming props to the component you're wrapping. The easiest way to do this is to use the rest and spread operators, e.g. see `{...otherProps}` below.
+Render the built-in component from your wrapper and forward the public props you want it to support, including `children`. The built-in `Tab` and `TabPanel` read selection and focus state from React context. Wrappers no longer receive private props such as `selected`, `focus`, or `tabRef`.
 
 ```tsx
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import type { ReactTabsFunctionComponent, TabProps } from 'react-tabs';
 
-// All custom elements should pass through other props
+// Forward the public props supported by this wrapper.
 const CustomTab: ReactTabsFunctionComponent<TabProps> = ({
   children,
   ...otherProps

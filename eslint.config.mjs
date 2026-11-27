@@ -41,7 +41,7 @@ export default defineConfig([
       'src/helpers/childrenDeepMap.ts',
     ],
     rules: {
-      // Tab selection and focus are passed through to caller-provided elements.
+      // Preserve caller-provided wrappers while replacing their children.
       '@eslint-react/no-clone-element': 'off',
     },
   },
@@ -55,6 +55,8 @@ export default defineConfig([
   },
   {
     settings: {
+      // Lint against the oldest supported React version.
+      'react-x': { version: '18.0.0' },
       'import-x/resolver-next': [
         createNodeResolver({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
       ],

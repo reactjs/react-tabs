@@ -1,6 +1,7 @@
 import { afterEach, beforeAll, describe, expect, test } from 'vitest';
 import { cleanup, render } from '@testing-library/react';
 import Tab from '../Tab';
+import { TabsItemContext } from '../TabsItemContext';
 import { TabWrapper } from './helpers/higherOrder';
 
 function expectToMatchSnapshot(component) {
@@ -9,6 +10,14 @@ function expectToMatchSnapshot(component) {
 }
 
 afterEach(cleanup);
+
+const selectedTab = {
+  kind: 'tab',
+  id: 'abcd',
+  selected: true,
+  focus: false,
+  registerNode() {},
+};
 
 describe('<Tab />', () => {
   beforeAll(() => {
@@ -28,14 +37,18 @@ describe('<Tab />', () => {
 
   test('should support being selected', () => {
     expectToMatchSnapshot(
-      <Tab selected id="abcd">
-        Hello
-      </Tab>,
+      <TabsItemContext.Provider value={selectedTab}>
+        <Tab>Hello</Tab>
+      </TabsItemContext.Provider>,
     );
   });
 
   test('should support being selected with custom class', () => {
-    expectToMatchSnapshot(<Tab selected selectedClassName="cool" />);
+    expectToMatchSnapshot(
+      <TabsItemContext.Provider value={selectedTab}>
+        <Tab selectedClassName="cool" />
+      </TabsItemContext.Provider>,
+    );
   });
 
   test('should support being disabled', () => {

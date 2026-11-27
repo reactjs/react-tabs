@@ -1,6 +1,7 @@
 import { afterEach, beforeAll, describe, expect, test } from 'vitest';
 import { cleanup, render } from '@testing-library/react';
 import TabPanel from '../TabPanel';
+import { TabsItemContext } from '../TabsItemContext';
 import { TabPanelWrapper } from './helpers/higherOrder';
 
 function expectToMatchSnapshot(component) {
@@ -23,7 +24,13 @@ describe('<TabPanel />', () => {
   });
 
   test('should render when selected', () => {
-    expectToMatchSnapshot(<TabPanel selected>Hola</TabPanel>);
+    expectToMatchSnapshot(
+      <TabsItemContext.Provider
+        value={{ kind: 'panel', id: undefined, selected: true }}
+      >
+        <TabPanel>Hola</TabPanel>
+      </TabsItemContext.Provider>,
+    );
   });
 
   test('should render when forced', () => {
@@ -36,17 +43,21 @@ describe('<TabPanel />', () => {
 
   test('should support being selected', () => {
     expectToMatchSnapshot(
-      <TabPanel selected id="abcd">
-        Hola
-      </TabPanel>,
+      <TabsItemContext.Provider
+        value={{ kind: 'panel', id: 'abcd', selected: true }}
+      >
+        <TabPanel>Hola</TabPanel>
+      </TabsItemContext.Provider>,
     );
   });
 
   test('should support being selected with custom class name', () => {
     expectToMatchSnapshot(
-      <TabPanel selected id="abcd" selectedClassName="selected">
-        Hola
-      </TabPanel>,
+      <TabsItemContext.Provider
+        value={{ kind: 'panel', id: 'abcd', selected: true }}
+      >
+        <TabPanel selectedClassName="selected">Hola</TabPanel>
+      </TabsItemContext.Provider>,
     );
   });
 

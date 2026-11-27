@@ -117,12 +117,12 @@ exports[`<Tab /> > should support being selected 1`] = `
 
 exports[`<Tab /> > should support being selected with custom class 1`] = `
 <li
-  aria-controls="panelnull"
+  aria-controls="panelabcd"
   aria-disabled="false"
   aria-selected="true"
   class="react-tabs__tab cool"
   data-rttab="true"
-  id="tabnull"
+  id="tababcd"
   role="tab"
   tabindex="0"
 />
