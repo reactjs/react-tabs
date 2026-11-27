@@ -1,42 +1,22 @@
 /**
  * @vitest-environment node
  */
-import { describe, expect, test, vi } from 'vitest';
-import Tab from '../Tab';
-import TabList from '../TabList';
-import TabPanel from '../TabPanel';
-import Tabs from '../Tabs';
+import { expect, test } from 'vitest';
+import { renderToString } from 'react-dom/server';
+import { Tab, TabList, TabPanel, Tabs } from '../../index';
 
-vi.mock('react', async (importOriginal) => {
-  const originalModule = await importOriginal();
-
-  return {
-    ...originalModule,
-    useId: () => ':r0:',
-  };
-});
-
-function createTabs(props = {}) {
-  return (
-    <Tabs {...props}>
+test('server renders the selected panel without a DOM', () => {
+  const html = renderToString(
+    <Tabs defaultIndex={1}>
       <TabList>
-        <Tab>Foo</Tab>
-        <Tab>Bar</Tab>
-        <Tab>
-          <a href="a">Baz</a>
-        </Tab>
-        <Tab disabled>Qux</Tab>
+        <Tab>Overview</Tab>
+        <Tab>Details</Tab>
       </TabList>
-      <TabPanel>Hello Foo</TabPanel>
-      <TabPanel>Hello Bar</TabPanel>
-      <TabPanel>Hello Baz</TabPanel>
-      <TabPanel>Hello Qux</TabPanel>
-    </Tabs>
+      <TabPanel>Overview content</TabPanel>
+      <TabPanel>Details content</TabPanel>
+    </Tabs>,
   );
-}
 
-describe('ServerSide <Tabs />', () => {
-  test('does not crash in node environments', () => {
-    expect(() => createTabs()).not.toThrow();
-  });
+  expect(html).toContain('Details content');
+  expect(html).not.toContain('Overview content');
 });
